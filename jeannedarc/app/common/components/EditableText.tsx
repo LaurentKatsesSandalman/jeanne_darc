@@ -73,7 +73,7 @@ const FONT_FAMILIES = [
   { label: "Formaté", value: "monospace" },
 ];
 
-const FONT_SIZES = ["12", "14", "15", "16", "18", "20", "25", "30", "35", "40"];
+const FONT_SIZES = ["12", "13", "14", "15", "16", "18", "20", "25", "30", "35", "40" ];
 
 export default function EditableText({ value, onChange }: EditableTextProps) {
   const editor = useEditor({
@@ -96,7 +96,7 @@ export default function EditableText({ value, onChange }: EditableTextProps) {
         },
       }),
       FontFamily,
-      TextStyle, // ← Sans accolades maintenant
+      TextStyle,
       FontSize,
     ],
     content: value,
@@ -150,13 +150,14 @@ export default function EditableText({ value, onChange }: EditableTextProps) {
 
         {/* Taille */}
         <select
+		value={editor?.getAttributes("textStyle").fontSize || ""}
           onChange={(e) => setFontSize(e.target.value)}
           className="toolbar-select"
         >
           <option value="">Taille</option>
           {FONT_SIZES.map((size) => (
             <option key={size} value={size}>
-              {size}
+              {size}pt
             </option>
           ))}
         </select>
