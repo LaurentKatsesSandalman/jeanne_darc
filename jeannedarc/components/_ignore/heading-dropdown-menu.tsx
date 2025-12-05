@@ -105,39 +105,16 @@ export const HeadingDropdownMenu = forwardRef<
           <Card>
             <CardBody>
               <ButtonGroup>
-				
-                  <DropdownMenuItem asChild>
+                {levels.map((level) => (
+                  <DropdownMenuItem key={`heading-${level}`} asChild>
                     <HeadingButton
                       editor={editor}
-                      level={1}
-                      text={`Titre 1`}
+                      level={level}
+                      text={`Heading ${level}`}
                       showTooltip={false}
                     />
                   </DropdownMenuItem>
-				  <DropdownMenuItem asChild>
-                    <HeadingButton
-                      editor={editor}
-                      level={2}
-                      text={`Titre 2`}
-                      showTooltip={false}
-                    />
-                  </DropdownMenuItem>
-				  <DropdownMenuItem asChild>
-                    <HeadingButton
-                      editor={editor}
-                      level={3}
-                      text={`Titre 3`}
-                      showTooltip={false}
-                    />
-                  </DropdownMenuItem>
-				  <DropdownMenuItem asChild>
-                    <HeadingButton
-                      editor={editor}
-                      level={4}
-                      text={`Citation`}
-                      showTooltip={false}
-                    />
-                  </DropdownMenuItem>
+                ))}
               </ButtonGroup>
             </CardBody>
           </Card>

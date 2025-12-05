@@ -1,6 +1,6 @@
 "use client";
 
-import EditableText from "@/app/common/components/EditableText";
+import EditableText from "@/components/EditableText/EditableText";
 import { useState } from "react";
 import { SimpleEditor } from "@/components/tiptap-templates/simple/simple-editor";
 

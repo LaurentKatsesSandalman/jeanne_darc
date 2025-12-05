@@ -36,7 +36,10 @@ import "@/components/tiptap-node/paragraph-node/paragraph-node.scss"
 
 // --- Tiptap UI ---
 import { HeadingDropdownMenu } from "@/components/tiptap-ui/heading-dropdown-menu"
+import { ImageUploadButton } from "@/components/tiptap-ui/image-upload-button"
+import { ListDropdownMenu } from "@/components/tiptap-ui/list-dropdown-menu"
 import { BlockquoteButton } from "@/components/tiptap-ui/blockquote-button"
+import { CodeBlockButton } from "@/components/tiptap-ui/code-block-button"
 import {
   ColorHighlightPopover,
   ColorHighlightPopoverContent,
@@ -71,7 +74,6 @@ import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils"
 import "@/components/tiptap-templates/simple/simple-editor.scss"
 
 import content from "@/components/tiptap-templates/simple/data/content.json"
-import { ListButton } from "@/components/tiptap-ui/list-button"
 
 const MainToolbarContent = ({
   onHighlighterClick,
@@ -94,10 +96,13 @@ const MainToolbarContent = ({
       <ToolbarSeparator />
 
       <ToolbarGroup>
-        <HeadingDropdownMenu levels={[1, 2, 3, 4, 5]} portal={isMobile} /> 
-		<ListButton type="bulletList"/>
-		<ListButton type="orderedList"/>
+        <HeadingDropdownMenu levels={[1, 2, 3, 4]} portal={isMobile} /> 
+        <ListDropdownMenu
+          types={["bulletList", "orderedList", "taskList"]}
+          portal={isMobile}
+        />
         <BlockquoteButton />
+        <CodeBlockButton />
       </ToolbarGroup>
 
       <ToolbarSeparator />
@@ -105,6 +110,8 @@ const MainToolbarContent = ({
       <ToolbarGroup>
         <MarkButton type="bold" />
         <MarkButton type="italic" />
+        <MarkButton type="strike" />
+        <MarkButton type="code" />
         <MarkButton type="underline" />
         {!isMobile ? (
           <ColorHighlightPopover />
@@ -130,11 +137,11 @@ const MainToolbarContent = ({
         <TextAlignButton align="justify" />
       </ToolbarGroup>
 
-      {/* <ToolbarSeparator />
+      <ToolbarSeparator />
 
       <ToolbarGroup>
         <ImageUploadButton text="Add" />
-      </ToolbarGroup> */}
+      </ToolbarGroup>
 
       <Spacer />
 
