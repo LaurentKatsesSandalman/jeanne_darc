@@ -22,9 +22,14 @@ import "@/components/tiptap-node/heading-node/heading-node.scss"
 import "@/components/tiptap-node/paragraph-node/paragraph-node.scss"
 
 // --- Data ---
-import content from "@/components/tiptap-templates/simple/data/content.json"
+import defaultContent from "@/components/tiptap-templates/simple/data/content.json"
+import { Contenu } from "@/lib/definitions"
 
-export function DisplayedText() {
+interface Debugprops {
+	contenu : Contenu
+}
+
+export function DisplayedText({contenu=defaultContent}:Debugprops) {
   const editor = useEditor({
     immediatelyRender: false,
     editable: false, // Mode lecture seule
@@ -46,7 +51,7 @@ export function DisplayedText() {
       Superscript,
       Subscript,
     ],
-    content,
+    content:contenu,
   })
 
   return (
