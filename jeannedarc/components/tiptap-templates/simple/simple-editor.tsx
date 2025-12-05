@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react"
 
 // --- Tiptap Core Extensions ---
@@ -15,7 +15,6 @@ import { Superscript } from "@tiptap/extension-superscript"
 import { Selection } from "@tiptap/extensions"
 
 // --- UI Primitives ---
-import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Spacer } from "@/components/tiptap-ui-primitive/spacer"
 import {
   Toolbar,
@@ -39,27 +38,14 @@ import { HeadingDropdownMenu } from "@/components/tiptap-ui/heading-dropdown-men
 import { BlockquoteButton } from "@/components/tiptap-ui/blockquote-button"
 import {
   ColorHighlightPopover,
-  ColorHighlightPopoverContent,
-  ColorHighlightPopoverButton,
 } from "@/components/tiptap-ui/color-highlight-popover"
 import {
   LinkPopover,
-  LinkContent,
-  LinkButton,
 } from "@/components/tiptap-ui/link-popover"
 import { MarkButton } from "@/components/tiptap-ui/mark-button"
 import { TextAlignButton } from "@/components/tiptap-ui/text-align-button"
 import { UndoRedoButton } from "@/components/tiptap-ui/undo-redo-button"
-
-// --- Icons ---
-import { ArrowLeftIcon } from "@/components/tiptap-icons/arrow-left-icon"
-import { HighlighterIcon } from "@/components/tiptap-icons/highlighter-icon"
-import { LinkIcon } from "@/components/tiptap-icons/link-icon"
-
-// --- Hooks ---
-import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
-import { useWindowSize } from "@/hooks/use-window-size"
-import { useCursorVisibility } from "@/hooks/use-cursor-visibility"
+import { ListButton } from "@/components/tiptap-ui/list-button"
 
 // --- Components ---
 import { ThemeToggle } from "@/components/tiptap-templates/simple/theme-toggle"
@@ -71,17 +57,8 @@ import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils"
 import "@/components/tiptap-templates/simple/simple-editor.scss"
 
 import content from "@/components/tiptap-templates/simple/data/content.json"
-import { ListButton } from "@/components/tiptap-ui/list-button"
 
-const MainToolbarContent = ({
-  onHighlighterClick,
-  onLinkClick,
-  isMobile,
-}: {
-  onHighlighterClick: () => void
-  onLinkClick: () => void
-  isMobile: boolean
-}) => {
+const MainToolbarContent = () => {
   return (
     <>
       <Spacer />
@@ -94,9 +71,9 @@ const MainToolbarContent = ({
       <ToolbarSeparator />
 
       <ToolbarGroup>
-        <HeadingDropdownMenu levels={[1, 2, 3, 4, 5]} portal={isMobile} /> 
-		<ListButton type="bulletList"/>
-		<ListButton type="orderedList"/>
+        <HeadingDropdownMenu levels={[1, 2, 3, 4, 5]} portal={true} />
+        <ListButton type="bulletList" />
+        <ListButton type="orderedList" />
         <BlockquoteButton />
       </ToolbarGroup>
 
@@ -106,12 +83,8 @@ const MainToolbarContent = ({
         <MarkButton type="bold" />
         <MarkButton type="italic" />
         <MarkButton type="underline" />
-        {!isMobile ? (
-          <ColorHighlightPopover />
-        ) : (
-          <ColorHighlightPopoverButton onClick={onHighlighterClick} />
-        )}
-        {!isMobile ? <LinkPopover /> : <LinkButton onClick={onLinkClick} />}
+        <ColorHighlightPopover />
+        <LinkPopover />
       </ToolbarGroup>
 
       <ToolbarSeparator />
@@ -130,15 +103,7 @@ const MainToolbarContent = ({
         <TextAlignButton align="justify" />
       </ToolbarGroup>
 
-      {/* <ToolbarSeparator />
-
-      <ToolbarGroup>
-        <ImageUploadButton text="Add" />
-      </ToolbarGroup> */}
-
       <Spacer />
-
-      {isMobile && <ToolbarSeparator />}
 
       <ToolbarGroup>
         <ThemeToggle />
@@ -147,41 +112,7 @@ const MainToolbarContent = ({
   )
 }
 
-const MobileToolbarContent = ({
-  type,
-  onBack,
-}: {
-  type: "highlighter" | "link"
-  onBack: () => void
-}) => (
-  <>
-    <ToolbarGroup>
-      <Button data-style="ghost" onClick={onBack}>
-        <ArrowLeftIcon className="tiptap-button-icon" />
-        {type === "highlighter" ? (
-          <HighlighterIcon className="tiptap-button-icon" />
-        ) : (
-          <LinkIcon className="tiptap-button-icon" />
-        )}
-      </Button>
-    </ToolbarGroup>
-
-    <ToolbarSeparator />
-
-    {type === "highlighter" ? (
-      <ColorHighlightPopoverContent />
-    ) : (
-      <LinkContent />
-    )}
-  </>
-)
-
 export function SimpleEditor() {
-  const isMobile = useIsBreakpoint()
-  const { height } = useWindowSize()
-  const [mobileView, setMobileView] = useState<"main" | "highlighter" | "link">(
-    "main"
-  )
   const toolbarRef = useRef<HTMLDivElement>(null)
 
   const editor = useEditor({
@@ -221,45 +152,14 @@ export function SimpleEditor() {
         onError: (error) => console.error("Upload failed:", error),
       }),
     ],
-    content,
+    content, //initial content
   })
-
-  const rect = useCursorVisibility({
-    editor,
-    overlayHeight: toolbarRef.current?.getBoundingClientRect().height ?? 0,
-  })
-
-  useEffect(() => {
-    if (!isMobile && mobileView !== "main") {
-      setMobileView("main")
-    }
-  }, [isMobile, mobileView])
 
   return (
     <div className="simple-editor-wrapper">
       <EditorContext.Provider value={{ editor }}>
-        <Toolbar
-          ref={toolbarRef}
-          style={{
-            ...(isMobile
-              ? {
-                  bottom: `calc(100% - ${height - rect.y}px)`,
-                }
-              : {}),
-          }}
-        >
-          {mobileView === "main" ? (
-            <MainToolbarContent
-              onHighlighterClick={() => setMobileView("highlighter")}
-              onLinkClick={() => setMobileView("link")}
-              isMobile={isMobile}
-            />
-          ) : (
-            <MobileToolbarContent
-              type={mobileView === "highlighter" ? "highlighter" : "link"}
-              onBack={() => setMobileView("main")}
-            />
-          )}
+        <Toolbar ref={toolbarRef}>
+          <MainToolbarContent />
         </Toolbar>
 
         <EditorContent

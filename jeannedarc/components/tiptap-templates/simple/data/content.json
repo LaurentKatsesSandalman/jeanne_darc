@@ -221,14 +221,7 @@
         }
       ]
     },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "/images/tiptap-ui-placeholder-image.jpg",
-        "alt": "placeholder-image",
-        "title": "placeholder-image"
-      }
-    },
+    
     {
       "type": "bulletList",
       "content": [
@@ -383,9 +376,7 @@
         }
       ]
     },
-    {
-      "type": "horizontalRule"
-    },
+
     {
       "type": "heading",
       "attrs": {
@@ -411,62 +402,7 @@
         }
       ]
     },
-    {
-      "type": "taskList",
-      "content": [
-        {
-          "type": "taskItem",
-          "attrs": {
-            "checked": true
-          },
-          "content": [
-            {
-              "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Test template"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "taskItem",
-          "attrs": {
-            "checked": false
-          },
-          "content": [
-            {
-              "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
-              "content": [
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "link",
-                      "attrs": {
-                        "href": "https://tiptap.dev/docs/ui-components/templates/simple-editor",
-                        "target": "_blank",
-                        "rel": "noopener noreferrer nofollow",
-                        "class": null
-                      }
-                    }
-                  ],
-                  "text": "Integrate the free template"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
+  
     {
       "type": "paragraph",
       "attrs": {
