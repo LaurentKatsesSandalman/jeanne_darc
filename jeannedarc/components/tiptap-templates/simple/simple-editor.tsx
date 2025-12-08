@@ -51,7 +51,7 @@ import { ThemeToggle } from "@/components/tiptap-templates/simple/theme-toggle";
 import "@/components/tiptap-templates/simple/simple-editor.scss";
 
 import content from "@/components/tiptap-templates/simple/data/content.json";
-import { updateTextSectionByUrl, updateTextSectionByUrlString } from "@/lib/contentCrud";
+import { updateTextSectionByUrlString } from "@/lib/contentCrud";
 import { TextColorPopover } from "@/components/tiptap-ui/text-color-popover/text-color-popover";
 
 const MainToolbarContent = () => {
