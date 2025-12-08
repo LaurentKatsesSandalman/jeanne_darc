@@ -1,6 +1,7 @@
 'use client'
 
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic' // Next.js fournit dynamic() 
+									// pour importer un module au runtime dans le navigateur.
 
 const SimpleEditor = dynamic(
   () => import('@/components/tiptap-templates/simple/simple-editor')
@@ -9,5 +10,7 @@ const SimpleEditor = dynamic(
 )
 
 export default function ClientEditor() {
-  return <SimpleEditor />
+  return (<>
+  <SimpleEditor />
+  </>)
 }

@@ -4,13 +4,14 @@ import { useEditor, EditorContent } from "@tiptap/react"
 
 // --- Tiptap Core Extensions ---
 import { StarterKit } from "@tiptap/starter-kit"
-import { Image } from "@tiptap/extension-image"
 import { TaskItem, TaskList } from "@tiptap/extension-list"
 import { TextAlign } from "@tiptap/extension-text-align"
 import { Typography } from "@tiptap/extension-typography"
 import { Highlight } from "@tiptap/extension-highlight"
 import { Subscript } from "@tiptap/extension-subscript"
 import { Superscript } from "@tiptap/extension-superscript"
+import { TextStyle } from "@tiptap/extension-text-style";
+import { Color } from "@tiptap/extension-color";
 
 // --- Styles (mêmes que l'éditeur) ---
 import "@/components/tiptap-node/blockquote-node/blockquote-node.scss"
@@ -23,10 +24,10 @@ import "@/components/tiptap-node/paragraph-node/paragraph-node.scss"
 
 // --- Data ---
 import defaultContent from "@/components/tiptap-templates/simple/data/content.json"
-import { Contenu } from "@/lib/definitions"
+import { ContenuTipTap } from "@/lib/definitions"
 
 interface Debugprops {
-	contenu : Contenu
+	contenu : ContenuTipTap
 }
 
 export function DisplayedText({contenu=defaultContent}:Debugprops) {
@@ -42,11 +43,15 @@ export function DisplayedText({contenu=defaultContent}:Debugprops) {
       StarterKit.configure({
         horizontalRule: false,
       }),
+	  TextStyle, // +++
+            Color.configure({
+                types: ["textStyle"],
+            }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       TaskList,
       TaskItem.configure({ nested: true }),
       Highlight.configure({ multicolor: true }),
-      Image,
+    //   Image,
       Typography,
       Superscript,
       Subscript,

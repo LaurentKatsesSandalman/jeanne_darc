@@ -1,4 +1,3 @@
-export type Contenu = {
-  type: string; // should be "doc"
-  content: any[];
-};
+import type { JSONContent } from '@tiptap/core';
+
+export type ContenuTipTap = JSONContent;
