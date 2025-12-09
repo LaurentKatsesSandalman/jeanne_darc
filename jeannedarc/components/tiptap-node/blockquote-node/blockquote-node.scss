@@ -19,6 +19,7 @@
 
     p {
       margin-top: 0;
+	  font-size: 15px;
     }
 
     &::before,
@@ -34,4 +35,10 @@
       border-radius: 0;
     }
   }
+}
+
+@media screen and (max-width: 480px){
+	.tiptap.ProseMirror blockquote p{
+		font-size: 14px;
+	}
 }

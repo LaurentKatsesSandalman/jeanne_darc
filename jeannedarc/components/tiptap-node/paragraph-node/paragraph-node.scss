@@ -35,7 +35,7 @@
 
   // Paragraph spacing
   p:not(:first-child):not(td p):not(th p) {
-    font-size: 1rem;
+    font-size: 15px;
     line-height: 1.6;
     font-weight: normal;
     margin-top: 20px;
@@ -271,3 +271,13 @@
   height: 0.188rem;
   cursor: grabbing;
 }
+
+
+@media screen and (max-width: 480px) {
+ .tiptap.ProseMirror p:not(:first-child):not(td p):not(th p) {
+    font-size: 14px;
+  }
+}
+
+
+ 

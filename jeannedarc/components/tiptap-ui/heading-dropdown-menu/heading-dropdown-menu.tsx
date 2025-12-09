@@ -126,14 +126,6 @@ export const HeadingDropdownMenu = forwardRef<
                     <HeadingButton
                       editor={editor}
                       level={3}
-                      text={`Titre 3`}
-                      showTooltip={false}
-                    />
-                  </DropdownMenuItem>
-				  <DropdownMenuItem asChild>
-                    <HeadingButton
-                      editor={editor}
-                      level={4}
                       text={`Citation`}
                       showTooltip={false}
                     />
