@@ -40,6 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# training
-_learning2.ts
 _learning.tsx
+_learning2.ts
