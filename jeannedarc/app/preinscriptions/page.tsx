@@ -2,7 +2,7 @@ export default function Page() {
     return (
         <>
             <main>
-                <h1> Page: page name</h1>
+                <h1> Page: preinscriptions</h1>
             </main>
         </>
     );

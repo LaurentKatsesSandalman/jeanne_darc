@@ -1,14 +1,13 @@
 -- Insérer une section exemple
 INSERT INTO TEXTSECTION (url, content)
 VALUES (
-    'projet-pedagogique',
+    'editor/read',
     $${
   "type": "doc",
   "content": [
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
         "level": 1
       },
       "content": [
