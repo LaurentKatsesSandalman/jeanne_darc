@@ -164,7 +164,7 @@ export function SimpleEditor() {
 
         // Stringify pour bypasser la sérialisation Next.js
         const jsonString = JSON.stringify(json);
-        updateTextSectionByUrlString(jsonString, "projet-pedagogique");
+        updateTextSectionByUrlString(jsonString, "editor/read");
     }
 
     return (

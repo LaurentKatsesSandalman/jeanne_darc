@@ -1,10 +1,11 @@
 "use server"
 
 import { sql } from './db';
+import { InterfacePage } from './definitions';
 //import { ContenuTipTap } from './definitions';
 
-export async function getTextSectionByUrl(url: string) {
-  const rows = await sql`
+export async function getTextSectionByUrl(url: string): Promise<InterfacePage |undefined> {
+  const rows = await sql<InterfacePage[]>`
     SELECT * FROM textsection WHERE url = ${url};
   `;
   return rows[0];
@@ -17,6 +18,5 @@ export async function updateTextSectionByUrlString(contenuString: string, url: s
     const rows = await sql`
     UPDATE TEXTSECTION SET content = ${sql.json(contenu)} WHERE url = ${url} RETURNING *;
     `;
-      
     return rows[0];
 }
