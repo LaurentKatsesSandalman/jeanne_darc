@@ -27,6 +27,9 @@ export const sql = postgres({
         process.env.NODE_ENV === "production"
             ? true // ou { rejectUnauthorized: false }, pour la prod, si SSL activé et autosigné
             : false, // local : SSL désactivé
+	connection: {
+        client_encoding: 'UTF8'
+    }
 });
 
 export default sql;
