@@ -20,7 +20,7 @@ export interface PageInterface {
 	updated_at?: string;
 }
 
-export interface sectionInterface {
+export interface SectionInterface {
     id_section: string;
     id_page_fk: string;
     position: number;
@@ -30,7 +30,7 @@ export interface sectionInterface {
 	updated_at?: string;
 };
 
-export interface contenu_imageInterface {
+export interface ContenuImageInterface {
     id_contenu_image: string;
     id_section_fk: string;
     image_url: string;
@@ -39,7 +39,7 @@ export interface contenu_imageInterface {
 	updated_at?: string;
 };
 
-export interface contenu_texteInterface {
+export interface ContenuTexteInterface {
     id_contenu_texte: string;
     id_section_fk: string;
     tiptap_content: ContenuTipTap;
@@ -47,7 +47,7 @@ export interface contenu_texteInterface {
 	updated_at?: string;
 };
 
-export interface contenu_contactInterface {
+export interface ContenuContactInterface {
     id_contenu_contact: string;
     id_section_fk: string;
     titre: string;
@@ -60,7 +60,7 @@ export interface contenu_contactInterface {
 	updated_at?: string;
 };
 
-export interface contenu_pdfInterface {
+export interface ContenuPdfInterface {
     id_contenu_pdf: string;
     id_section_fk: string;
     pdf_url: string;
@@ -79,7 +79,7 @@ export interface ContenuTitreInterface {
 	updated_at?: string;
 }
 
-export interface contenu_paveInterface {
+export interface ContenuPaveInterface {
     id_contenu_pave: string;
     id_section_fk: string;
     titre?: string;
@@ -87,7 +87,7 @@ export interface contenu_paveInterface {
 	updated_at?: string;
 };
 
-export interface contenu_bandeaubtnInterface {
+export interface ContenuBandeauBtnInterface {
     id_contenu_bandeaubtn: string;
     id_section_fk: string;
     icone_url?: string;
@@ -99,7 +99,7 @@ export interface contenu_bandeaubtnInterface {
 	updated_at?: string;
 };
 
-export interface contenu_headerbtnInterface {
+export interface ContenuHeaderBtnInterface {
     id_contenu_headerbtn: string;
     id_section_fk: string;
     position: number;
@@ -109,7 +109,7 @@ export interface contenu_headerbtnInterface {
 	updated_at?: string;
 };
 
-export interface pave_blocInterface {
+export interface PaveBlocInterface {
     id_pave_bloc: string;
     id_contenu_pave_fk: string;
     position: number;
