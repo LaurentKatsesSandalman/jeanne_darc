@@ -134,17 +134,13 @@ export async function getAllContenuTextesBySectionId(id_section:string):Promise<
 	return rows;
 }
 
-export async function updateContenuTexteById(payload:Partial<Omit<ContenuTexteInterface, "id_contenu_texte">>,id:string): Promise<ContenuTexteInterface | undefined> {
+export async function updateContenuTexteById(tiptap_content: string, id:string): Promise<ContenuTexteInterface | undefined> {
 
-   const updates = Object.fromEntries(
-    Object.entries(payload).filter(([, value]) => value !== undefined && value !== null)
-  );
-
-  if (Object.keys(updates).length === 0) return undefined;
+const updatedtiptap_content = JSON.parse(tiptap_content);
 
   const rows = await sql<ContenuTexteInterface[]>`
     UPDATE contenu_texte 
-    SET ${sql(updates)} 
+    SET tiptap_content = ${sql.json(updatedtiptap_content)}
     WHERE id_contenu_texte = ${id}
     RETURNING *
   `;
