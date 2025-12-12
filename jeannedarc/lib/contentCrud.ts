@@ -1,11 +1,11 @@
 "use server"
 
 import { sql } from './db';
-import { InterfacePage } from './definitions';
+import { PageInterface } from './definitions';
 //import { ContenuTipTap } from './definitions';
 
-export async function getTextSectionByUrl(url: string): Promise<InterfacePage |undefined> {
-  const rows = await sql<InterfacePage[]>`
+export async function getTextSectionByUrl(url: string): Promise<PageInterface |undefined> {
+  const rows = await sql<PageInterface[]>`
     SELECT * FROM textsection WHERE url = ${url};
   `;
   return rows[0];
