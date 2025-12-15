@@ -23,7 +23,6 @@ export interface PageInterface {
 export interface SectionInterface {
     id_section: string;
     id_page_fk: string;
-    position: number;
     type: string;
     revert: boolean;
     created_at?: string;

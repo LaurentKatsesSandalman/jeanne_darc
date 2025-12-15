@@ -27,6 +27,25 @@ body {
 
 main{
 	background-color: var(--background-page);
+	padding: 50px 0 50px 0;
+	color:var(--font-default)
+	/* width:min(90%, 1290px);
+	margin: 0 auto; */
+}
+
+input {
+	display: block;
+	width: 100%;
+	background-color: var(--background-input);
+	outline: none;
+}
+
+input:focus{
+	border: 1px solid var(--background-pdf-related)
+}
+
+label {
+	display: block;
 }
 
 /* @theme inline {

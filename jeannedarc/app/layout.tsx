@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { IBM_Plex } from "./fonts";
+import { IBM_Plex, ActorFont } from "./fonts";
 import "./globals.css";
 import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
+// import styles from "./layout.module.css"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,10 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${IBM_Plex.className} antialiased`}
+        className={`${IBM_Plex.variable} ${ActorFont.variable} antialiased`}
       >
 		<Header/>
+			<div >
         {children}
+			</div>
 		<Footer/>
       </body>
     </html>

@@ -1,5 +1,6 @@
 "use server"
 
+import { revalidatePath } from 'next/cache';
 import { sql } from './db';
 import { ContenuImageInterface, ContenuTexteInterface, ContenuContactInterface, ContenuPdfInterface, ContenuTitreInterface, ContenuPaveInterface, ContenuBandeauBtnInterface, ContenuHeaderBtnInterface  } from './definitions';
 
@@ -31,7 +32,7 @@ export async function getAllContenuTitresBySectionId(id_section:string):Promise<
 	return rows;
 }
 
-export async function updateContenuTitreById(payload:Partial<Omit<ContenuTitreInterface, "id_contenu_titre">>,id:string): Promise<ContenuTitreInterface | undefined> {
+export async function updateContenuTitreById(payload:Partial<Omit<ContenuTitreInterface, "id_contenu_titre">>,id:string, url?:string): Promise<ContenuTitreInterface | undefined> {
 
    const updates = Object.fromEntries(
     Object.entries(payload).filter(([, value]) => value !== undefined && value !== null)
@@ -45,6 +46,8 @@ export async function updateContenuTitreById(payload:Partial<Omit<ContenuTitreIn
     WHERE id_contenu_titre = ${id}
     RETURNING *
   `;
+
+  if(url){revalidatePath(url)}
 
   return rows[0];
 }
