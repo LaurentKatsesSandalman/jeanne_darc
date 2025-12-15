@@ -1,6 +1,6 @@
 import { ContenuTipTap, PageInterface } from "@/lib/definitions";
 import { getTextSectionByUrl } from "../../../../lib/contentCrudPage";
-import { DisplayedText } from "@/components/DisplayedText/DisplayedText";
+import { ContenuTexte } from "@/components/Contenus/ContenuTexte/ContenuTexte";
 
 export default async function Page() {
     const page: PageInterface | undefined = await getTextSectionByUrl(
@@ -11,7 +11,7 @@ export default async function Page() {
     return (
         <div className="p-8">
             <p>{check}</p>
-            <DisplayedText contenu={contenu} />
+            <ContenuTexte contenu={contenu} />
         </div>
     );
 }

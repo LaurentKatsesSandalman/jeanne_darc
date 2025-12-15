@@ -24,13 +24,13 @@ import "@/components/tiptap/tiptap-node/paragraph-node/paragraph-node.scss";
 
 // --- Data ---
 import defaultContent from "@/components/tiptap/tiptap-templates/simple/data/content.json";
-import { ContenuTipTap } from "@/lib/definitions";
+import { ContenuTipTap } from "@/lib/schemas";
 
 interface Debugprops {
     contenu: ContenuTipTap;
 }
 
-export function DisplayedText({ contenu = defaultContent }: Debugprops) {
+export function ContenuTexte({ contenu = defaultContent }: Debugprops) {
     const editor = useEditor({
         immediatelyRender: false,
         editable: false, // Mode lecture seule

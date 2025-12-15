@@ -50,9 +50,11 @@ import { ThemeToggle } from "@/components/tiptap/tiptap-templates/simple/theme-t
 // --- Styles ---
 import "@/components/tiptap/tiptap-templates/simple/simple-editor.scss";
 
-import content from "@/components/tiptap/tiptap-templates/simple/data/content.json";
-import { updateTextSectionByUrlString } from "@/lib/contentCrudPage";
+//import content from "@/components/tiptap/tiptap-templates/simple/data/content.json";
 import { TextColorPopover } from "@/components/tiptap/tiptap-ui/text-color-popover/text-color-popover";
+import { ContenuTexte} from "@/lib/schemas";
+import { usePathname } from "next/navigation";
+import { updateContenuTexteById } from "@/lib/contentCrudContenu";
 
 const MainToolbarContent = () => {
     return (
@@ -109,8 +111,13 @@ const MainToolbarContent = () => {
     );
 };
 
-export function SimpleEditor() {
+interface ContenuTexteEditProps {
+    contenu: ContenuTexte; 
+}
+
+export function ContenuTexteEdit({ contenu }: ContenuTexteEditProps) {
     const toolbarRef = useRef<HTMLDivElement>(null);
+	const url = usePathname();
 
     const editor = useEditor({
         immediatelyRender: false,
@@ -156,7 +163,7 @@ export function SimpleEditor() {
             //     onError: (error) => console.error("Upload failed:", error),
             //   }),
         ],
-        content, //initial content
+        content: contenu.tiptap_content, //initial content
     });
 
     function handleSave() {
@@ -164,7 +171,7 @@ export function SimpleEditor() {
 
         // Stringify pour bypasser la sérialisation Next.js
         const jsonString = JSON.stringify(json);
-        updateTextSectionByUrlString(jsonString, "editor/read");
+        updateContenuTexteById(jsonString, contenu.id_contenu_texte,url);
     }
 
     return (

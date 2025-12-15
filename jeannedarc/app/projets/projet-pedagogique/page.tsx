@@ -1,16 +1,16 @@
 import { SectionTitreServer } from "@/components/Sections/SectionTitre/SectionTitreServer";
 import { getPageByUrl } from "@/lib/contentCrudPage";
 import { getAllSectionsByPageId } from "@/lib/contentCrudSection";
-import { SectionInterface } from "@/lib/definitions";
+import { Section } from "@/lib/schemas";
 
 export default async function Page() {
 	const page = await getPageByUrl ("projets/projet-pedagogique")
 	if(!page){return <p>Erreur au chargement de la page</p>}
 	const sections = await getAllSectionsByPageId (page?.id_page)
 	if(!sections){return <p>Erreur au chargement des sections de la page</p>}
-	const sectionTitreData: SectionInterface = sections[0]
-	const sectionImageTexteData: SectionInterface = sections [1]
-	const sectionTexteData: SectionInterface = sections [2]
+	const sectionTitreData: Section = sections[0]
+	// const sectionImageTexteData: Section = sections [1]
+	// const sectionTexteData: Section = sections [2]
 
 
 
