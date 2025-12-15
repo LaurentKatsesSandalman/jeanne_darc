@@ -1,13 +1,13 @@
 import { CloseCancelIcon, SaveIcon } from "@/components/Icons/Icons";
 import { updateContenuTitreById } from "@/lib/contentCrudContenu";
-import { ContenuTitreInterface } from "@/lib/definitions";
+import { ContenuTitre, UpdateContenuTitre } from "@/lib/schemas";
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./ContenuTitre.module.css"
 
 
 interface ContenuTitreEditProps {
-    contenu: ContenuTitreInterface;
+    contenu: ContenuTitre;
    // isAuth: boolean;
 	setEditTitre: Dispatch<SetStateAction<boolean>>
 }
@@ -25,7 +25,7 @@ export function ContenuTitreEdit({contenu, /*isAuth,*/ setEditTitre }:ContenuTit
 	};
 
 	async function handleSave () {
-		const payload: Partial<Omit<ContenuTitreInterface, "id_contenu_titre">> = {};
+		const payload: UpdateContenuTitre = {};
 		if(contenu.titre1 !== currentContent.titre1){
 			payload.titre1 = currentContent.titre1
 		}
