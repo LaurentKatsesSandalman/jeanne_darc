@@ -27,7 +27,6 @@ CREATE TABLE page (
 CREATE TABLE section (
     id_section UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     id_page_fk UUID NOT NULL,
-    position SMALLINT NOT NULL,
     type TEXT NOT NULL,
     revert BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
