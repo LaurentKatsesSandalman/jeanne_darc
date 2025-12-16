@@ -1,26 +1,28 @@
 "use server";
 
 import { sql } from "../db";
-import { CreateSection, Section, UpdateSection } from "../schemas";
+import { CreateSection, SectionInterface, UpdateSection } from "../schemas";
+import { v7 as uuidv7 } from 'uuid';
 
 export async function createSection(
     payload: CreateSection
-): Promise<Section | undefined> {
+): Promise<SectionInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
             ([, value]) => value !== undefined && value !== null
         )
     );
+	data.id_section = uuidv7();
 
-    const rows = await sql<Section[]>`
+    const rows = await sql<SectionInterface[]>`
 	INSERT INTO section ${sql(data)} 
     RETURNING *
   `;
     return rows[0];
 }
 
-export async function getSectionById(id: string): Promise<Section | undefined> {
-    const rows = await sql<Section[]>`
+export async function getSectionById(id: string): Promise<SectionInterface | undefined> {
+    const rows = await sql<SectionInterface[]>`
 	SELECT * FROM section WHERE id_section = ${id};
 	`;
     return rows[0];
@@ -28,8 +30,8 @@ export async function getSectionById(id: string): Promise<Section | undefined> {
 
 export async function getAllSectionsByPageId(
     id_page: string
-): Promise<Section[] | undefined> {
-    const rows = await sql<Section[]>`
+): Promise<SectionInterface[] | undefined> {
+    const rows = await sql<SectionInterface[]>`
 	SELECT * FROM section WHERE id_page_fk = ${id_page};
 	`;
     return rows;
@@ -38,7 +40,7 @@ export async function getAllSectionsByPageId(
 export async function updateSectionById(
     payload: UpdateSection,
     id: string
-): Promise<Section | undefined> {
+): Promise<SectionInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
             ([, value]) => value !== undefined && value !== null
@@ -47,7 +49,7 @@ export async function updateSectionById(
 
     if (Object.keys(updates).length === 0) return undefined;
 
-    const rows = await sql<Section[]>`
+    const rows = await sql<SectionInterface[]>`
     UPDATE section 
     SET ${sql(updates)} 
     WHERE id_section = ${id}

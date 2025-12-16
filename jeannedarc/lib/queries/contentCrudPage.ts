@@ -1,13 +1,16 @@
 "use server";
 
 import { sql } from "../db";
-import { CreatePage, Page, UpdatePage } from "../schemas";
+import { CreatePage, PageInterface, UpdatePage } from "../schemas";
+import { v7 as uuidv7 } from 'uuid';
 
 export async function createPage(
     payload: CreatePage
-): Promise<Page | undefined> {
-    const cols = ["page_url"];
-    const vals = [payload.page_url];
+): Promise<PageInterface | undefined> {
+	const id_page = uuidv7()
+
+    const cols = ["id_page","page_url"];
+    const vals = [id_page, payload.page_url];
 
     if (payload.nom) {
         cols.push("nom");
@@ -15,22 +18,22 @@ export async function createPage(
     }
     //sql(), parce que l'occurence s'appelle sql: transforme automatiquement un tableau en liste de colonnes séparées par virgules
     // voir insert dynamic dans https://www.npmjs.com/package/postgres
-    const rows = await sql<Page[]>`
+    const rows = await sql<PageInterface[]>`
 	INSERT INTO page (${sql(cols)}) VALUES (${sql(vals)}) 
     RETURNING *
   `;
     return rows[0];
 }
 
-export async function getPageByUrl(url: string): Promise<Page | undefined> {
-    const rows = await sql<Page[]>`
+export async function getPageByUrl(url: string): Promise<PageInterface | undefined> {
+    const rows = await sql<PageInterface[]>`
 	SELECT * FROM page WHERE page_url = ${url};
 	`;
     return rows[0];
 }
 
-export async function getPageById(id: string): Promise<Page | undefined> {
-    const rows = await sql<Page[]>`
+export async function getPageById(id: string): Promise<PageInterface | undefined> {
+    const rows = await sql<PageInterface[]>`
 	SELECT * FROM page WHERE id_page = ${id};
 	`;
     return rows[0];
@@ -39,7 +42,7 @@ export async function getPageById(id: string): Promise<Page | undefined> {
 export async function updatePageById(
     payload: UpdatePage,
     id: string
-): Promise<Page | undefined> {
+): Promise<PageInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
             ([, value]) => value !== undefined && value !== null
@@ -48,7 +51,7 @@ export async function updatePageById(
 
     if (Object.keys(updates).length === 0) return undefined;
 
-    const rows = await sql<Page[]>`
+    const rows = await sql<PageInterface[]>`
     UPDATE page 
     SET ${sql(updates)} 
     WHERE id_page = ${id}
@@ -63,20 +66,3 @@ export async function deletePageById(id: string) {
 	DELETE FROM page WHERE id_page = ${id};
 	`;
 }
-
-// export async function getTextSectionByUrl(url: string): Promise<ContenuTexteInterface |undefined> {
-//   const rows = await sql<ContenuTexteInterface[]>`
-//     SELECT * FROM textsection WHERE url = ${url};
-//   `;
-//   return rows[0];
-// }
-
-// // Nouvelle fonction qui accepte une string
-// export async function updateTextSectionByUrlString(contenuString: string, url: string) {
-//     const contenu = JSON.parse(contenuString);
-
-//     const rows = await sql`
-//     UPDATE TEXTSECTION SET content = ${sql.json(contenu)} WHERE url = ${url} RETURNING *;
-//     `;
-//     return rows[0];
-// }

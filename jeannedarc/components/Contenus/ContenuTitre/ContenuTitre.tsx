@@ -1,4 +1,4 @@
-import { ContenuTitreInterface } from "@/lib/definitions";
+import { ContenuTitreInterface } from "@/lib/schemas";
 import styles from "./ContenuTitre.module.css"
 
 interface ContenuTitreProps {

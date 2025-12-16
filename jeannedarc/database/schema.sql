@@ -1,11 +1,8 @@
 --cette version a été indentée par IA mais créée avec une matrice excel de mon cru: https://docs.google.com/spreadsheets/d/1pwvSUt7iulc7-esofC3Sh7h03Q2OPQbz4eKP8ZntopM/edit?gid=985573600#gid=985573600 
 
--- Extension pour UUID aléatoires
-CREATE EXTENSION IF NOT EXISTS "pgcrypto";
-
 -- Table utilisateur
 CREATE TABLE utilisateur (
-    id_utilisateur UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_utilisateur UUID PRIMARY KEY,
     email TEXT NOT NULL UNIQUE,
     name TEXT NOT NULL,
     password TEXT NOT NULL,
@@ -16,7 +13,7 @@ CREATE TABLE utilisateur (
 
 -- Table page
 CREATE TABLE page (
-    id_page UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_page UUID PRIMARY KEY,
     page_url TEXT NOT NULL UNIQUE,
     nom TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -25,7 +22,7 @@ CREATE TABLE page (
 
 -- Table section
 CREATE TABLE section (
-    id_section UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_section UUID PRIMARY KEY,
     id_page_fk UUID NOT NULL,
     type TEXT NOT NULL,
     revert BOOLEAN NOT NULL DEFAULT FALSE,
@@ -36,9 +33,10 @@ CREATE TABLE section (
 
 -- Table contenu_image
 CREATE TABLE contenu_image (
-    id_contenu_image UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_contenu_image UUID PRIMARY KEY,
     id_section_fk UUID NOT NULL,
     image_url TEXT NOT NULL,
+	alt_text TEXT DEFAULT '',
     lien_vers TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -47,7 +45,7 @@ CREATE TABLE contenu_image (
 
 -- Table contenu_texte
 CREATE TABLE contenu_texte (
-    id_contenu_texte UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_contenu_texte UUID PRIMARY KEY,
     id_section_fk UUID NOT NULL,
     tiptap_content JSONB,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -57,7 +55,7 @@ CREATE TABLE contenu_texte (
 
 -- Table contenu_contact
 CREATE TABLE contenu_contact (
-    id_contenu_contact UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_contenu_contact UUID PRIMARY KEY,
     id_section_fk UUID NOT NULL,
     titre TEXT NOT NULL,
     champ1 TEXT NOT NULL,
@@ -72,7 +70,7 @@ CREATE TABLE contenu_contact (
 
 -- Table contenu_pdf
 CREATE TABLE contenu_pdf (
-    id_contenu_pdf UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_contenu_pdf UUID PRIMARY KEY,
     id_section_fk UUID NOT NULL,
     pdf_url TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -82,7 +80,7 @@ CREATE TABLE contenu_pdf (
 
 -- Table contenu_titre
 CREATE TABLE contenu_titre (
-    id_contenu_titre UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_contenu_titre UUID PRIMARY KEY,
     id_section_fk UUID NOT NULL,
     is_mega BOOLEAN NOT NULL DEFAULT FALSE,
     titre1 TEXT,
@@ -95,7 +93,7 @@ CREATE TABLE contenu_titre (
 
 -- Table contenu_pave
 CREATE TABLE contenu_pave (
-    id_contenu_pave UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_contenu_pave UUID PRIMARY KEY,
     id_section_fk UUID NOT NULL,
     titre TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -105,7 +103,7 @@ CREATE TABLE contenu_pave (
 
 -- Table contenu_bandeaubtn
 CREATE TABLE contenu_bandeaubtn (
-    id_contenu_bandeaubtn UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_contenu_bandeaubtn UUID PRIMARY KEY,
     id_section_fk UUID NOT NULL,
     icone_url TEXT,
     titre TEXT,
@@ -119,7 +117,7 @@ CREATE TABLE contenu_bandeaubtn (
 
 -- Table contenu_headerbtn
 CREATE TABLE contenu_headerbtn (
-    id_contenu_headerbtn UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_contenu_headerbtn UUID PRIMARY KEY,
     id_section_fk UUID NOT NULL,
     position SMALLINT NOT NULL,
     bouton TEXT NOT NULL,
@@ -131,7 +129,7 @@ CREATE TABLE contenu_headerbtn (
 
 -- Table pave_bloc
 CREATE TABLE pave_bloc (
-    id_pave_bloc UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_pave_bloc UUID PRIMARY KEY,
     id_contenu_pave_fk UUID NOT NULL,
     position SMALLINT NOT NULL,
     icone_url TEXT,

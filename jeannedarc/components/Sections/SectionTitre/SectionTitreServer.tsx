@@ -23,13 +23,7 @@ export async function SectionTitreServer({
     return (
         <div className={styles.sectionTitreContainer}>
             <SectionTitreClient contenu={contenu} isAuth={isAuth} />
-            {/*  sectionTitre ne peut pas être delete
-			{isAuth && (
-                <button type="button" onClick={handleDelete}>
-                    <DeleteIcon />
-                </button>
-            )}
-			*/}
+
         </div>
     );
 }

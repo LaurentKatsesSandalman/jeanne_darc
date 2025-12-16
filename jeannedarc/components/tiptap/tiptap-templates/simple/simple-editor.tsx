@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { SetStateAction, useRef, Dispatch } from "react";
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react";
 
 // --- Tiptap Core Extensions ---
@@ -52,9 +52,10 @@ import "@/components/tiptap/tiptap-templates/simple/simple-editor.scss";
 
 //import content from "@/components/tiptap/tiptap-templates/simple/data/content.json";
 import { TextColorPopover } from "@/components/tiptap/tiptap-ui/text-color-popover/text-color-popover";
-import { ContenuTexte } from "@/lib/schemas";
+import { ContenuTexteInterface } from "@/lib/schemas";
 import { usePathname } from "next/navigation";
-import { updateContenuTexteById } from "@/lib/queries/contentCrudContenu";
+import { updateContenuTexteAction } from "@/lib/actions/actionsContenu";
+import { CloseCancelIcon, SaveIcon } from "@/components/Icons/Icons";
 
 const MainToolbarContent = () => {
     return (
@@ -112,10 +113,11 @@ const MainToolbarContent = () => {
 };
 
 interface ContenuTexteEditProps {
-    contenu: ContenuTexte;
+    contenu: ContenuTexteInterface;
+	setEditTexte: Dispatch<SetStateAction<boolean>>
 }
 
-export function ContenuTexteEdit({ contenu }: ContenuTexteEditProps) {
+export function ContenuTexteEdit({ contenu, setEditTexte }: ContenuTexteEditProps) {
     const toolbarRef = useRef<HTMLDivElement>(null);
     const url = usePathname();
 
@@ -166,12 +168,19 @@ export function ContenuTexteEdit({ contenu }: ContenuTexteEditProps) {
         content: contenu.tiptap_content, //initial content
     });
 
-    function handleSave() {
+    async function handleSave() {
         const json = editor!.getJSON();
 
         // Stringify pour bypasser la sérialisation Next.js
         const jsonString = JSON.stringify(json);
-        updateContenuTexteById(jsonString, contenu.id_contenu_texte, url);
+        const result = await updateContenuTexteAction(contenu.id_contenu_texte, {tiptap_content:jsonString},  url);
+
+		if (!result.success) {
+			setEditTexte(false);
+            throw new Error("error" in result ? result.error : "Validation error");
+        }
+
+		setEditTexte(false);
     }
 
     return (
@@ -193,7 +202,13 @@ export function ContenuTexteEdit({ contenu }: ContenuTexteEditProps) {
                 onClick={handleSave}
                 className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-lg hover:bg-blue-700"
             >
-                SAVE
+                <SaveIcon/>
+            </button>
+			<button
+                onClick={()=>setEditTexte(false)}
+                className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-lg hover:bg-blue-700"
+            >
+                <CloseCancelIcon/>
             </button>
         </>
     );

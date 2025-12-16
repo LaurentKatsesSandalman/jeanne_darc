@@ -65,6 +65,7 @@ export const ContenuImageSchema = z.object({
   id_contenu_image: z.uuid(),
   id_section_fk: z.uuid(),
   image_url: z.url(),
+  alt_text: z.string(),
   lien_vers: z.string(),
   created_at: z.date(),
   updated_at: z.date()
