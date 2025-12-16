@@ -89,13 +89,16 @@ export const ContenuTexteSchema = z.object({
   updated_at: z.date()
 });
 
-export const CreateContenuTexteSchema = ContenuTexteSchema.omit({
-  id_contenu_texte: true,
-  created_at: true,
-  updated_at: true
+// WARNING
+export const CreateContenuTexteSchema = z.object({
+  id_section_fk: z.uuid(),
+  tiptap_content: z.string()
 });
 
-export const UpdateContenuTexteSchema = CreateContenuTexteSchema.partial();
+export const UpdateContenuTexteSchema = z.object({
+  tiptap_content: z.string()
+});
+// WARNING
 
 // ===== CONTENU_CONTACT =====
 export const ContenuContactSchema = z.object({
@@ -251,18 +254,11 @@ export type ContenuImage = z.infer<typeof ContenuImageSchema>;
 export type CreateContenuImage = z.infer<typeof CreateContenuImageSchema>;
 export type UpdateContenuImage = z.infer<typeof UpdateContenuImageSchema>;
 
+// WARNING
 export type ContenuTexte = z.infer<typeof ContenuTexteSchema>;
-// export type CreateContenuTexte = z.infer<typeof CreateContenuTexteSchema>;
-// export type UpdateContenuTexte = z.infer<typeof UpdateContenuTexteSchema>;
-export interface CreateContenuTexte {
-	id_section_fk: UUIDFormat;
-  tiptap_content: string;
-}
-
-export interface UpdateContenuTexte {
-	tiptap_content: string;
-}
-
+export type CreateContenuTexte = z.infer<typeof CreateContenuTexteSchema>;
+export type UpdateContenuTexte = z.infer<typeof UpdateContenuTexteSchema>;
+// WARNING
 
 export type ContenuContact = z.infer<typeof ContenuContactSchema>;
 export type CreateContenuContact = z.infer<typeof CreateContenuContactSchema>;

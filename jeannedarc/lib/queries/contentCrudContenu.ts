@@ -1,7 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { sql } from "./db";
+import { sql } from "../db";
 import {
     ContenuImage,
     ContenuTexte,
@@ -11,7 +10,7 @@ import {
     ContenuPave,
     ContenuBandeauBtn,
     ContenuHeaderBtn,
-	CreateContenuImage,
+    CreateContenuImage,
     CreateContenuTexte,
     CreateContenuContact,
     CreateContenuPdf,
@@ -19,14 +18,15 @@ import {
     CreateContenuPave,
     CreateContenuBandeauBtn,
     CreateContenuHeaderBtn,
-	UpdateContenuImage,
+    UpdateContenuImage,
     UpdateContenuContact,
     UpdateContenuPdf,
     UpdateContenuTitre,
     UpdateContenuPave,
     UpdateContenuBandeauBtn,
-    UpdateContenuHeaderBtn
-} from "./schemas";
+    UpdateContenuHeaderBtn,
+	UpdateContenuTexte,
+} from "../schemas";
 
 // contenu_titre
 export async function createContenuTitre(
@@ -65,8 +65,7 @@ export async function getAllContenuTitresBySectionId(
 
 export async function updateContenuTitreById(
     payload: UpdateContenuTitre,
-    id: string,
-    url?: string
+    id: string
 ): Promise<ContenuTitre | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
@@ -82,10 +81,6 @@ export async function updateContenuTitreById(
     WHERE id_contenu_titre = ${id}
     RETURNING *
   `;
-
-    if (url) {
-        revalidatePath(url);
-    }
 
     return rows[0];
 }
@@ -196,11 +191,10 @@ export async function getAllContenuTextesBySectionId(
 }
 
 export async function updateContenuTexteById(
-    tiptap_content: string,
-    id: string,
-	url?:string
+    payload: UpdateContenuTexte,
+    id: string
 ): Promise<ContenuTexte | undefined> {
-    const updatedtiptap_content = JSON.parse(tiptap_content);
+    const updatedtiptap_content = JSON.parse(payload.tiptap_content);
 
     const rows = await sql<ContenuTexte[]>`
     UPDATE contenu_texte 
@@ -208,10 +202,6 @@ export async function updateContenuTexteById(
     WHERE id_contenu_texte = ${id}
     RETURNING *
   `;
-
-  if (url) {
-        revalidatePath(url);
-    }
 
     return rows[0];
 }

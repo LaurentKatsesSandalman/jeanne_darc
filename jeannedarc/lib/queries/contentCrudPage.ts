@@ -1,7 +1,7 @@
 "use server";
 
-import { sql } from "./db";
-import { CreatePage, Page, UpdatePage } from "./schemas";
+import { sql } from "../db";
+import { CreatePage, Page, UpdatePage } from "../schemas";
 
 export async function createPage(
     payload: CreatePage
@@ -22,18 +22,14 @@ export async function createPage(
     return rows[0];
 }
 
-export async function getPageByUrl(
-    url: string
-): Promise<Page | undefined> {
+export async function getPageByUrl(url: string): Promise<Page | undefined> {
     const rows = await sql<Page[]>`
 	SELECT * FROM page WHERE page_url = ${url};
 	`;
     return rows[0];
 }
 
-export async function getPageById(
-    id: string
-): Promise<Page | undefined> {
+export async function getPageById(id: string): Promise<Page | undefined> {
     const rows = await sql<Page[]>`
 	SELECT * FROM page WHERE id_page = ${id};
 	`;
