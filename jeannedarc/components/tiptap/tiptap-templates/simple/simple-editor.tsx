@@ -52,9 +52,9 @@ import "@/components/tiptap/tiptap-templates/simple/simple-editor.scss";
 
 //import content from "@/components/tiptap/tiptap-templates/simple/data/content.json";
 import { TextColorPopover } from "@/components/tiptap/tiptap-ui/text-color-popover/text-color-popover";
-import { ContenuTexte} from "@/lib/schemas";
+import { ContenuTexte } from "@/lib/schemas";
 import { usePathname } from "next/navigation";
-import { updateContenuTexteById } from "@/lib/contentCrudContenu";
+import { updateContenuTexteById } from "@/lib/queries/contentCrudContenu";
 
 const MainToolbarContent = () => {
     return (
@@ -112,12 +112,12 @@ const MainToolbarContent = () => {
 };
 
 interface ContenuTexteEditProps {
-    contenu: ContenuTexte; 
+    contenu: ContenuTexte;
 }
 
 export function ContenuTexteEdit({ contenu }: ContenuTexteEditProps) {
     const toolbarRef = useRef<HTMLDivElement>(null);
-	const url = usePathname();
+    const url = usePathname();
 
     const editor = useEditor({
         immediatelyRender: false,
@@ -171,7 +171,7 @@ export function ContenuTexteEdit({ contenu }: ContenuTexteEditProps) {
 
         // Stringify pour bypasser la sérialisation Next.js
         const jsonString = JSON.stringify(json);
-        updateContenuTexteById(jsonString, contenu.id_contenu_texte,url);
+        updateContenuTexteById(jsonString, contenu.id_contenu_texte, url);
     }
 
     return (

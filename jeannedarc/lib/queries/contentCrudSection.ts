@@ -1,7 +1,7 @@
 "use server";
 
-import { sql } from "./db";
-import { CreateSection, Section, UpdateSection } from "./schemas";
+import { sql } from "../db";
+import { CreateSection, Section, UpdateSection } from "../schemas";
 
 export async function createSection(
     payload: CreateSection
@@ -19,9 +19,7 @@ export async function createSection(
     return rows[0];
 }
 
-export async function getSectionById(
-    id: string
-): Promise<Section | undefined> {
+export async function getSectionById(id: string): Promise<Section | undefined> {
     const rows = await sql<Section[]>`
 	SELECT * FROM section WHERE id_section = ${id};
 	`;

@@ -1,5 +1,5 @@
 import { ContenuTipTap, PageInterface } from "@/lib/definitions";
-import { getTextSectionByUrl } from "../../../../lib/contentCrudPage";
+import { getTextSectionByUrl } from "../../../../lib/queries/contentCrudPage";
 import { ContenuTexte } from "@/components/Contenus/ContenuTexte/ContenuTexte";
 
 export default async function Page() {
