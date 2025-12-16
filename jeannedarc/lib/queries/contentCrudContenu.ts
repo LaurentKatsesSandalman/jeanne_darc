@@ -27,6 +27,7 @@ import {
     UpdateContenuHeaderBtn,
 	UpdateContenuTexte,
 } from "../schemas";
+import { v7 as uuidv7 } from 'uuid';
 
 // contenu_titre
 export async function createContenuTitre(
@@ -37,6 +38,8 @@ export async function createContenuTitre(
             ([, value]) => value !== undefined && value !== null
         )
     );
+
+	data.id_contenu_titre = uuidv7();
 
     const rows = await sql<ContenuTitreInterface[]>`
 	INSERT INTO contenu_titre ${sql(data)} 
@@ -101,6 +104,8 @@ export async function createContenuImage(
         )
     );
 
+	data.id_contenu_image = uuidv7();
+
     const rows = await sql<ContenuImageInterface[]>`
 	INSERT INTO contenu_image ${sql(data)} 
     RETURNING *
@@ -159,14 +164,15 @@ export async function createContenuTexte(
 ): Promise<ContenuTexteInterface | undefined> {
     const tiptap_content = JSON.parse(payload.tiptap_content);
     const id_section_fk = payload.id_section_fk;
+	const id_contenu_texte = uuidv7();
 
     // 	const data = Object.fromEntries(
     //     Object.entries(payload).filter(([, value]) => value !== undefined && value !== null)
     //   );
 
     const rows = await sql<ContenuTexteInterface[]>`
-	INSERT INTO contenu_texte (id_section_fk, tiptap_content)
-	VALUES (${id_section_fk}, ${sql.json(tiptap_content)})
+	INSERT INTO contenu_texte (id_contenu_texte, id_section_fk, tiptap_content)
+	VALUES (${id_contenu_texte}, ${id_section_fk}, ${sql.json(tiptap_content)})
     RETURNING *
   `;
     return rows[0];
@@ -221,6 +227,8 @@ export async function createContenuContact(
             ([, value]) => value !== undefined && value !== null
         )
     );
+
+	data.id_contenu_contact = uuidv7();
 
     const rows = await sql<ContenuContactInterface[]>`
 	INSERT INTO contenu_contact ${sql(data)} 
@@ -285,6 +293,8 @@ export async function createContenuPdf(
         )
     );
 
+	data.id_contenu_pdf = uuidv7();
+
     const rows = await sql<ContenuPdfInterface[]>`
 	INSERT INTO contenu_pdf ${sql(data)} 
     RETURNING *
@@ -347,6 +357,8 @@ export async function createContenuPave(
             ([, value]) => value !== undefined && value !== null
         )
     );
+
+	data.id_contenu_pave = uuidv7();
 
     const rows = await sql<ContenuPaveInterface[]>`
 	INSERT INTO contenu_pave ${sql(data)} 
@@ -411,6 +423,8 @@ export async function createContenuBandeauBtn(
         )
     );
 
+data.id_contenu_bandeaubtn = uuidv7();
+
     const rows = await sql<ContenuBandeauBtnInterface[]>`
 	INSERT INTO contenu_bandeaubtn ${sql(data)} 
     RETURNING *
@@ -473,6 +487,8 @@ export async function createContenuHeaderBtn(
             ([, value]) => value !== undefined && value !== null
         )
     );
+
+	data.id_contenu_headerbtn = uuidv7();
 
     const rows = await sql<ContenuHeaderBtnInterface[]>`
 	INSERT INTO contenu_headerbtn ${sql(data)} 

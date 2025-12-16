@@ -1,3 +1,4 @@
+"use client";
 import { CloseCancelIcon, SaveIcon } from "@/components/Icons/Icons";
 import { ContenuTitreInterface, UpdateContenuTitre } from "@/lib/schemas";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -54,6 +55,7 @@ export function ContenuTitreEdit({
         // }
 
         if (!result.success) {
+			setEditTitre(false);
             throw new Error("error" in result ? result.error : "Validation error");
         }
 

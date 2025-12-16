@@ -23,14 +23,14 @@ import "@/components/tiptap/tiptap-node/heading-node/heading-node.scss";
 import "@/components/tiptap/tiptap-node/paragraph-node/paragraph-node.scss";
 
 // --- Data ---
-import defaultContent from "@/components/tiptap/tiptap-templates/simple/data/content.json";
-import { ContenuTipTap } from "@/lib/schemas";
+import { ContenuTexteInterface } from "@/lib/schemas";
 
-interface Debugprops {
-    contenu: ContenuTipTap;
+
+interface ContenuTexteProps {
+    contenu: ContenuTexteInterface;
 }
 
-export function ContenuTexte({ contenu = defaultContent }: Debugprops) {
+export function ContenuTexte({ contenu }: ContenuTexteProps) {
     const editor = useEditor({
         immediatelyRender: false,
         editable: false, // Mode lecture seule
@@ -56,7 +56,7 @@ export function ContenuTexte({ contenu = defaultContent }: Debugprops) {
             Superscript,
             Subscript,
         ],
-        content: contenu,
+        content: contenu.tiptap_content,
     });
 
     return (

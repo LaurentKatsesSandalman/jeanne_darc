@@ -20,6 +20,7 @@ import {
     CreateContenuHeaderBtnSchema,
     UpdateContenuHeaderBtnSchema,
     UpdateContenuTitreResult,
+	UpdateContenuTexteResult,
 } from "@/lib/schemas";
 import {
     createContenuTitre,
@@ -210,7 +211,7 @@ export async function updateContenuTexteAction(
     id: string,
     data: unknown,
     url?: string
-) {
+):Promise<UpdateContenuTexteResult> {
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -218,6 +219,7 @@ export async function updateContenuTexteAction(
     const validation = UpdateContenuTexteSchema.safeParse(data);
 
     if (!validation.success) {
+		console.log (z.treeifyError(validation.error))
         return { success: false, errors: z.treeifyError(validation.error) };
     }
 

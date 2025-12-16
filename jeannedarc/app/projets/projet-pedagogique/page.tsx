@@ -1,3 +1,4 @@
+import { SectionTexteServer } from "@/components/Sections/SectionTexte/SectionTexteServer";
 import { SectionTitreServer } from "@/components/Sections/SectionTitre/SectionTitreServer";
 import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
@@ -14,7 +15,7 @@ export default async function Page() {
     }
     const sectionTitreData: SectionInterface = sections[0];
     // const sectionImageTexteData: SectionInterface = sections [1]
-    // const sectionTexteData: SectionInterface = sections [2]
+    const sectionTexteData: SectionInterface = sections[2];
 
     const isAuth = true;
 
@@ -24,6 +25,11 @@ export default async function Page() {
                 <SectionTitreServer
                     isAuth={isAuth}
                     section={sectionTitreData}
+                />
+                {/* <SectionImageTexteServer/> */}
+                <SectionTexteServer
+                    isAuth={isAuth}
+                    section={sectionTexteData}
                 />
             </main>
         </>

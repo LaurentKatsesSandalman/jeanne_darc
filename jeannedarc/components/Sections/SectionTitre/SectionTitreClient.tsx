@@ -35,7 +35,12 @@ export function SectionTitreClient({ contenu, isAuth }: SectionTitreProps) {
                             </button>
                         </>
                     )}
-                    
+                                {/*  sectionTitre ne peut pas être delete
+                <button type="button" onClick={handleDelete}>
+                    <DeleteIcon />
+                </button>
+            )}
+			*/}
                 </>
             ) : (
                 <>
