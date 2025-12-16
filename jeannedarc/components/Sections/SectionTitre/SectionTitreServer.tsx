@@ -1,5 +1,5 @@
 "use server";
-import { SectionInterface } from "@/lib/definitions";
+import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuTitresBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionTitreClient } from "./SectionTitreClient";
 import styles from "./SectionTitre.module.css";

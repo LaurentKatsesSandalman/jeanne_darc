@@ -1,5 +1,5 @@
 "use client";
-import { ContenuTitreInterface } from "@/lib/definitions";
+import { ContenuTitreInterface } from "@/lib/schemas";
 //import styles from "./SectionTitre.module.css";
 import { useState } from "react";
 import { ContenuTitreEdit } from "@/components/Contenus/ContenuTitre/ContenuTitreEdit";

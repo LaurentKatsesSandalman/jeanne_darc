@@ -1,12 +1,12 @@
 import { CloseCancelIcon, SaveIcon } from "@/components/Icons/Icons";
-import { updateContenuTitreById } from "@/lib/queries/contentCrudContenu";
-import { ContenuTitre, UpdateContenuTitre } from "@/lib/schemas";
+import { ContenuTitreInterface, UpdateContenuTitre } from "@/lib/schemas";
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./ContenuTitre.module.css";
+import { updateContenuTitreAction } from "@/lib/actions/actionsContenu";
 
 interface ContenuTitreEditProps {
-    contenu: ContenuTitre;
+    contenu: ContenuTitreInterface;
     // isAuth: boolean;
     setEditTitre: Dispatch<SetStateAction<boolean>>;
 }
@@ -43,11 +43,21 @@ export function ContenuTitreEdit({
             return;
         }
 
-        const updatedContenu = await updateContenuTitreById(
-            payload,
+        const result = await updateContenuTitreAction(
             contenu.id_contenu_titre,
+            payload,
             url
         );
+
+        // if ("error" in result) { // comme result.error peut ne pas exister, on ne peut pas faire if(result.error)
+        //     throw new Error(result.error);
+        // }
+
+        if (!result.success) {
+            throw new Error("error" in result ? result.error : "Validation error");
+        }
+
+        const updatedContenu = result.data;
         if (updatedContenu) {
             setCurrentContent(updatedContenu);
         }

@@ -238,54 +238,66 @@ export const CreatePaveBlocSchema = PaveBlocSchema.omit({
 export const UpdatePaveBlocSchema = CreatePaveBlocSchema.partial();
 
 // ===== TYPES INFÉRÉS =====
-export type Utilisateur = z.infer<typeof UtilisateurSchema>;
+export type UtilisateurInterface = z.infer<typeof UtilisateurSchema>;
 export type CreateUtilisateur = z.infer<typeof CreateUtilisateurSchema>;
 export type UpdateUtilisateur = z.infer<typeof UpdateUtilisateurSchema>;
+export type UpdateUtilisateurResult = {success:true, data: UtilisateurInterface } | {success:false, error: string } | {success:false, errors: unknown }; 
 
-export type Page = z.infer<typeof PageSchema>;
+export type PageInterface  = z.infer<typeof PageSchema>;
 export type CreatePage = z.infer<typeof CreatePageSchema>;
 export type UpdatePage = z.infer<typeof UpdatePageSchema>;
+export type UpdatePageResult = {success:true, data: PageInterface } | {success:false, error: string } | {success:false, errors: unknown }; 
 
-export type Section = z.infer<typeof SectionSchema>;
+export type SectionInterface  = z.infer<typeof SectionSchema>;
 export type CreateSection = z.infer<typeof CreateSectionSchema>;
 export type UpdateSection = z.infer<typeof UpdateSectionSchema>;
+export type UpdateSectionResult = {success:true, data: SectionInterface } | {success:false, error: string } | {success:false, errors: unknown }; 
 
-export type ContenuImage = z.infer<typeof ContenuImageSchema>;
+export type ContenuImageInterface  = z.infer<typeof ContenuImageSchema>;
 export type CreateContenuImage = z.infer<typeof CreateContenuImageSchema>;
 export type UpdateContenuImage = z.infer<typeof UpdateContenuImageSchema>;
+export type UpdateContenuImageResult = {success:true, data: ContenuImageInterface } | {success:false, error: string } | {success:false, errors: unknown };
 
 // WARNING
-export type ContenuTexte = z.infer<typeof ContenuTexteSchema>;
+export type ContenuTexteInterface  = z.infer<typeof ContenuTexteSchema>;
 export type CreateContenuTexte = z.infer<typeof CreateContenuTexteSchema>;
 export type UpdateContenuTexte = z.infer<typeof UpdateContenuTexteSchema>;
+export type UpdateContenuTexteResult = {success:true, data: ContenuTexteInterface } | {success:false, error: string } | {success:false, errors: unknown }; 
 // WARNING
 
-export type ContenuContact = z.infer<typeof ContenuContactSchema>;
+export type ContenuContactInterface  = z.infer<typeof ContenuContactSchema>;
 export type CreateContenuContact = z.infer<typeof CreateContenuContactSchema>;
 export type UpdateContenuContact = z.infer<typeof UpdateContenuContactSchema>;
+export type UpdateContenuContactResult = {success:true, data: ContenuContactInterface } | {success:false, error: string } | {success:false, errors: unknown }; 
 
-export type ContenuPdf = z.infer<typeof ContenuPdfSchema>;
+export type ContenuPdfInterface  = z.infer<typeof ContenuPdfSchema>;
 export type CreateContenuPdf = z.infer<typeof CreateContenuPdfSchema>;
 export type UpdateContenuPdf = z.infer<typeof UpdateContenuPdfSchema>;
+export type UpdateContenuPdfResult = {success:true, data: ContenuPdfInterface } | {success:false, error: string } | {success:false, errors: unknown };
 
-export type ContenuTitre = z.infer<typeof ContenuTitreSchema>;
+export type ContenuTitreInterface  = z.infer<typeof ContenuTitreSchema>;
 export type CreateContenuTitre = z.infer<typeof CreateContenuTitreSchema>;
 export type UpdateContenuTitre = z.infer<typeof UpdateContenuTitreSchema>;
+export type UpdateContenuTitreResult = {success:true, data: ContenuTitreInterface } | {success:false, error: string } | {success:false, errors: unknown };
 
-export type ContenuPave = z.infer<typeof ContenuPaveSchema>;
+export type ContenuPaveInterface  = z.infer<typeof ContenuPaveSchema>;
 export type CreateContenuPave = z.infer<typeof CreateContenuPaveSchema>;
 export type UpdateContenuPave = z.infer<typeof UpdateContenuPaveSchema>;
+export type UpdateContenuPaveResult = {success:true, data: ContenuPaveInterface } | {success:false, error: string } | {success:false, errors: unknown }; 
 
-export type ContenuBandeauBtn = z.infer<typeof ContenuBandeauBtnSchema>;
+export type ContenuBandeauBtnInterface  = z.infer<typeof ContenuBandeauBtnSchema>;
 export type CreateContenuBandeauBtn = z.infer<typeof CreateContenuBandeauBtnSchema>;
 export type UpdateContenuBandeauBtn = z.infer<typeof UpdateContenuBandeauBtnSchema>;
+export type UpdateContenuBandeauBtnResult = {success:true, data: ContenuBandeauBtnInterface } | {success:false, error: string } | {success:false, errors: unknown }; 
 
-export type ContenuHeaderBtn = z.infer<typeof ContenuHeaderBtnSchema>;
+export type ContenuHeaderBtnInterface  = z.infer<typeof ContenuHeaderBtnSchema>;
 export type CreateContenuHeaderBtn = z.infer<typeof CreateContenuHeaderBtnSchema>;
 export type UpdateContenuHeaderBtn = z.infer<typeof UpdateContenuHeaderBtnSchema>;
+export type UpdateContenuHeaderBtnResult = {success:true, data: ContenuHeaderBtnInterface } | {success:false, error: string } | {success:false, errors: unknown }; 
 
-export type PaveBloc = z.infer<typeof PaveBlocSchema>;
+export type PaveBlocInterface  = z.infer<typeof PaveBlocSchema>;
 export type CreatePaveBloc = z.infer<typeof CreatePaveBlocSchema>;
 export type UpdatePaveBloc = z.infer<typeof UpdatePaveBlocSchema>;
+export type UpdatePaveBlocResult = {success:true, data: PaveBlocInterface } | {success:false, error: string } | {success:false, errors: unknown };
 
-export type ContenuTipTap = JSONContent;
+export type ContenuTipTapInterface  = JSONContent;
