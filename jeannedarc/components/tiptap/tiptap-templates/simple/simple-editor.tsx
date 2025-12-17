@@ -40,9 +40,6 @@ import { TextAlignButton } from "@/components/tiptap/tiptap-ui/text-align-button
 import { UndoRedoButton } from "@/components/tiptap/tiptap-ui/undo-redo-button";
 import { ListButton } from "@/components/tiptap/tiptap-ui/list-button";
 
-// // --- Components ---
-// import { ThemeToggle } from "@/components/tiptap/tiptap-templates/simple/theme-toggle";
-
 // --- Styles ---
 import "@/components/tiptap/tiptap-templates/simple/simple-editor.scss";
 
@@ -99,20 +96,19 @@ const MainToolbarContent = () => {
             </ToolbarGroup>
 
             <Spacer />
-{/* 
-            <ToolbarGroup>
-                <ThemeToggle />
-            </ToolbarGroup> */}
         </>
     );
 };
 
 interface ContenuTexteEditProps {
     contenu: ContenuTexteInterface;
-	setEditTexte: Dispatch<SetStateAction<boolean>>
+    setEditTexte: Dispatch<SetStateAction<boolean>>;
 }
 
-export function ContenuTexteEdit({ contenu, setEditTexte }: ContenuTexteEditProps) {
+export function ContenuTexteEdit({
+    contenu,
+    setEditTexte,
+}: ContenuTexteEditProps) {
     const toolbarRef = useRef<HTMLDivElement>(null);
     const url = usePathname();
 
@@ -168,14 +164,20 @@ export function ContenuTexteEdit({ contenu, setEditTexte }: ContenuTexteEditProp
 
         // Stringify pour bypasser la sérialisation Next.js
         const jsonString = JSON.stringify(json);
-        const result = await updateContenuTexteAction(contenu.id_contenu_texte, {tiptap_content:jsonString},  url);
+        const result = await updateContenuTexteAction(
+            contenu.id_contenu_texte,
+            { tiptap_content: jsonString },
+            url
+        );
 
-		if (!result.success) {
-			setEditTexte(false);
-            throw new Error("error" in result ? result.error : "Validation error");
+        if (!result.success) {
+            setEditTexte(false);
+            throw new Error(
+                "error" in result ? result.error : "Validation error"
+            );
         }
 
-		setEditTexte(false);
+        setEditTexte(false);
     }
 
     return (
@@ -197,13 +199,13 @@ export function ContenuTexteEdit({ contenu, setEditTexte }: ContenuTexteEditProp
                 onClick={handleSave}
                 className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-lg hover:bg-blue-700"
             >
-                <SaveIcon/>
+                <SaveIcon />
             </button>
-			<button
-                onClick={()=>setEditTexte(false)}
+            <button
+                onClick={() => setEditTexte(false)}
                 className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-lg hover:bg-blue-700"
             >
-                <CloseCancelIcon/>
+                <CloseCancelIcon />
             </button>
         </>
     );
