@@ -29,7 +29,10 @@ export const sql = postgres({
             : false, // local : SSL désactivé
 	connection: {
         client_encoding: 'UTF8'
-    }
+    },
+	max: 10, // Nombre maximum de connexions (ajustez selon vos besoins)
+    idle_timeout: 20, // Fermer les connexions inactives après 20 secondes
+    connect_timeout: 10,
 });
 
 export default sql;
