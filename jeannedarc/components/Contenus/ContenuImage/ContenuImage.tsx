@@ -1,4 +1,5 @@
 import { ContenuImageInterface } from "@/lib/schemas";
+import Image from "next/image";
 //import styles from "./ContenuImage.module.css";
 
 interface ContenuImageProps {
@@ -6,16 +7,25 @@ interface ContenuImageProps {
 }
 
 export function ContenuImage({ contenu }: ContenuImageProps) {
+    const imageElement = (
+        <Image
+            src={contenu.image_url}
+            alt={contenu.alt_text}
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{ width: "100%", height: "auto" }}
+        />
+    );
+
     return (
         <>
             {contenu!.lien_vers ? (
-				<a href={contenu.lien_vers} target="_blank">
-                {/* <Image src={contenu.image_url} alt={contenu.alt_text} fill={true} style={{ objectFit: 'contain' }}/> */}
-				<img src={contenu.image_url} alt={contenu.alt_text}/>
-				</a>
+                <a href={contenu.lien_vers} target="_blank">
+                    {imageElement}
+                </a>
             ) : (
-                // <Image src={contenu.image_url} alt={contenu.alt_text} fill={true} style={{ objectFit: 'contain' }}/>
-				<img src={contenu.image_url} alt={contenu.alt_text}/>
+                imageElement
             )}
         </>
     );
