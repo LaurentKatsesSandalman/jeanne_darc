@@ -18,7 +18,7 @@ export default async function Page() {
     const sectionImageTexteData: SectionInterface = sections [1]
     const sectionTexteData: SectionInterface = sections[2];
 
-    const isAuth = false;
+    const isAuth = true;
 
     return (
         <>

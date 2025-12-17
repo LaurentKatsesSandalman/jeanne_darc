@@ -26,26 +26,20 @@ import {
 
 // --- Tiptap Node ---
 import { HorizontalRule } from "@/components/tiptap/tiptap-node/horizontal-rule-node/horizontal-rule-node-extension";
-import "@/components/tiptap/tiptap-node/blockquote-node/blockquote-node.scss";
-import "@/components/tiptap/tiptap-node/code-block-node/code-block-node.scss";
+
 import "@/components/tiptap/tiptap-node/horizontal-rule-node/horizontal-rule-node.scss";
 import "@/components/tiptap/tiptap-node/list-node/list-node.scss";
-import "@/components/tiptap/tiptap-node/image-node/image-node.scss";
 import "@/components/tiptap/tiptap-node/heading-node/heading-node.scss";
 import "@/components/tiptap/tiptap-node/paragraph-node/paragraph-node.scss";
 
 // --- Tiptap UI ---
 import { HeadingDropdownMenu } from "@/components/tiptap/tiptap-ui/heading-dropdown-menu";
-import { BlockquoteButton } from "@/components/tiptap/tiptap-ui/blockquote-button";
 import { ColorHighlightPopover } from "@/components/tiptap/tiptap-ui/color-highlight-popover";
 import { LinkPopover } from "@/components/tiptap/tiptap-ui/link-popover";
 import { MarkButton } from "@/components/tiptap/tiptap-ui/mark-button";
 import { TextAlignButton } from "@/components/tiptap/tiptap-ui/text-align-button";
 import { UndoRedoButton } from "@/components/tiptap/tiptap-ui/undo-redo-button";
 import { ListButton } from "@/components/tiptap/tiptap-ui/list-button";
-
-// --- Components ---
-import { ThemeToggle } from "@/components/tiptap/tiptap-templates/simple/theme-toggle";
 
 // --- Styles ---
 import "@/components/tiptap/tiptap-templates/simple/simple-editor.scss";
@@ -73,7 +67,6 @@ const MainToolbarContent = () => {
                 <HeadingDropdownMenu levels={[1, 2, 3, 4, 5]} portal={true} />
                 <ListButton type="bulletList" />
                 <ListButton type="orderedList" />
-                <BlockquoteButton />
             </ToolbarGroup>
 
             <ToolbarSeparator />
@@ -105,9 +98,7 @@ const MainToolbarContent = () => {
 
             <Spacer />
 
-            <ToolbarGroup>
-                <ThemeToggle />
-            </ToolbarGroup>
+
         </>
     );
 };
