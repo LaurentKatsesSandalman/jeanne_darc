@@ -33,3 +33,35 @@ VALUES
     NOW(),
     NOW()
 );
+
+INSERT INTO contenu_image (id_contenu_image, id_section_fk, image_url, alt_text, created_at, updated_at)
+VALUES
+(
+	'019b2b8a-fb36-7887-a0be-9a90bb1b7d31',
+	'019b275a-6ae0-70c2-b0e4-7660e1492690',
+	'https://drive.google.com/file/d/12SB1sI6shPnnYDarlhZxeJwc6XAs5UP0/view?usp=sharing',
+	'Image vide',
+	NOW(),
+    NOW()
+),
+(
+	'019b2b8a-fb36-7ccc-a3ce-e092c167fea9',
+	'019b275a-6ae0-70c2-b0e4-7660e1492690',
+	'https://drive.google.com/file/d/12SB1sI6shPnnYDarlhZxeJwc6XAs5UP0/view?usp=sharing',
+	'Image vide',
+	NOW(),
+    NOW()
+);
+
+DELETE from contenu_image where id_contenu_image = '019b2b8a-fb36-7887-a0be-9a90bb1b7d31';
+
+INSERT INTO contenu_image (id_contenu_image, id_section_fk, image_url, alt_text, created_at, updated_at)
+VALUES
+(
+	'019b2b8a-fb36-7887-a0be-9a90bb1b7d31',
+	'019b275a-6ae0-7b29-a199-066e1fe3b011',
+	'https://drive.google.com/file/d/12SB1sI6shPnnYDarlhZxeJwc6XAs5UP0/view?usp=sharing',
+	'Image vide',
+	NOW(),
+    NOW()
+)

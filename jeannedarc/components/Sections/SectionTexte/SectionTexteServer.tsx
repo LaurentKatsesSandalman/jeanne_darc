@@ -13,7 +13,6 @@ export async function SectionTexteServer({
     section,
     isAuth,
 }: SectionTexteProps) {
-    // Use ou autre hook à utiliser
     const rows = await getAllContenuTextesBySectionId(section.id_section);
     if (!rows) {
         return <p>Erreur au chargement du contenu</p>;
@@ -22,7 +21,11 @@ export async function SectionTexteServer({
 
     return (
         <div className={styles.sectionTexteContainer}>
-            <SectionTexteClient contenu={contenu} isAuth={isAuth} id_section={section.id_section}/>			
+            <SectionTexteClient
+                contenu={contenu}
+                isAuth={isAuth}
+                id_section={section.id_section}
+            />
         </div>
     );
 }

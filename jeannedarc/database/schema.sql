@@ -36,8 +36,8 @@ CREATE TABLE contenu_image (
     id_contenu_image UUID PRIMARY KEY,
     id_section_fk UUID NOT NULL,
     image_url TEXT NOT NULL,
-	alt_text TEXT DEFAULT '',
-    lien_vers TEXT,
+	alt_text TEXT NOT NULL DEFAULT '',
+    lien_vers TEXT NOT NULL DEFAULT '',
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     CONSTRAINT contenu_image_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE
