@@ -42,7 +42,17 @@
     }
   }
 
+// ajouté pour gérer les couleurs des points et des chiffres dans la liste
+ol li::marker {
+color: var(--font-yellow);
+}
+
+ul li::marker {
+color: var(--font-blue);
+}
+
   li {
+
     p {
       margin-top: 0;
       line-height: 1.6;
