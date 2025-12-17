@@ -219,7 +219,6 @@ export async function updateContenuTexteAction(
     const validation = UpdateContenuTexteSchema.safeParse(data);
 
     if (!validation.success) {
-		console.log (z.treeifyError(validation.error))
         return { success: false, errors: z.treeifyError(validation.error) };
     }
 

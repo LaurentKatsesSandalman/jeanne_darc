@@ -1,3 +1,4 @@
+import { SectionImageTexteServer } from "@/components/Sections/SectionImageTexte/SectionImageTexteServer";
 import { SectionTexteServer } from "@/components/Sections/SectionTexte/SectionTexteServer";
 import { SectionTitreServer } from "@/components/Sections/SectionTitre/SectionTitreServer";
 import { getPageByUrl } from "@/lib/queries/contentCrudPage";
@@ -14,7 +15,7 @@ export default async function Page() {
         return <p>Erreur au chargement des sections de la page</p>;
     }
     const sectionTitreData: SectionInterface = sections[0];
-    // const sectionImageTexteData: SectionInterface = sections [1]
+    const sectionImageTexteData: SectionInterface = sections [1]
     const sectionTexteData: SectionInterface = sections[2];
 
     const isAuth = true;
@@ -26,7 +27,10 @@ export default async function Page() {
                     isAuth={isAuth}
                     section={sectionTitreData}
                 />
-                {/* <SectionImageTexteServer/> */}
+                <SectionImageTexteServer
+					isAuth={isAuth}
+                    section={sectionImageTexteData}
+				/>
                 <SectionTexteServer
                     isAuth={isAuth}
                     section={sectionTexteData}

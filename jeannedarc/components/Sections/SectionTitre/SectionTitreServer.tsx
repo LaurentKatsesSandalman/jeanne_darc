@@ -13,7 +13,6 @@ export async function SectionTitreServer({
     section,
     isAuth,
 }: SectionTitreProps) {
-    // Use ou autre hook à utiliser
     const rows = await getAllContenuTitresBySectionId(section.id_section);
     if (!rows) {
         return <p>Erreur au chargement du contenu</p>;
@@ -23,7 +22,6 @@ export async function SectionTitreServer({
     return (
         <div className={styles.sectionTitreContainer}>
             <SectionTitreClient contenu={contenu} isAuth={isAuth} />
-
         </div>
     );
 }
