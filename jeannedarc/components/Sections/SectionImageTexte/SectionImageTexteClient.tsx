@@ -129,9 +129,9 @@ export function SectionImageTexteClient({ section, contenuTexte, contenuImage, i
       ? "flex-col-reverse sm:flex-row-reverse"
       : "flex-col sm:flex-row"
   )}>
-				<><ContenuImage contenu={contenuImage} /></>
+				<div className="w-full sm:w-1/2"><ContenuImage contenu={contenuImage} /></div>
                     
-					<><ContenuTexte contenu={contenuTexte} /></>
+					<div className="w-full sm:w-1/2"><ContenuTexte contenu={contenuTexte} /></div>
                 </div>
             )}
         </>
