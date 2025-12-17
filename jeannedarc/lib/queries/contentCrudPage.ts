@@ -2,15 +2,15 @@
 
 import { sql } from "../db";
 import { CreatePage, PageInterface, UpdatePage } from "../schemas";
-import { v7 as uuidv7 } from 'uuid';
+//import { v7 as uuidv7 } from 'uuid';
 
 export async function createPage(
     payload: CreatePage
 ): Promise<PageInterface | undefined> {
-	const id_page = uuidv7()
+	
 
-    const cols = ["id_page","page_url"];
-    const vals = [id_page, payload.page_url];
+    const cols = ["page_url"];
+    const vals = [payload.page_url];
 
     if (payload.nom) {
         cols.push("nom");

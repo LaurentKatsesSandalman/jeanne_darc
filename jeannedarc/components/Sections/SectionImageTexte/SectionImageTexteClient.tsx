@@ -1,12 +1,12 @@
 "use client";
 import clsx from "clsx";
-import { ContenuImageInterface, ContenuTexteInterface, SectionInterface } from "@/lib/schemas";
+import { ContenuImageInterface, ContenuTexteInterface, SectionInterface, UpdateSection } from "@/lib/schemas";
 import styles from "./SectionImageTexte.module.css";
 import { useState } from "react";
 import { ContenuTexteEdit } from "@/components/tiptap/tiptap-templates/simple/simple-editor";
 import { ContenuTexte } from "@/components/Contenus/ContenuTexte/ContenuTexte";
-import { CloseCancelIcon, DeleteIcon, EditIcon } from "@/components/Icons/Icons";
-import { deleteSectionAction } from "@/lib/actions/actionsSection";
+import { CloseCancelIcon, DeleteIcon, EditIcon, SwitchIcon } from "@/components/Icons/Icons";
+import { deleteSectionAction, updateSectionAction } from "@/lib/actions/actionsSection";
 import { usePathname } from "next/navigation";
 import { ContenuImageEdit } from "@/components/Contenus/ContenuImage/ContenuImageEdit";
 import { ContenuImage } from "@/components/Contenus/ContenuImage/ContenuImage";
@@ -29,6 +29,15 @@ export function SectionImageTexteClient({ section, contenuTexte, contenuImage, i
 		const result = await deleteSectionAction(section.id_section, url)
 	
 		if (!result.success) {
+            throw new Error("error" in result ? result.error : "Validation error");
+        }
+	}
+
+	async function handleSwitchSave(){
+		const payload:UpdateSection = {revert:!section.revert}
+		const result = await updateSectionAction (section.id_section, payload, url)
+
+				if (!result.success) {
             throw new Error("error" in result ? result.error : "Validation error");
         }
 	}
@@ -106,6 +115,12 @@ export function SectionImageTexteClient({ section, contenuTexte, contenuImage, i
                             </button>
                         </div>
                     )}
+					<button
+                                type="button"
+                                onClick={handleSwitchSave}
+                            >
+                                <SwitchIcon />
+                            </button>
                 </>
             ) : (
                 <div className={clsx(

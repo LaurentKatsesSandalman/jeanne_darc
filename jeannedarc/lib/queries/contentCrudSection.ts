@@ -2,7 +2,7 @@
 
 import { sql } from "../db";
 import { CreateSection, SectionInterface, UpdateSection } from "../schemas";
-import { v7 as uuidv7 } from 'uuid';
+//import { v7 as uuidv7 } from 'uuid';
 
 export async function createSection(
     payload: CreateSection
@@ -12,7 +12,7 @@ export async function createSection(
             ([, value]) => value !== undefined && value !== null
         )
     );
-	data.id_section = uuidv7();
+	
 
     const rows = await sql<SectionInterface[]>`
 	INSERT INTO section ${sql(data)} 
@@ -32,7 +32,9 @@ export async function getAllSectionsByPageId(
     id_page: string
 ): Promise<SectionInterface[] | undefined> {
     const rows = await sql<SectionInterface[]>`
-	SELECT * FROM section WHERE id_page_fk = ${id_page};
+	SELECT * FROM section WHERE id_page_fk = ${id_page}
+	ORDER BY created_at ASC
+	;
 	`;
     return rows;
 }

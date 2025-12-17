@@ -27,7 +27,7 @@ import {
     UpdateContenuHeaderBtn,
 	UpdateContenuTexte,
 } from "../schemas";
-import { v7 as uuidv7 } from 'uuid';
+//import { v7 as uuidv7 } from 'uuid';
 
 // contenu_titre
 export async function createContenuTitre(
@@ -39,7 +39,7 @@ export async function createContenuTitre(
         )
     );
 
-	data.id_contenu_titre = uuidv7();
+	
 
     const rows = await sql<ContenuTitreInterface[]>`
 	INSERT INTO contenu_titre ${sql(data)} 
@@ -52,7 +52,8 @@ export async function getContenuTitreById(
     id: string
 ): Promise<ContenuTitreInterface | undefined> {
     const rows = await sql<ContenuTitreInterface[]>`
-	SELECT * FROM contenu_titre WHERE id_contenu_titre = ${id};
+	SELECT * FROM contenu_titre WHERE id_contenu_titre = ${id}
+	ORDER BY created_at ASC;
 	`;
     return rows[0];
 }
@@ -61,7 +62,8 @@ export async function getAllContenuTitresBySectionId(
     id_section: string
 ): Promise<ContenuTitreInterface[] | undefined> {
     const rows = await sql<ContenuTitreInterface[]>`
-	SELECT * FROM contenu_titre WHERE id_section_fk = ${id_section};
+	SELECT * FROM contenu_titre WHERE id_section_fk = ${id_section}
+	ORDER BY created_at ASC;
 	`;
     return rows;
 }
@@ -104,7 +106,7 @@ export async function createContenuImage(
         )
     );
 
-	data.id_contenu_image = uuidv7();
+	
 
     const rows = await sql<ContenuImageInterface[]>`
 	INSERT INTO contenu_image ${sql(data)} 
@@ -117,7 +119,8 @@ export async function getContenuImageById(
     id: string
 ): Promise<ContenuImageInterface | undefined> {
     const rows = await sql<ContenuImageInterface[]>`
-	SELECT * FROM contenu_image WHERE id_contenu_image = ${id};
+	SELECT * FROM contenu_image WHERE id_contenu_image = ${id}
+	ORDER BY created_at ASC;
 	`;
     return rows[0];
 }
@@ -126,7 +129,8 @@ export async function getAllContenuImagesBySectionId(
     id_section: string
 ): Promise<ContenuImageInterface[] | undefined> {
     const rows = await sql<ContenuImageInterface[]>`
-	SELECT * FROM contenu_image WHERE id_section_fk = ${id_section};
+	SELECT * FROM contenu_image WHERE id_section_fk = ${id_section}
+	ORDER BY created_at ASC;
 	`;
     return rows;
 }
@@ -164,15 +168,15 @@ export async function createContenuTexte(
 ): Promise<ContenuTexteInterface | undefined> {
     const tiptap_content = JSON.parse(payload.tiptap_content);
     const id_section_fk = payload.id_section_fk;
-	const id_contenu_texte = uuidv7();
+	
 
     // 	const data = Object.fromEntries(
     //     Object.entries(payload).filter(([, value]) => value !== undefined && value !== null)
     //   );
 
     const rows = await sql<ContenuTexteInterface[]>`
-	INSERT INTO contenu_texte (id_contenu_texte, id_section_fk, tiptap_content)
-	VALUES (${id_contenu_texte}, ${id_section_fk}, ${sql.json(tiptap_content)})
+	INSERT INTO contenu_texte ( id_section_fk, tiptap_content)
+	VALUES (${id_section_fk}, ${sql.json(tiptap_content)})
     RETURNING *
   `;
     return rows[0];
@@ -191,7 +195,8 @@ export async function getAllContenuTextesBySectionId(
     id_section: string
 ): Promise<ContenuTexteInterface[] | undefined> {
     const rows = await sql<ContenuTexteInterface[]>`
-	SELECT * FROM contenu_texte WHERE id_section_fk = ${id_section};
+	SELECT * FROM contenu_texte WHERE id_section_fk = ${id_section}
+	ORDER BY created_at ASC;
 	`;
     return rows;
 }
@@ -228,7 +233,7 @@ export async function createContenuContact(
         )
     );
 
-	data.id_contenu_contact = uuidv7();
+	
 
     const rows = await sql<ContenuContactInterface[]>`
 	INSERT INTO contenu_contact ${sql(data)} 
@@ -250,7 +255,8 @@ export async function getAllContenuContactsBySectionId(
     id_section: string
 ): Promise<ContenuContactInterface[] | undefined> {
     const rows = await sql<ContenuContactInterface[]>`
-	SELECT * FROM contenu_contact WHERE id_section_fk = ${id_section};
+	SELECT * FROM contenu_contact WHERE id_section_fk = ${id_section}
+	ORDER BY created_at ASC;
 	`;
     return rows;
 }
@@ -293,7 +299,7 @@ export async function createContenuPdf(
         )
     );
 
-	data.id_contenu_pdf = uuidv7();
+	
 
     const rows = await sql<ContenuPdfInterface[]>`
 	INSERT INTO contenu_pdf ${sql(data)} 
@@ -315,7 +321,8 @@ export async function getAllContenuPdfsBySectionId(
     id_section: string
 ): Promise<ContenuPdfInterface[] | undefined> {
     const rows = await sql<ContenuPdfInterface[]>`
-	SELECT * FROM contenu_pdf WHERE id_section_fk = ${id_section};
+	SELECT * FROM contenu_pdf WHERE id_section_fk = ${id_section}
+	ORDER BY created_at ASC;
 	`;
     return rows;
 }
@@ -358,7 +365,7 @@ export async function createContenuPave(
         )
     );
 
-	data.id_contenu_pave = uuidv7();
+	
 
     const rows = await sql<ContenuPaveInterface[]>`
 	INSERT INTO contenu_pave ${sql(data)} 
@@ -380,7 +387,8 @@ export async function getAllContenuPavesBySectionId(
     id_section: string
 ): Promise<ContenuPaveInterface[] | undefined> {
     const rows = await sql<ContenuPaveInterface[]>`
-	SELECT * FROM contenu_pave WHERE id_section_fk = ${id_section};
+	SELECT * FROM contenu_pave WHERE id_section_fk = ${id_section}
+	ORDER BY created_at ASC;
 	`;
     return rows;
 }
@@ -423,7 +431,7 @@ export async function createContenuBandeauBtn(
         )
     );
 
-data.id_contenu_bandeaubtn = uuidv7();
+
 
     const rows = await sql<ContenuBandeauBtnInterface[]>`
 	INSERT INTO contenu_bandeaubtn ${sql(data)} 
@@ -445,7 +453,8 @@ export async function getAllContenuBandeauBtnsBySectionId(
     id_section: string
 ): Promise<ContenuBandeauBtnInterface[] | undefined> {
     const rows = await sql<ContenuBandeauBtnInterface[]>`
-	SELECT * FROM contenu_bandeaubtn WHERE id_section_fk = ${id_section};
+	SELECT * FROM contenu_bandeaubtn WHERE id_section_fk = ${id_section}
+	ORDER BY created_at ASC;
 	`;
     return rows;
 }
@@ -488,7 +497,7 @@ export async function createContenuHeaderBtn(
         )
     );
 
-	data.id_contenu_headerbtn = uuidv7();
+	
 
     const rows = await sql<ContenuHeaderBtnInterface[]>`
 	INSERT INTO contenu_headerbtn ${sql(data)} 
@@ -510,7 +519,8 @@ export async function getAllContenuHeaderBtnsBySectionId(
     id_section: string
 ): Promise<ContenuHeaderBtnInterface[] | undefined> {
     const rows = await sql<ContenuHeaderBtnInterface[]>`
-	SELECT * FROM contenu_headerbtn WHERE id_section_fk = ${id_section};
+	SELECT * FROM contenu_headerbtn WHERE id_section_fk = ${id_section}
+	ORDER BY created_at ASC;
 	`;
     return rows;
 }

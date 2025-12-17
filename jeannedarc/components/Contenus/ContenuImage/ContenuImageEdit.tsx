@@ -39,6 +39,7 @@ const [currentContent, setCurrentContent] = useState(contenu);
 			if (contenu.lien_vers !== currentContent.lien_vers) {
 				payload.lien_vers = currentContent.lien_vers;
 			}
+			if(!payload.lien_vers){payload.lien_vers=""}
 			if (Object.keys(payload).length === 0) {
 				setEditImage(false);
 				return;
@@ -56,6 +57,7 @@ const [currentContent, setCurrentContent] = useState(contenu);
 			}
 	
 			const updatedContenu = result.data;
+			// à vérifier mais je pense que c'est complétement inutile puisque refresh path + le composant est démonté car edit passe à false
 			if (updatedContenu) {
 				setCurrentContent(updatedContenu);
 			}
