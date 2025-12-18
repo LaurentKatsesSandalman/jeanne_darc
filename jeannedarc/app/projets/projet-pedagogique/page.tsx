@@ -1,3 +1,4 @@
+import { auth } from '@clerk/nextjs/server';
 import { SectionImageTexteServer } from "@/components/Sections/SectionImageTexte/SectionImageTexteServer";
 import { SectionTexteServer } from "@/components/Sections/SectionTexte/SectionTexteServer";
 import { SectionTitreServer } from "@/components/Sections/SectionTitre/SectionTitreServer";
@@ -18,7 +19,9 @@ export default async function Page() {
     const sectionImageTexteData: SectionInterface = sections [1]
     const sectionTexteData: SectionInterface = sections[2];
 
-    const isAuth = true;
+	// à mettre sur toutes les pages qui ont besoin de auth
+   const { userId } = await auth();
+  const isAuth = !!userId;
 
     return (
         <>

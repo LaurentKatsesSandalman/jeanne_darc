@@ -1,5 +1,6 @@
 "use server";
 import { z } from "zod";
+import { auth } from "@clerk/nextjs/server";
 
 import { revalidatePath } from "next/cache";
 import { CreatePageSchema, UpdatePageSchema } from "@/lib/schemas";
@@ -10,6 +11,12 @@ import {
 } from "@/lib/queries/contentCrudPage";
 
 export async function createPageAction(data: unknown, url?: string) {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+	
     const validation = CreatePageSchema.safeParse(data);
 
     if (!validation.success) {
@@ -33,6 +40,12 @@ export async function updatePageAction(
     data: unknown,
     url?: string
 ) {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid page ID" };
     }
@@ -61,6 +74,12 @@ export async function updatePageAction(
 }
 
 export async function deletePageAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid page ID" };
     }
