@@ -1,0 +1,19 @@
+.logoutBtn{
+	/* display: block; */
+	position:absolute;
+	color: var(--font-white);
+	background-color: var(--font-orange);
+	/* margin: 25px; */
+	/* padding: 5px; */
+	width: 2.5rem;
+	aspect-ratio: 1/1;
+	/* margin:0 5px 5px auto; */
+	cursor:pointer;
+	top: 15px;
+	left: 15px;
+	border-radius: 5px;
+}
+
+.logoutIcon{
+	margin: auto;
+}
