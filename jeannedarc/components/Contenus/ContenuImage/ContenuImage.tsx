@@ -9,6 +9,7 @@ interface ContenuImageProps {
 export function ContenuImage({ contenu }: ContenuImageProps) {
     const imageElement = (
         <Image
+            loading="eager"
             src={contenu.image_url}
             alt={contenu.alt_text}
             width={0}
