@@ -29,6 +29,11 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "database/createDb.js"  ],
+//, "database/createDb.js"
+],
   "exclude": ["node_modules"]
 }
+
+
+/* n'a pas été mis dans les compiler options :
+"typeRoots": ["./node_modules/@types", "./types"] */

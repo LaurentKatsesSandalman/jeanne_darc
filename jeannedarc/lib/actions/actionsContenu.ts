@@ -1,5 +1,6 @@
 "use server";
 import { z } from "zod";
+import { auth } from "@clerk/nextjs/server";
 
 import { revalidatePath } from "next/cache";
 import {
@@ -51,6 +52,12 @@ import {
 
 // contenu_titre
 export async function createContenuTitreAction(data: unknown, url?: string) {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+		
     const validation = CreateContenuTitreSchema.safeParse(data);
 
     if (!validation.success) {
@@ -74,6 +81,12 @@ export async function updateContenuTitreAction(
     data: unknown,
     url?: string
 ): Promise<UpdateContenuTitreResult> {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -102,6 +115,12 @@ export async function updateContenuTitreAction(
 }
 
 export async function deleteContenuTitreAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -120,6 +139,12 @@ export async function deleteContenuTitreAction(id: string, url?: string) {
 
 // contenu_image
 export async function createContenuImageAction(data: unknown, url?: string) {
+	    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+	
     const validation = CreateContenuImageSchema.safeParse(data);
 
     if (!validation.success) {
@@ -143,6 +168,12 @@ export async function updateContenuImageAction(
     data: unknown,
     url?: string
 ) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -171,6 +202,12 @@ export async function updateContenuImageAction(
 }
 
 export async function deleteContenuImageAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -189,6 +226,12 @@ export async function deleteContenuImageAction(id: string, url?: string) {
 
 // contenu_texte
 export async function createContenuTexteAction(data: unknown, url?: string) {
+	    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+	
     const validation = CreateContenuTexteSchema.safeParse(data);
 
     if (!validation.success) {
@@ -212,6 +255,12 @@ export async function updateContenuTexteAction(
     data: unknown,
     url?: string
 ):Promise<UpdateContenuTexteResult> {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -240,6 +289,12 @@ export async function updateContenuTexteAction(
 }
 
 export async function deleteContenuTexteAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -258,6 +313,12 @@ export async function deleteContenuTexteAction(id: string, url?: string) {
 
 // contenu_CONTACT
 export async function createContenuContactAction(data: unknown, url?: string) {
+	    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+	
     const validation = CreateContenuContactSchema.safeParse(data);
 
     if (!validation.success) {
@@ -281,6 +342,12 @@ export async function updateContenuContactAction(
     data: unknown,
     url?: string
 ) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -309,6 +376,12 @@ export async function updateContenuContactAction(
 }
 
 export async function deleteContenuContactAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -327,6 +400,12 @@ export async function deleteContenuContactAction(id: string, url?: string) {
 
 // contenu_PDF
 export async function createContenuPdfAction(data: unknown, url?: string) {
+	    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+	
     const validation = CreateContenuPdfSchema.safeParse(data);
 
     if (!validation.success) {
@@ -350,6 +429,12 @@ export async function updateContenuPdfAction(
     data: unknown,
     url?: string
 ) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -378,6 +463,12 @@ export async function updateContenuPdfAction(
 }
 
 export async function deleteContenuPdfAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -396,6 +487,12 @@ export async function deleteContenuPdfAction(id: string, url?: string) {
 
 // contenu_PAVE
 export async function createContenuPaveAction(data: unknown, url?: string) {
+	    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+	
     const validation = CreateContenuPaveSchema.safeParse(data);
 
     if (!validation.success) {
@@ -419,6 +516,12 @@ export async function updateContenuPaveAction(
     data: unknown,
     url?: string
 ) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -447,6 +550,12 @@ export async function updateContenuPaveAction(
 }
 
 export async function deleteContenuPaveAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -468,6 +577,12 @@ export async function createContenuBandeauBtnAction(
     data: unknown,
     url?: string
 ) {
+	    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+	
     const validation = CreateContenuBandeauBtnSchema.safeParse(data);
 
     if (!validation.success) {
@@ -494,6 +609,12 @@ export async function updateContenuBandeauBtnAction(
     data: unknown,
     url?: string
 ) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -525,6 +646,12 @@ export async function updateContenuBandeauBtnAction(
 }
 
 export async function deleteContenuBandeauBtnAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -549,6 +676,12 @@ export async function createContenuHeaderBtnAction(
     data: unknown,
     url?: string
 ) {
+	    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+	
     const validation = CreateContenuHeaderBtnSchema.safeParse(data);
 
     if (!validation.success) {
@@ -572,6 +705,12 @@ export async function updateContenuHeaderBtnAction(
     data: unknown,
     url?: string
 ) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }
@@ -600,6 +739,12 @@ export async function updateContenuHeaderBtnAction(
 }
 
 export async function deleteContenuHeaderBtnAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid ID" };
     }

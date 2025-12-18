@@ -1,5 +1,6 @@
 "use server";
 import { z } from "zod";
+import { auth } from "@clerk/nextjs/server";
 
 import { revalidatePath } from "next/cache";
 import { CreateSectionSchema, UpdateSectionSchema } from "@/lib/schemas";
@@ -10,6 +11,12 @@ import {
 } from "@/lib/queries/contentCrudSection";
 
 export async function createSectionAction(data: unknown, url?: string) {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     const validation = CreateSectionSchema.safeParse(data);
 
     if (!validation.success) {
@@ -33,6 +40,12 @@ export async function updateSectionAction(
     data: unknown,
     url?: string
 ) {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid section ID" };
     }
@@ -61,6 +74,12 @@ export async function updateSectionAction(
 }
 
 export async function deleteSectionAction(id: string, url?: string) {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid section ID" };
     }
