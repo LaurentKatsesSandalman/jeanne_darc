@@ -4,11 +4,51 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background-page: #ffffff;
+  --background-layout: #638a8c;
+  --background-secondary: #17383e;
+  --background-dropdown: #10292e;
+  --background-orange: #c24322;
+  --background-pdf-related: #4eb169;
+  --background-input: #f5f7f7;
+
+  --font-white: #ffffff;
+  --font-dark-green: #638a8c;
+  --font-default: #17383e;
+  --font-orange: #c24322;
+  --font-pdf-related: #4eb169;
+  --font-yellow: #f6ae3b;
+  --font-blue: #5b8fc7; 
 }
 
-@theme inline {
+body {
+	background-color: var(--background-layout);
+}
+
+main{
+	background-color: var(--background-page);
+	padding: 50px 0 50px 0;
+	color:var(--font-default)
+	/* width:min(90%, 1290px);
+	margin: 0 auto; */
+}
+
+input {
+	display: block;
+	width: 100%;
+	background-color: var(--background-input);
+	outline: none;
+}
+
+input:focus{
+	border: 1px solid var(--background-pdf-related)
+}
+
+label {
+	display: block;
+}
+
+/* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -26,4 +66,4 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
+} */

@@ -1,0 +1,21 @@
+.h1, .h1Edit {
+	font-family: var(--font-ibm-plex);
+	font-size: 30px;
+	font-weight: 700;
+	margin-bottom:40px;
+}
+
+.h2, .h2Edit {
+	font-family: var(--font-actor);
+	font-size: 40px;
+	font-weight: 700;
+	margin-bottom:24px;
+}
+
+.description, .descriptionEdit{
+	margin-bottom:24px;
+}
+
+.label{
+	margin-top: -12px;
+}

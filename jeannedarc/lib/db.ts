@@ -27,6 +27,12 @@ export const sql = postgres({
         process.env.NODE_ENV === "production"
             ? true // ou { rejectUnauthorized: false }, pour la prod, si SSL activé et autosigné
             : false, // local : SSL désactivé
+	connection: {
+        client_encoding: 'UTF8'
+    },
+	max: 10, // Nombre maximum de connexions (ajustez selon vos besoins)
+    idle_timeout: 20, // Fermer les connexions inactives après 20 secondes
+    connect_timeout: 10,
 });
 
 export default sql;
