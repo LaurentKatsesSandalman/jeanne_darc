@@ -1,18 +1,23 @@
+"use server";
 import Link from "next/link";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import logo from "../../assets/images/ECOLE_JDA_LOGO_BLANC-01-temp.png";
+//import { SignOutButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { LogoutButton } from "../Buttons/LogoutButton/LogoutButton";
 
-export function Header() {
+export async function Header() {
+    const { userId } = await auth();
+    const isAuth = !!userId;
+
     return (
-        <header className={styles.header}>
+        <header ><div className={styles.header}>
             <Link href="/">
                 <Image
                     src={logo}
                     alt="Le logo de l'école Jeanne d'Arc"
                     className={styles.logo}
-					// height={94}
-					// width={logo.width*94/logo.height}
                 />
             </Link>
             <div className={styles.allBtnContainer}>
@@ -24,7 +29,10 @@ export function Header() {
                 <Link href="/plus">PLUS</Link>
                 <Link href="/contact">CONTACT</Link>
             </div>
-            <p>(+33)5 56 08 52 16</p>
+            <p>(+33)5 56 08 52 16</p></div>
+            {isAuth && (
+                <LogoutButton/>
+            )}
         </header>
     );
 }
