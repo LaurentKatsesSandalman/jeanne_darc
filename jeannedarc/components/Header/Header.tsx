@@ -25,7 +25,7 @@ export async function Header() {
                 <Link href="/projets/projet-pedagogique">
                     PROJET PÉDAGOGIQUE
                 </Link>
-                <Link href="/preinscriptions">PRÉ-INSCRIPTIONS</Link>
+                <Link href="/pre-inscriptions">PRÉ-INSCRIPTIONS</Link>
                 <Link href="/plus">PLUS</Link>
                 <Link href="/contact">CONTACT</Link>
             </div>
