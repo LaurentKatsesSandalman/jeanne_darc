@@ -24,7 +24,7 @@ export async function SectionTexteServer({
             <SectionTexteClient
                 contenu={contenu}
                 isAuth={isAuth}
-                id_section={section.id_section}
+                section={section}
             />
         </div>
     );

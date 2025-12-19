@@ -3,14 +3,14 @@ import { z } from "zod";
 import { auth } from "@clerk/nextjs/server";
 
 import { revalidatePath } from "next/cache";
-import { CreateSectionSchema, UpdateSectionSchema } from "@/lib/schemas";
+import { CreateSection, CreateSectionSchema, CreateUpdateSectionResult, UpdateSection, UpdateSectionSchema } from "@/lib/schemas";
 import {
     createSection,
     updateSectionById,
     deleteSectionById,
 } from "@/lib/queries/contentCrudSection";
 
-export async function createSectionAction(data: unknown, url?: string) {
+export async function createSectionAction(data: CreateSection, url?: string): Promise<CreateUpdateSectionResult> {
     const { userId } = await auth();
 
     if (!userId) {
@@ -25,6 +25,7 @@ export async function createSectionAction(data: unknown, url?: string) {
 
     try {
         const result = await createSection(validation.data);
+		if(!result){return { success: false, error: "Failed to create section" };}
         if (url) {
             revalidatePath(url);
         }
@@ -37,9 +38,9 @@ export async function createSectionAction(data: unknown, url?: string) {
 
 export async function updateSectionAction(
     id: string,
-    data: unknown,
+    data: UpdateSection,
     url?: string
-) {
+): Promise<CreateUpdateSectionResult>  {
     const { userId } = await auth();
 
     if (!userId) {

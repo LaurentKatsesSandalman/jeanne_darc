@@ -29,7 +29,7 @@ export function ContenuTitreEdit({
     };
 
     async function handleSave() {
-        const payload: UpdateContenuTitre = {};
+        const payload: UpdateContenuTitre = {is_mega: currentContent.is_mega};
         if (contenu.titre1 !== currentContent.titre1) {
             payload.titre1 = currentContent.titre1;
         }
@@ -38,9 +38,6 @@ export function ContenuTitreEdit({
         }
         if (contenu.description !== currentContent.description) {
             payload.description = currentContent.description;
-        }
-		if (contenu.is_mega !== currentContent.is_mega) {
-            payload.is_mega = currentContent.is_mega;
         }
         if (Object.keys(payload).length === 0) {
             setEditTitre(false);

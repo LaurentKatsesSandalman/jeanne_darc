@@ -3,20 +3,20 @@ import { z } from "zod";
 import { auth } from "@clerk/nextjs/server";
 
 import { revalidatePath } from "next/cache";
-import { CreatePageSchema, UpdatePageSchema } from "@/lib/schemas";
+import { CreatePage, CreatePageSchema, CreateUpdatePageResult, UpdatePage, UpdatePageSchema } from "@/lib/schemas";
 import {
     createPage,
     updatePageById,
     deletePageById,
 } from "@/lib/queries/contentCrudPage";
 
-export async function createPageAction(data: unknown, url?: string) {
+export async function createPageAction(data: CreatePage, url?: string) :Promise<CreateUpdatePageResult>{
     const { userId } = await auth();
 
     if (!userId) {
         return { success: false, error: "Unauthorized" };
     }
-	
+
     const validation = CreatePageSchema.safeParse(data);
 
     if (!validation.success) {
@@ -25,6 +25,7 @@ export async function createPageAction(data: unknown, url?: string) {
 
     try {
         const result = await createPage(validation.data);
+		if(!result){return { success: false, error: "Failed to create page" };}
         if (url) {
             revalidatePath(url);
         }
@@ -37,9 +38,9 @@ export async function createPageAction(data: unknown, url?: string) {
 
 export async function updatePageAction(
     id: string,
-    data: unknown,
+    data: UpdatePage,
     url?: string
-) {
+) :Promise<CreateUpdatePageResult>{
     const { userId } = await auth();
 
     if (!userId) {
@@ -74,7 +75,7 @@ export async function updatePageAction(
 }
 
 export async function deletePageAction(id: string, url?: string) {
-const { userId } = await auth();
+    const { userId } = await auth();
 
     if (!userId) {
         return { success: false, error: "Unauthorized" };

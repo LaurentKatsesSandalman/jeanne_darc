@@ -1,20 +1,23 @@
 "use client";
-import { ContenuTitreInterface } from "@/lib/schemas";
+import { ContenuTitreInterface, SectionInterface } from "@/lib/schemas";
 import styles from "./SectionTitre.module.css";
 import { useState } from "react";
 import { ContenuTitreEdit } from "@/components/Contenus/ContenuTitre/ContenuTitreEdit";
 import { ContenuTitre } from "@/components/Contenus/ContenuTitre/ContenuTitre";
 import { EditIcon } from "@/components/Icons/Icons";
+import { usePathname } from "next/navigation";
+import { DeleteSectionButton } from "@/components/Buttons/DeleteSectionButton/DeleteSectionButton";
 
 interface SectionTitreProps {
+	section: SectionInterface;
    contenu: ContenuTitreInterface;
     isAuth: boolean;
 }
 
-export function SectionTitreClient({ contenu, isAuth }: SectionTitreProps) {
+export function SectionTitreClient({ section ,contenu, isAuth }: SectionTitreProps) {
     const [editTitre, setEditTitre] = useState(false);
+	const url = usePathname();
 
-	
 
     return (
         <div className={styles.sectionTitreClientContainer}>
@@ -35,12 +38,10 @@ export function SectionTitreClient({ contenu, isAuth }: SectionTitreProps) {
                             </button>
                         </>
                     )}
-                                {/*  sectionTitre ne peut pas être delete
-                <button type="button" onClick={handleDelete}>
-                    <DeleteIcon />
-                </button>
-            )}
-			*/}
+                                
+                <DeleteSectionButton id_section={section.id_section} url={url}/>
+            
+			
                 </>
             ) : (
                 <>
