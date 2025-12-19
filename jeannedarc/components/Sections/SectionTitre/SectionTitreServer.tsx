@@ -20,7 +20,7 @@ export async function SectionTitreServer({
     const contenu = rows[0];
 
     return (
-        <div className={styles.sectionTitreContainer}>
+        <div className={styles.sectionTitreServerContainer}>
             <SectionTitreClient contenu={contenu} isAuth={isAuth} />
         </div>
     );
