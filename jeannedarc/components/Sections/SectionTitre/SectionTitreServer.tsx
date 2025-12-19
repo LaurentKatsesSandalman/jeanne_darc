@@ -21,7 +21,7 @@ export async function SectionTitreServer({
 
     return (
         <div className={styles.sectionTitreServerContainer}>
-            <SectionTitreClient contenu={contenu} isAuth={isAuth} />
+            <SectionTitreClient contenu={contenu} isAuth={isAuth} section={section}/>
         </div>
     );
 }

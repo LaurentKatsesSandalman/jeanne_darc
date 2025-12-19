@@ -6,6 +6,7 @@ import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
 import { SectionInterface } from "@/lib/schemas";
 import { SectionTexteTexteServer } from "@/components/Sections/SectionTexteTexte/SectionTexteTexteServer";
+import { SectionSelector } from "@/components/Sections/SectionSelector/SectionSelector";
 
 interface VirtualSectionProps {
     section: SectionInterface;
@@ -67,6 +68,7 @@ export default async function Page({ params }: PageProps) {
                         isAuth={isAuth}
                     />
                 ))}
+				{isAuth&&<SectionSelector id_page_fk={page.id_page}/>}
             </main>
         </>
     );

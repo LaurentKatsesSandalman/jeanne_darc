@@ -20,8 +20,30 @@ import {
     UpdateContenuBandeauBtnSchema,
     CreateContenuHeaderBtnSchema,
     UpdateContenuHeaderBtnSchema,
-    UpdateContenuTitreResult,
-	UpdateContenuTexteResult,
+    CreateUpdateContenuTitreResult,
+	CreateUpdateContenuTexteResult,
+	CreateContenuImage,
+	CreateContenuTitre,
+	CreateContenuPave,
+	CreateContenuPdf,
+	CreateContenuContact,
+	CreateContenuTexte,
+	UpdateContenuTexte,
+	UpdateContenuImage,
+	UpdateContenuTitre,
+	UpdateContenuContact,
+	UpdateContenuPdf,
+	UpdateContenuPave,
+	CreateContenuBandeauBtn,
+	UpdateContenuBandeauBtn,
+	CreateContenuHeaderBtn,
+	UpdateContenuHeaderBtn,
+	CreateUpdateContenuImageResult,
+	CreateUpdateContenuContactResult,
+	CreateUpdateContenuPdfResult,
+	CreateUpdateContenuPaveResult,
+	CreateUpdateContenuBandeauBtnResult,
+	CreateUpdateContenuHeaderBtnResult,
 } from "@/lib/schemas";
 import {
     createContenuTitre,
@@ -51,7 +73,7 @@ import {
 } from "@/lib/queries/contentCrudContenu";
 
 // contenu_titre
-export async function createContenuTitreAction(data: unknown, url?: string) {
+export async function createContenuTitreAction(data: CreateContenuTitre, url?: string): Promise<CreateUpdateContenuTitreResult> {
     const { userId } = await auth();
 
     if (!userId) {
@@ -66,6 +88,7 @@ export async function createContenuTitreAction(data: unknown, url?: string) {
 
     try {
         const result = await createContenuTitre(validation.data);
+		if(!result){return { success: false, error: "Failed to create contenu" };}
         if (url) {
             revalidatePath(url);
         }
@@ -78,9 +101,9 @@ export async function createContenuTitreAction(data: unknown, url?: string) {
 
 export async function updateContenuTitreAction(
     id: string,
-    data: unknown,
+    data: UpdateContenuTitre,
     url?: string
-): Promise<UpdateContenuTitreResult> {
+): Promise<CreateUpdateContenuTitreResult> {
 const { userId } = await auth();
 
     if (!userId) {
@@ -138,7 +161,7 @@ const { userId } = await auth();
 }
 
 // contenu_image
-export async function createContenuImageAction(data: unknown, url?: string) {
+export async function createContenuImageAction(data: CreateContenuImage, url?: string): Promise<CreateUpdateContenuImageResult> {
 	    const { userId } = await auth();
 
     if (!userId) {
@@ -153,6 +176,7 @@ export async function createContenuImageAction(data: unknown, url?: string) {
 
     try {
         const result = await createContenuImage(validation.data);
+		if(!result){return { success: false, error: "Failed to create contenu" };}
         if (url) {
             revalidatePath(url);
         }
@@ -165,9 +189,9 @@ export async function createContenuImageAction(data: unknown, url?: string) {
 
 export async function updateContenuImageAction(
     id: string,
-    data: unknown,
+    data: UpdateContenuImage,
     url?: string
-) {
+) : Promise<CreateUpdateContenuImageResult>{
 const { userId } = await auth();
 
     if (!userId) {
@@ -225,7 +249,7 @@ const { userId } = await auth();
 }
 
 // contenu_texte
-export async function createContenuTexteAction(data: unknown, url?: string) {
+export async function createContenuTexteAction(data: CreateContenuTexte, url?: string): Promise<CreateUpdateContenuTexteResult> {
 	    const { userId } = await auth();
 
     if (!userId) {
@@ -240,6 +264,7 @@ export async function createContenuTexteAction(data: unknown, url?: string) {
 
     try {
         const result = await createContenuTexte(validation.data);
+		if(!result){return { success: false, error: "Failed to create contenu" };}
         if (url) {
             revalidatePath(url);
         }
@@ -252,9 +277,9 @@ export async function createContenuTexteAction(data: unknown, url?: string) {
 
 export async function updateContenuTexteAction(
     id: string,
-    data: unknown,
+    data: UpdateContenuTexte,
     url?: string
-):Promise<UpdateContenuTexteResult> {
+):Promise<CreateUpdateContenuTexteResult> {
 const { userId } = await auth();
 
     if (!userId) {
@@ -312,7 +337,7 @@ const { userId } = await auth();
 }
 
 // contenu_CONTACT
-export async function createContenuContactAction(data: unknown, url?: string) {
+export async function createContenuContactAction(data: CreateContenuContact, url?: string): Promise<CreateUpdateContenuContactResult>  {
 	    const { userId } = await auth();
 
     if (!userId) {
@@ -327,6 +352,7 @@ export async function createContenuContactAction(data: unknown, url?: string) {
 
     try {
         const result = await createContenuContact(validation.data);
+		if(!result){return { success: false, error: "Failed to create contenu" };}
         if (url) {
             revalidatePath(url);
         }
@@ -339,9 +365,9 @@ export async function createContenuContactAction(data: unknown, url?: string) {
 
 export async function updateContenuContactAction(
     id: string,
-    data: unknown,
+    data: UpdateContenuContact,
     url?: string
-) {
+) :Promise<CreateUpdateContenuContactResult>{
 const { userId } = await auth();
 
     if (!userId) {
@@ -399,7 +425,7 @@ const { userId } = await auth();
 }
 
 // contenu_PDF
-export async function createContenuPdfAction(data: unknown, url?: string) {
+export async function createContenuPdfAction(data: CreateContenuPdf, url?: string):Promise<CreateUpdateContenuPdfResult> {
 	    const { userId } = await auth();
 
     if (!userId) {
@@ -414,6 +440,7 @@ export async function createContenuPdfAction(data: unknown, url?: string) {
 
     try {
         const result = await createContenuPdf(validation.data);
+		if(!result){return { success: false, error: "Failed to create contenu" };}
         if (url) {
             revalidatePath(url);
         }
@@ -426,9 +453,9 @@ export async function createContenuPdfAction(data: unknown, url?: string) {
 
 export async function updateContenuPdfAction(
     id: string,
-    data: unknown,
+    data: UpdateContenuPdf,
     url?: string
-) {
+) :Promise<CreateUpdateContenuPdfResult>{
 const { userId } = await auth();
 
     if (!userId) {
@@ -486,7 +513,7 @@ const { userId } = await auth();
 }
 
 // contenu_PAVE
-export async function createContenuPaveAction(data: unknown, url?: string) {
+export async function createContenuPaveAction(data: CreateContenuPave, url?: string):Promise<CreateUpdateContenuPaveResult> {
 	    const { userId } = await auth();
 
     if (!userId) {
@@ -501,6 +528,7 @@ export async function createContenuPaveAction(data: unknown, url?: string) {
 
     try {
         const result = await createContenuPave(validation.data);
+		if(!result){return { success: false, error: "Failed to create contenu" };}
         if (url) {
             revalidatePath(url);
         }
@@ -513,9 +541,9 @@ export async function createContenuPaveAction(data: unknown, url?: string) {
 
 export async function updateContenuPaveAction(
     id: string,
-    data: unknown,
+    data: UpdateContenuPave,
     url?: string
-) {
+) :Promise<CreateUpdateContenuPaveResult>{
 const { userId } = await auth();
 
     if (!userId) {
@@ -574,9 +602,9 @@ const { userId } = await auth();
 
 // contenu_BANDEAUBTN
 export async function createContenuBandeauBtnAction(
-    data: unknown,
+    data: CreateContenuBandeauBtn,
     url?: string
-) {
+) :Promise<CreateUpdateContenuBandeauBtnResult>{
 	    const { userId } = await auth();
 
     if (!userId) {
@@ -591,6 +619,7 @@ export async function createContenuBandeauBtnAction(
 
     try {
         const result = await createContenuBandeauBtn(validation.data);
+		if(!result){return { success: false, error: "Failed to create contenu" };}
         if (url) {
             revalidatePath(url);
         }
@@ -606,9 +635,9 @@ export async function createContenuBandeauBtnAction(
 
 export async function updateContenuBandeauBtnAction(
     id: string,
-    data: unknown,
+    data: UpdateContenuBandeauBtn,
     url?: string
-) {
+) :Promise<CreateUpdateContenuBandeauBtnResult>{
 const { userId } = await auth();
 
     if (!userId) {
@@ -673,9 +702,9 @@ const { userId } = await auth();
 
 // contenu_HEADERBTN
 export async function createContenuHeaderBtnAction(
-    data: unknown,
+    data: CreateContenuHeaderBtn,
     url?: string
-) {
+) :Promise<CreateUpdateContenuHeaderBtnResult>{
 	    const { userId } = await auth();
 
     if (!userId) {
@@ -690,6 +719,7 @@ export async function createContenuHeaderBtnAction(
 
     try {
         const result = await createContenuHeaderBtn(validation.data);
+		if(!result){return { success: false, error: "Failed to create contenu" };}
         if (url) {
             revalidatePath(url);
         }
@@ -702,9 +732,9 @@ export async function createContenuHeaderBtnAction(
 
 export async function updateContenuHeaderBtnAction(
     id: string,
-    data: unknown,
+    data: UpdateContenuHeaderBtn,
     url?: string
-) {
+) :Promise<CreateUpdateContenuHeaderBtnResult>{
 const { userId } = await auth();
 
     if (!userId) {
