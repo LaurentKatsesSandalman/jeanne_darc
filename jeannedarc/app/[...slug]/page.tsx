@@ -32,8 +32,19 @@ function VirtualSection({ section, isAuth }: VirtualSectionProps) {
     }
 }
 
-export default async function Page() {
-    const page = await getPageByUrl("projets/projet-pedagogique");
+interface PageProps {
+    params: Promise<{
+    slug: string[];
+  }>;
+}
+
+export default async function Page({ params }: PageProps) {
+	const resolvedParams = await params;
+    const url = resolvedParams.slug.join("/");
+
+	console.log(url)
+
+    const page = await getPageByUrl(url);
     if (!page) {
         return <p>Erreur au chargement de la page</p>;
     }
