@@ -1,10 +1,36 @@
-import { auth } from '@clerk/nextjs/server';
+import { auth } from "@clerk/nextjs/server";
 import { SectionImageTexteServer } from "@/components/Sections/SectionImageTexte/SectionImageTexteServer";
 import { SectionTexteServer } from "@/components/Sections/SectionTexte/SectionTexteServer";
 import { SectionTitreServer } from "@/components/Sections/SectionTitre/SectionTitreServer";
 import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
 import { SectionInterface } from "@/lib/schemas";
+import { SectionTexteTexteServer } from "@/components/Sections/SectionTexteTexte/SectionTexteTexteServer";
+
+interface VirtualSectionProps {
+    section: SectionInterface;
+    isAuth: boolean;
+}
+
+function VirtualSection({ section, isAuth }: VirtualSectionProps) {
+    switch (section.type) {
+        case "Titre":
+            return <SectionTitreServer isAuth={isAuth} section={section} />;
+        case "Texte":
+            return <SectionTexteServer isAuth={isAuth} section={section} />;
+        case "TexteTexte":
+            return (
+                <SectionTexteTexteServer isAuth={isAuth} section={section} />
+            );
+        case "ImageTexte":
+            return (
+                <SectionImageTexteServer isAuth={isAuth} section={section} />
+            );
+        default:
+            console.warn(`Type de section inconnu: ${section.type}`);
+            return null;
+    }
+}
 
 export default async function Page() {
     const page = await getPageByUrl("projets/projet-pedagogique");
@@ -15,29 +41,21 @@ export default async function Page() {
     if (!sections) {
         return <p>Erreur au chargement des sections de la page</p>;
     }
-    const sectionTitreData: SectionInterface = sections[0];
-    const sectionImageTexteData: SectionInterface = sections [1]
-    const sectionTexteData: SectionInterface = sections[2];
 
-	// à mettre sur toutes les pages qui ont besoin de auth
-   const { userId } = await auth();
-  const isAuth = !!userId;
+    // à mettre sur toutes les pages qui ont besoin de auth
+    const { userId } = await auth();
+    const isAuth = !!userId;
 
     return (
         <>
             <main>
-                <SectionTitreServer
-                    isAuth={isAuth}
-                    section={sectionTitreData}
-                />
-                <SectionImageTexteServer
-					isAuth={isAuth}
-                    section={sectionImageTexteData}
-				/>
-                <SectionTexteServer
-                    isAuth={isAuth}
-                    section={sectionTexteData}
-                />
+                {sections?.map((section) => (
+                    <VirtualSection
+                        key={section.id_section}
+                        section={section}
+                        isAuth={isAuth}
+                    />
+                ))}
             </main>
         </>
     );
