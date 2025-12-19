@@ -1,21 +1,70 @@
-.h1, .h1Edit {
-	font-family: var(--font-ibm-plex);
-	font-size: 30px;
+.container {
+    width: min(90%, 1290px);
+    margin: 0 auto;
+	padding-top: 50px
+}
+
+.h1,
+.h1Edit {
+    font-family: var(--font-ibm-plex);
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.h2,
+.h2Edit {
+    font-family: var(--font-actor);
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+.description,
+.descriptionEdit {
+    margin-bottom: 24px;
+}
+
+.label {
+    margin-top: -12px;
+}
+
+.surcontainerMega {
+
+    background-color: var(--background-secondary);
+    
+}
+
+.containerMega {
+    width: min(90%, 1290px);
+    margin: 0 auto;
+	padding-top: 230px;
+	display:flex;
+	flex-direction: column-reverse;
+}
+
+.h1Mega {
+    font-family: var(--font-ibm-plex);
+    font-size: 70px;
+    font-weight: 700;
+	/* line-height: 1; */
+    margin-bottom: 90px;
+	text-align: center;
+	color: var(--font-white);
+}
+
+.h2Mega {
+    font-family: var(--font-ibm-plex);
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 40px;
+	text-align: center;
+	color: var(--font-dark-green);
+}
+
+.descriptionMega{
+	text-align: center;
+	margin-bottom: 16px;
+	color: var(--font-dark-green);
 	font-weight: 700;
-	margin-bottom:40px;
-}
-
-.h2, .h2Edit {
-	font-family: var(--font-actor);
-	font-size: 40px;
-	font-weight: 700;
-	margin-bottom:24px;
-}
-
-.description, .descriptionEdit{
-	margin-bottom:24px;
-}
-
-.label{
-	margin-top: -12px;
 }

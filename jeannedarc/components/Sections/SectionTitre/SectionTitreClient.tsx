@@ -1,6 +1,6 @@
 "use client";
 import { ContenuTitreInterface } from "@/lib/schemas";
-//import styles from "./SectionTitre.module.css";
+import styles from "./SectionTitre.module.css";
 import { useState } from "react";
 import { ContenuTitreEdit } from "@/components/Contenus/ContenuTitre/ContenuTitreEdit";
 import { ContenuTitre } from "@/components/Contenus/ContenuTitre/ContenuTitre";
@@ -17,7 +17,7 @@ export function SectionTitreClient({ contenu, isAuth }: SectionTitreProps) {
 	
 
     return (
-        <>
+        <div className={styles.sectionTitreClientContainer}>
             {isAuth ? (
                 <>
                     {editTitre ? (
@@ -47,6 +47,6 @@ export function SectionTitreClient({ contenu, isAuth }: SectionTitreProps) {
                     <ContenuTitre contenu={contenu} />
                 </>
             )}
-        </>
+        </div>
     );
 }
