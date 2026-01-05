@@ -732,8 +732,7 @@ export async function createContenuHeaderBtnAction(
 
 export async function updateContenuHeaderBtnAction(
     id: string,
-    data: UpdateContenuHeaderBtn,
-    url?: string
+    data: UpdateContenuHeaderBtn
 ) :Promise<CreateUpdateContenuHeaderBtnResult>{
 const { userId } = await auth();
 
@@ -758,9 +757,9 @@ const { userId } = await auth();
             return { success: false, error: "No changes made" };
         }
 
-        if (url) {
-            revalidatePath(url);
-        }
+		//spécifique au header
+		revalidatePath('/', 'layout');
+
         return { success: true, data: result };
     } catch (error) {
         console.error("Error updating contenu header btn:", error);
