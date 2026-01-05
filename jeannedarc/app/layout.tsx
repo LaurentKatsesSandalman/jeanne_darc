@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import {ClerkProvider} from '@clerk/nextjs'
 import { IBM_Plex, ActorFont } from "./fonts";
 import "./globals.css";
-import { Header } from "@/components/Header/Header";
+import { HeaderServer } from "@/components/Header/HeaderServer";
 import { Footer } from "@/components/Footer/Footer";
 // import styles from "./layout.module.css"
 
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body
         className={`${IBM_Plex.variable} ${ActorFont.variable} antialiased`}
       >
-		<Header/>
+		<HeaderServer/>
 			<div >
         {children}
 			</div>
