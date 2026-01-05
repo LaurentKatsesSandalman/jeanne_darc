@@ -1,46 +1,11 @@
 import { auth } from "@clerk/nextjs/server";
-import { SectionImageTexteServer } from "@/components/Sections/SectionImageTexte/SectionImageTexteServer";
-import { SectionTexteServer } from "@/components/Sections/SectionTexte/SectionTexteServer";
-import { SectionTitreServer } from "@/components/Sections/SectionTitre/SectionTitreServer";
 import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
-import { SectionInterface } from "@/lib/schemas";
-import { SectionTexteTexteServer } from "@/components/Sections/SectionTexteTexte/SectionTexteTexteServer";
-
-interface VirtualSectionProps {
-	section: SectionInterface;
-	isAuth: boolean;
-}
-
-function VirtualSection({ section, isAuth }: VirtualSectionProps) {
-	switch (section.type) {
-		case "Titre":
-			return <SectionTitreServer isAuth={isAuth} section={section} />;
-		case "Texte":
-			return <SectionTexteServer isAuth={isAuth} section={section} />;
-		case "TexteTexte":
-			return (
-				<SectionTexteTexteServer isAuth={isAuth} section={section} />
-			);
-		case "ImageTexte":
-			return (
-				<SectionImageTexteServer isAuth={isAuth} section={section} />
-			);
-		default:
-			console.warn(`Type de section inconnu: ${section.type}`);
-			return null;
-	}
-}
-
-// interface PageProps {
-// 	params: {
-// 		slug: string[];
-// 	};
-// }
+import { VirtualSection } from "@/components/Sections/VirtualSection/VirtualSection";
+import { SectionSelector } from "@/components/Sections/SectionSelector/SectionSelector";
 
 export default async function Page() {
-	// const url = params.slug.join("/");
-
+	
 	const page = await getPageByUrl("/");
 	if (!page) {
 		return <p>Erreur au chargement de la page</p>;
@@ -64,6 +29,7 @@ export default async function Page() {
 						isAuth={isAuth}
 					/>
 				))}
+				{isAuth&&<SectionSelector id_page_fk={page.id_page}/>}
 			</main>
 		</>
 	);
