@@ -39,7 +39,7 @@ export function SectionTitreClient({ section ,contenu, isAuth }: SectionTitrePro
                         </>
                     )}
                                 
-                <DeleteSectionButton id_section={section.id_section} url={url}/>
+                <DeleteSectionButton id_section={section.id_section} url={url}/> 
             
 			
                 </>
