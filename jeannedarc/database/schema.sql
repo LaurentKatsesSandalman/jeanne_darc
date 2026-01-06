@@ -122,12 +122,14 @@ CREATE TABLE contenu_bandeaubtn (
 CREATE TABLE contenu_headerbtn (
     id_contenu_headerbtn UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     id_section_fk UUID NOT NULL,
+	id_page_fk UUID NOT NULL,
     position SMALLINT NOT NULL,
     bouton TEXT NOT NULL DEFAULT '',
     lien_vers TEXT NOT NULL DEFAULT '',
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    CONSTRAINT contenu_headerbtn_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE
+    CONSTRAINT contenu_headerbtn_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE,
+	CONSTRAINT contenu_headerbtn_id_page_fk FOREIGN KEY (id_page_fk) REFERENCES page (id_page) ON DELETE CASCADE
 );
 
 -- Table pave_bloc
