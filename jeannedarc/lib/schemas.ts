@@ -202,6 +202,7 @@ export const UpdateContenuBandeauBtnSchema = CreateContenuBandeauBtnSchema.parti
 export const ContenuHeaderBtnSchema = z.object({
   id_contenu_headerbtn: z.uuid(),
   id_section_fk: z.uuid(),
+  id_page_fk: z.uuid(),
   position: z.number().int().min(0),
   bouton: z.string().min(1),
   lien_vers: z.string().min(1),

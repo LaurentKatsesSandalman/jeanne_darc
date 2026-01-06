@@ -520,7 +520,7 @@ export async function getAllContenuHeaderBtnsBySectionId(
 ): Promise<ContenuHeaderBtnInterface[] | undefined> {
     const rows = await sql<ContenuHeaderBtnInterface[]>`
 	SELECT * FROM contenu_headerbtn WHERE id_section_fk = ${id_section}
-	ORDER BY created_at ASC;
+	ORDER BY position ASC;
 	`;
     return rows;
 }
