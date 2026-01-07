@@ -6,16 +6,17 @@ import { SectionWithBtn } from "@/components/Header/HeaderServer";
 import { SaveIcon } from "@/components/Icons/Icons";
 import { createPageAction } from "@/lib/actions/actionsPage";
 import { createContenuHeaderBtnAction } from "@/lib/actions/actionsContenu";
+import iconStyles from "@/components/Icons/Icons.module.css"
+import styles from "./AjoutPageSection.module.css"
+import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 
 interface AjoutPageSectionProps {
     sections: SectionWithBtn[];
 }
 
 export function AjoutPageSection({ sections }: AjoutPageSectionProps) {
-    
-	
-// Error: Calling setState synchronously within an effect can trigger cascading renders
-/*const [infoSections, setInfoSections]=useState<InfoSection[]>([])
+    // Error: Calling setState synchronously within an effect can trigger cascading renders
+    /*const [infoSections, setInfoSections]=useState<InfoSection[]>([])
 	useEffect(()=>{
 		
 		const tempInfoSections: InfoSection[]=[]
@@ -34,8 +35,8 @@ setInfoSections(tempInfoSections)
 
 	},[sections])*/
 
-const infoSections = useMemo(() => {
-        return sections.map(section => ({
+    const infoSections = useMemo(() => {
+        return sections.map((section) => ({
             key: section[0].id_contenu_headerbtn,
             nom: section[0].bouton,
             url: section[0].lien_vers.replace("/", ""),
@@ -43,15 +44,14 @@ const infoSections = useMemo(() => {
             section_id: section[0].id_section_fk,
         }));
     }, [sections]);
-    
 
     const newForm = {
-        racine_url: "",
+        racine_url: "default",
         main_url: "",
-	//page
-		// page_url:"",
+        //page
+        // page_url:"",
         nom: "",
-	//contenu_headerbtn
+        //contenu_headerbtn
         id_section_fk: "",
         //id_page_fk: "",
         position: 99,
@@ -59,12 +59,13 @@ const infoSections = useMemo(() => {
         // lien_vers: "",
     };
 
-    //const [error, setError] = useState("");
+    const [error, setError] = useState("");
     const [form, setForm] = useState(newForm);
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => {
+		setError("")
         const { name, value } = e.target;
         setForm((prev) => {
             return { ...prev!, [name]: value };
@@ -72,55 +73,70 @@ const infoSections = useMemo(() => {
     };
 
     const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const { value } = e.target;
+        setError("")
+		const { value } = e.target;
         const racine_url = infoSections.filter(
-            (section) => (section.section_id === value)
+            (section) => section.section_id === value
         )[0].url;
         const id_section_fk = infoSections.filter(
-            (section) => (section.section_id === value)
+            (section) => section.section_id === value
         )[0].section_id;
         const position =
-            infoSections.filter((section) => (section.section_id === value))[0]
+            infoSections.filter((section) => section.section_id === value)[0]
                 .longueur + 1;
         setForm((prev) => {
             return { ...prev!, racine_url, id_section_fk, position };
         });
     };
 
-   const handleSave = async () => {
-		// Calcule les valeurs DIRECTEMENT sans passer par setState
-			const bouton = form.nom
-			const lien_vers = `/${form.racine_url}/${form.main_url}`
-			const page_url = `${form.racine_url}/${form.main_url}`
+    const handleSave = async () => {
+		if(form.racine_url==="default"){setError("Vous devez choisir une section"); return;}
+		if(form.main_url.length<3){setError("L'URL doit faire au moins 3 caractères"); return;}
+		if (!/^[a-z0-9-]+$/.test(form.main_url)){setError("L'URL ne peut contenir que des chiffres, des minuscules et des tirets, sans espaces"); return;}
+		if(form.nom.length<2){setError("Le nom de la page doit faire au moins 2 caractères"); return;}
+        // Calcule les valeurs DIRECTEMENT sans passer par setState
+        const bouton = form.nom;
+        const lien_vers = `/${form.racine_url}/${form.main_url}`;
+        const page_url = `${form.racine_url}/${form.main_url}`;
 
-		console.log("Valeurs calculées:", { page_url, nom: form.nom });
-					
-		const pagePayload = {page_url,nom:form.nom}
-		const pageResult = await createPageAction(pagePayload)
+		const existingPage = await getPageByUrl (page_url)
+		if(existingPage){setError("Une page avec cette URL existe déjà"); return;}
 
-		console.log("Page result:", pageResult);
+        console.log("Valeurs calculées:", { page_url, nom: form.nom });
 
-		if (!pageResult.success) {
-				throw new Error("error" in pageResult ? pageResult.error : "Validation error");
-			}
+        const pagePayload = { page_url, nom: form.nom };
+        const pageResult = await createPageAction(pagePayload);
 
-		const btnPayload = {
-			id_section_fk: form.id_section_fk,
-        id_page_fk: pageResult.data.id_page,
-        position: form.position,
-        bouton,
-        lien_vers,
-		}
+        console.log("Page result:", pageResult);
 
-		const btnResult = await createContenuHeaderBtnAction (btnPayload,'/gestion-pages')
+        if (!pageResult.success) {
+            throw new Error(
+                "error" in pageResult ? pageResult.error : "Validation error"
+            );
+        }
 
-		if (!btnResult.success) {
-				throw new Error("error" in btnResult ? btnResult.error : "Validation error");
-			}
+        const btnPayload = {
+            id_section_fk: form.id_section_fk,
+            id_page_fk: pageResult.data.id_page,
+            position: form.position,
+            bouton,
+            lien_vers,
+        };
 
-		setForm(newForm)
+        const btnResult = await createContenuHeaderBtnAction(
+            btnPayload,
+            "/gestion-pages"
+        );
 
-	};
+        if (!btnResult.success) {
+            throw new Error(
+                "error" in btnResult ? btnResult.error : "Validation error"
+            );
+        }
+
+        setForm(newForm);
+		setError("")
+    };
 
     return (
         <>
@@ -149,6 +165,7 @@ const infoSections = useMemo(() => {
                 name="main_url"
                 value={form.main_url}
                 onChange={handleChange}
+				required
             />
             <label htmlFor="nom">Nom de la page</label>
             <input
@@ -158,18 +175,12 @@ const infoSections = useMemo(() => {
                 value={form.nom}
                 onChange={handleChange}
             />
-            <button type="button" onClick={handleSave}>
-                <SaveIcon />
+			{error&&(<p className={styles.error}>{error}</p>)}
+            <button type="button" onClick={handleSave} className={iconStyles.btnInMain}>
+                <SaveIcon  />
             </button>
-            <p>pré-save:</p>
-            <p>racine_url:{form.racine_url}</p>
-            <p>main_url:{form.main_url}</p>
-
-            <p>nom:{form.nom}</p>
-            <p>id_section_fk:{form.id_section_fk}</p>
-
-            <p>position:{form.position}</p>
-
+			
+            
         </>
     );
 }
