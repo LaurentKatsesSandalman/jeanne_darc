@@ -1,6 +1,7 @@
 "use client";
 import { AddIcon } from "@/components/Icons/Icons";
 import styles from "./SectionSelector.module.css";
+import clsx from "clsx";
 import { useState } from "react";
 import { createSectionAction, deleteSectionAction } from "@/lib/actions/actionsSection";
 import { UUIDFormat } from "@/lib/schemas";
@@ -10,6 +11,7 @@ import {
     createContenuTitreAction,
 } from "@/lib/actions/actionsContenu";
 import { usePathname } from "next/navigation";
+import iconStyles from "@/components/Icons/Icons.module.css"
 
 type SectionType = "Titre" | "Texte" | "TexteTexte" | "ImageTexte";
 
@@ -39,7 +41,8 @@ async function createSectionWithContent(
 }
 
 export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
-    const [editSelector, setEditSelector] = useState(false);
+    //temp
+	const [editSelector, setEditSelector] = useState(false);
 	const url = usePathname()
 
     const defaultJson = {
@@ -127,9 +130,9 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
     return (
         <>
             {editSelector ? (
-                <>
-                    <p>mettre ici toute la logique de selection</p>
-                    <div>
+                <div className={styles.container} >
+                    <p>Sélectionnez une section</p>
+                    <div className={styles.grid}>
                         <button
                             type="button"
                             onClick={() => createNewSection("Titre")}
@@ -154,14 +157,21 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                         >
                             Section ImageTexte
                         </button>
+						<button
+                            type="button"
+                            onClick={() => setEditSelector(false)}
+							className={styles.orange}
+                        >
+                            Annuler
+                        </button>
                     </div>
-                </>
+                </div>
             ) : (
-                <>
-                    <button type="button" onClick={() => setEditSelector(true)}>
+                <div className={styles.container} >
+                    <button type="button" onClick={() => setEditSelector(true)} className={clsx(iconStyles.btnInMain, styles.center)}>
                         <AddIcon className={styles.addIcon} />
                     </button>
-                </>
+                </div>
             )}
         </>
     );

@@ -2,7 +2,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import styles from "./Header.module.css";
-
+import iconStyles from "@/components/Icons/Icons.module.css"
 import { SectionWithBtn } from "./HeaderServer";
 import { ChevronDown, CloseCancelIcon, EditIcon } from "../Icons/Icons";
 import { useState } from "react";
@@ -35,7 +35,7 @@ export function HeaderSection({ section, url, isAuth }: HeaderSectionProps) {
                             setIsEditing={setIsEditing}
                         />
                     ))}
-                    <button type="button" onClick={() => setIsEditing(false)}>
+                    <button type="button" onClick={() => setIsEditing(false)} className={iconStyles.btnInHeader}>
                         <CloseCancelIcon />
                     </button>
                 </div>
@@ -64,6 +64,7 @@ export function HeaderSection({ section, url, isAuth }: HeaderSectionProps) {
                             <button
                                 type="button"
                                 onClick={() => setIsEditing(true)}
+								className={iconStyles.btnInHeader}
                             >
                                 <EditIcon />
                             </button>

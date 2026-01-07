@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ContenuTitreEdit } from "@/components/Contenus/ContenuTitre/ContenuTitreEdit";
 import { ContenuTitre } from "@/components/Contenus/ContenuTitre/ContenuTitre";
 import { EditIcon } from "@/components/Icons/Icons";
+import iconStyles from "@/components/Icons/Icons.module.css"
 import { usePathname } from "next/navigation";
 import { DeleteSectionButton } from "@/components/Buttons/DeleteSectionButton/DeleteSectionButton";
 
@@ -33,8 +34,9 @@ export function SectionTitreClient({ section ,contenu, isAuth }: SectionTitrePro
                             <button
                                 type="button"
                                 onClick={() => setEditTitre(true)}
+								className={iconStyles.btnInMain}
                             >
-                                <EditIcon/>
+                                <EditIcon />
                             </button>
                         </>
                     )}

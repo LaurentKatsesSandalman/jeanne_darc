@@ -46,8 +46,10 @@ export async function HeaderServer() {
             </Link>
             <HeaderClient isAuth={isAuth} sections={sectionsWithBtn}/>
             <p>(+33)5 56 08 52 16</p></div>
-            {isAuth && (
+            {isAuth && (<>
                 <LogoutButton/>
+				<Link href="/gestion-pages" className={styles.auth}>Gestion des pages</Link>
+				</>
             )}
         </header>
     );

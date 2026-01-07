@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ContenuTexteEdit } from "@/components/tiptap/tiptap-templates/simple/simple-editor";
 import { ContenuTexte } from "@/components/Contenus/ContenuTexte/ContenuTexte";
 import {  EditIcon } from "@/components/Icons/Icons";
-
+import iconStyles from "@/components/Icons/Icons.module.css"
 import { usePathname } from "next/navigation";
 import { DeleteSectionButton } from "@/components/Buttons/DeleteSectionButton/DeleteSectionButton";
 
@@ -36,8 +36,9 @@ export function SectionTexteClient({ section, contenu, isAuth }: SectionTextePro
                             <button
                                 type="button"
                                 onClick={() => setEditTexte(true)}
+								className={iconStyles.btnInMain}
                             >
-                                <EditIcon />
+                                <EditIcon/>
                             </button>
                         </>
                     )}
