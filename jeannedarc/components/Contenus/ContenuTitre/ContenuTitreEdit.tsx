@@ -4,6 +4,7 @@ import { ContenuTitreInterface, UpdateContenuTitre } from "@/lib/schemas";
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./ContenuTitre.module.css";
+import iconStyles from "@/components/Icons/Icons.module.css"
 import { updateContenuTitreAction } from "@/lib/actions/actionsContenu";
 
 interface ContenuTitreEditProps {
@@ -29,7 +30,7 @@ export function ContenuTitreEdit({
     };
 
     async function handleSave() {
-        const payload: UpdateContenuTitre = {is_mega: currentContent.is_mega};
+        const payload: UpdateContenuTitre = { is_mega: currentContent.is_mega };
         if (contenu.titre1 !== currentContent.titre1) {
             payload.titre1 = currentContent.titre1;
         }
@@ -55,8 +56,10 @@ export function ContenuTitreEdit({
         // }
 
         if (!result.success) {
-			setEditTitre(false);
-            throw new Error("error" in result ? result.error : "Validation error");
+            setEditTitre(false);
+            throw new Error(
+                "error" in result ? result.error : "Validation error"
+            );
         }
 
         const updatedContenu = result.data;
@@ -69,7 +72,7 @@ export function ContenuTitreEdit({
     return (
         <>
             <label htmlFor="titre1" className={styles.label}>
-              {currentContent.is_mega?("Titre1 (grand)"):("Titre1 (petit)")}  
+                {currentContent.is_mega ? "Titre1 (grand)" : "Titre1 (petit)"}
             </label>
             <input
                 type="text"
@@ -80,7 +83,9 @@ export function ContenuTitreEdit({
                 className={styles.h1Edit}
             />
             <label htmlFor="titre2" className={styles.label}>
-               {currentContent.is_mega?("Habituellement vide en mode Grand Titre"):("Titre2 (plus grand, optionnel)")} 
+                {currentContent.is_mega
+                    ? "Habituellement vide en mode Grand Titre"
+                    : "Titre2 (plus grand, optionnel)"}
             </label>
             <input
                 type="text"
@@ -101,27 +106,29 @@ export function ContenuTitreEdit({
                 onChange={handleChange}
                 className={styles.description}
             />
-			<input 
-			type="checkbox"
-			id="is_mega"
-			name="is_mega"
-			checked={currentContent.is_mega}
-			onChange={(e) => setCurrentContent((prev) => ({
-								...prev,
-								is_mega: e.target.checked
-							}))}
-            className={styles.is_mega}			
-			/>
-			<label htmlFor="is_mega" className={styles.label}>
+            <input
+                type="checkbox"
+                id="is_mega"
+                name="is_mega"
+                checked={currentContent.is_mega}
+                onChange={(e) =>
+                    setCurrentContent((prev) => ({
+                        ...prev,
+                        is_mega: e.target.checked,
+                    }))
+                }
+                className={styles.is_mega}
+            />
+            <label htmlFor="is_mega" className={styles.label}>
                 Grand titre
             </label>
             {/* il faudra faire de tous ces boutons un composant */}
             <div>
-                <button type="button" onClick={() => setEditTitre(false)}>
+                <button type="button" onClick={() => setEditTitre(false)} className={iconStyles.btnInMain}>
                     <CloseCancelIcon />
                 </button>
-                <button type="button" onClick={handleSave}>
-                    <SaveIcon />
+                <button type="button" onClick={handleSave} className={iconStyles.btnInMain}>
+                    <SaveIcon  />
                 </button>
             </div>
         </>

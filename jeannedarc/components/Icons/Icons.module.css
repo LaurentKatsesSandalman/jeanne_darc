@@ -1,0 +1,36 @@
+.btnInMain {
+	width: 30px;
+	height: 30px;
+	border-radius: 5px;
+	margin: 0 auto;
+	display: block;
+}
+
+.btnInMain svg {
+	margin: auto;
+	/* width: 24px;
+	height: 24px; */
+}
+
+.btnInMain:hover{
+	color:var(--background-page);
+	background-color: var(--font-default);
+}
+
+.btnInHeader {
+	width: 30px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+.btnInHeader svg {
+	margin: auto;
+	/* width: 24px;
+	height: 24px; */
+}
+
+.btnInHeader:hover{
+	/* pas les bonnes couleurs d'inversion mais ça marche mieux comme ça */
+	color:var(--background-page);
+	background-color: var(--font-default);
+}

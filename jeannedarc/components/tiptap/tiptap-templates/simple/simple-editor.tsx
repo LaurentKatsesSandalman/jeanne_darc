@@ -1,5 +1,5 @@
 "use client";
-
+import iconStyles from "@/components/Icons/Icons.module.css"
 import { SetStateAction, useRef, Dispatch } from "react";
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react";
 
@@ -197,13 +197,13 @@ export function ContenuTexteEdit({
             </div>
             <button
                 onClick={handleSave}
-                className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-lg hover:bg-blue-700"
+                className={iconStyles.btnInMain}
             >
-                <SaveIcon />
+                <SaveIcon  />
             </button>
             <button
                 onClick={() => setEditTexte(false)}
-                className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-lg hover:bg-blue-700"
+                className={iconStyles.btnInMain}
             >
                 <CloseCancelIcon />
             </button>

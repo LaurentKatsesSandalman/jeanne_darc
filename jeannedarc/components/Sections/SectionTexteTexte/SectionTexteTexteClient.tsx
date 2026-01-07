@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ContenuTexteEdit } from "@/components/tiptap/tiptap-templates/simple/simple-editor";
 import { ContenuTexte } from "@/components/Contenus/ContenuTexte/ContenuTexte";
 import {  EditIcon, SwitchIcon } from "@/components/Icons/Icons";
+import iconStyles from "@/components/Icons/Icons.module.css"
 import { updateSectionAction } from "@/lib/actions/actionsSection";
 import { usePathname } from "next/navigation";
 import { DeleteSectionButton } from "@/components/Buttons/DeleteSectionButton/DeleteSectionButton";
@@ -53,6 +54,7 @@ export function SectionTexteTexteClient({ section, contenuTexte1, contenuTexte2,
                             <button
                                 type="button"
                                 onClick={() => setEditTexte1(true)}
+								className={iconStyles.btnInMain}
                             >
                                 <EditIcon />
                             </button>
@@ -72,6 +74,7 @@ export function SectionTexteTexteClient({ section, contenuTexte1, contenuTexte2,
                             <button
                                 type="button"
                                 onClick={() => setEditTexte2(true)}
+								className={iconStyles.btnInMain}
                             >
                                 <EditIcon />
                             </button>
@@ -83,6 +86,7 @@ export function SectionTexteTexteClient({ section, contenuTexte1, contenuTexte2,
 					<button
                                 type="button"
                                 onClick={handleSwitchSave}
+								className={iconStyles.btnInMain}
                             >
                                 <SwitchIcon />
                             </button>

@@ -50,5 +50,5 @@ label {
 
 
 button {
-    backface-visibility: hidden; /*pour eviter ques les icones bavent et créent une ligne diagonale*/
+    backface-visibility: hidden;	/*pour eviter ques les icones bavent et créent une ligne diagonale*/
 }

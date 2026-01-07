@@ -1,0 +1,32 @@
+.container {
+    width: min(90%, 1290px);
+    margin: 0 auto;
+	padding-bottom: 25px;
+}
+
+/* .center {
+	margin: 0 auto;
+	display: block;
+} */
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	width: 75%;
+	gap: 15px;
+	margin: 0 auto;
+	
+}
+
+.grid button {
+	background-color: var(--background-layout);
+	line-height: 2;
+	color: var(--font-white);
+	border-radius: 15px;
+	width: 50%;
+	margin: 0 auto;
+}
+
+.grid .orange {
+	background-color: var(--background-orange);
+}

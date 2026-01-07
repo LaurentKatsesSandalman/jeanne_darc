@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import { ContenuImageEdit } from "@/components/Contenus/ContenuImage/ContenuImageEdit";
 import { ContenuImage } from "@/components/Contenus/ContenuImage/ContenuImage";
 import { DeleteSectionButton } from "@/components/Buttons/DeleteSectionButton/DeleteSectionButton";
+import iconStyles from "@/components/Icons/Icons.module.css"
 
 interface SectionImageTexteProps {
     section: SectionInterface;
@@ -56,6 +57,7 @@ export function SectionImageTexteClient({ section, contenuTexte, contenuImage, i
                             <button
                                 type="button"
                                 onClick={() => setEditImage(true)}
+								className={iconStyles.btnInMain}
                             >
                                 <EditIcon />
                             </button>
@@ -75,6 +77,7 @@ export function SectionImageTexteClient({ section, contenuTexte, contenuImage, i
                             <button
                                 type="button"
                                 onClick={() => setEditTexte(true)}
+								className={iconStyles.btnInMain}
                             >
                                 <EditIcon />
                             </button>
@@ -87,6 +90,7 @@ export function SectionImageTexteClient({ section, contenuTexte, contenuImage, i
 					<button
                                 type="button"
                                 onClick={handleSwitchSave}
+								className={iconStyles.btnInMain}
                             >
                                 <SwitchIcon />
                             </button>

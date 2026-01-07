@@ -22,6 +22,7 @@ export default async function Page() {
 	return (
 		<>
 			<main>
+				
 				{sections?.map((section) => (
 					<VirtualSection
 						key={section.id_section}
@@ -30,6 +31,7 @@ export default async function Page() {
 					/>
 				))}
 				{isAuth&&<SectionSelector id_page_fk={page.id_page}/>}
+				
 			</main>
 		</>
 	);

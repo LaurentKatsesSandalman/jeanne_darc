@@ -68,3 +68,15 @@
 .buttonEdit{
 	color:var(--font-default);
 }
+
+.auth {
+	color: var(--font-white);
+	background-color: var(--font-orange);
+	position:absolute;
+	cursor:pointer;
+	top: 3.5rem;
+	left: 15px;
+	border-radius: 5px;
+	padding: 5px;
+	line-height: 1;
+}
