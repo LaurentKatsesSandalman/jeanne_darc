@@ -76,6 +76,7 @@ CREATE TABLE contenu_pdf (
     id_contenu_pdf UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     id_section_fk UUID NOT NULL,
     pdf_url TEXT NOT NULL DEFAULT '',
+	pdf_titre TEXT NOT NULL DEFAULT '',
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     CONSTRAINT contenu_pdf_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE
