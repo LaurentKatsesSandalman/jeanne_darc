@@ -6,7 +6,7 @@ import {
     SectionInterface,
     UpdateSection,
 } from "@/lib/schemas";
-// import styles from "./SectionImageTexte.module.css";
+import styles from "./SectionImageTexte.module.css";
 import { useState } from "react";
 import { ContenuTexteEdit } from "@/components/tiptap/tiptap-templates/simple/simple-editor";
 import { ContenuTexte } from "@/components/Contenus/ContenuTexte/ContenuTexte";
@@ -33,7 +33,7 @@ export function SectionImageTexteClient({
 }: SectionImageTexteProps) {
     const [editTexte, setEditTexte] = useState(false);
     const [editImage, setEditImage] = useState(false);
-	 const [error, setError] = useState("");
+    const [error, setError] = useState("");
 
     const url = usePathname();
 
@@ -52,7 +52,9 @@ export function SectionImageTexteClient({
                     "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
                 );
             } else if ("error" in result) {
-                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+                setError(
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                );
             }
             return;
         }
@@ -124,7 +126,7 @@ export function SectionImageTexteClient({
                     >
                         <SwitchIcon />
                     </button>
-					{error&&<p>{error}</p>}
+                    {error && <p className={styles.error}>{error}</p>}
                 </>
             ) : (
                 <div

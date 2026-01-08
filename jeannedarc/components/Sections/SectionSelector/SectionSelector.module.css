@@ -30,3 +30,9 @@
 .grid .orange {
 	background-color: var(--background-orange);
 }
+
+.error {
+	color: var(--font-orange);
+	font-style: italic;
+	font-weight: 700;
+}

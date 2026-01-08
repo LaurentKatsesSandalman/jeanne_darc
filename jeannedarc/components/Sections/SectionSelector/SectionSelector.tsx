@@ -3,7 +3,10 @@ import { AddIcon } from "@/components/Icons/Icons";
 import styles from "./SectionSelector.module.css";
 import clsx from "clsx";
 import { useState } from "react";
-import { createSectionAction, deleteSectionAction } from "@/lib/actions/actionsSection";
+import {
+    createSectionAction,
+    deleteSectionAction,
+} from "@/lib/actions/actionsSection";
 import { UUIDFormat } from "@/lib/schemas";
 import {
     createContenuImageAction,
@@ -14,15 +17,19 @@ import {
 import { usePathname } from "next/navigation";
 import iconStyles from "@/components/Icons/Icons.module.css";
 
-type SectionType = "Titre" | "Texte" | "TexteTexte" | "ImageTexte" | "Image" | "Pdf";
-
-
+type SectionType =
+    | "Titre"
+    | "Texte"
+    | "TexteTexte"
+    | "ImageTexte"
+    | "Image"
+    | "Pdf";
 
 export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
     //temp
-	const [editSelector, setEditSelector] = useState(false);
-	const [error, setError] = useState("");
-	const url = usePathname()
+    const [editSelector, setEditSelector] = useState(false);
+    const [error, setError] = useState("");
+    const url = usePathname();
 
     const defaultJson = {
         type: "doc",
@@ -32,37 +39,42 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
     };
     const defaultJsonString = JSON.stringify(defaultJson);
 
-	async function createSectionWithContent(
-    sectionType: SectionType,
-    id_page_fk: string,
-    // eslint-disable-next-line no-unused-vars
-    createContentFn: (id_section: string) => Promise<void> 
-) {
-    const sectionResult = await createSectionAction({
-        id_page_fk: id_page_fk,
-        type: sectionType,
-        revert: false,
-    });
-    if (!sectionResult.success) {
-        // Log pour toi (dev)
+    async function createSectionWithContent(
+        sectionType: SectionType,
+        id_page_fk: string,
+        // eslint-disable-next-line no-unused-vars
+        createContentFn: (id_section: string) => Promise<void>
+    ) {
+        const sectionResult = await createSectionAction({
+            id_page_fk: id_page_fk,
+            type: sectionType,
+            revert: false,
+        });
+        if (!sectionResult.success) {
+            // Log pour toi (dev)
             console.error("Échec de la sauvegarde:", sectionResult);
-            
+
             // Message pour l'utilisateur
             if ("errors" in sectionResult) {
-                setError("Les données saisies ne sont pas valides. Veuillez vérifier vos champs.");
+                setError(
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                );
             } else if ("error" in sectionResult) {
-                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+                setError(
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                );
             }
-            return; 
+            return;
+        }
+        if (sectionResult.data) {
+            try {
+                await createContentFn(sectionResult.data.id_section);
+            } catch (error) {
+                await deleteSectionAction(sectionResult.data.id_section);
+                throw error;
+            }
+        }
     }
-    if (sectionResult.data) {
-        try {await createContentFn(sectionResult.data.id_section);}
-		catch (error){
-			await deleteSectionAction(sectionResult.data.id_section)
-			throw error
-		}
-    }
-}
 
     async function createNewSection(sectionType: string) {
         switch (sectionType) {
@@ -71,43 +83,55 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                     sectionType,
                     id_page_fk,
                     async (id_section) => {
-                        await createContenuTitreAction({
-                            id_section_fk: id_section,
-                            is_mega: false,
-                            titre1: "",
-                            titre2: "",
-                            description: "",
-                        }, url);
+                        await createContenuTitreAction(
+                            {
+                                id_section_fk: id_section,
+                                is_mega: false,
+                                titre1: "",
+                                titre2: "",
+                                description: "",
+                            },
+                            url
+                        );
                     }
                 );
                 break;
             }
-			case "Texte": {
+            case "Texte": {
                 await createSectionWithContent(
                     sectionType,
                     id_page_fk,
                     async (id_section) => {
-                        await createContenuTexteAction({
-                            id_section_fk: id_section,
-                            tiptap_content: defaultJsonString,
-                        }, url);
+                        await createContenuTexteAction(
+                            {
+                                id_section_fk: id_section,
+                                tiptap_content: defaultJsonString,
+                            },
+                            url
+                        );
                     }
                 );
                 break;
             }
-			case "TexteTexte": {
+            case "TexteTexte": {
                 await createSectionWithContent(
                     sectionType,
                     id_page_fk,
                     async (id_section) => {
-                        await createContenuTexteAction({
-                            id_section_fk: id_section,
-                            tiptap_content: defaultJsonString,
-                        }, url);
-                        await createContenuTexteAction({
-                            id_section_fk: id_section,
-                            tiptap_content: defaultJsonString,
-                        }, url);
+                        await createContenuTexteAction(
+                            {
+                                id_section_fk: id_section,
+                                tiptap_content: defaultJsonString,
+                            },
+                            url
+                        );
+                        await createContenuTexteAction(
+                            {
+                                id_section_fk: id_section,
+                                tiptap_content: defaultJsonString,
+                            },
+                            url
+                        );
                     }
                 );
                 break;
@@ -117,45 +141,60 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                     sectionType,
                     id_page_fk,
                     async (id_section) => {
-                        await createContenuImageAction({
-                            id_section_fk: id_section,
-                            image_url: "http://www.image-heberg.fr/files/1765794470531451060.png",
-                            alt_text: "",
-                            lien_vers: "",
-                        }, url);
-                        await createContenuTexteAction({
-                            id_section_fk: id_section,
-                            tiptap_content: defaultJsonString,
-                        }, url);
+                        await createContenuImageAction(
+                            {
+                                id_section_fk: id_section,
+                                image_url:
+                                    "http://www.image-heberg.fr/files/1765794470531451060.png",
+                                alt_text: "",
+                                lien_vers: "",
+                            },
+                            url
+                        );
+                        await createContenuTexteAction(
+                            {
+                                id_section_fk: id_section,
+                                tiptap_content: defaultJsonString,
+                            },
+                            url
+                        );
                     }
                 );
                 break;
             }
-			case "Image": {
+            case "Image": {
                 await createSectionWithContent(
                     sectionType,
                     id_page_fk,
                     async (id_section) => {
-                        await createContenuImageAction({
-                            id_section_fk: id_section,
-                            image_url: "http://www.image-heberg.fr/files/1765794470531451060.png",
-                            alt_text: "",
-                            lien_vers: "",
-                        }, url);
+                        await createContenuImageAction(
+                            {
+                                id_section_fk: id_section,
+                                image_url:
+                                    "http://www.image-heberg.fr/files/1765794470531451060.png",
+                                alt_text: "",
+                                lien_vers: "",
+                            },
+                            url
+                        );
                     }
                 );
                 break;
             }
-			case "Pdf": {
+            case "Pdf": {
                 await createSectionWithContent(
                     sectionType,
                     id_page_fk,
                     async (id_section) => {
-                        await createContenuPdfAction({
-                            id_section_fk: id_section,
-                            pdf_url: "https://www.conseil-constitutionnel.fr/sites/default/files/2021-09/constitution.pdf",
-							pdf_titre:"titre du pdf"
-                        }, url);
+                        await createContenuPdfAction(
+                            {
+                                id_section_fk: id_section,
+                                pdf_url:
+                                    "https://www.conseil-constitutionnel.fr/sites/default/files/2021-09/constitution.pdf",
+                                pdf_titre: "titre du pdf",
+                            },
+                            url
+                        );
                     }
                 );
                 break;
@@ -164,13 +203,13 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
             default:
                 break;
         }
-		setEditSelector(false)
+        setEditSelector(false);
     }
 
     return (
         <>
             {editSelector ? (
-                <div className={styles.container} >
+                <div className={styles.container}>
                     <p>Sélectionnez une section</p>
                     <div className={styles.grid}>
                         <button
@@ -197,31 +236,35 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                         >
                             Section ImageTexte
                         </button>
-						<button
+                        <button
                             type="button"
                             onClick={() => createNewSection("Image")}
                         >
                             Section Image
                         </button>
-						<button
+                        <button
                             type="button"
                             onClick={() => createNewSection("Pdf")}
                         >
                             Section Pdf
                         </button>
-						<button
+                        <button
                             type="button"
                             onClick={() => setEditSelector(false)}
-							className={styles.orange}
+                            className={styles.orange}
                         >
                             Annuler
                         </button>
                     </div>
-					{error&&<p>{error}</p>}
+                    {error && <p className={styles.error}>{error}</p>}
                 </div>
             ) : (
-                <div className={styles.container} >
-                    <button type="button" onClick={() => setEditSelector(true)} className={clsx(iconStyles.btnInMain, styles.center)}>
+                <div className={styles.container}>
+                    <button
+                        type="button"
+                        onClick={() => setEditSelector(true)}
+                        className={clsx(iconStyles.btnInMain, styles.center)}
+                    >
                         <AddIcon className={styles.addIcon} />
                     </button>
                 </div>

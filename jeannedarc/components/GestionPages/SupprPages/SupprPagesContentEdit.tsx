@@ -17,7 +17,7 @@ interface SupprPagesContentEditProps {
 export function SupprPagesContentEdit({ btn }: SupprPagesContentEditProps) {
     const [needConfirmation, setNeedConfirmation] = useState(false);
     const [confirmation, setConfirmation] = useState<string>("");
-	 const [error, setError] = useState("");
+    const [error, setError] = useState("");
 
     const url = usePathname();
 
@@ -33,7 +33,9 @@ export function SupprPagesContentEdit({ btn }: SupprPagesContentEditProps) {
                     "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
                 );
             } else if ("error" in deletePageResult) {
-                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+                setError(
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                );
             }
             return;
         }
@@ -48,15 +50,20 @@ export function SupprPagesContentEdit({ btn }: SupprPagesContentEditProps) {
                             { position: button.position - 1 }
                         );
                     if (!updatePositionResult.success) {
-                        console.error("Échec de la requête:", updatePositionResult);
+                        console.error(
+                            "Échec de la requête:",
+                            updatePositionResult
+                        );
                         if ("errors" in updatePositionResult) {
                             setError(
                                 "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
                             );
                         } else if ("error" in updatePositionResult) {
-                            setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
-            }
-            return;
+                            setError(
+                                "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                            );
+                        }
+                        return;
                     }
                 }
             }
@@ -90,7 +97,7 @@ export function SupprPagesContentEdit({ btn }: SupprPagesContentEditProps) {
                     >
                         <CloseCancelIcon />
                     </button>
-					{error&&<p>{error}</p>}
+                    {error && <p className={styles.error}>{error}</p>}
                 </div>
             ) : (
                 <>
