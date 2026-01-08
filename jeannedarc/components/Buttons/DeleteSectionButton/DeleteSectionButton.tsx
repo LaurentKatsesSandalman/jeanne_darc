@@ -17,14 +17,21 @@ export function DeleteSectionButton({
 }: DeleteSectionButtonProps) {
     const [needConfirmation, setNeedConfirmation] = useState(false);
     const [confirmation, setConfirmation] = useState<string>("");
+	 const [error, setError] = useState("");
 
     async function handleDelete() {
         const result = await deleteSectionAction(id_section, url);
 
         if (!result.success) {
-            throw new Error(
-                "error" in result ? result.error : "Validation error"
-            );
+            console.error("Échec de la requête:", result);
+            if ("errors" in result) {
+                setError(
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                );
+            } else if ("error" in result) {
+                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+            }
+            return;
         }
     }
 
@@ -54,6 +61,7 @@ export function DeleteSectionButton({
                     >
                         <CloseCancelIcon />
                     </button>
+					{error&&<p>{error}</p>}
                 </div>
             ) : (
                 <div>

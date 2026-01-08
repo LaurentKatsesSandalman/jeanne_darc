@@ -1,6 +1,6 @@
 "use client";
-import iconStyles from "@/components/Icons/Icons.module.css"
-import { SetStateAction, useRef, Dispatch } from "react";
+import iconStyles from "@/components/Icons/Icons.module.css";
+import { SetStateAction, useRef, Dispatch, useState } from "react";
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react";
 
 // --- Tiptap Core Extensions ---
@@ -111,6 +111,7 @@ export function ContenuTexteEdit({
 }: ContenuTexteEditProps) {
     const toolbarRef = useRef<HTMLDivElement>(null);
     const url = usePathname();
+	const [error, setError] = useState("");
 
     const editor = useEditor({
         immediatelyRender: false,
@@ -171,10 +172,15 @@ export function ContenuTexteEdit({
         );
 
         if (!result.success) {
-            setEditTexte(false);
-            throw new Error(
-                "error" in result ? result.error : "Validation error"
-            );
+            console.error("Échec de la requête:", result);
+            if ("errors" in result) {
+                setError(
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                );
+            } else if ("error" in result) {
+                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+            }
+            return;
         }
 
         setEditTexte(false);
@@ -195,12 +201,10 @@ export function ContenuTexteEdit({
                     />
                 </EditorContext.Provider>
             </div>
-            <button
-                onClick={handleSave}
-                className={iconStyles.btnInMain}
-            >
-                <SaveIcon  />
+            <button onClick={handleSave} className={iconStyles.btnInMain}>
+                <SaveIcon />
             </button>
+			{error&&<p>{error}</p>}
             <button
                 onClick={() => setEditTexte(false)}
                 className={iconStyles.btnInMain}

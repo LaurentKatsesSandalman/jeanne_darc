@@ -6,8 +6,8 @@ import { SectionWithBtn } from "@/components/Header/HeaderServer";
 import { SaveIcon } from "@/components/Icons/Icons";
 import { createPageAction } from "@/lib/actions/actionsPage";
 import { createContenuHeaderBtnAction } from "@/lib/actions/actionsContenu";
-import iconStyles from "@/components/Icons/Icons.module.css"
-import styles from "./AjoutPageSection.module.css"
+import iconStyles from "@/components/Icons/Icons.module.css";
+import styles from "./AjoutPageSection.module.css";
 import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 
 interface AjoutPageSectionProps {
@@ -65,7 +65,7 @@ setInfoSections(tempInfoSections)
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => {
-		setError("")
+        setError("");
         const { name, value } = e.target;
         setForm((prev) => {
             return { ...prev!, [name]: value };
@@ -73,8 +73,8 @@ setInfoSections(tempInfoSections)
     };
 
     const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setError("")
-		const { value } = e.target;
+        setError("");
+        const { value } = e.target;
         const racine_url = infoSections.filter(
             (section) => section.section_id === value
         )[0].url;
@@ -90,17 +90,34 @@ setInfoSections(tempInfoSections)
     };
 
     const handleSave = async () => {
-		if(form.racine_url==="default"){setError("Vous devez choisir une section"); return;}
-		if(form.main_url.length<3){setError("L'URL doit faire au moins 3 caractères"); return;}
-		if (!/^[a-z0-9-]+$/.test(form.main_url)){setError("L'URL ne peut contenir que des chiffres, des minuscules et des tirets, sans espaces"); return;}
-		if(form.nom.length<2){setError("Le nom de la page doit faire au moins 2 caractères"); return;}
+        if (form.racine_url === "default") {
+            setError("Vous devez choisir une section");
+            return;
+        }
+        if (form.main_url.length < 3) {
+            setError("L'URL doit faire au moins 3 caractères");
+            return;
+        }
+        if (!/^[a-z0-9-]+$/.test(form.main_url)) {
+            setError(
+                "L'URL ne peut contenir que des chiffres, des minuscules et des tirets, sans espaces"
+            );
+            return;
+        }
+        if (form.nom.length < 2) {
+            setError("Le nom de la page doit faire au moins 2 caractères");
+            return;
+        }
         // Calcule les valeurs DIRECTEMENT sans passer par setState
         const bouton = form.nom;
         const lien_vers = `/${form.racine_url}/${form.main_url}`;
         const page_url = `${form.racine_url}/${form.main_url}`;
 
-		const existingPage = await getPageByUrl (page_url)
-		if(existingPage){setError("Une page avec cette URL existe déjà"); return;}
+        const existingPage = await getPageByUrl(page_url);
+        if (existingPage) {
+            setError("Une page avec cette URL existe déjà");
+            return;
+        }
 
         console.log("Valeurs calculées:", { page_url, nom: form.nom });
 
@@ -110,9 +127,15 @@ setInfoSections(tempInfoSections)
         console.log("Page result:", pageResult);
 
         if (!pageResult.success) {
-            throw new Error(
-                "error" in pageResult ? pageResult.error : "Validation error"
-            );
+            console.error("Échec de la requête:", pageResult);
+            if ("errors" in pageResult) {
+                setError(
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                );
+            } else if ("error" in pageResult) {
+                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+            }
+            return;
         }
 
         const btnPayload = {
@@ -129,13 +152,19 @@ setInfoSections(tempInfoSections)
         );
 
         if (!btnResult.success) {
-            throw new Error(
-                "error" in btnResult ? btnResult.error : "Validation error"
-            );
+            console.error("Échec de la requête:", btnResult);
+            if ("errors" in btnResult) {
+                setError(
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                );
+            } else if ("error" in btnResult) {
+                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+            }
+            return;
         }
 
         setForm(newForm);
-		setError("")
+        setError("");
     };
 
     return (
@@ -165,7 +194,7 @@ setInfoSections(tempInfoSections)
                 name="main_url"
                 value={form.main_url}
                 onChange={handleChange}
-				required
+                required
             />
             <label htmlFor="nom">Nom de la page</label>
             <input
@@ -175,12 +204,14 @@ setInfoSections(tempInfoSections)
                 value={form.nom}
                 onChange={handleChange}
             />
-			{error&&(<p className={styles.error}>{error}</p>)}
-            <button type="button" onClick={handleSave} className={iconStyles.btnInMain}>
-                <SaveIcon  />
+            {error && <p className={styles.error}>{error}</p>}
+            <button
+                type="button"
+                onClick={handleSave}
+                className={iconStyles.btnInMain}
+            >
+                <SaveIcon />
             </button>
-			
-            
         </>
     );
 }

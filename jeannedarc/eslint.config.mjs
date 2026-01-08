@@ -25,6 +25,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+	"_ignore/**",
+	"components/tiptap/**",
+	"lib/tiptap-utils.ts",
+	"hooks/**" // all from tip-tap
   ]),
 ]);
 
