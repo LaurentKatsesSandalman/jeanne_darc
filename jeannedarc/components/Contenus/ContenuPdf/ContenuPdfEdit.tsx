@@ -1,11 +1,10 @@
 "use client";
-import { CloseCancelIcon, SaveIcon } from "@/components/Icons/Icons";
-import iconStyles from "@/components/Icons/Icons.module.css";
 import { ContenuPdfInterface, UpdateContenuPdf } from "@/lib/schemas";
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./ContenuPdf.module.css";
 import { updateContenuPdfAction } from "@/lib/actions/actionsContenu";
+import { CancelSaveButtons } from "@/components/Buttons/CancelSaveButtons/CancelSaveButtons";
 
 interface ContenuPdfEditProps {
     contenu: ContenuPdfInterface;
@@ -14,7 +13,7 @@ interface ContenuPdfEditProps {
 
 export function ContenuPdfEdit({ contenu, setEditPdf }: ContenuPdfEditProps) {
     const [currentContent, setCurrentContent] = useState(contenu);
-	 const [error, setError] = useState("");
+    const [error, setError] = useState("");
     const url = usePathname();
 
     const handleChange = (
@@ -27,6 +26,11 @@ export function ContenuPdfEdit({ contenu, setEditPdf }: ContenuPdfEditProps) {
     };
 
     async function handleSave() {
+        if (currentContent.pdf_url.length < 3) {
+            setError("L'URL doit faire au moins 3 caractères");
+            return;
+        }
+
         const payload: UpdateContenuPdf = {};
         if (contenu.pdf_url !== currentContent.pdf_url) {
             payload.pdf_url = currentContent.pdf_url;
@@ -52,7 +56,9 @@ export function ContenuPdfEdit({ contenu, setEditPdf }: ContenuPdfEditProps) {
                     "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
                 );
             } else if ("error" in result) {
-                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+                setError(
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                );
             }
             return;
         }
@@ -87,26 +93,7 @@ export function ContenuPdfEdit({ contenu, setEditPdf }: ContenuPdfEditProps) {
                 value={currentContent.pdf_titre}
                 onChange={handleChange}
             />
-
-            <div>
-                <button
-                    type="button"
-                    onClick={() => setEditPdf(false)}
-                    className={iconStyles.btnInMain}
-                >
-                    <CloseCancelIcon />
-                </button>
-                <button
-                    type="button"
-                    onClick={handleSave}
-                    className={iconStyles.btnInMain}
-                >
-                    <SaveIcon />
-                </button>
-				{error&&<p>{error}</p>}
-            </div>
-            <p>{currentContent.pdf_url}</p>
-            <p>{currentContent.pdf_titre}</p>
+			<CancelSaveButtons setEdit={setEditPdf} handleSave={handleSave} error={error} additionalClassName={""}/>
         </>
     );
 }

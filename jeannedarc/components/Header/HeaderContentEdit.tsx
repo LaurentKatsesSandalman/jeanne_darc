@@ -15,7 +15,7 @@ export function HeaderContentEdit({
     setIsEditing,
 }: HeaderContentEditProps) {
     const [currentBtn, setCurrentBtn] = useState(btn);
-	 const [error, setError] = useState("");
+    const [error, setError] = useState("");
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -42,7 +42,9 @@ export function HeaderContentEdit({
                     "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
                 );
             } else if ("error" in result) {
-                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+                setError(
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                );
             }
             return;
         }
@@ -79,7 +81,7 @@ export function HeaderContentEdit({
                 >
                     <SaveIcon />
                 </button>
-				{error&&<p>{error}</p>}
+                {error && <p className={styles.error}>{error}</p>}
             </div>
         </>
     );

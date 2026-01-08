@@ -34,3 +34,11 @@
 	color:var(--background-page);
 	background-color: var(--font-default);
 }
+
+.left{
+	margin-right: 0
+}
+
+.right{
+	margin-left: 0
+}

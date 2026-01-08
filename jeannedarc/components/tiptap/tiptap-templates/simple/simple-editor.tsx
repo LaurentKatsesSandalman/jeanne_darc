@@ -49,6 +49,7 @@ import { ContenuTexteInterface } from "@/lib/schemas";
 import { usePathname } from "next/navigation";
 import { updateContenuTexteAction } from "@/lib/actions/actionsContenu";
 import { CloseCancelIcon, SaveIcon } from "@/components/Icons/Icons";
+import { CancelSaveButtons } from "@/components/Buttons/CancelSaveButtons/CancelSaveButtons";
 
 const MainToolbarContent = () => {
     return (
@@ -111,7 +112,7 @@ export function ContenuTexteEdit({
 }: ContenuTexteEditProps) {
     const toolbarRef = useRef<HTMLDivElement>(null);
     const url = usePathname();
-	const [error, setError] = useState("");
+    const [error, setError] = useState("");
 
     const editor = useEditor({
         immediatelyRender: false,
@@ -178,7 +179,9 @@ export function ContenuTexteEdit({
                     "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
                 );
             } else if ("error" in result) {
-                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+                setError(
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                );
             }
             return;
         }
@@ -201,16 +204,7 @@ export function ContenuTexteEdit({
                     />
                 </EditorContext.Provider>
             </div>
-            <button onClick={handleSave} className={iconStyles.btnInMain}>
-                <SaveIcon />
-            </button>
-			{error&&<p>{error}</p>}
-            <button
-                onClick={() => setEditTexte(false)}
-                className={iconStyles.btnInMain}
-            >
-                <CloseCancelIcon />
-            </button>
+			<CancelSaveButtons setEdit={setEditTexte} handleSave={handleSave} error={error} additionalClassName={""}/>
         </>
     );
 }

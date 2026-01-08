@@ -2,3 +2,9 @@
 		width:min(90%, 1290px);
 	margin: 0 auto;
 }
+
+.error {
+	color: var(--font-orange);
+	font-style: italic;
+	font-weight: 700;
+}

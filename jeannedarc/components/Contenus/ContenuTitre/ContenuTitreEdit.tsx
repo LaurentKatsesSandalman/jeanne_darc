@@ -1,11 +1,12 @@
 "use client";
-import { CloseCancelIcon, SaveIcon } from "@/components/Icons/Icons";
+
 import { ContenuTitreInterface, UpdateContenuTitre } from "@/lib/schemas";
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./ContenuTitre.module.css";
-import iconStyles from "@/components/Icons/Icons.module.css";
+
 import { updateContenuTitreAction } from "@/lib/actions/actionsContenu";
+import { CancelSaveButtons } from "@/components/Buttons/CancelSaveButtons/CancelSaveButtons";
 
 interface ContenuTitreEditProps {
     contenu: ContenuTitreInterface;
@@ -18,7 +19,7 @@ export function ContenuTitreEdit({
     /*isAuth,*/ setEditTitre,
 }: ContenuTitreEditProps) {
     const [currentContent, setCurrentContent] = useState(contenu);
-	 const [error, setError] = useState("");
+    const [error, setError] = useState("");
     const url = usePathname();
 
     const handleChange = (
@@ -31,6 +32,10 @@ export function ContenuTitreEdit({
     };
 
     async function handleSave() {
+        if (currentContent.titre1.length < 1) {
+            setError("Le Titre1 ne peut pas être vide");
+            return;
+        }
         const payload: UpdateContenuTitre = { is_mega: currentContent.is_mega };
         if (contenu.titre1 !== currentContent.titre1) {
             payload.titre1 = currentContent.titre1;
@@ -63,7 +68,9 @@ export function ContenuTitreEdit({
                     "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
                 );
             } else if ("error" in result) {
-                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+                setError(
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                );
             }
             return;
         }
@@ -129,23 +136,7 @@ export function ContenuTitreEdit({
                 Grand titre
             </label>
 
-            <div>
-                <button
-                    type="button"
-                    onClick={() => setEditTitre(false)}
-                    className={iconStyles.btnInMain}
-                >
-                    <CloseCancelIcon />
-                </button>
-                <button
-                    type="button"
-                    onClick={handleSave}
-                    className={iconStyles.btnInMain}
-                >
-                    <SaveIcon />
-                </button>
-				{error&&<p>{error}</p>}
-            </div>
+            <CancelSaveButtons setEdit={setEditTitre} handleSave={handleSave} error={error} additionalClassName={""}/>
         </>
     );
 }
