@@ -4,7 +4,7 @@ import { ContenuTitreInterface, UpdateContenuTitre } from "@/lib/schemas";
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./ContenuTitre.module.css";
-import iconStyles from "@/components/Icons/Icons.module.css"
+import iconStyles from "@/components/Icons/Icons.module.css";
 import { updateContenuTitreAction } from "@/lib/actions/actionsContenu";
 
 interface ContenuTitreEditProps {
@@ -18,6 +18,7 @@ export function ContenuTitreEdit({
     /*isAuth,*/ setEditTitre,
 }: ContenuTitreEditProps) {
     const [currentContent, setCurrentContent] = useState(contenu);
+	 const [error, setError] = useState("");
     const url = usePathname();
 
     const handleChange = (
@@ -56,10 +57,15 @@ export function ContenuTitreEdit({
         // }
 
         if (!result.success) {
-            setEditTitre(false);
-            throw new Error(
-                "error" in result ? result.error : "Validation error"
-            );
+            console.error("Échec de la requête:", result);
+            if ("errors" in result) {
+                setError(
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                );
+            } else if ("error" in result) {
+                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+            }
+            return;
         }
 
         const updatedContenu = result.data;
@@ -122,14 +128,23 @@ export function ContenuTitreEdit({
             <label htmlFor="is_mega" className={styles.label}>
                 Grand titre
             </label>
-            {/* il faudra faire de tous ces boutons un composant */}
+
             <div>
-                <button type="button" onClick={() => setEditTitre(false)} className={iconStyles.btnInMain}>
+                <button
+                    type="button"
+                    onClick={() => setEditTitre(false)}
+                    className={iconStyles.btnInMain}
+                >
                     <CloseCancelIcon />
                 </button>
-                <button type="button" onClick={handleSave} className={iconStyles.btnInMain}>
-                    <SaveIcon  />
+                <button
+                    type="button"
+                    onClick={handleSave}
+                    className={iconStyles.btnInMain}
+                >
+                    <SaveIcon />
                 </button>
+				{error&&<p>{error}</p>}
             </div>
         </>
     );

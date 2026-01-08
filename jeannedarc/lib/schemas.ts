@@ -128,7 +128,7 @@ export const ContenuPdfSchema = z.object({
   id_contenu_pdf: z.uuid(),
   id_section_fk: z.uuid(),
   pdf_url: z.url(),
-  pdf_titre: z.url(),
+  pdf_titre: z.string(),
   created_at: z.date(),
   updated_at: z.date()
 });

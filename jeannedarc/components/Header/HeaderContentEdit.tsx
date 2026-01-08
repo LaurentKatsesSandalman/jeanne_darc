@@ -3,7 +3,7 @@ import { ContenuHeaderBtnInterface } from "@/lib/schemas";
 import { Dispatch, SetStateAction, useState } from "react";
 import { CloseCancelIcon, SaveIcon } from "../Icons/Icons";
 import styles from "./Header.module.css";
-import iconStyles from "@/components/Icons/Icons.module.css"
+import iconStyles from "@/components/Icons/Icons.module.css";
 
 interface HeaderContentEditProps {
     btn: ContenuHeaderBtnInterface;
@@ -15,6 +15,7 @@ export function HeaderContentEdit({
     setIsEditing,
 }: HeaderContentEditProps) {
     const [currentBtn, setCurrentBtn] = useState(btn);
+	 const [error, setError] = useState("");
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,16 +27,24 @@ export function HeaderContentEdit({
     };
 
     async function handleSave() {
-		if(currentBtn.bouton.length<1){setIsEditing(false); return;}
+        if (currentBtn.bouton.length < 1) {
+            setIsEditing(false);
+            return;
+        }
         const result = await updateContenuHeaderBtnAction(
             btn.id_contenu_headerbtn,
             { bouton: currentBtn.bouton }
         );
         if (!result.success) {
-            setIsEditing(false);
-            throw new Error(
-                "error" in result ? result.error : "Validation error"
-            );
+            console.error("Échec de la requête:", result);
+            if ("errors" in result) {
+                setError(
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                );
+            } else if ("error" in result) {
+                setError("Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.");
+            }
+            return;
         }
         const updatedContenu = result.data;
         // à vérifier mais je pense que c'est complétement inutile puisque refresh path + le composant est démonté car edit passe à false
@@ -56,12 +65,21 @@ export function HeaderContentEdit({
                 className={styles.buttonEdit}
             />
             <div>
-                <button type="button" onClick={() => setCurrentBtn(btn)} className={iconStyles.btnInHeader}>
+                <button
+                    type="button"
+                    onClick={() => setCurrentBtn(btn)}
+                    className={iconStyles.btnInHeader}
+                >
                     <CloseCancelIcon />
                 </button>
-                <button type="button" onClick={handleSave} className={iconStyles.btnInHeader}>
-                    <SaveIcon  />
+                <button
+                    type="button"
+                    onClick={handleSave}
+                    className={iconStyles.btnInHeader}
+                >
+                    <SaveIcon />
                 </button>
+				{error&&<p>{error}</p>}
             </div>
         </>
     );
