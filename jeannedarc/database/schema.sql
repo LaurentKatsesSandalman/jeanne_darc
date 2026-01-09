@@ -109,7 +109,7 @@ CREATE TABLE contenu_pave (
 CREATE TABLE contenu_bandeaubtn (
     id_contenu_bandeaubtn UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     id_section_fk UUID NOT NULL,
-    icone_url TEXT NOT NULL DEFAULT '',
+    icone TEXT NOT NULL DEFAULT '',
     titre TEXT NOT NULL DEFAULT '',
     description TEXT NOT NULL DEFAULT '',
     bouton TEXT NOT NULL DEFAULT '',
@@ -138,7 +138,7 @@ CREATE TABLE pave_bloc (
     id_pave_bloc UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     id_contenu_pave_fk UUID NOT NULL,
     position SMALLINT NOT NULL,
-    icone_url TEXT NOT NULL DEFAULT '',
+    icone TEXT NOT NULL DEFAULT '',
     soustitre TEXT NOT NULL DEFAULT '',
     description TEXT NOT NULL DEFAULT '',
     lien_vers TEXT NOT NULL DEFAULT '',

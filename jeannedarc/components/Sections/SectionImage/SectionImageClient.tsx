@@ -27,12 +27,9 @@ export function SectionImageClient({
         <div className="my-25">
             {isAuth ? (
                 <>
-                    
-                        
                             {editImage ? (
                                 <ContenuImageEdit
                                     contenu={contenuImage}
-                                    // isAuth={isAuth}
                                     setEditImage={setEditImage}
                                 />
                             ) : (
@@ -47,19 +44,15 @@ export function SectionImageClient({
                                     </button>
                                 </div>
                             )}
-                        
-                    
                     <DeleteSectionButton
                         id_section={section.id_section}
                         url={url}
                     />
                 </>
             ) : (
-                
                     <div >
                         <ContenuImage contenu={contenuImage} />
                     </div>
-                
             )}
         </div>
     );

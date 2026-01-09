@@ -42,3 +42,9 @@
 .right{
 	margin-left: 0
 }
+
+.temp {
+	color: var(--font-white);
+	background-color: var(--font-orange);
+	padding: 5px
+}
