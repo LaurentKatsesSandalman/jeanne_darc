@@ -1,0 +1,8 @@
+.iconGrid {
+	display:grid;
+	grid-template-columns: repeat(5, 1fr);
+}
+
+.selected {
+	border: 2px solid var(--font-orange);
+}

@@ -182,7 +182,7 @@ export const UpdateContenuPaveSchema = CreateContenuPaveSchema.partial();
 export const ContenuBandeauBtnSchema = z.object({
   id_contenu_bandeaubtn: z.uuid(),
   id_section_fk: z.uuid(),
-  icone_url: z.string(),
+  icone: z.string(),
   titre: z.string(),
   description: z.string(),
   bouton: z.string().min(1),
@@ -224,7 +224,7 @@ export const PaveBlocSchema = z.object({
   id_pave_bloc: z.uuid(),
   id_contenu_pave_fk: z.uuid(),
   position: z.number().int().min(0),
-  icone_url: z.string(),
+  icone: z.string(),
   soustitre: z.string(),
   description: z.string(),
   lien_vers: z.string(),

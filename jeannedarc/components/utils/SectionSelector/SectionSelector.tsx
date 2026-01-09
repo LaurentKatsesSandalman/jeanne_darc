@@ -9,6 +9,7 @@ import {
 } from "@/lib/actions/actionsSection";
 import { UUIDFormat } from "@/lib/schemas";
 import {
+    createContenuBandeauBtnAction,
     createContenuImageAction,
     createContenuPdfAction,
     createContenuTexteAction,
@@ -20,6 +21,7 @@ import iconStyles from "@/components/Icons/Icons.module.css";
 type SectionType =
     | "Titre"
     | "Texte"
+    | "BandeauBtn"
     | "TexteTexte"
     | "ImageTexte"
     | "Image"
@@ -87,7 +89,7 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                             {
                                 id_section_fk: id_section,
                                 is_mega: false,
-                                titre1: "",
+                                titre1: "défaut",
                                 titre2: "",
                                 description: "",
                             },
@@ -106,6 +108,26 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                             {
                                 id_section_fk: id_section,
                                 tiptap_content: defaultJsonString,
+                            },
+                            url
+                        );
+                    }
+                );
+                break;
+            }
+            case "BandeauBtn": {
+                await createSectionWithContent(
+                    sectionType,
+                    id_page_fk,
+                    async (id_section) => {
+                        await createContenuBandeauBtnAction(
+                            {
+                                id_section_fk: id_section,
+                                description: "",
+                                icone: "AAAEmpty2BigIcon",
+                                titre: "",
+                                bouton: "défaut",
+                                lien_vers: "/",
                             },
                             url
                         );
@@ -223,6 +245,12 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                             onClick={() => createNewSection("Texte")}
                         >
                             Section Texte
+                        </button>
+						<button
+                            type="button"
+                            onClick={() => createNewSection("BandeauBtn")}
+                        >
+                            Section Bandeau avec bouton (ou bouton seul)
                         </button>
                         <button
                             type="button"

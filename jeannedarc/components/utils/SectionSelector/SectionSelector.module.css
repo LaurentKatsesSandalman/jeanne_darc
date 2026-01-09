@@ -20,11 +20,12 @@
 
 .grid button {
 	background-color: var(--background-layout);
-	line-height: 2;
+	line-height: 1;
 	color: var(--font-white);
 	border-radius: 15px;
-	width: 50%;
+	width: 75%;
 	margin: 0 auto;
+	padding: 1rem 0;
 }
 
 .grid .orange {
