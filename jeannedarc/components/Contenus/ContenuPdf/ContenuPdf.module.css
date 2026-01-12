@@ -5,7 +5,7 @@
 
 .downloadContainer{
 	display: flex;
-	font-size: 15px;
+	
 	gap: 10px;
 	margin: 12px 0;
 }
@@ -13,6 +13,8 @@
 .pdfTitle{
 	color: var(--font-pdf-related);
 	padding: 5px 20px;
+	font-size: 13px;
+	font-weight: 400;
 }
 
 .downloadBtn{
@@ -20,6 +22,7 @@
 	color: var(--font-white);
 	padding: 5px 20px;
 	font-weight: 500;
+	font-size: 15px;
 }
 .error {
 	color: var(--font-orange);

@@ -57,6 +57,7 @@
     top: 75px;
     background-color: var(--background-dropdown);
     font-size: 12px;
+	font-weight: 600;
     line-height: 1;
 }
 
