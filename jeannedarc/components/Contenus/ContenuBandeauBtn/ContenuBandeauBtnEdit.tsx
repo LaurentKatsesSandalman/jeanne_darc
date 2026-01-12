@@ -55,7 +55,9 @@ export function ContenuBandeauBtnEdit({
         type UpdateKeys = Exclude<keyof typeof contenu, NotUpdatedKeys>;
 
         const payload: UpdateContenuBandeauBtn = {};
-		if(currentContent.icone!==currentIcon){payload.icone=currentIcon}
+		if(currentContent.icone!==currentIcon){payload.icone=currentIcon; setCurrentContent((prev)=>{
+			return {...prev, icone: currentIcon}
+		} )}
 
         (Object.keys(contenu) as Array<keyof typeof contenu>).forEach((key) => {
             if (!notUpdateKeys.includes(key as NotUpdatedKeys)) {
@@ -113,8 +115,8 @@ export function ContenuBandeauBtnEdit({
                 onChange={handleChange}
             />
 			<label htmlFor="lien_vers" className={styles.label}>
-                Url du bouton. Si c&#39;est un lien interne, ne pas mettre le nom de domaine 
-				(par exemple /projets/projet-pedagogique pour https://www.jeannedarc33.fr/projets/projet-pedagogique )
+              <p>  Url du bouton. Si c&#39;est un lien interne, ne pas mettre le nom de domaine </p>
+				<p>(par exemple /projets/projet-pedagogique pour https://www.jeannedarc33.fr/projets/projet-pedagogique )</p>
             </label>
             <input
                 type="text"

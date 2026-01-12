@@ -10,13 +10,13 @@ interface ContenuBandeauBtnProps {
 export function ContenuBandeauBtn ({contenu} : ContenuBandeauBtnProps ) {
 const isLocal = contenu.lien_vers.startsWith("/") 
 
-	return (<>
+	return (<div className={styles.containerBandeau}>
 	{contenu.icone&&<IconDisplayer currentIcon={contenu.icone} additionalClassName={""}/>}
-	{(contenu.titre||contenu.description)&&<div>
+	{(contenu.titre||contenu.description)&&<div className={styles.containerTextes}>
 		{contenu.titre&&<p className={styles.titre} >{contenu.titre}</p>}
 		{contenu.description&&<p className={styles.description} >{contenu.description}</p>}
 		</div>}
 {isLocal?(<Link href={contenu.lien_vers} className={styles.bouton} > {contenu.bouton}
 </Link>):(<a href={contenu.lien_vers} className={styles.bouton}>{contenu.bouton}</a>)}
-	</>)
+	</div>)
 }

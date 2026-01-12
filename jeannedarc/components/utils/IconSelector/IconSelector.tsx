@@ -17,22 +17,26 @@ interface IconDisplayerProps {
 export function IconSelector ({currentIcon, setCurrentIcon, additionalClassName}:IconSelectorProps) {
 
 
-return (<div className={styles.iconGrid} role="radiogroup" aria-label="Choix d’icône">
+return (<><p>{currentIcon}</p>
+<div className={styles.iconGrid} role="radiogroup" aria-label="Choix d’icône">
+	
 {Object.entries(BigIcons).map(([iconName, IconComponent])=>(
-	<button key={iconName} onClick={()=>setCurrentIcon(iconName)} className={clsx( (currentIcon === iconName) && 'selected', styles.bigIcon, additionalClassName )}  aria-checked={currentIcon === iconName} role="radio">
-		<IconComponent/>
+	<button key={iconName} onClick={()=>setCurrentIcon(iconName)} className={clsx( (currentIcon === iconName) && styles.selected, styles.bigIcon, additionalClassName )}  aria-checked={currentIcon === iconName} role="radio">
+		<IconComponent className={styles.marginAuto}/>
 	</button>
 ))}
-</div>)
+</div></>)
 }
 
 export function IconDisplayer ({currentIcon, additionalClassName}:IconDisplayerProps) {
 	type IconList = keyof typeof BigIcons
+	const display = (!currentIcon.startsWith("AAA"))
 	const validCurrentIcon = currentIcon as IconList
 	const DynamicBigIcon = BigIcons[validCurrentIcon]
 
 	return (<>
-	{DynamicBigIcon && <DynamicBigIcon className={clsx( styles.bigIcon, additionalClassName )}/>}
+	
+	{display && DynamicBigIcon && <DynamicBigIcon className={clsx( styles.bigIcon, additionalClassName )}/>}
 	</>)
 	
 }

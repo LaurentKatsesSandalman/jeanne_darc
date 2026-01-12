@@ -1,8 +1,19 @@
 .iconGrid {
 	display:grid;
 	grid-template-columns: repeat(5, 1fr);
+	gap: 5px;
+}
+
+.bigIcon{
+	width: 75px;
+	height: 75px;
+}
+
+.marginAuto{
+	margin: auto;
 }
 
 .selected {
 	border: 2px solid var(--font-orange);
+	color: var(--font-orange)
 }
