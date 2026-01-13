@@ -26,7 +26,7 @@ export async function SectionTitreImageServer({
 
     return (
         <div className={styles.sectionTitreImageBackground}>
-		<div className={styles.sectionTitreImageContainer}>
+		
             <SectionTitreImageClient
                 contenuTitre={contenuTitre}
 				rowsBtn = {rowsBtn}
@@ -34,6 +34,6 @@ export async function SectionTitreImageServer({
                 isAuth={isAuth}
                 section={section}
             />
-        </div></div>
+        </div>
     );
 }

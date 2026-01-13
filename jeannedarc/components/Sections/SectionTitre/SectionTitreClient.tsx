@@ -21,7 +21,7 @@ export function SectionTitreClient({ section ,contenu, isAuth }: SectionTitrePro
 
 
     return (
-        <div className={styles.sectionTitreClientContainer}>
+        <div className={styles.sectionTitreContainer}>
             {isAuth ? (
                 <>
                     {editTitre ? (

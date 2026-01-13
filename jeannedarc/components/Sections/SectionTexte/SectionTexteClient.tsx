@@ -1,6 +1,6 @@
 "use client";
 import { ContenuTexteInterface, SectionInterface } from "@/lib/schemas";
-//import styles from "./SectionTexte.module.css";
+import styles from "./SectionTexte.module.css";
 import { useState } from "react";
 import { ContenuTexteEdit } from "@/components/tiptap/tiptap-templates/simple/simple-editor";
 import { ContenuTexte } from "@/components/Contenus/ContenuTexte/ContenuTexte";
@@ -21,7 +21,7 @@ export function SectionTexteClient({ section, contenu, isAuth }: SectionTextePro
 
 
     return (
-        <>
+        <div className={styles.sectionTexteContainer}>
             {isAuth ? (
                 <>
                     {editTexte ? (
@@ -49,6 +49,6 @@ export function SectionTexteClient({ section, contenu, isAuth }: SectionTextePro
                     <ContenuTexte contenu={contenu} />
                 </>
             )}
-        </>
+        </div>
     );
 }

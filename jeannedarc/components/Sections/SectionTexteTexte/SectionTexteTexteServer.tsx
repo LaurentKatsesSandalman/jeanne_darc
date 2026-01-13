@@ -2,7 +2,7 @@
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuTextesBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionTexteTexteClient } from "./SectionTexteTexteClient";
-import styles from "./SectionTexteTexte.module.css";
+//import styles from "./SectionTexteTexte.module.css";
 
 interface SectionTexteTexteProps {
     section: SectionInterface;
@@ -24,13 +24,13 @@ export async function SectionTexteTexteServer({
 	const contenuTexte2 = rowsTexte[1];
 
     return (
-        <div className={styles.sectionTexteTexteContainer}>
+        <>
             <SectionTexteTexteClient
                 contenuTexte1={contenuTexte1}
 				contenuTexte2={contenuTexte2}
                 isAuth={isAuth}
                 section={section}
             />
-        </div>
+        </>
     );
 }
