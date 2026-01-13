@@ -2,7 +2,7 @@
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuBandeauBtnsBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionBandeauBtnClient } from "./SectionBandeauBtnClient";
-import styles from "./SectionBandeauBtn.module.css";
+//import styles from "./SectionBandeauBtn.module.css";
 
 interface SectionBandeauBtnProps {
     section: SectionInterface;
@@ -22,12 +22,12 @@ export async function SectionBandeauBtnServer({
 	const contenuBandeauBtn = rowsBandeauBtn[0];
 
     return (
-        <div className={styles.sectionBandeauBtnContainer}>
+        <>
             <SectionBandeauBtnClient
 				contenuBandeauBtn={contenuBandeauBtn}
                 isAuth={isAuth}
                 section={section}
             />
-        </div>
+        </>
     );
 }

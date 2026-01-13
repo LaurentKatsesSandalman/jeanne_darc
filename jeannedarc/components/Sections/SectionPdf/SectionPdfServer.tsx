@@ -2,7 +2,7 @@
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuPdfsBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionPdfClient } from "./SectionPdfClient";
-import styles from "./SectionPdf.module.css";
+//import styles from "./SectionPdf.module.css";
 
 interface SectionPdfProps {
     section: SectionInterface;
@@ -22,12 +22,12 @@ export async function SectionPdfServer({
 	const contenuPdf = rowsPdf[0];
 
     return (
-        <div className={styles.sectionPdfContainer}>
+        <>
             <SectionPdfClient
 				contenuPdf={contenuPdf}
                 isAuth={isAuth}
                 section={section}
             />
-        </div>
+        </>
     );
 }

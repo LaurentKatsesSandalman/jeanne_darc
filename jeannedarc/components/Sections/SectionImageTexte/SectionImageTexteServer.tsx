@@ -2,7 +2,7 @@
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuImagesBySectionId, getAllContenuTextesBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionImageTexteClient } from "./SectionImageTexteClient";
-import styles from "./SectionImageTexte.module.css";
+//import styles from "./SectionImageTexte.module.css";
 
 interface SectionImageTexteProps {
     section: SectionInterface;
@@ -24,13 +24,13 @@ export async function SectionImageTexteServer({
 	const contenuImage = rowsImage[0];
 
     return (
-        <div className={styles.sectionImageTexteContainer}>
+        <>
             <SectionImageTexteClient
                 contenuTexte={contenuTexte}
 				contenuImage={contenuImage}
                 isAuth={isAuth}
                 section={section}
             />
-        </div>
+        </>
     );
 }

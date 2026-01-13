@@ -1,6 +1,6 @@
 "use client";
 import { ContenuBandeauBtnInterface, SectionInterface } from "@/lib/schemas";
-// import styles from "./SectionBandeauBtn.module.css";
+import styles from "./SectionBandeauBtn.module.css";
 import { useState } from "react";
 import { EditIcon } from "@/components/Icons/Icons";
 import { usePathname } from "next/navigation";
@@ -23,8 +23,13 @@ export function SectionBandeauBtnClient({
 	const [editBandeauBtn, setEditBandeauBtn] = useState(false);
 	const url = usePathname();
 
+	const isContactPage = url.startsWith("/contact");
+    const isHome = url === "/";
+
+    const classSuffixe = isContactPage ? "Contact" : isHome ? "Home" : "";
+
 	return (
-		<div className={url==="/"?"":"my-25"}>
+		<div className={styles[`sectionBandeauBtnContainer${classSuffixe}`]} >
 			{isAuth ? (
 				<>
 							{editBandeauBtn ? (

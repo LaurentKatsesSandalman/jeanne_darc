@@ -2,7 +2,7 @@
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuImagesBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionImageClient } from "./SectionImageClient";
-import styles from "./SectionImage.module.css";
+//import styles from "./SectionImage.module.css";
 
 interface SectionImageProps {
     section: SectionInterface;
@@ -22,12 +22,12 @@ export async function SectionImageServer({
 	const contenuImage = rowsImage[0];
 
     return (
-        <div className={styles.sectionImageContainer}>
+        <>
             <SectionImageClient
 				contenuImage={contenuImage}
                 isAuth={isAuth}
                 section={section}
             />
-        </div>
+        </>
     );
 }
