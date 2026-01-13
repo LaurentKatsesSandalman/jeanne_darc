@@ -61,7 +61,7 @@ export function SectionImageTexteClient({
     }
 
     return (
-        <>
+        <div className={styles.sectionImageTexteContainer}>
             {isAuth ? (
                 <>
                     <div
@@ -146,6 +146,6 @@ export function SectionImageTexteClient({
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 }

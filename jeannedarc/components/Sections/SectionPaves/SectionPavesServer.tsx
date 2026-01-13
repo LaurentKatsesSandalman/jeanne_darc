@@ -2,7 +2,7 @@
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuPavesBySectionId, getAllPaveBlocsByContentId } from "@/lib/queries/contentCrudContenu";
 import { SectionPavesClient } from "./SectionPavesClient";
-import styles from "./SectionPaves.module.css";
+//import styles from "./SectionPaves.module.css";
 
 interface SectionPavesProps {
     section: SectionInterface;
@@ -24,13 +24,13 @@ export async function SectionPavesServer({
 	const paveBlocs = await getAllPaveBlocsByContentId(sectionPaves.id_contenu_pave)
 
     return (
-        <div className={styles.sectionPavesContainer}>
+        <>
             <SectionPavesClient
                 paveBlocs={paveBlocs}
 				sectionPaves = {sectionPaves}
                 isAuth={isAuth}
                 section={section}
             />
-        </div>
+        </>
     );
 }

@@ -1,6 +1,6 @@
 "use client";
 import { ContenuImageInterface, SectionInterface } from "@/lib/schemas";
-// import styles from "./SectionImage.module.css";
+import styles from "./SectionImage.module.css";
 import { useState } from "react";
 import { EditIcon } from "@/components/Icons/Icons";
 import { usePathname } from "next/navigation";
@@ -24,7 +24,7 @@ export function SectionImageClient({
     const url = usePathname();
 
     return (
-        <div className="my-25">
+        <div className={styles.sectionImageContainer}>
             {isAuth ? (
                 <>
                             {editImage ? (

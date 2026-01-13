@@ -22,7 +22,7 @@ export function SectionSoloBtnClient({
 	const url = usePathname();
 
 	return (
-		<div className={url==="/"?"":"my-25"}>
+		<>
 			{isAuth ? (
 				<>
 							{editSoloBtn ? (
@@ -52,6 +52,6 @@ export function SectionSoloBtnClient({
 						<ContenuSoloBtn contenu={contenuSoloBtn} />
 					</div>
 			)}
-		</div>
+		</>
 	);
 }
