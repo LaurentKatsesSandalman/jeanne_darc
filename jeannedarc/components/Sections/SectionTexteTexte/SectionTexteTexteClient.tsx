@@ -57,7 +57,7 @@ export function SectionTexteTexteClient({
     }
 
     return (
-        <>
+        <div className={styles.sectionTexteTexteContainer}>
             {isAuth ? (
                 <>
                     <div
@@ -141,6 +141,6 @@ export function SectionTexteTexteClient({
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 }

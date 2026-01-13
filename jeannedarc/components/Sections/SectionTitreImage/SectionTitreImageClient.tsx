@@ -66,7 +66,7 @@ export function SectionTitreImageClient({
     }
 
     return (
-        <>
+        <div className={styles.sectionTitreImageContainer}>
             <div
                 className={clsx(
                     "flex",
@@ -150,6 +150,6 @@ export function SectionTitreImageClient({
                 </>
             )}
             {error && <p className={styles.error}>{error}</p>}
-        </>
+        </div>
     );
 }
