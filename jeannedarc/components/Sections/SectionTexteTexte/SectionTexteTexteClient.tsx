@@ -69,7 +69,7 @@ export function SectionTexteTexteClient({
                         )}
                     >
                         <div className="w-full sm:w-1/2">
-                            {" "}
+                            
                             {editTexte1 ? (
                                 <ContenuTexteEdit
                                     contenu={contenuTexte1}

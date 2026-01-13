@@ -1,0 +1,19 @@
+.containerBloc{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.label{
+	font-weight: 700;
+}
+
+.titreBloc{
+	font-size: 22px;
+	font-weight:700;
+	margin:5px 0 24px 0;
+}
+
+.descriptionBloc{
+	text-align: center;
+}

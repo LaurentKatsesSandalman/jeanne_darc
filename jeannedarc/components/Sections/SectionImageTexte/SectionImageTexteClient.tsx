@@ -73,7 +73,7 @@ export function SectionImageTexteClient({
                         )}
                     >
                         <div className="w-full sm:w-1/2">
-                            {" "}
+                            
                             {editImage ? (
                                 <ContenuImageEdit
                                     contenu={contenuImage}

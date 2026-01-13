@@ -119,6 +119,16 @@ CREATE TABLE contenu_bandeaubtn (
     CONSTRAINT contenu_bandeaubtn_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE
 );
 
+CREATE TABLE contenu_solobtn (
+    id_contenu_solobtn UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_section_fk UUID NOT NULL,
+    bouton TEXT NOT NULL DEFAULT '',
+    lien_vers TEXT NOT NULL DEFAULT '',
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    CONSTRAINT contenu_solobtn_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE
+);
+
 -- Table contenu_headerbtn
 CREATE TABLE contenu_headerbtn (
     id_contenu_headerbtn UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -137,10 +147,16 @@ CREATE TABLE contenu_headerbtn (
 CREATE TABLE pave_bloc (
     id_pave_bloc UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     id_contenu_pave_fk UUID NOT NULL,
-    position SMALLINT NOT NULL,
+    
     icone TEXT NOT NULL DEFAULT '',
     soustitre TEXT NOT NULL DEFAULT '',
-    description TEXT NOT NULL DEFAULT '',
+    description1 TEXT NOT NULL DEFAULT '',
+	description2 TEXT NOT NULL DEFAULT '',
+	description3 TEXT NOT NULL DEFAULT '',
+	description4 TEXT NOT NULL DEFAULT '',
+	description5 TEXT NOT NULL DEFAULT '',
+	description6 TEXT NOT NULL DEFAULT '',
+	description7 TEXT NOT NULL DEFAULT '',
     lien_vers TEXT NOT NULL DEFAULT '',
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -195,6 +211,10 @@ FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 CREATE TRIGGER update_contenu_bandeaubtn_updated_at
 BEFORE UPDATE ON contenu_bandeaubtn
+FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_contenu_solobtn_updated_at
+BEFORE UPDATE ON contenu_solobtn
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 CREATE TRIGGER update_contenu_headerbtn_updated_at

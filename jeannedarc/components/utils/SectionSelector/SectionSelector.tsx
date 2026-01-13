@@ -11,6 +11,7 @@ import { UUIDFormat } from "@/lib/schemas";
 import {
     createContenuBandeauBtnAction,
     createContenuImageAction,
+    createContenuPaveAction,
     createContenuPdfAction,
     createContenuTexteAction,
     createContenuTitreAction,
@@ -22,10 +23,12 @@ type SectionType =
     | "Titre"
     | "Texte"
     | "BandeauBtn"
+	| "TitreImage"
     | "TexteTexte"
     | "ImageTexte"
     | "Image"
-    | "Pdf";
+    | "Pdf"
+	| "PavesNav";
 
 export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
     //temp
@@ -135,6 +138,35 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                 );
                 break;
             }
+			case "TitreImage": {
+                await createSectionWithContent(
+                    sectionType,
+                    id_page_fk,
+                    async (id_section) => {
+                        await createContenuImageAction(
+                            {
+                                id_section_fk: id_section,
+                                image_url:
+                                    "http://www.image-heberg.fr/files/1765794470531451060.png",
+                                alt_text: "",
+                                lien_vers: "",
+                            },
+                            url
+                        );
+                        await createContenuTitreAction(
+                            {
+                                id_section_fk: id_section,
+                                is_mega: false,
+                                titre1: "défaut",
+                                titre2: "",
+                                description: "",
+                            },
+                            url
+                        );
+                    }
+                );
+                break;
+            }
             case "TexteTexte": {
                 await createSectionWithContent(
                     sectionType,
@@ -221,6 +253,22 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                 );
                 break;
             }
+			case "PavesNav": {
+                await createSectionWithContent(
+                    sectionType,
+                    id_page_fk,
+                    async (id_section) => {
+                        await createContenuPaveAction(
+                            {
+                                id_section_fk: id_section,
+                                titre:""
+                            },
+                            url
+                        );
+                    }
+                );
+                break;
+            }
 
             default:
                 break;
@@ -252,6 +300,12 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                         >
                             Section Bandeau avec bouton (ou bouton seul)
                         </button>
+						<button
+                            type="button"
+                            onClick={() => createNewSection("TitreImage")}
+                        >
+                            Section TitreImage (pour page d&#39;accueil)
+                        </button>
                         <button
                             type="button"
                             onClick={() => createNewSection("TexteTexte")}
@@ -275,6 +329,12 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                             onClick={() => createNewSection("Pdf")}
                         >
                             Section Pdf
+                        </button>
+						<button
+                            type="button"
+                            onClick={() => createNewSection("PavesNav")}
+                        >
+                            Section Pavés de navigation
                         </button>
                         <button
                             type="button"

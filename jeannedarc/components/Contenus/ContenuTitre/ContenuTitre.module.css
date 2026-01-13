@@ -73,3 +73,19 @@
 	font-style: italic;
 	font-weight: 700;
 }
+
+.h1Home {
+    font-family: var(--font-ibm-plex);
+    font-size: 70px;
+    font-weight: 700;
+	line-height: 1;
+    margin-bottom: 35px;
+
+	color: var(--font-white);
+}
+
+.descriptionHome{
+
+	margin-bottom: 50px;
+	color: var(--font-white);
+}
