@@ -19,12 +19,12 @@ export function ContenuPave({ contenu }: ContenuPaveProps) {
     return (
         <>
             {contenu.lien_vers ? (
-                <Link href={contenu.lien_vers}>
+                <Link href={contenu.lien_vers} className={styles[`linkBloc${classSuffixe}`]}>
                     <div className={styles[`containerBloc${classSuffixe}`]}>
                         {contenu.icone && (
                             <IconDisplayer
                                 currentIcon={contenu.icone}
-                                additionalClassName={""}
+                                additionalClassName={isHome?styles.orange:""}
                             />
                         )}
                         <p className={styles[`titreBloc${classSuffixe}`]}>
@@ -62,7 +62,7 @@ export function ContenuPave({ contenu }: ContenuPaveProps) {
                     {contenu.icone && (
                         <IconDisplayer
                             currentIcon={contenu.icone}
-                            additionalClassName={""}
+                            additionalClassName={isHome?styles.orange:""}
                         />
                     )}
                     <p className={styles[`titreBloc${classSuffixe}`]}>

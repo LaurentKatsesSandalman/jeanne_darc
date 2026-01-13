@@ -36,7 +36,7 @@ export function IconDisplayer ({currentIcon, additionalClassName}:IconDisplayerP
 
 	return (<>
 	
-	{display && DynamicBigIcon && <DynamicBigIcon className={clsx( styles.bigIcon, additionalClassName )}/>}
+	{display && DynamicBigIcon && <DynamicBigIcon className={clsx( styles.displayerContainer, additionalClassName )}/>}
 	</>)
 	
 }

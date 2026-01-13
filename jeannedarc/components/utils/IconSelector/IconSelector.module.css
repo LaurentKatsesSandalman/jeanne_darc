@@ -7,6 +7,16 @@
 .bigIcon{
 	width: 75px;
 	height: 75px;
+	backface-visibility: hidden; /*pour eviter ques les icones bavent et créent une ligne diagonale*/
+		display: flex; /* Ajouter flex pour centrer le SVG */
+	align-items: center;
+	justify-content: center;
+}
+
+.bigIcon svg {
+		max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
 }
 
 .marginAuto{
@@ -16,4 +26,15 @@
 .selected {
 	border: 2px solid var(--font-orange);
 	color: var(--font-orange)
+}
+
+.displayerContainer {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.displayerContainer svg {
+	width: auto;
+	height: auto;
 }

@@ -1,5 +1,15 @@
-.sectionBandeauBtnContainer{
-	width:min(90%, 1290px);
-	margin: 0 auto;
-	padding-bottom: 50px;
+.sectionBandeauBtnContainer {
+    width: min(90%, 1290px);
+    margin: 0 auto;
+    padding: 25px 0;
+    /* padding-bottom: 50px; */
+}
+
+.sectionBandeauBtnContainerHome {
+    position: relative;
+    top: -125px;
+    width: min(90%, 1290px);
+    margin: 0 auto;
+    padding: 25px 0;
+    /* padding-bottom: 50px; */
 }
