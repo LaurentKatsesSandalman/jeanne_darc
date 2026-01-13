@@ -1,7 +1,22 @@
 .sectionPavesContainer{
 	width:min(90%, 1290px);
 	margin: 0 auto;
+	padding: 25px 0;
 
+}
+
+.sectionPavesContainerContact{
+	/* width:min(90%, 1290px); */
+	margin: 0 auto;
+	padding: 25px 0;
+	background-color: var(--background-secondary);
+	color: var(--font-white)
+
+}
+
+.sectionPavesContainerContact input, .sectionPavesContainerContact textarea{
+	color: var(--font-default);
+	background-color: var(--background-page);
 }
 
 .blocsContainer{
@@ -15,12 +30,13 @@
 	width: 100%;
 }
 
-.h2Pave, .h2PaveHome{
+.h2Pave, .h2PaveHome, .h2PaveContact{
 	text-align: center;
 	font-size: 40px;
 	font-weight: 700;
 	font-family: var(--font-ibm-plex);
-	
+	margin-bottom: 64px;
+	margin-top: -50px;
 }
 
 .h2PaveHome{
@@ -34,7 +50,7 @@
 	
 }
 
-.texteBtnPave{
+.texteBtnPave, .texteBtnPaveHome, .texteBtnPaveContact{
 display: block;
 margin: 0 auto;
 border-radius: 5px;
@@ -44,4 +60,9 @@ padding: 5px;
 .texteBtnPave:hover{
 	color:var(--background-page);
 	background-color: var(--font-default);
+}
+
+.texteBtnPaveHome:hover{
+	color:var(--background-page);
+	background-color: var(--font-orange);
 }

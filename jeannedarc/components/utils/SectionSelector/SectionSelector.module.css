@@ -43,5 +43,13 @@
 }
 
 .centerTexte{
-	text-align: center;
+	display: block;
+margin: 0 auto;
+border-radius: 5px;
+padding: 5px;
+}
+
+.centerTexte:hover{
+		color:var(--background-page);
+	background-color: var(--font-default);
 }

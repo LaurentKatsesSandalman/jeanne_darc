@@ -104,6 +104,7 @@ return (
                 name="soustitre"
                 value={currentContent.soustitre}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<label htmlFor="lien_vers" className={styles.label}>
               <p>  Page ciblée (optionnel) ; ne pas mettre le nom de domaine </p>
@@ -115,16 +116,19 @@ return (
                 name="lien_vers"
                 value={currentContent.lien_vers}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<label htmlFor="description1" className={styles.label}>
                 Description (optionnel) ; tout écrire dans le 1er champ si possible, changer de champ pour sauter une ligne.
             </label>
             <textarea
                 rows={3}
+				cols={50}
                 id="description1"
                 name="description1"
                 value={currentContent.description1}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			 <input
                 type="text"
@@ -132,6 +136,7 @@ return (
                 name="description2"
                 value={currentContent.description2}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<input
                 type="text"
@@ -139,6 +144,7 @@ return (
                 name="description3"
                 value={currentContent.description3}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<input
                 type="text"
@@ -146,6 +152,7 @@ return (
                 name="description4"
                 value={currentContent.description4}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<input
                 type="text"
@@ -153,6 +160,7 @@ return (
                 name="description5"
                 value={currentContent.description5}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<input
                 type="text"
@@ -160,6 +168,7 @@ return (
                 name="description6"
                 value={currentContent.description6}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<input
                 type="text"
@@ -167,6 +176,7 @@ return (
                 name="description7"
                 value={currentContent.description7}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<p  className={styles.label}>
                 Icône (optionnel)

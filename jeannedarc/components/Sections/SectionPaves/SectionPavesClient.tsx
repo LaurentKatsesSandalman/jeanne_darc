@@ -125,7 +125,7 @@ export function SectionPavesClient({
     const classSuffixe = isContactPage ? "Contact" : isHome ? "Home" : "";
 
     return (
-        <div className={styles.sectionPavesContainer}>
+        <div className={styles[`sectionPavesContainer${classSuffixe}`]}>
             {editTitre ? (
                 <>
                     <label htmlFor="titre" className={styles.label}>

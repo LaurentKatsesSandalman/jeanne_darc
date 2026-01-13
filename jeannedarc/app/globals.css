@@ -21,8 +21,13 @@
   --font-blue: #5b8fc7; 
 }
 
+html{
+	box-sizing: border-box;
+}
+
 body {
 	background-color: var(--background-layout);
+	
 }
 
 main{
