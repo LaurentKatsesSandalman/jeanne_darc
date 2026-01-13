@@ -32,8 +32,16 @@
 	background-color: var(--background-orange);
 }
 
+.grid .dark {
+	background-color: var(--background-secondary);
+}
+
 .error {
 	color: var(--font-orange);
 	font-style: italic;
 	font-weight: 700;
+}
+
+.centerTexte{
+	text-align: center;
 }

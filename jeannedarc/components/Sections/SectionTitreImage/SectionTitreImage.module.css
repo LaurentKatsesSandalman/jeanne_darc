@@ -1,0 +1,28 @@
+.sectionTitreImageBackground{
+background-color: var(--background-layout);
+}
+
+.sectionTitreImageContainer{
+		width:min(90%, 1290px);
+	margin: 0 auto;
+	padding-top: 230px;
+	padding-bottom: 160px;
+}
+
+.home{
+	gap: 25px;
+	align-items: center;
+}
+
+
+.btnContainer{
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+.error {
+	color: var(--font-orange);
+	font-style: italic;
+	font-weight: 700;
+}

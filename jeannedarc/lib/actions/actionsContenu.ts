@@ -44,6 +44,16 @@ import {
 	CreateUpdateContenuPaveResult,
 	CreateUpdateContenuBandeauBtnResult,
 	CreateUpdateContenuHeaderBtnResult,
+	CreateContenuSoloBtn,
+	CreateUpdateContenuSoloBtnResult,
+	CreateContenuSoloBtnSchema,
+	UpdateContenuSoloBtn,
+	UpdateContenuSoloBtnSchema,
+	CreatePaveBloc,
+	CreatePaveBlocSchema,
+	UpdatePaveBloc,
+	CreateUpdatePaveBlocResult,
+	UpdatePaveBlocSchema,
 } from "@/lib/schemas";
 import {
     createContenuTitre,
@@ -70,6 +80,12 @@ import {
     createContenuHeaderBtn,
     updateContenuHeaderBtnById,
     deleteContenuHeaderBtnById,
+	deleteContenuSoloBtnById,
+	createContenuSoloBtn,
+	updateContenuSoloBtnById,
+	createPaveBloc,
+	updatePaveBlocById,
+	deletePaveBlocById,
 } from "@/lib/queries/contentCrudContenu";
 
 // contenu_titre
@@ -600,6 +616,94 @@ const { userId } = await auth();
     }
 }
 
+// pave_bloc
+export async function createPaveBlocAction(data: CreatePaveBloc, url?: string):Promise<CreateUpdatePaveBlocResult> {
+	    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+	
+    const validation = CreatePaveBlocSchema.safeParse(data);
+
+    if (!validation.success) {
+        return { success: false, errors: z.treeifyError(validation.error) };
+    }
+
+    try {
+        const result = await createPaveBloc(validation.data);
+		if(!result){return { success: false, error: "Failed to create contenu" };}
+        if (url) {
+            revalidatePath(url);
+        }
+        return { success: true, data: result };
+    } catch (error) {
+        console.error("Error creating contenu pave:", error);
+        return { success: false, error: "Failed to create contenu pave" };
+    }
+}
+
+export async function updatePaveBlocAction(
+    id: string,
+    data: UpdatePaveBloc,
+    url?: string
+) :Promise<CreateUpdatePaveBlocResult>{
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
+    if (!id) {
+        return { success: false, error: "Invalid ID" };
+    }
+
+    const validation = UpdatePaveBlocSchema.safeParse(data);
+
+    if (!validation.success) {
+        return { success: false, errors: z.treeifyError(validation.error) };
+    }
+
+    try {
+        const result = await updatePaveBlocById(validation.data, id);
+
+        if (!result) {
+            return { success: false, error: "No changes made" };
+        }
+
+        if (url) {
+            revalidatePath(url);
+        }
+        return { success: true, data: result };
+    } catch (error) {
+        console.error("Error updating contenu pave:", error);
+        return { success: false, error: "Failed to update contenu pave" };
+    }
+}
+
+export async function deletePaveBlocAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
+    if (!id) {
+        return { success: false, error: "Invalid ID" };
+    }
+
+    try {
+        await deletePaveBlocById(id);
+        if (url) {
+            revalidatePath(url);
+        }
+        return { success: true };
+    } catch (error) {
+        console.error("Error deleting contenu pave:", error);
+        return { success: false, error: "Failed to delete contenu pave" };
+    }
+}
+
 // contenu_BANDEAUBTN
 export async function createContenuBandeauBtnAction(
     data: CreateContenuBandeauBtn,
@@ -696,6 +800,106 @@ const { userId } = await auth();
         return {
             success: false,
             error: "Failed to delete contenu bandeau btn",
+        };
+    }
+}
+
+// contenu_SOLOBTN
+export async function createContenuSoloBtnAction(
+    data: CreateContenuSoloBtn,
+    url?: string
+) :Promise<CreateUpdateContenuSoloBtnResult>{
+	    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+	
+    const validation = CreateContenuSoloBtnSchema.safeParse(data);
+
+    if (!validation.success) {
+        return { success: false, errors: z.treeifyError(validation.error) };
+    }
+
+    try {
+        const result = await createContenuSoloBtn(validation.data);
+		if(!result){return { success: false, error: "Failed to create contenu" };}
+        if (url) {
+            revalidatePath(url);
+        }
+        return { success: true, data: result };
+    } catch (error) {
+        console.error("Error creating contenu Solo btn:", error);
+        return {
+            success: false,
+            error: "Failed to create contenu Solo btn",
+        };
+    }
+}
+
+export async function updateContenuSoloBtnAction(
+    id: string,
+    data: UpdateContenuSoloBtn,
+    url?: string
+) :Promise<CreateUpdateContenuSoloBtnResult>{
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
+    if (!id) {
+        return { success: false, error: "Invalid ID" };
+    }
+
+    const validation = UpdateContenuSoloBtnSchema.safeParse(data);
+
+    if (!validation.success) {
+        return { success: false, errors: z.treeifyError(validation.error) };
+    }
+
+    try {
+        const result = await updateContenuSoloBtnById(validation.data, id);
+
+        if (!result) {
+            return { success: false, error: "No changes made" };
+        }
+
+        if (url) {
+            revalidatePath(url);
+        }
+        return { success: true, data: result };
+    } catch (error) {
+        console.error("Error updating contenu Solo btn:", error);
+        return {
+            success: false,
+            error: "Failed to update contenu Solo btn",
+        };
+    }
+}
+
+export async function deleteContenuSoloBtnAction(id: string, url?: string) {
+const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
+    if (!id) {
+        return { success: false, error: "Invalid ID" };
+    }
+
+    try {
+        await deleteContenuSoloBtnById(id);
+        if (url) {
+            revalidatePath(url);
+        }
+        return { success: true };
+    } catch (error) {
+        console.error("Error deleting contenu Solo btn:", error);
+        return {
+            success: false,
+            error: "Failed to delete contenu Solo btn",
         };
     }
 }

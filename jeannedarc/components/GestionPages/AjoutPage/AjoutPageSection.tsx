@@ -108,10 +108,11 @@ setInfoSections(tempInfoSections)
             setError("Le nom de la page doit faire au moins 2 caractères");
             return;
         }
+		
         // Calcule les valeurs DIRECTEMENT sans passer par setState
         const bouton = form.nom;
-        const lien_vers = `/${form.racine_url}/${form.main_url}`;
-        const page_url = `${form.racine_url}/${form.main_url}`;
+        const lien_vers = (form.racine_url===""?(`/${form.main_url}`):(`/${form.racine_url}/${form.main_url}`));
+        const page_url = (form.racine_url===""?(`${form.main_url}`):(`${form.racine_url}/${form.main_url}`));
 
         const existingPage = await getPageByUrl(page_url);
         if (existingPage) {

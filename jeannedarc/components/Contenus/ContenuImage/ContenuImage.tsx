@@ -1,5 +1,6 @@
 import { ContenuImageInterface } from "@/lib/schemas";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 //import styles from "./ContenuImage.module.css";
 
 interface ContenuImageProps {
@@ -7,7 +8,17 @@ interface ContenuImageProps {
 }
 
 export function ContenuImage({ contenu }: ContenuImageProps) {
-    const imageElement = (
+const url = usePathname()
+
+    const imageElement = (url==="/"?(<> <Image
+            loading="eager"
+            src={contenu.image_url}
+            alt={contenu.alt_text}
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{ width: "100%", height: "510px", objectFit:"cover"}}
+        /></>):(
         <Image
             loading="eager"
             src={contenu.image_url}
@@ -17,7 +28,7 @@ export function ContenuImage({ contenu }: ContenuImageProps) {
             sizes="100vw"
             style={{ width: "100%", height: "auto" }}
         />
-    );
+    ));
 
     return (
         <>

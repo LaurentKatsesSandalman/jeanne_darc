@@ -6,6 +6,8 @@ import { SectionTitreServer } from "@/components/Sections/SectionTitre/SectionTi
 import { SectionImageServer } from "../../Sections/SectionImage/SectionImageServer";
 import { SectionPdfServer } from "../../Sections/SectionPdf/SectionPdfServer";
 import { SectionBandeauBtnServer } from "../../Sections/SectionBandeauBtn/SectionBandeauBtnServer";
+import { SectionTitreImageServer } from "@/components/Sections/SectionTitreImage/SectionTitreImageServer";
+import { SectionPavesServer } from "@/components/Sections/SectionPaves/SectionPavesServer";
 
 interface VirtualSectionProps {
     section: SectionInterface;
@@ -22,6 +24,10 @@ export function VirtualSection({ section, isAuth }: VirtualSectionProps) {
             return (
                 <SectionBandeauBtnServer isAuth={isAuth} section={section} />
             );
+			case "TitreImage":
+            return (
+                <SectionTitreImageServer isAuth={isAuth} section={section} />
+            );
         case "TexteTexte":
             return (
                 <SectionTexteTexteServer isAuth={isAuth} section={section} />
@@ -34,6 +40,8 @@ export function VirtualSection({ section, isAuth }: VirtualSectionProps) {
             return <SectionImageServer isAuth={isAuth} section={section} />;
         case "Pdf":
             return <SectionPdfServer isAuth={isAuth} section={section} />;
+		case "PavesNav":
+            return <SectionPavesServer isAuth={isAuth} section={section} />;	
         default:
             console.warn(`Type de section inconnu: ${section.type}`);
             return null;

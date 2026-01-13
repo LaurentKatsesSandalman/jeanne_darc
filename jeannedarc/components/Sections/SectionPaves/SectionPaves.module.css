@@ -1,0 +1,47 @@
+.sectionPavesContainer{
+	width:min(90%, 1290px);
+	margin: 0 auto;
+
+}
+
+.blocsContainer{
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	gap: 64px
+}
+
+.blocSize{
+	width: 100%;
+}
+
+.h2Pave, .h2PaveHome{
+	text-align: center;
+	font-size: 40px;
+	font-weight: 700;
+	font-family: var(--font-ibm-plex);
+	
+}
+
+.h2PaveHome{
+	color: var(--font-orange)
+}
+
+.error {
+	color: var(--font-orange);
+	font-style: italic;
+	font-weight: 700;
+	
+}
+
+.texteBtnPave{
+display: block;
+margin: 0 auto;
+border-radius: 5px;
+padding: 5px;
+}
+
+.texteBtnPave:hover{
+	color:var(--background-page);
+	background-color: var(--font-default);
+}

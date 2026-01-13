@@ -24,7 +24,7 @@ export function SectionBandeauBtnClient({
 	const url = usePathname();
 
 	return (
-		<div className="my-25">
+		<div className={url==="/"?"":"my-25"}>
 			{isAuth ? (
 				<>
 							{editBandeauBtn ? (
