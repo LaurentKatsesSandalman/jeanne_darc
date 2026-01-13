@@ -29,12 +29,5 @@
 }
 
 .displayerContainer {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.displayerContainer svg {
-	width: auto;
-	height: auto;
+	backface-visibility: hidden;
 }
