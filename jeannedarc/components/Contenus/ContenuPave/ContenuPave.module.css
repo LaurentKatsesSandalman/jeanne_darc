@@ -5,6 +5,10 @@
 	padding: 10px;
 }
 
+footer .containerBloc, footer .containerBlocHome, footer .containerBlocContact{
+	align-items: flex-start;
+}
+
 .label{
 	font-weight: 700;
 }
@@ -25,6 +29,10 @@
 
 .descriptionBloc, .descriptionBlocHome, .descriptionBlocContact{
 	text-align: center;
+}
+
+footer .descriptionBloc, footer .descriptionBlocHome, footer .descriptionBlocContact{
+	text-align:left;
 }
 
 .linkBloc, .linkBlocHome{

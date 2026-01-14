@@ -3,7 +3,7 @@ import {ClerkProvider} from '@clerk/nextjs'
 import { IBM_Plex, ActorFont } from "./fonts";
 import "./globals.css";
 import { HeaderServer } from "@/components/Header/HeaderServer";
-import { Footer } from "@/components/Footer/Footer";
+import { FooterServer } from "@/components/Footer/FooterServer";
 // import styles from "./layout.module.css"
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function RootLayout({
 			<div >
         {children}
 			</div>
-		<Footer/>
+		<FooterServer/>
       </body>
     </html>
 	</ClerkProvider>
