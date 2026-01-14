@@ -1,68 +1,87 @@
-.sectionPavesContainer{
-	width:min(90%, 1290px);
-	margin: 0 auto;
-	padding: 25px 0;
-
+.sectionPavesContainer {
+    width: min(90%, 1290px);
+    margin: 0 auto;
+    padding: 25px 0;
 }
 
-.sectionPavesContainerContact{
-	/* width:min(90%, 1290px); */
-	margin: 0 auto;
-	padding: 25px 0;
-	background-color: var(--background-secondary);
-	color: var(--font-white)
-
+.sectionPavesContainerContact {
+    /* width:min(90%, 1290px); */
+    margin: 0 auto;
+    padding: 25px 0;
+    background-color: var(--background-secondary);
+    color: var(--font-white);
 }
 
-.sectionPavesContainerContact input, .sectionPavesContainerContact textarea{
-	color: var(--font-default);
-	background-color: var(--background-page);
+footer .sectionPavesContainerHome,
+footer .sectionPavesContainerContact,
+footer .sectionPavesContainer {
+    /* width:min(90%, 1290px); */
+    margin: 0 auto;
+    padding: 25px 0;
+    /* background-color: var(--background-secondary); */
+    /* color: var(--font-white) */
 }
 
-.blocsContainer{
-	width: 90%;
-	margin: 0 auto;
-	display: flex;
-	gap: 64px
+footer .sectionPavesContainer :is(input, textarea),
+footer .sectionPavesContainerContact :is(input, textarea),
+footer .sectionPavesContainerHome :is(input, textarea) {
+    color: var(--font-default);
+    background-color: var(--background-page);
 }
 
-.blocSize{
-	width: 100%;
+.sectionPavesContainerContact input,
+.sectionPavesContainerContact textarea {
+    color: var(--font-default);
+    background-color: var(--background-page);
 }
 
-.h2Pave, .h2PaveHome, .h2PaveContact{
-	text-align: center;
-	font-size: 40px;
-	font-weight: 700;
-	font-family: var(--font-ibm-plex);
-	margin-bottom: 64px;
-	margin-top: -50px;
+.blocsContainer {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    gap: 64px;
 }
 
-.h2PaveHome{
-	color: var(--font-orange)
+.blocSize {
+    width: 100%;
+}
+
+.h2Pave,
+.h2PaveHome,
+.h2PaveContact {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    font-family: var(--font-ibm-plex);
+    margin-bottom: 64px;
+    margin-top: -50px;
+}
+
+.h2PaveHome {
+    color: var(--font-orange);
 }
 
 .error {
-	color: var(--font-orange);
-	font-style: italic;
-	font-weight: 700;
-	
+    color: var(--font-orange);
+    font-style: italic;
+    font-weight: 700;
 }
 
-.texteBtnPave, .texteBtnPaveHome, .texteBtnPaveContact{
-display: block;
-margin: 0 auto;
-border-radius: 5px;
-padding: 5px;
+.texteBtnPave,
+.texteBtnPaveHome,
+.texteBtnPaveContact {
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 5px;
 }
 
-.texteBtnPave:hover{
-	color:var(--background-page);
-	background-color: var(--font-default);
+.texteBtnPave:hover {
+    color: var(--background-page);
+    background-color: var(--font-default);
 }
 
-.texteBtnPaveHome:hover{
-	color:var(--background-page);
-	background-color: var(--font-orange);
+.texteBtnPaveHome:hover {
+    color: var(--background-page);
+    background-color: var(--font-orange);
 }

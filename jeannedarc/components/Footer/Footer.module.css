@@ -4,6 +4,20 @@
 	margin-top:50px;
 }
 
+.footerMainContainer{
+	width: 80%;
+ display: flex;
+ justify-content: space-around;
+ margin: 0 auto
+}
+
+.footerCopyright{
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	opacity: 0.5;
+}
+
 /*
 Réponse 1 : Oui, absolument !
 Le sélecteur "footer .containerPave" fonctionne parfaitement même si .containerPave n'est pas un enfant direct.
