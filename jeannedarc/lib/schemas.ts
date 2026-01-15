@@ -387,3 +387,22 @@ export type CreateUpdatePaveBlocResult =
     | { success: false; errors: unknown };
 
 export type ContenuTipTapInterface = JSONContent;
+
+export type AllInterfaces =
+  | PageInterface
+  | SectionInterface
+  | ContenuImageInterface
+  | ContenuTexteInterface
+  | ContenuContactInterface
+  | ContenuPdfInterface
+  | ContenuTitreInterface
+  | ContenuPaveInterface
+  | ContenuBandeauBtnInterface
+  | ContenuSoloBtnInterface
+  | ContenuHeaderBtnInterface
+  | PaveBlocInterface;
+
+export type CreateUpdateResult<T=AllInterfaces>=
+    | { success: true; data: T }
+    | { success: false; error: string }
+    | { success: false; errors: unknown };

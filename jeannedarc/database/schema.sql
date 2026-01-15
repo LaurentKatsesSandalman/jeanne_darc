@@ -163,6 +163,26 @@ CREATE TABLE pave_bloc (
     CONSTRAINT pave_bloc_id_contenu_pave_fk FOREIGN KEY (id_contenu_pave_fk) REFERENCES contenu_pave (id_contenu_pave) ON DELETE CASCADE
 );
 
+CREATE TABLE text_index (
+	id_text_index UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	id_page_fk UUID NOT NULL,
+	ref_table TEXT NOT NULL,
+	ref_id UUID NOT NULL,
+	content_plaintext TEXT NOT NULL DEFAULT '',
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    CONSTRAINT text_index_id_page_fk FOREIGN KEY (id_page_fk) REFERENCES page (id_page) ON DELETE CASCADE,
+	CONSTRAINT text_index_ref_unique UNIQUE (ref_id)
+);
+-- Fonction d'index de la table Index
+-- Permet de faire des recherches du type :
+-- SELECT * 
+-- FROM text_index 
+-- WHERE to_tsvector('french', content_plaintext) @@ plainto_tsquery('french', 'mot_recherché');
+CREATE INDEX idx_text_index_content_plaintext 
+ON text_index USING gin(to_tsvector('french', content_plaintext));
+
+
 -- Fonction pour mettre à jour updated_at
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
@@ -223,4 +243,8 @@ FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 CREATE TRIGGER update_pave_bloc_updated_at
 BEFORE UPDATE ON pave_bloc
+FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_text_index_updated_at
+BEFORE UPDATE ON text_index
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();

@@ -3,14 +3,24 @@ import { z } from "zod";
 import { auth } from "@clerk/nextjs/server";
 
 import { revalidatePath } from "next/cache";
-import { CreatePage, CreatePageSchema, CreateUpdatePageResult, UpdatePage, UpdatePageSchema } from "@/lib/schemas";
+import {
+    CreatePage,
+    CreatePageSchema,
+    CreateUpdatePageResult,
+    UpdatePage,
+    UpdatePageSchema,
+} from "@/lib/schemas";
 import {
     createPage,
     updatePageById,
     deletePageById,
 } from "@/lib/queries/contentCrudPage";
+import { makePlaintext } from "./actions-utils";
+import { createIndex, deleteIndexByRefId } from "../queries/indexCrud";
 
-export async function createPageAction(data: CreatePage, url?: string) :Promise<CreateUpdatePageResult>{
+export async function createPageAction(
+    data: CreatePage,
+): Promise<CreateUpdatePageResult> {
     const { userId } = await auth();
 
     if (!userId) {
@@ -25,10 +35,26 @@ export async function createPageAction(data: CreatePage, url?: string) :Promise<
 
     try {
         const result = await createPage(validation.data);
-		if(!result){return { success: false, error: "Failed to create page" };}
-        if (url) {
-            revalidatePath(url);
+        if (!result) {
+            return { success: false, error: "Failed to create page" };
         }
+
+        const content_plaintext = makePlaintext([result.nom]);
+        if (content_plaintext) {
+            await createIndex(
+                {
+                    ref_id: result.id_page,
+                    ref_table: "page",
+                    content_plaintext,
+                },
+                result.page_url
+            );
+        }
+
+        if (content_plaintext === "") {
+            await deleteIndexByRefId(result.id_page);
+        }
+
         return { success: true, data: result };
     } catch (error) {
         console.error("Error creating page:", error);
@@ -39,8 +65,7 @@ export async function createPageAction(data: CreatePage, url?: string) :Promise<
 export async function updatePageAction(
     id: string,
     data: UpdatePage,
-    url?: string
-) :Promise<CreateUpdatePageResult>{
+): Promise<CreateUpdatePageResult> {
     const { userId } = await auth();
 
     if (!userId) {
@@ -64,9 +89,22 @@ export async function updatePageAction(
             return { success: false, error: "No changes made" };
         }
 
-        if (url) {
-            revalidatePath(url);
+        const content_plaintext = makePlaintext([result.nom]);
+        if (content_plaintext) {
+            await createIndex(
+                {
+                    ref_id: result.id_page,
+                    ref_table: "page",
+                    content_plaintext,
+                },
+                result.page_url
+            );
         }
+
+        if (content_plaintext === "") {
+            await deleteIndexByRefId(result.id_page);
+        }
+
         return { success: true, data: result };
     } catch (error) {
         console.error("Error updating page:", error);
@@ -87,6 +125,7 @@ export async function deletePageAction(id: string, url?: string) {
 
     try {
         await deletePageById(id);
+		await deleteIndexByRefId(id);
         if (url) {
             revalidatePath(url);
         }
