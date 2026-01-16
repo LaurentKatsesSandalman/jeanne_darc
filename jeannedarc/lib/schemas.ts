@@ -311,6 +311,14 @@ export const SearchIndexSchema = z.object ({
 	page_url:z.string().min(1)
 })
 
+export const SearchIndexProcessedSchema = z.object ({
+	id_page_fk:z.uuid(),
+	contenu_combine:z.string(),
+	extrait: z.string(),
+	page_nom:z.string(),
+	page_url:z.string().min(1)
+})
+
 
 // ===== TYPES INFÉRÉS =====
 
@@ -433,9 +441,10 @@ export type CreateUpdatePaveBlocResult =
 export type IndexInterface = z.infer<typeof IndexSchema>;
 export type CreateIndex = z.infer<typeof CreateIndexSchema>;
 export type UpdateIndex = z.infer<typeof UpdateIndexSchema>;
-export type SearchIndexData = z.infer<typeof SearchIndexSchema>; 
+export type SearchIndexData = z.infer<typeof SearchIndexSchema>;
+export type SearchIndexProcessedData = z.infer<typeof SearchIndexProcessedSchema>; 
 export type SearchIndexResult =
-    | { success: true; data:SearchIndexData[]}
+    | { success: true; data:SearchIndexProcessedData[]}
     | { success: false; error: string }
     
 export type GetIndex = string;
