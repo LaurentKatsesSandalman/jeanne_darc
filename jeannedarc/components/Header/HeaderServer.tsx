@@ -11,6 +11,7 @@ import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
 import { ContenuHeaderBtnInterface } from "@/lib/schemas";
 import { getAllContenuHeaderBtnsBySectionId } from "@/lib/queries/contentCrudContenu";
+import { RechercheClient } from "../Recherche/RechercheClient";
 
  export type SectionWithBtn= ContenuHeaderBtnInterface[]
 
@@ -45,7 +46,8 @@ export async function HeaderServer() {
                 />
             </Link>
             <HeaderClient isAuth={isAuth} sections={sectionsWithBtn}/>
-            <p>(+33)5 56 08 52 16</p></div>
+            <p>(+33)5 56 08 52 16</p>
+			<RechercheClient /></div>
             {isAuth && (<>
                 <LogoutButton/>
 				<Link href="/gestion-pages" className={styles.auth}>Gestion des pages</Link>
