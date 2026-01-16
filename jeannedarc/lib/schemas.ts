@@ -7,23 +7,23 @@ export const UUIDSchema = z.uuid();
 export type UUIDFormat = z.infer<typeof UUIDSchema>;
 
 // ===== UTILISATEUR =====
-export const UtilisateurSchema = z.object({
-    id_utilisateur: z.uuid(),
-    email: z.email(),
-    name: z.string().min(1),
-    password: z.string().min(8),
-    is_admin: z.boolean().default(false),
-    created_at: z.date(),
-    updated_at: z.date(),
-});
+// export const UtilisateurSchema = z.object({
+//     id_utilisateur: z.uuid(),
+//     email: z.email(),
+//     name: z.string().min(1),
+//     password: z.string().min(8),
+//     is_admin: z.boolean().default(false),
+//     created_at: z.date(),
+//     updated_at: z.date(),
+// });
 
-export const CreateUtilisateurSchema = UtilisateurSchema.omit({
-    id_utilisateur: true,
-    created_at: true,
-    updated_at: true,
-});
+// export const CreateUtilisateurSchema = UtilisateurSchema.omit({
+//     id_utilisateur: true,
+//     created_at: true,
+//     updated_at: true,
+// });
 
-export const UpdateUtilisateurSchema = CreateUtilisateurSchema.partial();
+// export const UpdateUtilisateurSchema = CreateUtilisateurSchema.partial();
 
 // ===== PAGE =====
 export const PageSchema = z.object({
@@ -269,14 +269,58 @@ export const CreatePaveBlocSchema = PaveBlocSchema.omit({
 
 export const UpdatePaveBlocSchema = CreatePaveBlocSchema.partial();
 
+// ===== INDEX =====
+
+const tableNames= [ "page"
+    , "section"
+    , "contenu_image"
+    , "contenu_texte"
+    , "contenu_contact"
+    , "contenu_pdf"
+    , "contenu_titre"
+    , "contenu_pave"
+    , "contenu_bandeaubtn"
+    , "contenu_solobtn"
+    , "contenu_headerbtn"
+    , "pave_bloc"]
+
+export const IndexSchema = z.object({
+    id_text_index: z.uuid(),
+    id_page_fk: z.uuid(),
+    ref_table: z.literal(tableNames),
+    ref_id: z.uuid(),
+    content_plaintext: z.string(),
+
+    created_at: z.date(),
+    updated_at: z.date(),
+});
+
+export const CreateIndexSchema = IndexSchema.omit({
+    id_text_index: true,
+	id_page_fk:true,
+    created_at: true,
+    updated_at: true,
+});
+
+export const UpdateIndexSchema = CreateIndexSchema.partial();
+
+export const SearchIndexSchema = z.object ({
+	id_page_fk:z.uuid(),
+	contenu_combine:z.string(),
+	page_nom:z.string(),
+	page_url:z.string().min(1)
+})
+
+
 // ===== TYPES INFÉRÉS =====
-export type UtilisateurInterface = z.infer<typeof UtilisateurSchema>;
-export type CreateUtilisateur = z.infer<typeof CreateUtilisateurSchema>;
-export type UpdateUtilisateur = z.infer<typeof UpdateUtilisateurSchema>;
-export type CreateUpdateUtilisateurResult =
-    | { success: true; data: UtilisateurInterface }
-    | { success: false; error: string }
-    | { success: false; errors: unknown };
+
+// export type UtilisateurInterface = z.infer<typeof UtilisateurSchema>;
+// export type CreateUtilisateur = z.infer<typeof CreateUtilisateurSchema>;
+// export type UpdateUtilisateur = z.infer<typeof UpdateUtilisateurSchema>;
+// export type CreateUpdateUtilisateurResult =
+//     | { success: true; data: UtilisateurInterface }
+//     | { success: false; error: string }
+//     | { success: false; errors: unknown };
 
 export type PageInterface = z.infer<typeof PageSchema>;
 export type CreatePage = z.infer<typeof CreatePageSchema>;
@@ -385,6 +429,16 @@ export type CreateUpdatePaveBlocResult =
     | { success: true; data: PaveBlocInterface }
     | { success: false; error: string }
     | { success: false; errors: unknown };
+
+export type IndexInterface = z.infer<typeof IndexSchema>;
+export type CreateIndex = z.infer<typeof CreateIndexSchema>;
+export type UpdateIndex = z.infer<typeof UpdateIndexSchema>;
+export type SearchIndexData = z.infer<typeof SearchIndexSchema>; 
+export type SearchIndexResult =
+    | { success: true; data:SearchIndexData[]}
+    | { success: false; error: string }
+    
+export type GetIndex = string;
 
 export type ContenuTipTapInterface = JSONContent;
 
