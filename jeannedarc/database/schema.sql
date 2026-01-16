@@ -4,15 +4,15 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 -- Table utilisateur
-CREATE TABLE utilisateur (
-    id_utilisateur UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    email TEXT NOT NULL UNIQUE,
-    name TEXT NOT NULL,
-    password TEXT NOT NULL,
-    is_admin BOOLEAN NOT NULL DEFAULT FALSE,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+-- CREATE TABLE utilisateur (
+--     id_utilisateur UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+--     email TEXT NOT NULL UNIQUE,
+--     name TEXT NOT NULL,
+--     password TEXT NOT NULL,
+--     is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+--     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+--     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+-- );
 
 -- Table page
 CREATE TABLE page (

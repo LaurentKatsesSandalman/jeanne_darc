@@ -39,3 +39,24 @@ function tiptapJsonToPlainText(node: ContenuTipTapInterface): string {
 	recurse(node)
 	return plainText
 }
+
+export function textExtractor(fullText:string, search:string,maxBefore:number,maxAfter:number):string{
+	//comme textExtractor n'est appelé que par searchIndexAction, il n'y a pas pour l'instant de vérification des types des paramètres fulltext et search
+	const searchArray = search.split(" ").sort((a,b)=>b.length - a.length)
+	const checkedMaxBefore = (typeof maxBefore === "number" && maxBefore>0)?maxBefore:120;
+	const checkedMaxAfter = (typeof maxAfter === "number" && maxAfter>0)?maxAfter:120;
+	let searchIndex = 0
+
+	for(const word of searchArray){
+		const index = fullText.toLowerCase().indexOf(word.toLowerCase())
+		if(index !== -1){searchIndex = index; break;}
+	}
+
+	const beforeIndex = (searchIndex-checkedMaxBefore)<0?0:searchIndex-checkedMaxBefore
+ const afterIndex = searchIndex+checkedMaxAfter
+
+
+	const prefix = beforeIndex > 0 ? '...' : '';
+const suffix = afterIndex < fullText.length ? '...' : '';
+return prefix + fullText.slice(beforeIndex, afterIndex) + suffix;
+}
