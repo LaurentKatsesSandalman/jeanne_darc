@@ -1,15 +1,32 @@
 "use server";
 import { z } from "zod";
+import { auth } from "@clerk/nextjs/server";
 
 import { revalidatePath } from "next/cache";
-import { CreatePageSchema, UpdatePageSchema } from "@/lib/schemas";
+import {
+    CreatePage,
+    CreatePageSchema,
+    CreateUpdatePageResult,
+    UpdatePage,
+    UpdatePageSchema,
+} from "@/lib/schemas";
 import {
     createPage,
     updatePageById,
     deletePageById,
 } from "@/lib/queries/contentCrudPage";
+import { makePlaintext } from "./actions-utils";
+import { createIndex, deleteIndexByRefId } from "../queries/indexCrud";
 
-export async function createPageAction(data: unknown, url?: string) {
+export async function createPageAction(
+    data: CreatePage,
+): Promise<CreateUpdatePageResult> {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     const validation = CreatePageSchema.safeParse(data);
 
     if (!validation.success) {
@@ -18,9 +35,26 @@ export async function createPageAction(data: unknown, url?: string) {
 
     try {
         const result = await createPage(validation.data);
-        if (url) {
-            revalidatePath(url);
+        if (!result) {
+            return { success: false, error: "Failed to create page" };
         }
+
+        const content_plaintext = makePlaintext([result.nom]);
+        if (content_plaintext) {
+            await createIndex(
+                {
+                    ref_id: result.id_page,
+                    ref_table: "page",
+                    content_plaintext,
+                },
+                result.page_url
+            );
+        }
+
+        if (content_plaintext === "") {
+            await deleteIndexByRefId(result.id_page);
+        }
+
         return { success: true, data: result };
     } catch (error) {
         console.error("Error creating page:", error);
@@ -30,9 +64,14 @@ export async function createPageAction(data: unknown, url?: string) {
 
 export async function updatePageAction(
     id: string,
-    data: unknown,
-    url?: string
-) {
+    data: UpdatePage,
+): Promise<CreateUpdatePageResult> {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid page ID" };
     }
@@ -50,9 +89,22 @@ export async function updatePageAction(
             return { success: false, error: "No changes made" };
         }
 
-        if (url) {
-            revalidatePath(url);
+        const content_plaintext = makePlaintext([result.nom]);
+        if (content_plaintext) {
+            await createIndex(
+                {
+                    ref_id: result.id_page,
+                    ref_table: "page",
+                    content_plaintext,
+                },
+                result.page_url
+            );
         }
+
+        if (content_plaintext === "") {
+            await deleteIndexByRefId(result.id_page);
+        }
+
         return { success: true, data: result };
     } catch (error) {
         console.error("Error updating page:", error);
@@ -61,12 +113,19 @@ export async function updatePageAction(
 }
 
 export async function deletePageAction(id: string, url?: string) {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!id) {
         return { success: false, error: "Invalid page ID" };
     }
 
     try {
         await deletePageById(id);
+		await deleteIndexByRefId(id);
         if (url) {
             revalidatePath(url);
         }

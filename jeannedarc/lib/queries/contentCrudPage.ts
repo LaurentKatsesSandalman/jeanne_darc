@@ -8,20 +8,20 @@ export async function createPage(
     payload: CreatePage
 ): Promise<PageInterface | undefined> {
 	
-
-    const cols = ["page_url"];
-    const vals = [payload.page_url];
-
+const data: Record<string, string> = {
+        page_url: payload.page_url
+    };
+    
     if (payload.nom) {
-        cols.push("nom");
-        vals.push(payload.nom);
+        data.nom = payload.nom;
     }
+
     //sql(), parce que l'occurence s'appelle sql: transforme automatiquement un tableau en liste de colonnes séparées par virgules
     // voir insert dynamic dans https://www.npmjs.com/package/postgres
     const rows = await sql<PageInterface[]>`
-	INSERT INTO page (${sql(cols)}) VALUES (${sql(vals)}) 
-    RETURNING *
-  `;
+        INSERT INTO page ${sql(data)}
+        RETURNING *
+    `;
     return rows[0];
 }
 

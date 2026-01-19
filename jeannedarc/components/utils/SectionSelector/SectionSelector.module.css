@@ -1,0 +1,55 @@
+.container {
+    width: min(90%, 1290px);
+    margin: 0 auto;
+	padding-bottom: 25px;
+}
+
+/* .center {
+	margin: 0 auto;
+	display: block;
+} */
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	width: 75%;
+	gap: 15px;
+	margin: 0 auto;
+	
+}
+
+.grid button {
+	background-color: var(--background-layout);
+	line-height: 1;
+	color: var(--font-white);
+	border-radius: 15px;
+	width: 75%;
+	margin: 0 auto;
+	padding: 1rem 0;
+}
+
+.grid .orange {
+	background-color: var(--background-orange);
+}
+
+.grid .dark {
+	background-color: var(--background-secondary);
+}
+
+.error {
+	color: var(--font-orange);
+	font-style: italic;
+	font-weight: 700;
+}
+
+.centerTexte{
+	display: block;
+margin: 0 auto;
+border-radius: 5px;
+padding: 5px;
+}
+
+.centerTexte:hover{
+		color:var(--background-page);
+	background-color: var(--font-default);
+}

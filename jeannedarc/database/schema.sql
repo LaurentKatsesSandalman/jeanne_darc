@@ -4,15 +4,15 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 -- Table utilisateur
-CREATE TABLE utilisateur (
-    id_utilisateur UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    email TEXT NOT NULL UNIQUE,
-    name TEXT NOT NULL,
-    password TEXT NOT NULL,
-    is_admin BOOLEAN NOT NULL DEFAULT FALSE,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+-- CREATE TABLE utilisateur (
+--     id_utilisateur UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+--     email TEXT NOT NULL UNIQUE,
+--     name TEXT NOT NULL,
+--     password TEXT NOT NULL,
+--     is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+--     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+--     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+-- );
 
 -- Table page
 CREATE TABLE page (
@@ -76,6 +76,7 @@ CREATE TABLE contenu_pdf (
     id_contenu_pdf UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     id_section_fk UUID NOT NULL,
     pdf_url TEXT NOT NULL DEFAULT '',
+	pdf_titre TEXT NOT NULL DEFAULT '',
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     CONSTRAINT contenu_pdf_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE
@@ -108,7 +109,7 @@ CREATE TABLE contenu_pave (
 CREATE TABLE contenu_bandeaubtn (
     id_contenu_bandeaubtn UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     id_section_fk UUID NOT NULL,
-    icone_url TEXT NOT NULL DEFAULT '',
+    icone TEXT NOT NULL DEFAULT '',
     titre TEXT NOT NULL DEFAULT '',
     description TEXT NOT NULL DEFAULT '',
     bouton TEXT NOT NULL DEFAULT '',
@@ -118,31 +119,69 @@ CREATE TABLE contenu_bandeaubtn (
     CONSTRAINT contenu_bandeaubtn_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE
 );
 
+CREATE TABLE contenu_solobtn (
+    id_contenu_solobtn UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id_section_fk UUID NOT NULL,
+    bouton TEXT NOT NULL DEFAULT '',
+    lien_vers TEXT NOT NULL DEFAULT '',
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    CONSTRAINT contenu_solobtn_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE
+);
+
 -- Table contenu_headerbtn
 CREATE TABLE contenu_headerbtn (
     id_contenu_headerbtn UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     id_section_fk UUID NOT NULL,
+	id_page_fk UUID NOT NULL,
     position SMALLINT NOT NULL,
     bouton TEXT NOT NULL DEFAULT '',
     lien_vers TEXT NOT NULL DEFAULT '',
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    CONSTRAINT contenu_headerbtn_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE
+    CONSTRAINT contenu_headerbtn_id_section_fk FOREIGN KEY (id_section_fk) REFERENCES section (id_section) ON DELETE CASCADE,
+	CONSTRAINT contenu_headerbtn_id_page_fk FOREIGN KEY (id_page_fk) REFERENCES page (id_page) ON DELETE CASCADE
 );
 
 -- Table pave_bloc
 CREATE TABLE pave_bloc (
     id_pave_bloc UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     id_contenu_pave_fk UUID NOT NULL,
-    position SMALLINT NOT NULL,
-    icone_url TEXT NOT NULL DEFAULT '',
+    
+    icone TEXT NOT NULL DEFAULT '',
     soustitre TEXT NOT NULL DEFAULT '',
-    description TEXT NOT NULL DEFAULT '',
+    description1 TEXT NOT NULL DEFAULT '',
+	description2 TEXT NOT NULL DEFAULT '',
+	description3 TEXT NOT NULL DEFAULT '',
+	description4 TEXT NOT NULL DEFAULT '',
+	description5 TEXT NOT NULL DEFAULT '',
+	description6 TEXT NOT NULL DEFAULT '',
+	description7 TEXT NOT NULL DEFAULT '',
     lien_vers TEXT NOT NULL DEFAULT '',
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     CONSTRAINT pave_bloc_id_contenu_pave_fk FOREIGN KEY (id_contenu_pave_fk) REFERENCES contenu_pave (id_contenu_pave) ON DELETE CASCADE
 );
+
+CREATE TABLE text_index (
+	id_text_index UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	id_page_fk UUID NOT NULL,
+	ref_table TEXT NOT NULL,
+	ref_id UUID NOT NULL,
+	content_plaintext TEXT NOT NULL DEFAULT '',
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    CONSTRAINT text_index_id_page_fk FOREIGN KEY (id_page_fk) REFERENCES page (id_page) ON DELETE CASCADE,
+	CONSTRAINT text_index_ref_unique UNIQUE (ref_id)
+);
+-- Fonction d'index de la table Index
+-- Permet de faire des recherches du type :
+-- SELECT * 
+-- FROM text_index 
+-- WHERE to_tsvector('french', content_plaintext) @@ plainto_tsquery('french', 'mot_recherché');
+CREATE INDEX idx_text_index_content_plaintext 
+ON text_index USING gin(to_tsvector('french', content_plaintext));
+
 
 -- Fonction pour mettre à jour updated_at
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -194,10 +233,18 @@ CREATE TRIGGER update_contenu_bandeaubtn_updated_at
 BEFORE UPDATE ON contenu_bandeaubtn
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
+CREATE TRIGGER update_contenu_solobtn_updated_at
+BEFORE UPDATE ON contenu_solobtn
+FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
 CREATE TRIGGER update_contenu_headerbtn_updated_at
 BEFORE UPDATE ON contenu_headerbtn
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 CREATE TRIGGER update_pave_bloc_updated_at
 BEFORE UPDATE ON pave_bloc
+FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_text_index_updated_at
+BEFORE UPDATE ON text_index
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();

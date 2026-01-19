@@ -1,0 +1,5 @@
+.sectionImageContainer {
+    width: min(90%, 1290px);
+    margin: 0 auto;
+    padding: 25px 0;
+}

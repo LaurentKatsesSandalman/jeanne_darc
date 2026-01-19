@@ -12,6 +12,7 @@
     "setup:db": "pnpm run migrate:db && pnpm run seed:db"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.36.3",
     "@floating-ui/react": "^0.27.16",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-popover": "^1.1.15",
@@ -36,10 +37,10 @@
     "@tiptap/starter-kit": "^3.12.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.3",
-    "formidable": "^3.5.4",
     "lodash.throttle": "^4.1.1",
     "lucide-react": "^0.555.0",
     "next": "16.0.10",
+    "next-auth": "^4.24.13",
     "postgres": "^3.4.7",
     "react": "19.2.3",
     "react-dom": "19.2.3",

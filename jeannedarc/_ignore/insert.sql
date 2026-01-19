@@ -17,18 +17,18 @@ VALUES
     NOW()
 );
 
-INSERT INTO contenu_texte (id_contenu_texte, id_section_fk, tiptap_content, created_at, updated_at)
+INSERT INTO contenu_texte ( id_section_fk, tiptap_content, created_at, updated_at)
 VALUES
 (
-    '019b279a-235e-7813-b2f2-e988ebb636d6',
-    '019b275a-6ae0-70c2-b0e4-7660e1492690',
+    
+    '07497704-b9d1-409b-a898-7334ecd85a92',
     '{"type": "doc", "content": [{"type": "paragraph", "content": [{"text": "(vide)", "type": "text"}]}]}',
     NOW(),
     NOW()
 ),
 (
-    '019b279a-235e-703e-bd2f-34840f3d2c19',
-    '019b275a-6ae0-7862-9287-0656e78252a7',
+    
+    '07497704-b9d1-409b-a898-7334ecd85a92',
     '{"type": "doc", "content": [{"type": "paragraph", "content": [{"text": "(vide)", "type": "text"}]}]}',
     NOW(),
     NOW()

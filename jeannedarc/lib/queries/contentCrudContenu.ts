@@ -26,6 +26,12 @@ import {
     UpdateContenuBandeauBtn,
     UpdateContenuHeaderBtn,
 	UpdateContenuTexte,
+	ContenuSoloBtnInterface,
+	UpdateContenuSoloBtn,
+	CreateContenuSoloBtn,
+	CreatePaveBloc,
+	PaveBlocInterface,
+	UpdatePaveBloc,
 } from "../schemas";
 //import { v7 as uuidv7 } from 'uuid';
 
@@ -421,6 +427,72 @@ export async function deleteContenuPaveById(id: string) {
 	`;
 }
 
+// pave_bloc
+export async function createPaveBloc(
+    payload: CreatePaveBloc
+): Promise<PaveBlocInterface | undefined> {
+    const data = Object.fromEntries(
+        Object.entries(payload).filter(
+            ([, value]) => value !== undefined && value !== null
+        )
+    );
+
+	
+
+    const rows = await sql<PaveBlocInterface[]>`
+	INSERT INTO pave_bloc ${sql(data)} 
+    RETURNING *
+  `;
+    return rows[0];
+}
+
+export async function getPaveBlocById(
+    id: string
+): Promise<PaveBlocInterface | undefined> {
+    const rows = await sql<PaveBlocInterface[]>`
+	SELECT * FROM pave_bloc WHERE id_pave_bloc = ${id};
+	`;
+    return rows[0];
+}
+
+export async function getAllPaveBlocsByContentId(
+    id_contenu_pave: string
+): Promise<PaveBlocInterface[] | undefined> {
+    const rows = await sql<PaveBlocInterface[]>`
+	SELECT * FROM pave_bloc WHERE id_contenu_pave_fk = ${id_contenu_pave}
+	ORDER BY created_at ASC;
+	`;
+    return rows;
+}
+
+export async function updatePaveBlocById(
+    payload: UpdatePaveBloc,
+    id: string
+): Promise<PaveBlocInterface | undefined> {
+    const updates = Object.fromEntries(
+        Object.entries(payload).filter(
+            ([, value]) => value !== undefined && value !== null
+        )
+    );
+
+    if (Object.keys(updates).length === 0) return undefined;
+
+    const rows = await sql<PaveBlocInterface[]>`
+    UPDATE pave_bloc 
+    SET ${sql(updates)} 
+    WHERE id_pave_bloc = ${id}
+    RETURNING *
+  `;
+
+    return rows[0];
+}
+
+export async function deletePaveBlocById(id: string) {
+    await sql`
+	DELETE FROM pave_bloc WHERE id_pave_bloc = ${id};
+	`;
+}
+
 // contenu_bandeaubtn
 export async function createContenuBandeauBtn(
     payload: CreateContenuBandeauBtn
@@ -487,6 +559,72 @@ export async function deleteContenuBandeauBtnById(id: string) {
 	`;
 }
 
+// contenu_solobtn
+export async function createContenuSoloBtn(
+    payload: CreateContenuSoloBtn
+): Promise<ContenuSoloBtnInterface | undefined> {
+    const data = Object.fromEntries(
+        Object.entries(payload).filter(
+            ([, value]) => value !== undefined && value !== null
+        )
+    );
+
+
+
+    const rows = await sql<ContenuSoloBtnInterface[]>`
+	INSERT INTO contenu_solobtn ${sql(data)} 
+    RETURNING *
+  `;
+    return rows[0];
+}
+
+export async function getContenuSoloBtnById(
+    id: string
+): Promise<ContenuSoloBtnInterface | undefined> {
+    const rows = await sql<ContenuSoloBtnInterface[]>`
+	SELECT * FROM contenu_solobtn WHERE id_contenu_solobtn = ${id};
+	`;
+    return rows[0];
+}
+
+export async function getAllContenuSoloBtnsBySectionId(
+    id_section: string
+): Promise<ContenuSoloBtnInterface[] | undefined> {
+    const rows = await sql<ContenuSoloBtnInterface[]>`
+	SELECT * FROM contenu_solobtn WHERE id_section_fk = ${id_section}
+	ORDER BY created_at ASC;
+	`;
+    return rows;
+}
+
+export async function updateContenuSoloBtnById(
+    payload: UpdateContenuSoloBtn,
+    id: string
+): Promise<ContenuSoloBtnInterface | undefined> {
+    const updates = Object.fromEntries(
+        Object.entries(payload).filter(
+            ([, value]) => value !== undefined && value !== null
+        )
+    );
+
+    if (Object.keys(updates).length === 0) return undefined;
+
+    const rows = await sql<ContenuSoloBtnInterface[]>`
+    UPDATE contenu_solobtn 
+    SET ${sql(updates)} 
+    WHERE id_contenu_solobtn = ${id}
+    RETURNING *
+  `;
+
+    return rows[0];
+}
+
+export async function deleteContenuSoloBtnById(id: string) {
+    await sql`
+	DELETE FROM contenu_solobtn WHERE id_contenu_solobtn = ${id};
+	`;
+}
+
 // contenu_headerbtn
 export async function createContenuHeaderBtn(
     payload: CreateContenuHeaderBtn
@@ -520,7 +658,7 @@ export async function getAllContenuHeaderBtnsBySectionId(
 ): Promise<ContenuHeaderBtnInterface[] | undefined> {
     const rows = await sql<ContenuHeaderBtnInterface[]>`
 	SELECT * FROM contenu_headerbtn WHERE id_section_fk = ${id_section}
-	ORDER BY created_at ASC;
+	ORDER BY position ASC;
 	`;
     return rows;
 }

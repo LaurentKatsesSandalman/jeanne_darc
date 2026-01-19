@@ -2,7 +2,7 @@
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuTitresBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionTitreClient } from "./SectionTitreClient";
-import styles from "./SectionTitre.module.css";
+//import styles from "./SectionTitre.module.css";
 
 interface SectionTitreProps {
     section: SectionInterface;
@@ -20,8 +20,8 @@ export async function SectionTitreServer({
     const contenu = rows[0];
 
     return (
-        <div className={styles.sectionTitreContainer}>
-            <SectionTitreClient contenu={contenu} isAuth={isAuth} />
-        </div>
+        <>
+            <SectionTitreClient contenu={contenu} isAuth={isAuth} section={section}/>
+        </>
     );
 }
