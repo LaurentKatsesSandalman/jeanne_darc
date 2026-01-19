@@ -1,4 +1,5 @@
 "use server";
+
 import { z } from "zod";
 import { auth } from "@clerk/nextjs/server";
 
@@ -47,7 +48,7 @@ export async function createPageAction(
                     ref_table: "page",
                     content_plaintext,
                 },
-                result.page_url
+                result.page_url,
             );
         }
 
@@ -97,7 +98,7 @@ export async function updatePageAction(
                     ref_table: "page",
                     content_plaintext,
                 },
-                result.page_url
+                result.page_url,
             );
         }
 
@@ -125,7 +126,7 @@ export async function deletePageAction(id: string, url?: string) {
 
     try {
         await deletePageById(id);
-		await deleteIndexByRefId(id);
+        await deleteIndexByRefId(id);
         if (url) {
             revalidatePath(url);
         }

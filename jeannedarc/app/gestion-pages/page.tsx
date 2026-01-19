@@ -1,4 +1,4 @@
-"use server";
+
 import styles from "./page.module.css";
 import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
@@ -6,14 +6,27 @@ import { getAllContenuHeaderBtnsBySectionId } from "@/lib/queries/contentCrudCon
 import { SectionWithBtn } from "@/components/Header/HeaderServer";
 import { SupprPagesSection } from "@/components/GestionPages/SupprPages/SupprPagesSection";
 import { AjoutPageSection } from "@/components/GestionPages/AjoutPage/AjoutPageSection";
+import { PageInterface, SectionInterface } from "@/lib/schemas";
 //import { ContenuHeaderBtnInterface } from "@/lib/schemas";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Page() {
-    const page = await getPageByUrl("header");
+let page:PageInterface|undefined;
+let sections:SectionInterface[]|undefined;
+
+try{page = await getPageByUrl("header");
+	if(page){sections = await getAllSectionsByPageId(page.id_page);}
+} catch (err) {
+    console.warn(`Erreur de connexion BDD :`, err);
+    // page reste undefined → fallback affiché
+  }
+    
     if (!page) {
         return <p>Erreur au chargement de la page</p>;
     }
-    const sections = await getAllSectionsByPageId(page?.id_page);
+    
     if (!sections) {
         return <p>Erreur au chargement des sections de la page</p>;
     }
