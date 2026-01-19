@@ -1,10 +1,12 @@
 "use client";
-import { CloseCancelIcon, SaveIcon } from "@/components/Icons/Icons";
+
 import { ContenuTitreInterface, UpdateContenuTitre } from "@/lib/schemas";
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./ContenuTitre.module.css";
+
 import { updateContenuTitreAction } from "@/lib/actions/actionsContenu";
+import { CancelSaveButtons } from "@/components/Buttons/CancelSaveButtons/CancelSaveButtons";
 
 interface ContenuTitreEditProps {
     contenu: ContenuTitreInterface;
@@ -17,6 +19,7 @@ export function ContenuTitreEdit({
     /*isAuth,*/ setEditTitre,
 }: ContenuTitreEditProps) {
     const [currentContent, setCurrentContent] = useState(contenu);
+    const [error, setError] = useState("");
     const url = usePathname();
 
     const handleChange = (
@@ -29,7 +32,11 @@ export function ContenuTitreEdit({
     };
 
     async function handleSave() {
-        const payload: UpdateContenuTitre = {};
+        if (currentContent.titre1.length < 1) {
+            setError("Le Titre1 ne peut pas être vide");
+            return;
+        }
+        const payload: UpdateContenuTitre = { is_mega: currentContent.is_mega };
         if (contenu.titre1 !== currentContent.titre1) {
             payload.titre1 = currentContent.titre1;
         }
@@ -55,8 +62,17 @@ export function ContenuTitreEdit({
         // }
 
         if (!result.success) {
-			setEditTitre(false);
-            throw new Error("error" in result ? result.error : "Validation error");
+            console.error("Échec de la requête:", result);
+            if ("errors" in result) {
+                setError(
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                );
+            } else if ("error" in result) {
+                setError(
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                );
+            }
+            return;
         }
 
         const updatedContenu = result.data;
@@ -69,7 +85,7 @@ export function ContenuTitreEdit({
     return (
         <>
             <label htmlFor="titre1" className={styles.label}>
-                Titre1 (petit)
+                {currentContent.is_mega ? "Titre1 (grand)" : "Titre1 (petit)"}
             </label>
             <input
                 type="text"
@@ -80,7 +96,9 @@ export function ContenuTitreEdit({
                 className={styles.h1Edit}
             />
             <label htmlFor="titre2" className={styles.label}>
-                Titre2 (plus grand, optionnel)
+                {currentContent.is_mega
+                    ? "Habituellement vide en mode Grand Titre"
+                    : "Titre2 (plus grand, optionnel)"}
             </label>
             <input
                 type="text"
@@ -101,15 +119,24 @@ export function ContenuTitreEdit({
                 onChange={handleChange}
                 className={styles.description}
             />
-            {/* il faudra faire de tous ces boutons un composant */}
-            <div>
-                <button type="button" onClick={() => setEditTitre(false)}>
-                    <CloseCancelIcon />
-                </button>
-                <button type="button" onClick={handleSave}>
-                    <SaveIcon />
-                </button>
-            </div>
+            <input
+                type="checkbox"
+                id="is_mega"
+                name="is_mega"
+                checked={currentContent.is_mega}
+                onChange={(e) =>
+                    setCurrentContent((prev) => ({
+                        ...prev,
+                        is_mega: e.target.checked,
+                    }))
+                }
+                className={styles.is_mega}
+            />
+            <label htmlFor="is_mega" className={styles.label}>
+                Grand titre
+            </label>
+
+            <CancelSaveButtons setEdit={setEditTitre} handleSave={handleSave} error={error} additionalClassName={""}/>
         </>
     );
 }

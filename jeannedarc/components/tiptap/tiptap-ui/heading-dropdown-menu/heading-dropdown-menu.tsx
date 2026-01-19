@@ -111,6 +111,28 @@ export const HeadingDropdownMenu = forwardRef<
                         <CardBody>
                             <ButtonGroup>
                                 <DropdownMenuItem asChild>
+                                    <Button
+                                        type="button"
+                                        data-style="ghost"
+                                        data-active-state={
+                                            editor?.isActive("paragraph")
+                                                ? "on"
+                                                : "off"
+                                        }
+                                        onClick={() => {
+                                            editor
+                                                ?.chain()
+                                                .focus()
+                                                .setParagraph()
+                                                .run();
+                                            setIsOpen(false);
+                                        }}
+                                    >
+                                        Paragraphe
+                                    </Button>
+                                </DropdownMenuItem>
+
+                                <DropdownMenuItem asChild>
                                     <HeadingButton
                                         editor={editor}
                                         level={1}

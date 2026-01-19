@@ -1,6 +1,6 @@
 "use client";
-
-import { SetStateAction, useRef, Dispatch } from "react";
+import iconStyles from "@/components/Icons/Icons.module.css";
+import { SetStateAction, useRef, Dispatch, useState } from "react";
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react";
 
 // --- Tiptap Core Extensions ---
@@ -26,7 +26,6 @@ import {
 
 // --- Tiptap Node ---
 import { HorizontalRule } from "@/components/tiptap/tiptap-node/horizontal-rule-node/horizontal-rule-node-extension";
-
 import "@/components/tiptap/tiptap-node/horizontal-rule-node/horizontal-rule-node.scss";
 import "@/components/tiptap/tiptap-node/list-node/list-node.scss";
 import "@/components/tiptap/tiptap-node/heading-node/heading-node.scss";
@@ -50,6 +49,7 @@ import { ContenuTexteInterface } from "@/lib/schemas";
 import { usePathname } from "next/navigation";
 import { updateContenuTexteAction } from "@/lib/actions/actionsContenu";
 import { CloseCancelIcon, SaveIcon } from "@/components/Icons/Icons";
+import { CancelSaveButtons } from "@/components/Buttons/CancelSaveButtons/CancelSaveButtons";
 
 const MainToolbarContent = () => {
     return (
@@ -97,20 +97,22 @@ const MainToolbarContent = () => {
             </ToolbarGroup>
 
             <Spacer />
-
-
         </>
     );
 };
 
 interface ContenuTexteEditProps {
     contenu: ContenuTexteInterface;
-	setEditTexte: Dispatch<SetStateAction<boolean>>
+    setEditTexte: Dispatch<SetStateAction<boolean>>;
 }
 
-export function ContenuTexteEdit({ contenu, setEditTexte }: ContenuTexteEditProps) {
+export function ContenuTexteEdit({
+    contenu,
+    setEditTexte,
+}: ContenuTexteEditProps) {
     const toolbarRef = useRef<HTMLDivElement>(null);
     const url = usePathname();
+    const [error, setError] = useState("");
 
     const editor = useEditor({
         immediatelyRender: false,
@@ -164,14 +166,27 @@ export function ContenuTexteEdit({ contenu, setEditTexte }: ContenuTexteEditProp
 
         // Stringify pour bypasser la sérialisation Next.js
         const jsonString = JSON.stringify(json);
-        const result = await updateContenuTexteAction(contenu.id_contenu_texte, {tiptap_content:jsonString},  url);
+        const result = await updateContenuTexteAction(
+            contenu.id_contenu_texte,
+            { tiptap_content: jsonString },
+            url
+        );
 
-		if (!result.success) {
-			setEditTexte(false);
-            throw new Error("error" in result ? result.error : "Validation error");
+        if (!result.success) {
+            console.error("Échec de la requête:", result);
+            if ("errors" in result) {
+                setError(
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                );
+            } else if ("error" in result) {
+                setError(
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                );
+            }
+            return;
         }
 
-		setEditTexte(false);
+        setEditTexte(false);
     }
 
     return (
@@ -189,18 +204,7 @@ export function ContenuTexteEdit({ contenu, setEditTexte }: ContenuTexteEditProp
                     />
                 </EditorContext.Provider>
             </div>
-            <button
-                onClick={handleSave}
-                className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-lg hover:bg-blue-700"
-            >
-                <SaveIcon/>
-            </button>
-			<button
-                onClick={()=>setEditTexte(false)}
-                className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-lg hover:bg-blue-700"
-            >
-                <CloseCancelIcon/>
-            </button>
+			<CancelSaveButtons setEdit={setEditTexte} handleSave={handleSave} error={error} additionalClassName={""}/>
         </>
     );
 }

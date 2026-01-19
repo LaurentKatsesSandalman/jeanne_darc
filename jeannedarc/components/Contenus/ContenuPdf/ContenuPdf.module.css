@@ -1,0 +1,31 @@
+.pdfContainer{
+	width: 100%;
+	height: 600px
+}
+
+.downloadContainer{
+	display: flex;
+	
+	gap: 10px;
+	margin: 12px 0;
+}
+
+.pdfTitle{
+	color: var(--font-pdf-related);
+	padding: 5px 20px;
+	font-size: 13px;
+	font-weight: 400;
+}
+
+.downloadBtn{
+	background-color: var(--background-pdf-related);
+	color: var(--font-white);
+	padding: 5px 20px;
+	font-weight: 500;
+	font-size: 15px;
+}
+.error {
+	color: var(--font-orange);
+	font-style: italic;
+	font-weight: 700;
+}

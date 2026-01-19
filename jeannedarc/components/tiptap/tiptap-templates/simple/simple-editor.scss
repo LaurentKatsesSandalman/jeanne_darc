@@ -39,23 +39,23 @@ body {
 //   background-color: var(--tt-bg-color);
 // }
 
-::-webkit-scrollbar {
-  width: 0.25rem;
-}
+// ::-webkit-scrollbar {
+//   width: 0.25rem;
+// }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--tt-scrollbar-color) transparent;
-}
+// * {
+//   scrollbar-width: thin;
+//   scrollbar-color: var(--tt-scrollbar-color) transparent;
+// }
 
-::-webkit-scrollbar-thumb {
-  background-color: var(--tt-scrollbar-color);
-  border-radius: 9999px;
-}
+// ::-webkit-scrollbar-thumb {
+//   background-color: var(--tt-scrollbar-color);
+//   border-radius: 9999px;
+// }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+// ::-webkit-scrollbar-track {
+//   background: transparent;
+// }
 
 // .tiptap.ProseMirror {
 //   font-family: "DM Sans", sans-serif;
@@ -80,7 +80,7 @@ body {
 
 .simple-editor-content .tiptap.ProseMirror.simple-editor {
   flex: 1;
-  padding: 3rem 3rem ;
+  padding: 0 3rem ;
 }
 
 // Styles pour le viewer

@@ -24,6 +24,7 @@ import "@/components/tiptap/tiptap-node/paragraph-node/paragraph-node.scss";
 
 // --- Data ---
 import { ContenuTexteInterface } from "@/lib/schemas";
+import { useEffect } from "react";
 
 
 interface ContenuTexteProps {
@@ -58,6 +59,12 @@ export function ContenuTexte({ contenu }: ContenuTexteProps) {
         ],
         content: contenu.tiptap_content,
     });
+
+	useEffect(() => {
+    if (editor && contenu.tiptap_content) {
+        editor.commands.setContent(contenu.tiptap_content);
+    }
+}, [editor, contenu.tiptap_content]);
 
     return (
         <div className="simple-editor-viewer">
