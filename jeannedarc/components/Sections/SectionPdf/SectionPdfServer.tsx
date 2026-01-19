@@ -1,4 +1,4 @@
-"use server";
+
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuPdfsBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionPdfClient } from "./SectionPdfClient";

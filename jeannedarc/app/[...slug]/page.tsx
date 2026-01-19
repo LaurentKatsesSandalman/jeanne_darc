@@ -10,6 +10,9 @@ interface PageProps {
     }>;
 }
 
+// export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
 export default async function Page({ params }: PageProps) {
     const resolvedParams = await params;
     const url = resolvedParams.slug.join("/");
