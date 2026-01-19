@@ -25,27 +25,25 @@ import {
     UpdateContenuPave,
     UpdateContenuBandeauBtn,
     UpdateContenuHeaderBtn,
-	UpdateContenuTexte,
-	ContenuSoloBtnInterface,
-	UpdateContenuSoloBtn,
-	CreateContenuSoloBtn,
-	CreatePaveBloc,
-	PaveBlocInterface,
-	UpdatePaveBloc,
+    UpdateContenuTexte,
+    ContenuSoloBtnInterface,
+    UpdateContenuSoloBtn,
+    CreateContenuSoloBtn,
+    CreatePaveBloc,
+    PaveBlocInterface,
+    UpdatePaveBloc,
 } from "../schemas";
 //import { v7 as uuidv7 } from 'uuid';
 
 // contenu_titre
 export async function createContenuTitre(
-    payload: CreateContenuTitre
+    payload: CreateContenuTitre,
 ): Promise<ContenuTitreInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
-
-	
 
     const rows = await sql<ContenuTitreInterface[]>`
 	INSERT INTO contenu_titre ${sql(data)} 
@@ -55,7 +53,7 @@ export async function createContenuTitre(
 }
 
 export async function getContenuTitreById(
-    id: string
+    id: string,
 ): Promise<ContenuTitreInterface | undefined> {
     const rows = await sql<ContenuTitreInterface[]>`
 	SELECT * FROM contenu_titre WHERE id_contenu_titre = ${id}
@@ -65,7 +63,7 @@ export async function getContenuTitreById(
 }
 
 export async function getAllContenuTitresBySectionId(
-    id_section: string
+    id_section: string,
 ): Promise<ContenuTitreInterface[] | undefined> {
     const rows = await sql<ContenuTitreInterface[]>`
 	SELECT * FROM contenu_titre WHERE id_section_fk = ${id_section}
@@ -76,12 +74,12 @@ export async function getAllContenuTitresBySectionId(
 
 export async function updateContenuTitreById(
     payload: UpdateContenuTitre,
-    id: string
+    id: string,
 ): Promise<ContenuTitreInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;
@@ -104,15 +102,13 @@ export async function deleteContenuTitreById(id: string) {
 
 // contenu_image
 export async function createContenuImage(
-    payload: CreateContenuImage
+    payload: CreateContenuImage,
 ): Promise<ContenuImageInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
-
-	
 
     const rows = await sql<ContenuImageInterface[]>`
 	INSERT INTO contenu_image ${sql(data)} 
@@ -122,7 +118,7 @@ export async function createContenuImage(
 }
 
 export async function getContenuImageById(
-    id: string
+    id: string,
 ): Promise<ContenuImageInterface | undefined> {
     const rows = await sql<ContenuImageInterface[]>`
 	SELECT * FROM contenu_image WHERE id_contenu_image = ${id}
@@ -132,7 +128,7 @@ export async function getContenuImageById(
 }
 
 export async function getAllContenuImagesBySectionId(
-    id_section: string
+    id_section: string,
 ): Promise<ContenuImageInterface[] | undefined> {
     const rows = await sql<ContenuImageInterface[]>`
 	SELECT * FROM contenu_image WHERE id_section_fk = ${id_section}
@@ -143,12 +139,12 @@ export async function getAllContenuImagesBySectionId(
 
 export async function updateContenuImageById(
     payload: UpdateContenuImage,
-    id: string
+    id: string,
 ): Promise<ContenuImageInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;
@@ -170,11 +166,10 @@ export async function deleteContenuImageById(id: string) {
 }
 // contenu_texte
 export async function createContenuTexte(
-    payload: CreateContenuTexte
+    payload: CreateContenuTexte,
 ): Promise<ContenuTexteInterface | undefined> {
     const tiptap_content = JSON.parse(payload.tiptap_content);
     const id_section_fk = payload.id_section_fk;
-	
 
     // 	const data = Object.fromEntries(
     //     Object.entries(payload).filter(([, value]) => value !== undefined && value !== null)
@@ -189,7 +184,7 @@ export async function createContenuTexte(
 }
 
 export async function getContenuTexteById(
-    id: string
+    id: string,
 ): Promise<ContenuTexteInterface | undefined> {
     const rows = await sql<ContenuTexteInterface[]>`
 	SELECT * FROM contenu_texte WHERE id_contenu_texte = ${id};
@@ -198,7 +193,7 @@ export async function getContenuTexteById(
 }
 
 export async function getAllContenuTextesBySectionId(
-    id_section: string
+    id_section: string,
 ): Promise<ContenuTexteInterface[] | undefined> {
     const rows = await sql<ContenuTexteInterface[]>`
 	SELECT * FROM contenu_texte WHERE id_section_fk = ${id_section}
@@ -209,7 +204,7 @@ export async function getAllContenuTextesBySectionId(
 
 export async function updateContenuTexteById(
     payload: UpdateContenuTexte,
-    id: string
+    id: string,
 ): Promise<ContenuTexteInterface | undefined> {
     const updatedtiptap_content = JSON.parse(payload.tiptap_content);
 
@@ -231,15 +226,13 @@ export async function deleteContenuTexteById(id: string) {
 
 // contenu_contact
 export async function createContenuContact(
-    payload: CreateContenuContact
+    payload: CreateContenuContact,
 ): Promise<ContenuContactInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
-
-	
 
     const rows = await sql<ContenuContactInterface[]>`
 	INSERT INTO contenu_contact ${sql(data)} 
@@ -249,7 +242,7 @@ export async function createContenuContact(
 }
 
 export async function getContenuContactById(
-    id: string
+    id: string,
 ): Promise<ContenuContactInterface | undefined> {
     const rows = await sql<ContenuContactInterface[]>`
 	SELECT * FROM contenu_contact WHERE id_contenu_contact = ${id};
@@ -258,7 +251,7 @@ export async function getContenuContactById(
 }
 
 export async function getAllContenuContactsBySectionId(
-    id_section: string
+    id_section: string,
 ): Promise<ContenuContactInterface[] | undefined> {
     const rows = await sql<ContenuContactInterface[]>`
 	SELECT * FROM contenu_contact WHERE id_section_fk = ${id_section}
@@ -269,12 +262,12 @@ export async function getAllContenuContactsBySectionId(
 
 export async function updateContenuContactById(
     payload: UpdateContenuContact,
-    id: string
+    id: string,
 ): Promise<ContenuContactInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;
@@ -297,15 +290,13 @@ export async function deleteContenuContactById(id: string) {
 
 // contenu_pdf
 export async function createContenuPdf(
-    payload: CreateContenuPdf
+    payload: CreateContenuPdf,
 ): Promise<ContenuPdfInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
-
-	
 
     const rows = await sql<ContenuPdfInterface[]>`
 	INSERT INTO contenu_pdf ${sql(data)} 
@@ -315,7 +306,7 @@ export async function createContenuPdf(
 }
 
 export async function getContenuPdfById(
-    id: string
+    id: string,
 ): Promise<ContenuPdfInterface | undefined> {
     const rows = await sql<ContenuPdfInterface[]>`
 	SELECT * FROM contenu_pdf WHERE id_contenu_pdf = ${id};
@@ -324,7 +315,7 @@ export async function getContenuPdfById(
 }
 
 export async function getAllContenuPdfsBySectionId(
-    id_section: string
+    id_section: string,
 ): Promise<ContenuPdfInterface[] | undefined> {
     const rows = await sql<ContenuPdfInterface[]>`
 	SELECT * FROM contenu_pdf WHERE id_section_fk = ${id_section}
@@ -335,12 +326,12 @@ export async function getAllContenuPdfsBySectionId(
 
 export async function updateContenuPdfById(
     payload: UpdateContenuPdf,
-    id: string
+    id: string,
 ): Promise<ContenuPdfInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;
@@ -363,15 +354,13 @@ export async function deleteContenuPdfById(id: string) {
 
 // contenu_pave
 export async function createContenuPave(
-    payload: CreateContenuPave
+    payload: CreateContenuPave,
 ): Promise<ContenuPaveInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
-
-	
 
     const rows = await sql<ContenuPaveInterface[]>`
 	INSERT INTO contenu_pave ${sql(data)} 
@@ -381,7 +370,7 @@ export async function createContenuPave(
 }
 
 export async function getContenuPaveById(
-    id: string
+    id: string,
 ): Promise<ContenuPaveInterface | undefined> {
     const rows = await sql<ContenuPaveInterface[]>`
 	SELECT * FROM contenu_pave WHERE id_contenu_pave = ${id};
@@ -390,7 +379,7 @@ export async function getContenuPaveById(
 }
 
 export async function getAllContenuPavesBySectionId(
-    id_section: string
+    id_section: string,
 ): Promise<ContenuPaveInterface[] | undefined> {
     const rows = await sql<ContenuPaveInterface[]>`
 	SELECT * FROM contenu_pave WHERE id_section_fk = ${id_section}
@@ -401,12 +390,12 @@ export async function getAllContenuPavesBySectionId(
 
 export async function updateContenuPaveById(
     payload: UpdateContenuPave,
-    id: string
+    id: string,
 ): Promise<ContenuPaveInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;
@@ -429,15 +418,13 @@ export async function deleteContenuPaveById(id: string) {
 
 // pave_bloc
 export async function createPaveBloc(
-    payload: CreatePaveBloc
+    payload: CreatePaveBloc,
 ): Promise<PaveBlocInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
-
-	
 
     const rows = await sql<PaveBlocInterface[]>`
 	INSERT INTO pave_bloc ${sql(data)} 
@@ -447,7 +434,7 @@ export async function createPaveBloc(
 }
 
 export async function getPaveBlocById(
-    id: string
+    id: string,
 ): Promise<PaveBlocInterface | undefined> {
     const rows = await sql<PaveBlocInterface[]>`
 	SELECT * FROM pave_bloc WHERE id_pave_bloc = ${id};
@@ -456,7 +443,7 @@ export async function getPaveBlocById(
 }
 
 export async function getAllPaveBlocsByContentId(
-    id_contenu_pave: string
+    id_contenu_pave: string,
 ): Promise<PaveBlocInterface[] | undefined> {
     const rows = await sql<PaveBlocInterface[]>`
 	SELECT * FROM pave_bloc WHERE id_contenu_pave_fk = ${id_contenu_pave}
@@ -467,12 +454,12 @@ export async function getAllPaveBlocsByContentId(
 
 export async function updatePaveBlocById(
     payload: UpdatePaveBloc,
-    id: string
+    id: string,
 ): Promise<PaveBlocInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;
@@ -495,15 +482,13 @@ export async function deletePaveBlocById(id: string) {
 
 // contenu_bandeaubtn
 export async function createContenuBandeauBtn(
-    payload: CreateContenuBandeauBtn
+    payload: CreateContenuBandeauBtn,
 ): Promise<ContenuBandeauBtnInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
-
-
 
     const rows = await sql<ContenuBandeauBtnInterface[]>`
 	INSERT INTO contenu_bandeaubtn ${sql(data)} 
@@ -513,7 +498,7 @@ export async function createContenuBandeauBtn(
 }
 
 export async function getContenuBandeauBtnById(
-    id: string
+    id: string,
 ): Promise<ContenuBandeauBtnInterface | undefined> {
     const rows = await sql<ContenuBandeauBtnInterface[]>`
 	SELECT * FROM contenu_bandeaubtn WHERE id_contenu_bandeaubtn = ${id};
@@ -522,7 +507,7 @@ export async function getContenuBandeauBtnById(
 }
 
 export async function getAllContenuBandeauBtnsBySectionId(
-    id_section: string
+    id_section: string,
 ): Promise<ContenuBandeauBtnInterface[] | undefined> {
     const rows = await sql<ContenuBandeauBtnInterface[]>`
 	SELECT * FROM contenu_bandeaubtn WHERE id_section_fk = ${id_section}
@@ -533,12 +518,12 @@ export async function getAllContenuBandeauBtnsBySectionId(
 
 export async function updateContenuBandeauBtnById(
     payload: UpdateContenuBandeauBtn,
-    id: string
+    id: string,
 ): Promise<ContenuBandeauBtnInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;
@@ -561,15 +546,13 @@ export async function deleteContenuBandeauBtnById(id: string) {
 
 // contenu_solobtn
 export async function createContenuSoloBtn(
-    payload: CreateContenuSoloBtn
+    payload: CreateContenuSoloBtn,
 ): Promise<ContenuSoloBtnInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
-
-
 
     const rows = await sql<ContenuSoloBtnInterface[]>`
 	INSERT INTO contenu_solobtn ${sql(data)} 
@@ -579,7 +562,7 @@ export async function createContenuSoloBtn(
 }
 
 export async function getContenuSoloBtnById(
-    id: string
+    id: string,
 ): Promise<ContenuSoloBtnInterface | undefined> {
     const rows = await sql<ContenuSoloBtnInterface[]>`
 	SELECT * FROM contenu_solobtn WHERE id_contenu_solobtn = ${id};
@@ -588,7 +571,7 @@ export async function getContenuSoloBtnById(
 }
 
 export async function getAllContenuSoloBtnsBySectionId(
-    id_section: string
+    id_section: string,
 ): Promise<ContenuSoloBtnInterface[] | undefined> {
     const rows = await sql<ContenuSoloBtnInterface[]>`
 	SELECT * FROM contenu_solobtn WHERE id_section_fk = ${id_section}
@@ -599,12 +582,12 @@ export async function getAllContenuSoloBtnsBySectionId(
 
 export async function updateContenuSoloBtnById(
     payload: UpdateContenuSoloBtn,
-    id: string
+    id: string,
 ): Promise<ContenuSoloBtnInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;
@@ -627,15 +610,13 @@ export async function deleteContenuSoloBtnById(id: string) {
 
 // contenu_headerbtn
 export async function createContenuHeaderBtn(
-    payload: CreateContenuHeaderBtn
+    payload: CreateContenuHeaderBtn,
 ): Promise<ContenuHeaderBtnInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
-
-	
 
     const rows = await sql<ContenuHeaderBtnInterface[]>`
 	INSERT INTO contenu_headerbtn ${sql(data)} 
@@ -645,7 +626,7 @@ export async function createContenuHeaderBtn(
 }
 
 export async function getContenuHeaderBtnById(
-    id: string
+    id: string,
 ): Promise<ContenuHeaderBtnInterface | undefined> {
     const rows = await sql<ContenuHeaderBtnInterface[]>`
 	SELECT * FROM contenu_headerbtn WHERE id_contenu_headerbtn = ${id};
@@ -654,7 +635,7 @@ export async function getContenuHeaderBtnById(
 }
 
 export async function getAllContenuHeaderBtnsBySectionId(
-    id_section: string
+    id_section: string,
 ): Promise<ContenuHeaderBtnInterface[] | undefined> {
     const rows = await sql<ContenuHeaderBtnInterface[]>`
 	SELECT * FROM contenu_headerbtn WHERE id_section_fk = ${id_section}
@@ -665,12 +646,12 @@ export async function getAllContenuHeaderBtnsBySectionId(
 
 export async function updateContenuHeaderBtnById(
     payload: UpdateContenuHeaderBtn,
-    id: string
+    id: string,
 ): Promise<ContenuHeaderBtnInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;

@@ -5,14 +5,13 @@ import { CreateSection, SectionInterface, UpdateSection } from "../schemas";
 //import { v7 as uuidv7 } from 'uuid';
 
 export async function createSection(
-    payload: CreateSection
+    payload: CreateSection,
 ): Promise<SectionInterface | undefined> {
     const data = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
-	
 
     const rows = await sql<SectionInterface[]>`
 	INSERT INTO section ${sql(data)} 
@@ -21,7 +20,9 @@ export async function createSection(
     return rows[0];
 }
 
-export async function getSectionById(id: string): Promise<SectionInterface | undefined> {
+export async function getSectionById(
+    id: string,
+): Promise<SectionInterface | undefined> {
     const rows = await sql<SectionInterface[]>`
 	SELECT * FROM section WHERE id_section = ${id};
 	`;
@@ -29,7 +30,7 @@ export async function getSectionById(id: string): Promise<SectionInterface | und
 }
 
 export async function getAllSectionsByPageId(
-    id_page: string
+    id_page: string,
 ): Promise<SectionInterface[] | undefined> {
     const rows = await sql<SectionInterface[]>`
 	SELECT * FROM section WHERE id_page_fk = ${id_page}
@@ -41,12 +42,12 @@ export async function getAllSectionsByPageId(
 
 export async function updateSectionById(
     payload: UpdateSection,
-    id: string
+    id: string,
 ): Promise<SectionInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;

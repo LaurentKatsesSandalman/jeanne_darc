@@ -1,4 +1,5 @@
 "use server";
+
 import { z } from "zod";
 import { auth } from "@clerk/nextjs/server";
 
@@ -93,7 +94,7 @@ import { makePlaintext } from "./actions-utils";
 // contenu_titre
 export async function createContenuTitreAction(
     data: CreateContenuTitre,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuTitreResult> {
     const { userId } = await auth();
 
@@ -124,7 +125,7 @@ export async function createContenuTitreAction(
                     ref_table: "contenu_titre",
                     content_plaintext,
                 },
-                url
+                url,
             );
         }
         revalidatePath(url);
@@ -142,7 +143,7 @@ export async function createContenuTitreAction(
 export async function updateContenuTitreAction(
     id: string,
     data: UpdateContenuTitre,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuTitreResult> {
     const { userId } = await auth();
 
@@ -179,7 +180,7 @@ export async function updateContenuTitreAction(
                     ref_table: "contenu_titre",
                     content_plaintext,
                 },
-                url
+                url,
             );
         }
         revalidatePath(url);
@@ -208,7 +209,7 @@ export async function deleteContenuTitreAction(id: string, url: string) {
     try {
         await deleteContenuTitreById(id);
         await deleteIndexByRefId(id);
-         revalidatePath(url);
+        revalidatePath(url);
         return { success: true };
     } catch (error) {
         console.error("Error deleting contenu titre:", error);
@@ -219,7 +220,7 @@ export async function deleteContenuTitreAction(id: string, url: string) {
 // contenu_image
 export async function createContenuImageAction(
     data: CreateContenuImage,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuImageResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -242,7 +243,7 @@ export async function createContenuImageAction(
                     ref_table: "contenu_image",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_image);
@@ -258,7 +259,7 @@ export async function createContenuImageAction(
 export async function updateContenuImageAction(
     id: string,
     data: UpdateContenuImage,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuImageResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -281,7 +282,7 @@ export async function updateContenuImageAction(
                     ref_table: "contenu_image",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_image);
@@ -313,7 +314,7 @@ export async function deleteContenuImageAction(id: string, url: string) {
 // contenu_texte
 export async function createContenuTexteAction(
     data: CreateContenuTexte,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuTexteResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -336,7 +337,7 @@ export async function createContenuTexteAction(
                     ref_table: "contenu_texte",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_texte);
@@ -352,7 +353,7 @@ export async function createContenuTexteAction(
 export async function updateContenuTexteAction(
     id: string,
     data: UpdateContenuTexte,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuTexteResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -375,7 +376,7 @@ export async function updateContenuTexteAction(
                     ref_table: "contenu_texte",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_texte);
@@ -407,7 +408,7 @@ export async function deleteContenuTexteAction(id: string, url: string) {
 // contenu_contact
 export async function createContenuContactAction(
     data: CreateContenuContact,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuContactResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -437,7 +438,7 @@ export async function createContenuContactAction(
                     ref_table: "contenu_contact",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_contact);
@@ -453,7 +454,7 @@ export async function createContenuContactAction(
 export async function updateContenuContactAction(
     id: string,
     data: UpdateContenuContact,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuContactResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -483,7 +484,7 @@ export async function updateContenuContactAction(
                     ref_table: "contenu_contact",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_contact);
@@ -515,7 +516,7 @@ export async function deleteContenuContactAction(id: string, url: string) {
 // contenu_pdf
 export async function createContenuPdfAction(
     data: CreateContenuPdf,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuPdfResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -538,7 +539,7 @@ export async function createContenuPdfAction(
                     ref_table: "contenu_pdf",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext) await deleteIndexByRefId(result.id_contenu_pdf);
 
@@ -553,7 +554,7 @@ export async function createContenuPdfAction(
 export async function updateContenuPdfAction(
     id: string,
     data: UpdateContenuPdf,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuPdfResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -576,7 +577,7 @@ export async function updateContenuPdfAction(
                     ref_table: "contenu_pdf",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext) await deleteIndexByRefId(result.id_contenu_pdf);
 
@@ -607,7 +608,7 @@ export async function deleteContenuPdfAction(id: string, url: string) {
 // contenu_pave
 export async function createContenuPaveAction(
     data: CreateContenuPave,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuPaveResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -630,7 +631,7 @@ export async function createContenuPaveAction(
                     ref_table: "contenu_pave",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_pave);
@@ -646,7 +647,7 @@ export async function createContenuPaveAction(
 export async function updateContenuPaveAction(
     id: string,
     data: UpdateContenuPave,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuPaveResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -669,7 +670,7 @@ export async function updateContenuPaveAction(
                     ref_table: "contenu_pave",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_pave);
@@ -701,7 +702,7 @@ export async function deleteContenuPaveAction(id: string, url: string) {
 // pave_bloc
 export async function createPaveBlocAction(
     data: CreatePaveBloc,
-    url: string
+    url: string,
 ): Promise<CreateUpdatePaveBlocResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -734,7 +735,7 @@ export async function createPaveBlocAction(
                     ref_table: "pave_bloc",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext) await deleteIndexByRefId(result.id_pave_bloc);
 
@@ -749,7 +750,7 @@ export async function createPaveBlocAction(
 export async function updatePaveBlocAction(
     id: string,
     data: UpdatePaveBloc,
-    url: string
+    url: string,
 ): Promise<CreateUpdatePaveBlocResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -782,7 +783,7 @@ export async function updatePaveBlocAction(
                     ref_table: "pave_bloc",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext) await deleteIndexByRefId(result.id_pave_bloc);
 
@@ -813,7 +814,7 @@ export async function deletePaveBlocAction(id: string, url: string) {
 // contenu_bandeaubtn
 export async function createContenuBandeauBtnAction(
     data: CreateContenuBandeauBtn,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuBandeauBtnResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -840,7 +841,7 @@ export async function createContenuBandeauBtnAction(
                     ref_table: "contenu_bandeaubtn",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_bandeaubtn);
@@ -859,7 +860,7 @@ export async function createContenuBandeauBtnAction(
 export async function updateContenuBandeauBtnAction(
     id: string,
     data: UpdateContenuBandeauBtn,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuBandeauBtnResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -886,7 +887,7 @@ export async function updateContenuBandeauBtnAction(
                     ref_table: "contenu_bandeaubtn",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_bandeaubtn);
@@ -924,7 +925,7 @@ export async function deleteContenuBandeauBtnAction(id: string, url: string) {
 // contenu_solobtn
 export async function createContenuSoloBtnAction(
     data: CreateContenuSoloBtn,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuSoloBtnResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -947,7 +948,7 @@ export async function createContenuSoloBtnAction(
                     ref_table: "contenu_solobtn",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_solobtn);
@@ -963,7 +964,7 @@ export async function createContenuSoloBtnAction(
 export async function updateContenuSoloBtnAction(
     id: string,
     data: UpdateContenuSoloBtn,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuSoloBtnResult> {
     const { userId } = await auth();
     if (!userId) return { success: false, error: "Unauthorized" };
@@ -986,7 +987,7 @@ export async function updateContenuSoloBtnAction(
                     ref_table: "contenu_solobtn",
                     content_plaintext,
                 },
-                url
+                url,
             );
         if (!content_plaintext)
             await deleteIndexByRefId(result.id_contenu_solobtn);
@@ -1018,7 +1019,7 @@ export async function deleteContenuSoloBtnAction(id: string, url: string) {
 // contenu_HEADERBTN
 export async function createContenuHeaderBtnAction(
     data: CreateContenuHeaderBtn,
-    url: string
+    url: string,
 ): Promise<CreateUpdateContenuHeaderBtnResult> {
     const { userId } = await auth();
 
@@ -1037,7 +1038,7 @@ export async function createContenuHeaderBtnAction(
         if (!result) {
             return { success: false, error: "Failed to create contenu" };
         }
-         revalidatePath(url);
+        revalidatePath(url);
         return { success: true, data: result };
     } catch (error) {
         console.error("Error creating contenu header btn:", error);
@@ -1047,7 +1048,7 @@ export async function createContenuHeaderBtnAction(
 
 export async function updateContenuHeaderBtnAction(
     id: string,
-    data: UpdateContenuHeaderBtn
+    data: UpdateContenuHeaderBtn,
 ): Promise<CreateUpdateContenuHeaderBtnResult> {
     const { userId } = await auth();
 
@@ -1095,7 +1096,7 @@ export async function deleteContenuHeaderBtnAction(id: string, url: string) {
 
     try {
         await deleteContenuHeaderBtnById(id);
-         revalidatePath(url);
+        revalidatePath(url);
         return { success: true };
     } catch (error) {
         console.error("Error deleting contenu header btn:", error);

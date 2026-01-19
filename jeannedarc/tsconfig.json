@@ -31,7 +31,7 @@
     "**/*.mts"
 //, "database/createDb.js"
 ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "_ignore"]
 }
 
 

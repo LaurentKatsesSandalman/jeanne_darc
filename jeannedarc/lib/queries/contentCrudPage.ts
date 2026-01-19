@@ -5,13 +5,12 @@ import { CreatePage, PageInterface, UpdatePage } from "../schemas";
 //import { v7 as uuidv7 } from 'uuid';
 
 export async function createPage(
-    payload: CreatePage
+    payload: CreatePage,
 ): Promise<PageInterface | undefined> {
-	
-const data: Record<string, string> = {
-        page_url: payload.page_url
+    const data: Record<string, string> = {
+        page_url: payload.page_url,
     };
-    
+
     if (payload.nom) {
         data.nom = payload.nom;
     }
@@ -25,14 +24,18 @@ const data: Record<string, string> = {
     return rows[0];
 }
 
-export async function getPageByUrl(url: string): Promise<PageInterface | undefined> {
+export async function getPageByUrl(
+    url: string,
+): Promise<PageInterface | undefined> {
     const rows = await sql<PageInterface[]>`
 	SELECT * FROM page WHERE page_url = ${url};
 	`;
     return rows[0];
 }
 
-export async function getPageById(id: string): Promise<PageInterface | undefined> {
+export async function getPageById(
+    id: string,
+): Promise<PageInterface | undefined> {
     const rows = await sql<PageInterface[]>`
 	SELECT * FROM page WHERE id_page = ${id};
 	`;
@@ -41,12 +44,12 @@ export async function getPageById(id: string): Promise<PageInterface | undefined
 
 export async function updatePageById(
     payload: UpdatePage,
-    id: string
+    id: string,
 ): Promise<PageInterface | undefined> {
     const updates = Object.fromEntries(
         Object.entries(payload).filter(
-            ([, value]) => value !== undefined && value !== null
-        )
+            ([, value]) => value !== undefined && value !== null,
+        ),
     );
 
     if (Object.keys(updates).length === 0) return undefined;
