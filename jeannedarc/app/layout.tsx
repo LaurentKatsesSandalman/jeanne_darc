@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {ClerkProvider} from '@clerk/nextjs'
+import { IBM_Plex, ActorFont } from "./fonts";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { HeaderServer } from "@/components/Header/HeaderServer";
+import { FooterServer } from "@/components/Footer/FooterServer";
+// import styles from "./layout.module.css"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,12 +17,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+	 <ClerkProvider>
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${IBM_Plex.variable} ${ActorFont.variable} antialiased`}
       >
+		<HeaderServer/>
+			<div >
         {children}
+			</div>
+		<FooterServer/>
       </body>
     </html>
+	</ClerkProvider>
   );
 }

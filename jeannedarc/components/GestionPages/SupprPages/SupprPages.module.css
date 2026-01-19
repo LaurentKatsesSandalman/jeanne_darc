@@ -1,0 +1,10 @@
+.inline {
+	display:inline;
+}
+
+.error {
+	color: var(--font-orange);
+	font-style: italic;
+	font-weight: 700;
+}
+

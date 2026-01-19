@@ -1,0 +1,31 @@
+.rechercheModalContainer {
+	position:absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.800);
+	color: white;
+	font-size: 35px;
+}
+
+.rechercheModalClose{
+	display: block;
+	margin: 3vw 3vw 3vw auto;
+}
+
+.rechercheModalForm{
+	display: flex;
+	width: 80%;
+	margin:auto;
+}
+
+.rechercheModalInput{
+	background-color: transparent;
+	color: inherit
+}
+
+.rechercheModalInput :-webkit-autofill{
+	  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-text-fill-color: inherit !important;
+}
