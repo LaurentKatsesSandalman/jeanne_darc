@@ -4,17 +4,22 @@ import { sql } from "../db";
 import { CreateIndex, SearchIndexData } from "../schemas";
 import { getPageByUrl } from "./contentCrudPage";
 
-export async function createIndex({
-    
-    ref_table,
-    ref_id,
-    content_plaintext,
-}: CreateIndex, url:string): Promise<boolean> {
-	const page = await getPageByUrl(url)
+export async function createIndex(
+    { ref_table, ref_id, content_plaintext }: CreateIndex,
+    url: string,
+): Promise<boolean> {
+    const page = await getPageByUrl(url);
 
-	if(!page){return false;}
+    if (!page) {
+        return false;
+    }
 
-    const data = { id_page_fk:page.id_page, ref_table, ref_id, content_plaintext };
+    const data = {
+        id_page_fk: page.id_page,
+        ref_table,
+        ref_id,
+        content_plaintext,
+    };
 
     await sql`
 	INSERT INTO text_index ${sql(data)}
@@ -24,17 +29,19 @@ export async function createIndex({
     id_page_fk = EXCLUDED.id_page_fk,
     updated_at = NOW();
 	`;
-	return true;
+    return true;
 }
 
-export async function deleteIndexByRefId(ref_id: string){
-	await sql`
+export async function deleteIndexByRefId(ref_id: string) {
+    await sql`
 	DELETE FROM text_index WHERE ref_id = ${ref_id};
 	`;
 }
 
-export async function searchIndex(search:string):Promise<SearchIndexData[]|undefined>{
-const rows =	await sql<SearchIndexData[]>`
+export async function searchIndex(
+    search: string,
+): Promise<SearchIndexData[] | undefined> {
+    const rows = await sql<SearchIndexData[]>`
 	SELECT 
             index.id_page_fk,
             string_agg(index.content_plaintext, ' ') as contenu_combine,
@@ -46,5 +53,5 @@ const rows =	await sql<SearchIndexData[]>`
               @@ plainto_tsquery('french', ${search})
         GROUP BY index.id_page_fk, page.page_url, page_nom
 	`;
-	return rows;
+    return rows;
 }

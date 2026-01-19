@@ -1,4 +1,4 @@
-"use server";
+
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuPavesBySectionId, getAllPaveBlocsByContentId } from "@/lib/queries/contentCrudContenu";
 import { SectionPavesClient } from "./SectionPavesClient";
