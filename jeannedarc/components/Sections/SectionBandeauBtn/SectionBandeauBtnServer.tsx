@@ -1,4 +1,4 @@
-"use server";
+
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuBandeauBtnsBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionBandeauBtnClient } from "./SectionBandeauBtnClient";

@@ -1,4 +1,4 @@
-"use server";
+
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuImagesBySectionId, getAllContenuTextesBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionImageTexteClient } from "./SectionImageTexteClient";
