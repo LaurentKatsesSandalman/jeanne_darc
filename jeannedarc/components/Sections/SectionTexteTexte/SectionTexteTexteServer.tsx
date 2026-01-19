@@ -1,4 +1,4 @@
-"use server";
+
 import { SectionInterface } from "@/lib/schemas";
 import { getAllContenuTextesBySectionId } from "@/lib/queries/contentCrudContenu";
 import { SectionTexteTexteClient } from "./SectionTexteTexteClient";

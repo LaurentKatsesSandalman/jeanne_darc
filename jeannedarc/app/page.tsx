@@ -4,6 +4,9 @@ import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
 import { VirtualSection } from "@/components/utils/VirtualSection/VirtualSection";
 import { SectionSelector } from "@/components/utils/SectionSelector/SectionSelector";
 
+// export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
 export default async function Page() {
     const page = await getPageByUrl("/");
     if (!page) {
