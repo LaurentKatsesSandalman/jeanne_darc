@@ -1,0 +1,20 @@
+.deleteBtn{
+	width: 30px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+.deleteBtn svg {
+	margin: auto
+}
+
+.deleteBtn:hover{
+	color:var(--background-page);
+	background-color: var(--font-default);
+}
+
+.error {
+	color: var(--font-orange);
+	font-style: italic;
+	font-weight: 700;
+}

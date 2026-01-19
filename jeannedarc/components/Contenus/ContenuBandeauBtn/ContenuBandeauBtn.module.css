@@ -1,0 +1,45 @@
+.containerBandeau{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.containerBandeauHome{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	color: var(--font-white);
+	background-color: var(--background-orange);
+	padding: 55px 70px;
+}
+
+.containerTextes{
+	width: 60%;
+	margin: 0 20px;
+}
+
+.titre {
+	font-size: 22px;
+	font-weight: 700;
+	/* text-transform: uppercase; */
+}
+
+.bouton {
+	font-weight: 600;
+	text-transform: uppercase;
+	color: var(--font-white);
+	background-color: var(--background-secondary);
+	padding: 12px 16px;
+}
+
+.boutonHome {
+	font-weight: 600;
+	text-transform: uppercase;
+	color: var(--font-orange);
+	background-color: var(--background-page);
+	padding: 12px 16px;
+}
+
+.label{
+	font-weight: 700;
+}
