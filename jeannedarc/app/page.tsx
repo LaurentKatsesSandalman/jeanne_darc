@@ -5,7 +5,7 @@ import { VirtualSection } from "@/components/utils/VirtualSection/VirtualSection
 import { SectionSelector } from "@/components/utils/SectionSelector/SectionSelector";
 
 // export const dynamic = 'force-dynamic';
-export const revalidate = 3600;
+export const revalidate = 36000;
 
 export default async function Page() {
     try {            
