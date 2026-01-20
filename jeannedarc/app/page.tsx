@@ -7,60 +7,20 @@ import { SectionSelector } from "@/components/utils/SectionSelector/SectionSelec
 // export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
 
-// export default async function Page() {
-//     const page = await getPageByUrl("/");
-//     if (!page) {
-//         return <p>Erreur au chargement de la page</p>;
-//     }
-//     const sections = await getAllSectionsByPageId(page?.id_page);
-//     if (!sections) {
-//         return <p>Erreur au chargement des sections de la page</p>;
-//     }
-
-//     // à mettre sur toutes les pages qui ont besoin de auth
-//     const { userId } = await auth();
-//     const isAuth = !!userId;
-
-//     return (
-//         <>
-//             <main>
-//                 {sections?.map((section) => (
-//                     <VirtualSection
-//                         key={section.id_section}
-//                         section={section}
-//                         isAuth={isAuth}
-//                     />
-//                 ))}
-//                 {isAuth && <SectionSelector id_page_fk={page.id_page} />}
-//             </main>
-//         </>
-//     );
-// }
-
 export default async function Page() {
-    try {
-        console.log('🔍 Loading page "/"...');
-        
+    try {            
         const page = await getPageByUrl("/");
-        console.log('📄 Page loaded:', page ? page.id_page : 'NOT FOUND');
-        
         if (!page) {
-            console.error('❌ Page "/" not found in database');
-            return <p>Erreur : Page non trouvée dans la base de données</p>;
+            return <p>Erreur au chargement de la page ou page inexistante</p>;
         }
-        
-        console.log('🔍 Loading sections for page:', page.id_page);
         const sections = await getAllSectionsByPageId(page.id_page);
-        console.log('📦 Sections loaded:', sections?.length || 0);
-        
+
         if (!sections) {
-            console.error('❌ No sections found for page:', page.id_page);
-            return <p>Erreur : Aucune section trouvée</p>;
+            return <p>Erreur au chargement des sections de la page ou aucune section trouvée</p>;
         }
 
         const { userId } = await auth();
         const isAuth = !!userId;
-        console.log('✅ Page render OK, sections:', sections.length, 'isAuth:', isAuth);
 
         return (
             <>
