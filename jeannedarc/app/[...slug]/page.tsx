@@ -3,6 +3,7 @@ import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
 import { SectionSelector } from "@/components/utils/SectionSelector/SectionSelector";
 import { VirtualSection } from "@/components/utils/VirtualSection/VirtualSection";
+import { Metadata } from "next";
 
 interface PageProps {
     params: Promise<{
@@ -12,6 +13,18 @@ interface PageProps {
 
 // export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const resolvedParams = await params;
+    const url = resolvedParams.slug.join("/");
+    
+    const page = await getPageByUrl(url);
+    
+    return {
+        title: page?.nom || "Page",
+        description: "École Jeanne d'Arc - Le Bouscat - ETABLISSEMENT CATHOLIQUE sous TUTELLE DIOCESAINE sous CONTRAT AVEC L'ETAT",
+    };
+}
 
 export default async function Page({ params }: PageProps) {
     const resolvedParams = await params;
