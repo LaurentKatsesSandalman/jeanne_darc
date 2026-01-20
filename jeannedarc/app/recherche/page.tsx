@@ -4,7 +4,7 @@ import styles from "./page.module.css"
 import { ResultatRecherche } from "@/components/ResultatRecherche/ResultatRecherche";
 
 // export const dynamic = 'force-dynamic';
-export const revalidate = 3600;
+export const revalidate = 36000;
 
 export default async function Page({
     searchParams,
