@@ -150,7 +150,7 @@ function getSQL(): Sql {
             username: PG_USER,
             password: PG_PASSWORD,
             database: PG_DB,
-            ssl: process.env.NODE_ENV === "production" ? true : false,
+            ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
             connection: {
                 client_encoding: 'UTF8'
             },
