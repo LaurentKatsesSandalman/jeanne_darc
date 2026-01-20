@@ -120,12 +120,8 @@ setInfoSections(tempInfoSections)
             return;
         }
 
-        console.log("Valeurs calculées:", { page_url, nom: form.nom });
-
         const pagePayload = { page_url, nom: form.nom };
         const pageResult = await createPageAction(pagePayload);
-
-        console.log("Page result:", pageResult);
 
         if (!pageResult.success) {
             console.error("Échec de la requête:", pageResult);
