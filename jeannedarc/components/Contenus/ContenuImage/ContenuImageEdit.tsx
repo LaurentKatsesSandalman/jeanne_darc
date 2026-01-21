@@ -8,33 +8,50 @@ import { CancelSaveButtons } from "@/components/Buttons/CancelSaveButtons/Cancel
 
 interface ContenuImageEditProps {
     contenu: ContenuImageInterface;
-    // isAuth: boolean;
     setEditImage: Dispatch<SetStateAction<boolean>>;
 }
 
 export function ContenuImageEdit({
     contenu,
-    /*isAuth,*/ setEditImage,
+    setEditImage,
 }: ContenuImageEditProps) {
     const [currentContent, setCurrentContent] = useState(contenu);
     const [error, setError] = useState("");
+	const [file, setFile] = useState<File | null>(null);
     const url = usePathname();
 
-    const handleChange = (
+        const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setFile(e.target.files[0]);
+        }
+    };
+
+    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            setFile(e.dataTransfer.files[0]);
+			
+        }
+    };
+
+	const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         setError("");
         const { name, value } = e.target;
+		if(name==="image_url"){setFile(null)}
         setCurrentContent((prev) => {
             return { ...prev!, [name]: value };
         });
     };
 
     async function handleSave() {
-        if (currentContent.image_url.length < 3) {
-            setError("L'URL doit faire au moins 3 caractères");
-            return;
-        }
+        // if (currentContent.image_url.length < 3) {
+        //     setError("L'URL doit faire au moins 3 caractères");
+        //     return;
+        // }
+
+
 
         const payload: UpdateContenuImage = {};
         if (contenu.alt_text !== currentContent.alt_text) {
@@ -49,10 +66,31 @@ export function ContenuImageEdit({
         if (!payload.lien_vers) {
             payload.lien_vers = "";
         }
-        if (Object.keys(payload).length === 0) {
-            setEditImage(false);
-            return;
-        }
+        // if (Object.keys(payload).length === 0 && !file) {
+        //     setEditImage(false);
+        //     return;
+        // }
+
+		 if (file) {const formData = new FormData();
+  formData.append("fileUpload", file);
+  formData.append("id_contenu", contenu.id_contenu_image);
+
+  const res = await fetch("/api/upload", {
+    method: "POST",
+    body: formData,
+  });
+
+	
+  if(!res.ok){ setError(
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                );
+			return;}
+		
+		payload.image_url = `/api/files/${contenu.id_contenu_image}?t=${Date.now()}`;
+
+		}
+
+  
 
         const result = await updateContenuImageAction(
             contenu.id_contenu_image,
@@ -84,8 +122,26 @@ export function ContenuImageEdit({
 
     return (
         <>
-            <label htmlFor="image_url" className={styles.label}>
-                Url de l&#39;image
+             <div
+                onDrop={handleDrop}
+                onDragOver={(e) => e.preventDefault()}
+                style={{
+                    border: "2px dashed gray",
+                    padding: "20px",
+                    width: "300px",
+                }}
+            >
+                Glisser-déposer un fichier ici ou cliquez pour sélectionner
+                <input
+                    type="file"
+                    onChange={handleFileChange}
+                    style={{ display: "none" }}
+					accept="image/*"
+					// accept="application/pdf
+                />
+            </div>
+			<label htmlFor="image_url" className={styles.label}>
+                Url de l&#39;image (optionnel)
             </label>
             <input
                 type="text"
