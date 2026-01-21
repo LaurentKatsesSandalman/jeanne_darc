@@ -64,7 +64,7 @@ export const UpdateSectionSchema = CreateSectionSchema.partial();
 export const ContenuImageSchema = z.object({
     id_contenu_image: z.uuid(),
     id_section_fk: z.uuid(),
-    image_url: z.url(),
+    image_url: z.string(),
     alt_text: z.string(),
     lien_vers: z.string(),
     created_at: z.date(),
@@ -130,7 +130,7 @@ export const UpdateContenuContactSchema = CreateContenuContactSchema.partial();
 export const ContenuPdfSchema = z.object({
     id_contenu_pdf: z.uuid(),
     id_section_fk: z.uuid(),
-    pdf_url: z.url(),
+    pdf_url: z.string(),
     pdf_titre: z.string(),
     created_at: z.date(),
     updated_at: z.date(),
