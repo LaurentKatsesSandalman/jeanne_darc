@@ -97,7 +97,7 @@ export function ContenuSoloBtnEdit({
     }
 
     return (
-        <>
+        <div>
             <label htmlFor="bouton" className={styles.label}>
                 Nom du bouton
             </label>
@@ -120,6 +120,6 @@ export function ContenuSoloBtnEdit({
                 onChange={handleChange}
             />
 			<CancelSaveButtons setEdit={setEditSoloBtn} handleSave={handleSave} error={error} additionalClassName={""}/>
-        </>
+        </div>
     );
 }

@@ -133,7 +133,7 @@ export function ContenuImageEdit({
                 name="image_url"
                 value={currentContent.image_url}
                 onChange={handleChange}
-				className={styles.input}
+				className={styles.smallBorder}
             />
 			 <div className={styles.dropDiv}>
 			 <label
@@ -163,7 +163,7 @@ export function ContenuImageEdit({
                 name="alt_text"
                 value={currentContent.alt_text}
                 onChange={handleChange}
-				className={styles.input}
+				className={styles.smallBorder}
             />
             <label htmlFor="lien_vers" className={styles.label}>
                 Lien vers une autre page (optionnel)
@@ -174,7 +174,7 @@ export function ContenuImageEdit({
                 name="lien_vers"
                 value={currentContent.lien_vers}
                 onChange={handleChange}
-				className={styles.input}
+				className={styles.smallBorder}
             />
 			<CancelSaveButtons setEdit={setEditImage} handleSave={handleSave} error={error} additionalClassName={""}/>
             
