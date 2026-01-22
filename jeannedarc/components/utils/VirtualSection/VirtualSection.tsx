@@ -8,6 +8,7 @@ import { SectionPdfServer } from "../../Sections/SectionPdf/SectionPdfServer";
 import { SectionBandeauBtnServer } from "../../Sections/SectionBandeauBtn/SectionBandeauBtnServer";
 import { SectionTitreImageServer } from "@/components/Sections/SectionTitreImage/SectionTitreImageServer";
 import { SectionPavesServer } from "@/components/Sections/SectionPaves/SectionPavesServer";
+import { SectionFormulaireContactServer } from "@/components/Sections/SectionFormulaireContact/SectionFormulaireContactServer";
 
 interface VirtualSectionProps {
     section: SectionInterface;
@@ -38,6 +39,8 @@ export function VirtualSection({ section, isAuth }: VirtualSectionProps) {
             );
         case "Image":
             return <SectionImageServer isAuth={isAuth} section={section} />;
+		case "Contact":
+            return <SectionFormulaireContactServer isAuth={isAuth} section={section} />;
         case "Pdf":
             return <SectionPdfServer isAuth={isAuth} section={section} />;
 		case "PavesNav":
