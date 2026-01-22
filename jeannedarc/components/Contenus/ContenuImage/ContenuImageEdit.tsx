@@ -18,19 +18,21 @@ export function ContenuImageEdit({
     const [currentContent, setCurrentContent] = useState(contenu);
     const [error, setError] = useState("");
 	const [file, setFile] = useState<File | null>(null);
+	const [fileName, setFileName] = useState("")
     const url = usePathname();
 
         const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             setFile(e.target.files[0]);
+			setFileName(e.target.files[0].name)
         }
     };
 
-    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
         e.preventDefault();
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
             setFile(e.dataTransfer.files[0]);
-			
+			setFileName(e.dataTransfer.files[0].name)
         }
     };
 
@@ -122,25 +124,7 @@ export function ContenuImageEdit({
 
     return (
         <>
-             <div
-                onDrop={handleDrop}
-                onDragOver={(e) => e.preventDefault()}
-                style={{
-                    border: "2px dashed gray",
-                    padding: "20px",
-                    width: "300px",
-                }}
-            >
-                Glisser-déposer un fichier ici ou cliquez pour sélectionner
-                <input
-                    type="file"
-                    onChange={handleFileChange}
-                    style={{ display: "none" }}
-					accept="image/*"
-					// accept="application/pdf
-                />
-            </div>
-			<label htmlFor="image_url" className={styles.label}>
+             <label htmlFor="image_url" className={styles.label}>
                 Url de l&#39;image (optionnel)
             </label>
             <input
@@ -149,7 +133,27 @@ export function ContenuImageEdit({
                 name="image_url"
                 value={currentContent.image_url}
                 onChange={handleChange}
+				className={styles.input}
             />
+			 <div className={styles.dropDiv}>
+			 <label
+                onDrop={handleDrop}
+                onDragOver={(e) => e.preventDefault()}
+				className={styles.dropBox}
+				htmlFor="file-input"
+            >
+                Glisser-déposer un fichier ici ou cliquez pour sélectionner
+                <input
+                    type="file"
+					id="file-input"
+                    onChange={handleFileChange}
+                    style={{ display: "none" }}
+					accept="image/*"
+					// accept="application/pdf
+                />
+            </label>
+			<p>Fichier droppé: {fileName}</p></div>
+			
             <label htmlFor="alt_text" className={styles.label}>
                 Texte alternatif
             </label>
@@ -159,6 +163,7 @@ export function ContenuImageEdit({
                 name="alt_text"
                 value={currentContent.alt_text}
                 onChange={handleChange}
+				className={styles.input}
             />
             <label htmlFor="lien_vers" className={styles.label}>
                 Lien vers une autre page (optionnel)
@@ -169,6 +174,7 @@ export function ContenuImageEdit({
                 name="lien_vers"
                 value={currentContent.lien_vers}
                 onChange={handleChange}
+				className={styles.input}
             />
 			<CancelSaveButtons setEdit={setEditImage} handleSave={handleSave} error={error} additionalClassName={""}/>
             
