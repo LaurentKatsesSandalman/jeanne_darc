@@ -1,0 +1,7 @@
+.submitBtn{
+	background-color: var(--background-pdf-related);
+	color: var(--font-white);
+	padding: 5px 20px;
+	font-weight: 500;
+	font-size: 15px;
+}

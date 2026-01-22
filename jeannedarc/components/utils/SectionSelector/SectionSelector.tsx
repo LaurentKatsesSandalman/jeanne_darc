@@ -10,6 +10,7 @@ import {
 import { UUIDFormat } from "@/lib/schemas";
 import {
     createContenuBandeauBtnAction,
+    createContenuContactAction,
     createContenuImageAction,
     createContenuPaveAction,
     createContenuPdfAction,
@@ -27,6 +28,7 @@ type SectionType =
     | "TexteTexte"
     | "ImageTexte"
     | "Image"
+	| "Contact"
     | "Pdf"
 	| "PavesNav";
 
@@ -235,6 +237,37 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                 );
                 break;
             }
+			case "Contact": {
+                await createSectionWithContent(
+                    sectionType,
+                    id_page_fk,
+                    async (id_section) => {
+                        await createContenuImageAction(
+                            {
+                                id_section_fk: id_section,
+                                image_url:
+                                    "http://www.image-heberg.fr/files/1765794470531451060.png",
+                                alt_text: "",
+                                lien_vers: "",
+                            },
+                            url
+                        );
+                        await createContenuContactAction(
+                            {
+                                id_section_fk: id_section,
+                                titre:"LAISSEZ-NOUS UN MESSAGE",
+								champ1:"Nom et prénom",
+								champ2: "Numéro de téléphone",
+								champ3: "Adresse mail de contact",
+								champ4: "Votre message",
+								bouton: "Envoyer"
+                            },
+                            url
+                        );
+                    }
+                );
+                break;
+            }
             case "Pdf": {
                 await createSectionWithContent(
                     sectionType,
@@ -323,6 +356,12 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                             onClick={() => createNewSection("Image")}
                         >
                             Section Image
+                        </button>
+						<button
+                            type="button"
+                            onClick={() => createNewSection("Contact")}
+                        >
+                            Section Formulaire de contact
                         </button>
                         <button
                             type="button"
