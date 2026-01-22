@@ -43,13 +43,12 @@ export async function HeaderServer() {
     return (
         <header>
             <div className={styles.header}>
-                <Link href="/">
+                <Link href="/" className={styles.logoContainer}>
                     <Image
                         src="/ECOLE_JDA_LOGO_BLANC-01-temp.png"
                         alt="Le logo de l'école Jeanne d'Arc"
                         className={styles.logo}
-						    width={200}
-    height={80}
+						    fill
                     />
                 </Link>
                 <HeaderClient isAuth={isAuth} sections={sectionsWithBtn} />
