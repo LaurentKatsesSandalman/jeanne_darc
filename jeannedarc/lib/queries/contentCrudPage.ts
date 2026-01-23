@@ -33,6 +33,15 @@ export async function getPageByUrl(
     return rows[0];
 }
 
+export async function getAllPlusPages(
+    
+): Promise<PageInterface[] | undefined> {
+    const rows = await sql<PageInterface[]>`
+	SELECT * FROM page WHERE page_url LIKE 'plus/%';
+	`;
+    return rows;
+}
+
 export async function getPageById(
     id: string,
 ): Promise<PageInterface | undefined> {
