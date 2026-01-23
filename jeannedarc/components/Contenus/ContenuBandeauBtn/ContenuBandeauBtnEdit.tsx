@@ -113,6 +113,7 @@ export function ContenuBandeauBtnEdit({
                 name="bouton"
                 value={currentContent.bouton}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<label htmlFor="lien_vers" className={styles.label}>
               <p>  Url du bouton. Si c&#39;est un lien interne, ne pas mettre le nom de domaine </p>
@@ -124,6 +125,7 @@ export function ContenuBandeauBtnEdit({
                 name="lien_vers"
                 value={currentContent.lien_vers}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<label htmlFor="titre" className={styles.label}>
                 Titre (optionnel)
@@ -134,6 +136,7 @@ export function ContenuBandeauBtnEdit({
                 name="titre"
                 value={currentContent.titre}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<label htmlFor="description" className={styles.label}>
                 Description (optionnel)
@@ -144,6 +147,7 @@ export function ContenuBandeauBtnEdit({
                 name="description"
                 value={currentContent.description}
                 onChange={handleChange}
+				className={styles.smallBorder}
             />
 			<p  className={styles.label}>
                 Icône (optionnel)

@@ -1,0 +1,28 @@
+//https://developers.netlify.com/guides/user-generated-uploads-with-netlify-blobs/
+import { getStore } from "@netlify/blobs";
+
+export async function GET(request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  const id_contenu = id;
+
+  // Load the Netlify Blobs store called `UserUpload`
+  const userUploadStore = getStore({
+        name: "UserUpload",
+        siteID: process.env.NETLIFY_SITE_ID,
+        token: process.env.NETLIFY_AUTH_TOKEN,
+        consistency: "strong",
+    });
+  // Get the blob from the store. Replace `<key>` with the unique key used when
+  // uploading.
+  const userUploadBlob = await userUploadStore.get(id_contenu, {
+    type: "stream",
+  });
+  // Make sure you throw a 404 if the blob is not found.
+  if (!userUploadBlob) {
+    return new Response("Upload not found", { status: 404 });
+  }
+  // Return the blob
+  return new Response(userUploadBlob);
+}

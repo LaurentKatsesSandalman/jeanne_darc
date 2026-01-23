@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styles from "./Header.module.css";
 import Image from "next/image";
-import logo from "../../assets/images/ECOLE_JDA_LOGO_BLANC-01-temp.png";
+// import logo from "/public/ECOLE_JDA_LOGO_BLANC-01-temp.png";
 //import { SignOutButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { LogoutButton } from "../Buttons/LogoutButton/LogoutButton";
@@ -43,11 +43,12 @@ export async function HeaderServer() {
     return (
         <header>
             <div className={styles.header}>
-                <Link href="/">
+                <Link href="/" className={styles.logoContainer}>
                     <Image
-                        src={logo}
+                        src="/ECOLE_JDA_LOGO_BLANC-01-temp.png"
                         alt="Le logo de l'école Jeanne d'Arc"
                         className={styles.logo}
+						    fill
                     />
                 </Link>
                 <HeaderClient isAuth={isAuth} sections={sectionsWithBtn} />

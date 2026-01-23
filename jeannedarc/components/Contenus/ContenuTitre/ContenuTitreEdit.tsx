@@ -83,7 +83,7 @@ export function ContenuTitreEdit({
     }
 
     return (
-        <>
+        <div className={styles.container}>
             <label htmlFor="titre1" className={styles.label}>
                 {currentContent.is_mega ? "Titre1 (grand)" : "Titre1 (petit)"}
             </label>
@@ -117,9 +117,13 @@ export function ContenuTitreEdit({
                 name="description"
                 value={currentContent.description}
                 onChange={handleChange}
-                className={styles.description}
+                className={styles.descriptionEdit}
             />
-            <input
+			<div className={styles.divGrandTitre}>
+            <label htmlFor="is_mega" className={styles.labelGrandTitre}>
+                Grand titre
+            </label>
+			<input
                 type="checkbox"
                 id="is_mega"
                 name="is_mega"
@@ -132,11 +136,9 @@ export function ContenuTitreEdit({
                 }
                 className={styles.is_mega}
             />
-            <label htmlFor="is_mega" className={styles.label}>
-                Grand titre
-            </label>
+            </div>
 
             <CancelSaveButtons setEdit={setEditTitre} handleSave={handleSave} error={error} additionalClassName={""}/>
-        </>
+        </div>
     );
 }

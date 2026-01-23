@@ -25,8 +25,23 @@
     margin-bottom: 24px;
 }
 
+.h1Edit, .h2Edit, .descriptionEdit {
+	border: 1px solid #17383e18 
+}
+
 .label {
     margin-top: -12px;
+}
+
+.is_mega{
+	width: 1rem
+}
+
+.divGrandTitre{
+	display: flex;
+	gap: 5px;
+	
+	 margin-top: -12px;
 }
 
 .surcontainerMega {

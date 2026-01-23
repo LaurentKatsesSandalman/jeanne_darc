@@ -43,3 +43,7 @@
 .label{
 	font-weight: 700;
 }
+
+.smallBorder{
+	border: 1px solid #17383e18 
+}
