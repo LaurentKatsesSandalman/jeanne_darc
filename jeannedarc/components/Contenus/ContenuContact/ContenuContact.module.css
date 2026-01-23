@@ -1,7 +1,46 @@
 .submitBtn{
 	background-color: var(--background-pdf-related);
 	color: var(--font-white);
-	padding: 5px 20px;
+	padding: 10px 20px;
 	font-weight: 500;
 	font-size: 15px;
+	width:max(33%, 200px);
+	
+}
+
+.h2 {
+	font-family: var(--font-ibm-plex);
+    font-size: 40px;
+    font-weight: 700;
+	margin-bottom: 40px;
+}
+
+.smallBorder, .smallBorderTextArea{
+	border: 1px solid #17383e18;
+	 color: var(--font-blue);
+	 margin-bottom: 20px;
+	 padding: 8px 16px;
+}
+
+.smallBorderTextArea{
+	width: 100%;
+	background-color:rgb(245, 247, 247);
+}
+
+.smallBorderTextArea:focus{
+	outline:none;
+	border: 1px solid var(--background-pdf-related)
+}
+
+.label{
+	color: var(--font-blue);
+	font-size:15px;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.required{
+	color: red;
+	font-size: 20px;
+	line-height: 0.5;
 }

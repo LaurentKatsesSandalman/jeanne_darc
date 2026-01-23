@@ -111,13 +111,13 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
                     <span className={styles.required}> *</span>
                 </label>
                 <textarea
-                    rows={3}
-                    cols={50}
+                    rows={5}
+                    // cols={50}
                     id="input4"
                     name="input4"
                     value={formData.input4}
                     onChange={handleChange}
-                    className={styles.smallBorder}
+                    className={styles.smallBorderTextArea}
                 />
                 <input
                     type="submit"
