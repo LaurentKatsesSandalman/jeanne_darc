@@ -1,0 +1,22 @@
+.resultatRechercheContainer {
+	border: 1px solid #17383e18;
+	padding: 10px;
+}
+
+.resultatRechercheContainer:hover{
+  box-shadow: 
+    0 0 20px color-mix(in srgb, var(--font-default) 30%, transparent)
+    /*, 0 0 40px color-mix(in srgb, var(--font-default) 10%, transparent)*/
+	; 
+    
+}
+
+.resultTitleLink{
+	font-size: 20px;
+	font-weight: 700; 
+}
+
+.resultPageUrl{
+	color: blue;
+	padding-top: 30px;
+}

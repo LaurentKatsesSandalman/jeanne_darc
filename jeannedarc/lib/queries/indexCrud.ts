@@ -5,14 +5,26 @@ import { CreateIndex, SearchIndexData } from "../schemas";
 import { getPageByUrl } from "./contentCrudPage";
 
 export async function createIndex(
-    { ref_table, ref_id, content_plaintext }: CreateIndex,
+    { ref_id, ref_table, content_plaintext }: CreateIndex,
     url: string,
 ): Promise<boolean> {
-    const page = await getPageByUrl(url);
+	console.log(url)
+	const shortUrl=(url==="/"?"/":url.slice(1))
+    const page = await getPageByUrl(shortUrl);
+
+	
 
     if (!page) {
+		console.log("no page")
         return false;
     }
+
+console.log('🔍 DEBUG createIndex:', {
+    ref_id,
+    ref_table,
+    content_plaintext: content_plaintext.substring(0, 50) + '...',
+    id_page_fk: page.id_page
+});
 
     const data = {
         id_page_fk: page.id_page,
@@ -51,6 +63,21 @@ export async function searchIndex(
         JOIN page ON page.id_page = index.id_page_fk
         WHERE to_tsvector('french', index.content_plaintext) 
               @@ plainto_tsquery('french', ${search})
+        GROUP BY index.id_page_fk, page.page_url, page_nom
+	`;
+    return rows;
+}
+
+export async function getIndexByUrl (url:string): Promise<SearchIndexData[] | undefined> {
+	const rows = await sql<SearchIndexData[]>`
+	SELECT 
+            index.id_page_fk,
+            string_agg(index.content_plaintext, ' ') as contenu_combine,
+			page.nom as page_nom,
+            page.page_url
+        FROM text_index index
+        JOIN page ON page.id_page = index.id_page_fk
+        WHERE page.page_url = ${url}
         GROUP BY index.id_page_fk, page.page_url, page_nom
 	`;
     return rows;
