@@ -1,10 +1,9 @@
-
-
 import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 import { auth } from "@clerk/nextjs/server";
 import styles from "./Footer.module.css";
 import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
 import { SectionPavesServer } from "../Sections/SectionPaves/SectionPavesServer";
+import Link from "next/link";
 
 export async function FooterServer() {
     const page = await getPageByUrl("footer");
@@ -37,8 +36,8 @@ export async function FooterServer() {
                 ></iframe>
             </div>
             <p className={styles.footerCopyright}>
-                Copyright © {currentYear} Institution Jeanne d&#39;Arc - Le
-                Bouscat
+                © {currentYear} Institution Jeanne d&#39;Arc - Le Bouscat |{" "}
+                <Link href="/mentions-legales">Mentions légales</Link>
             </p>
         </footer>
     );
