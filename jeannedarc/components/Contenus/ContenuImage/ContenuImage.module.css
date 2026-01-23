@@ -3,3 +3,29 @@
 	font-style: italic;
 	font-weight: 700;
 }
+
+.dropDiv{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 5px 0 15px
+}
+
+.dropBox{
+	width: 50%;
+	cursor:pointer;
+	padding: 5%;
+	background-color: var(--background-pdf-related);
+	color: var(--font-white);
+	font-weight: 700;
+	border-radius: 15px
+}
+
+.label{
+	font-weight:700;
+	
+}
+
+.smallBorder{
+	border: 1px solid #17383e18 
+}

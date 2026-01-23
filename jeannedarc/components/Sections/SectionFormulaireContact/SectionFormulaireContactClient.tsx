@@ -1,36 +1,41 @@
 "use client";
 import clsx from "clsx";
 import {
-    ContenuTexteInterface,
+    ContenuImageInterface,
+    ContenuContactInterface,
     SectionInterface,
     UpdateSection,
 } from "@/lib/schemas";
-import styles from "./SectionTexteTexte.module.css";
+import styles from "./SectionFormulaireContact.module.css";
 import { useState } from "react";
-import { ContenuTexteEdit } from "@/components/tiptap/tiptap-templates/simple/simple-editor";
-import { ContenuTexte } from "@/components/Contenus/ContenuTexte/ContenuTexte";
+
+import { ContenuContact } from "@/components/Contenus/ContenuContact/ContenuContact";
 import { EditIcon, SwitchIcon } from "@/components/Icons/Icons";
-import iconStyles from "@/components/Icons/Icons.module.css";
 import { updateSectionAction } from "@/lib/actions/actionsSection";
 import { usePathname } from "next/navigation";
+import { ContenuImageEdit } from "@/components/Contenus/ContenuImage/ContenuImageEdit";
+import { ContenuImage } from "@/components/Contenus/ContenuImage/ContenuImage";
 import { DeleteSectionButton } from "@/components/Buttons/DeleteSectionButton/DeleteSectionButton";
+import iconStyles from "@/components/Icons/Icons.module.css";
+import { ContenuContactEdit } from "@/components/Contenus/ContenuContact/ContenuContactEdit";
 
-interface SectionTexteTexteProps {
+interface SectionFormulaireContactProps {
     section: SectionInterface;
-    contenuTexte1: ContenuTexteInterface;
-    contenuTexte2: ContenuTexteInterface;
+    contenuContact: ContenuContactInterface;
+    contenuImage: ContenuImageInterface;
     isAuth: boolean;
 }
 
-export function SectionTexteTexteClient({
+export function SectionFormulaireContactClient({
     section,
-    contenuTexte1,
-    contenuTexte2,
+    contenuContact,
+    contenuImage,
     isAuth,
-}: SectionTexteTexteProps) {
-    const [editTexte1, setEditTexte1] = useState(false);
-    const [editTexte2, setEditTexte2] = useState(false);
+}: SectionFormulaireContactProps) {
+    const [editContact, setEditContact] = useState(false);
+    const [editImage, setEditImage] = useState(false);
     const [error, setError] = useState("");
+
     const url = usePathname();
 
     async function handleSwitchSave() {
@@ -57,7 +62,7 @@ export function SectionTexteTexteClient({
     }
 
     return (
-        <div className={styles.sectionTexteTexteContainer}>
+        <div className={styles.sectionFormulaireContactContainer}>
             {isAuth ? (
                 <>
                     <div
@@ -69,18 +74,18 @@ export function SectionTexteTexteClient({
                         )}
                     >
                         <div className="w-full sm:w-1/2">
-                            {editTexte1 ? (
-                                <ContenuTexteEdit
-                                    contenu={contenuTexte1}
+                            {editImage ? (
+                                <ContenuImageEdit
+                                    contenu={contenuImage}
                                     // isAuth={isAuth}
-                                    setEditTexte={setEditTexte1}
+                                    setEditImage={setEditImage}
                                 />
                             ) : (
                                 <div>
-                                    <ContenuTexte contenu={contenuTexte1} />
+                                    <ContenuImage contenu={contenuImage} />
                                     <button
                                         type="button"
-                                        onClick={() => setEditTexte1(true)}
+                                        onClick={() => setEditImage(true)}
                                         className={iconStyles.btnInMain}
                                     >
                                         <EditIcon />
@@ -89,18 +94,18 @@ export function SectionTexteTexteClient({
                             )}
                         </div>
                         <div className="w-full sm:w-1/2">
-                            {editTexte2 ? (
-                                <ContenuTexteEdit
-                                    contenu={contenuTexte2}
+                            {editContact ? (
+                                <ContenuContactEdit
+                                    contenu={contenuContact}
                                     // isAuth={isAuth}
-                                    setEditTexte={setEditTexte2}
+                                    setEditContact={setEditContact}
                                 />
                             ) : (
                                 <div>
-                                    <ContenuTexte contenu={contenuTexte2} />
+                                    <ContenuContact contenu={contenuContact} />
                                     <button
                                         type="button"
-                                        onClick={() => setEditTexte2(true)}
+                                        onClick={() => setEditContact(true)}
                                         className={iconStyles.btnInMain}
                                     >
                                         <EditIcon />
@@ -109,6 +114,7 @@ export function SectionTexteTexteClient({
                             )}
                         </div>
                     </div>
+
                     <DeleteSectionButton
                         id_section={section.id_section}
                         url={url}
@@ -132,11 +138,11 @@ export function SectionTexteTexteClient({
                     )}
                 >
                     <div className="w-full sm:w-1/2">
-                        <ContenuTexte contenu={contenuTexte1} />
+                        <ContenuImage contenu={contenuImage} />
                     </div>
 
                     <div className="w-full sm:w-1/2">
-                        <ContenuTexte contenu={contenuTexte2} />
+                        <ContenuContact contenu={contenuContact} />
                     </div>
                 </div>
             )}
