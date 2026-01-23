@@ -71,8 +71,8 @@ export function SectionTitreImageClient({
                 className={clsx(
                     "flex",
                     section.revert
-                        ? "flex-col-reverse sm:flex-row-reverse"
-                        : "flex-col sm:flex-row",
+                        ? "gap-15 flex-col-reverse sm:flex-row-reverse"
+                        : "gap-15 flex-col sm:flex-row",
 						styles.home
                 )}
             >

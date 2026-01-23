@@ -38,18 +38,18 @@ export function SectionTexteTexteClient({
         const result = await updateSectionAction(
             section.id_section,
             payload,
-            url
+            url,
         );
 
         if (!result.success) {
             console.error("Échec de la requête:", result);
             if ("errors" in result) {
                 setError(
-                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs.",
                 );
             } else if ("error" in result) {
                 setError(
-                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.",
                 );
             }
             return;
@@ -64,12 +64,11 @@ export function SectionTexteTexteClient({
                         className={clsx(
                             "flex",
                             section.revert
-                                ? "flex-col-reverse sm:flex-row-reverse"
-                                : "flex-col sm:flex-row"
+                                ? "gap-15 flex-col-reverse sm:flex-row-reverse"
+                                : "gap-15 flex-col sm:flex-row",
                         )}
                     >
                         <div className="w-full sm:w-1/2">
-                            
                             {editTexte1 ? (
                                 <ContenuTexteEdit
                                     contenu={contenuTexte1}
@@ -128,8 +127,8 @@ export function SectionTexteTexteClient({
                     className={clsx(
                         "flex",
                         section.revert
-                            ? "flex-col-reverse sm:flex-row-reverse"
-                            : "flex-col sm:flex-row"
+                            ? "gap-15 flex-col-reverse sm:flex-row-reverse"
+                            : "gap-15 flex-col sm:flex-row",
                     )}
                 >
                     <div className="w-full sm:w-1/2">
