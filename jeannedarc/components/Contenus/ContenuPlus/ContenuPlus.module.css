@@ -1,0 +1,6 @@
+.h2 {
+    font-family: var(--font-actor);
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}

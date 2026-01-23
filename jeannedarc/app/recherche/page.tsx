@@ -4,7 +4,7 @@ import styles from "./page.module.css"
 import { ResultatRecherche } from "@/components/ResultatRecherche/ResultatRecherche";
 
 // export const dynamic = 'force-dynamic';
-export const revalidate = 36000;
+export const revalidate = 86400;
 
 export default async function Page({
     searchParams,
@@ -21,14 +21,15 @@ export default async function Page({
 
     return (
         <main>
-            <h1>Titre à trouver</h1>
+			<div className={styles.searchPageContainer}>
+            <h1 className={styles.h1}>Résultats de la recherche</h1>
             <div className={styles.resultGrid}>
 				{noResult&&<h2>Pas de résultat</h2>}
                 {resultats?.success &&
                     resultats.data.map((resultat) => (
                         <ResultatRecherche resultat={resultat} key={resultat.id_page_fk} />
                     ))}
-            </div>
+            </div></div>
         </main>
     );
 }
