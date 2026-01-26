@@ -176,7 +176,7 @@ export function SectionPavesClient({
                 </>
             )}
 
-            <div className={styles.blocsContainer}>
+            <div className={styles[`blocsContainer${classSuffixe}`]}>
                 {paveBlocs && (
                     <>
                         {paveBlocs.map((paveBloc) => (

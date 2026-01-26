@@ -9,6 +9,10 @@
     font-weight: 600;
 }
 
+.headerMobile{
+	display: none;
+}
+
 .allBtnContainer {
     display: flex;
     /* gap: 50px; */
