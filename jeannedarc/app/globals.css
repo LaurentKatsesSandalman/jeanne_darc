@@ -58,3 +58,9 @@ label {
 button {
     backface-visibility: hidden;	/*pour eviter ques les icones bavent et créent une ligne diagonale*/
 }
+
+@media(max-width:768px){
+	main{
+		margin: 25px 0 50px;
+	}
+}

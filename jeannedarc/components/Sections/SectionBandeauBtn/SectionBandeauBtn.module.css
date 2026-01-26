@@ -13,3 +13,8 @@
     padding: 25px 0;
     /* padding-bottom: 50px; */
 }
+@media (max-width:768px){
+	.sectionBandeauBtnContainerHome{
+		top: -50px;
+	}
+}
