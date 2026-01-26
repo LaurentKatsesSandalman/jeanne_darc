@@ -33,9 +33,10 @@ body {
 main{
 	background-color: var(--background-page);
 	/* padding: 50px 0 50px 0; */
-	color:var(--font-default)
+	color:var(--font-default);
 	/* width:min(90%, 1290px);
 	margin: 0 auto; */
+	margin: 50px 0
 }
 
 input {

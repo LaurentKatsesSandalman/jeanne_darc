@@ -4,7 +4,7 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.800);
+	background-color: rgba(0, 0, 0, 0.900);
 	color: white;
 	font-size: 35px;
 }
@@ -16,13 +16,23 @@
 
 .rechercheModalForm{
 	display: flex;
-	width: 80%;
-	margin:auto;
+	width: 60%;
+	margin:35vh auto;
 }
 
 .rechercheModalInput{
 	background-color: transparent;
-	color: inherit
+	color: inherit;
+	border-bottom: 1px solid grey;
+}
+
+.rechercheModalInput:focus{
+	background-color: transparent;
+	color: inherit;
+	border-bottom: 1px solid var(--background-pdf-related);
+	border-top: none;
+	border-left: none;
+	border-right: none;
 }
 
 .rechercheModalInput :-webkit-autofill{
