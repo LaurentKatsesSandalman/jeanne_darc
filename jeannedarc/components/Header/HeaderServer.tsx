@@ -13,6 +13,7 @@ import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
 import { ContenuHeaderBtnInterface } from "@/lib/schemas";
 import { getAllContenuHeaderBtnsBySectionId } from "@/lib/queries/contentCrudContenu";
 import { RechercheClient } from "../Recherche/RechercheClient";
+import { HeaderMobileClient } from "./HeaderMobileClient";
 
 export type SectionWithBtn = ContenuHeaderBtnInterface[];
 
@@ -52,8 +53,22 @@ export async function HeaderServer() {
                     />
                 </Link>
                 <HeaderClient isAuth={isAuth} sections={sectionsWithBtn} />
-                <p>(+33)5 56 08 52 16</p>
+                <a href="tel:+33556085216">(+33)5 56 08 52 16</a>
                 <RechercheClient />
+            </div>
+			<div className={styles.headerMobile}>
+               <RechercheClient />
+			    <Link href="/" className={styles.logoContainerMobile}>
+                    <Image
+                        src="/ECOLE_JDA_LOGO_BLANC-01-temp.png"
+                        alt="Le logo de l'école Jeanne d'Arc"
+                        className={styles.logo}
+						    fill
+                    />
+                </Link>
+				<HeaderMobileClient sectionsWithBtn={sectionsWithBtn} />
+                
+                
             </div>
             {isAuth && (
                 <>

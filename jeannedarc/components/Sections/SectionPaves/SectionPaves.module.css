@@ -52,7 +52,7 @@ footer .sectionPavesContainerHome :is(input, textarea) {
     width:min(90%, 1290px);
     margin: 0 auto;
     display: flex;
-    gap: 64px;
+    gap: 4vw;
 }
 
 .blocSize {
@@ -98,4 +98,20 @@ footer .sectionPavesContainerHome :is(input, textarea) {
 .texteBtnPaveHome:hover {
     color: var(--background-page);
     background-color: var(--font-orange);
+}
+
+@media (max-width:768px){
+	.h2Pave,
+.h2PaveHome,
+.h2PaveContact{
+	font-size: 30px
+}
+
+.blocsContainerHome, .blocsContainer, .blocsContainerContact{
+	flex-direction: column;
+}
+
+.sectionPavesContainerContact{
+	padding-top:0;
+}
 }

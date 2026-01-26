@@ -69,11 +69,11 @@ export function SectionFormulaireContactClient({
                         className={clsx(
                             "flex",
                             section.revert
-                                ? "gap-15 flex-col-reverse sm:flex-row-reverse"
-                                : "gap-15 flex-col sm:flex-row",
+                                ? "gap-15 flex-col-reverse md:flex-row-reverse"
+                                : "gap-15 flex-col md:flex-row",
                         )}
                     >
-                        <div className="w-full sm:w-1/2">
+                        <div className="w-full md:w-1/2">
                             {editImage ? (
                                 <ContenuImageEdit
                                     contenu={contenuImage}
@@ -93,7 +93,7 @@ export function SectionFormulaireContactClient({
                                 </div>
                             )}
                         </div>
-                        <div className="w-full sm:w-1/2">
+                        <div className="w-full md:w-1/2">
                             {editContact ? (
                                 <ContenuContactEdit
                                     contenu={contenuContact}
@@ -133,15 +133,15 @@ export function SectionFormulaireContactClient({
                     className={clsx(
                         "flex",
                         section.revert
-                            ? "gap-15 flex-col-reverse sm:flex-row-reverse"
-                            : "gap-15 flex-col sm:flex-row",
+                            ? "gap-15 flex-col-reverse md:flex-row-reverse"
+                            : "gap-15 flex-col md:flex-row",
                     )}
                 >
-                    <div className="w-full sm:w-1/2">
+                    <div className="w-full md:w-1/2">
                         <ContenuImage contenu={contenuImage} />
                     </div>
 
-                    <div className="w-full sm:w-1/2">
+                    <div className="w-full md:w-1/2">
                         <ContenuContact contenu={contenuContact} />
                     </div>
                 </div>

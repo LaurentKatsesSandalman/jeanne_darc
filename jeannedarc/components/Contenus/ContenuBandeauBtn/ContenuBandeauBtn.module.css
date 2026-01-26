@@ -47,3 +47,23 @@
 .smallBorder{
 	border: 1px solid #17383e18 
 }
+
+@media (max-width:768px){
+	.containerBandeau, .containerBandeauHome{
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.containerBandeauHome{
+		padding: 12px;
+	}
+
+	.containerTextes{
+		width: 90%;
+		text-align: center;
+	}
+
+	.titre {
+		font-size: 20px;
+	}
+}

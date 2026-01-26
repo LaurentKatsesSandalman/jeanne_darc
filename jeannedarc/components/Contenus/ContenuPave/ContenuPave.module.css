@@ -63,3 +63,9 @@ footer .descriptionBloc, footer .descriptionBlocHome, footer .descriptionBlocCon
 	; 
     
 }
+
+@media (max-width:768px){
+	.titreBloc, .titreBlocHome, .titreBlocContact{
+		margin:5px 0 12px 0;
+	}
+}
