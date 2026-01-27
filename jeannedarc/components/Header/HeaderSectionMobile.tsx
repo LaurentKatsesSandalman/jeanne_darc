@@ -46,6 +46,7 @@ export function HeaderSectionMobile({
                         <div
                             onClick={() => setIsOpen((prev) => !prev)}
                             className={clsx(styles.mobileChevron, isOpen && styles.turned)}
+							tabIndex={0}
                         >
                             <ChevronDown
                                 className={currentUrl ? styles.current : ""}

@@ -90,14 +90,19 @@ footer .sectionPavesContainerHome :is(input, textarea) {
     padding: 5px;
 }
 
-.texteBtnPave:hover {
+.texteBtnPave:hover , .texteBtnPave:focus-visible{
     color: var(--background-page);
     background-color: var(--font-default);
 }
 
-.texteBtnPaveHome:hover {
+.texteBtnPaveHome:hover, .texteBtnPaveHome:focus-visible {
     color: var(--background-page);
     background-color: var(--font-orange);
+}
+
+.texteBtnPave:focus-visible, .texteBtnPaveHome:focus-visible{
+	outline: 2px solid var(--font-pdf-related);
+  outline-offset: 2px;
 }
 
 @media (max-width:768px){
