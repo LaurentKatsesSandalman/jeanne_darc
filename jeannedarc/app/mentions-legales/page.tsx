@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default function MentionsLegalesPage() {
-    return (<main>
+    return (<main id="main-content">
         <div className="w-[min(90%,1290px)] mx-auto px-4 py-12">
             <h1 className="text-4xl font-bold mb-8">Mentions légales</h1>
 

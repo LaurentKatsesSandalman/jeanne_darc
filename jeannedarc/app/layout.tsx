@@ -4,7 +4,7 @@ import { IBM_Plex, ActorFont } from "./fonts";
 import "./globals.css";
 import { HeaderServer } from "@/components/Header/HeaderServer";
 import { FooterServer } from "@/components/Footer/FooterServer";
-// import styles from "./layout.module.css"
+import styles from "./layout.module.css"
 
 export const dynamic = 'force-dynamic';
 
@@ -49,10 +49,13 @@ export default function RootLayout({
 }>) {
   return (
 	 <ClerkProvider>
-    <html lang="en">
+    <html lang="fr">
       <body
         className={`${IBM_Plex.variable} ${ActorFont.variable} antialiased`}
       >
+		<a href="#main-content" className={styles.skipLink}>
+                    Aller au contenu principal
+                </a>
 		<HeaderServer/>
 			< >
         {children}
