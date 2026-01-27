@@ -37,6 +37,8 @@ export function SectionImageTexteClient({
 
     const url = usePathname();
 
+	const ref_ids = [contenuTexte.id_contenu_texte, contenuImage.id_contenu_image]
+
     async function handleSwitchSave() {
         const payload: UpdateSection = { revert: !section.revert };
         const result = await updateSectionAction(
@@ -117,6 +119,7 @@ export function SectionImageTexteClient({
                     <DeleteSectionButton
                         id_section={section.id_section}
                         url={url}
+						ref_ids={ref_ids}
                     />
                     <button
                         type="button"

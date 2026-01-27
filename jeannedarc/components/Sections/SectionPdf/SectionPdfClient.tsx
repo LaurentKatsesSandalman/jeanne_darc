@@ -23,6 +23,8 @@ export function SectionPdfClient({
     const [editPdf, setEditPdf] = useState(false);
     const url = usePathname();
 
+	const ref_ids = [contenuPdf.id_contenu_pdf]
+
     return (
         <div className={styles.sectionPdfContainer}>
             {isAuth ? (
@@ -50,6 +52,7 @@ export function SectionPdfClient({
                     <DeleteSectionButton
                         id_section={section.id_section}
                         url={url}
+						ref_ids={ref_ids}
                     />
                 </>
             ) : (

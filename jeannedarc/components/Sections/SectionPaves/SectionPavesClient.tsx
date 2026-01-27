@@ -36,6 +36,8 @@ export function SectionPavesClient({
     const [currentContent, setCurrentContent] = useState(sectionPaves);
     const url = usePathname();
 
+	const ref_ids = [sectionPaves.id_contenu_pave]
+
     async function createNewBloc() {
         const result = await createPaveBlocAction(
             {
@@ -198,6 +200,7 @@ export function SectionPavesClient({
                         <DeleteSectionButton
                             id_section={section.id_section}
                             url={url}
+							ref_ids={ref_ids}
                         />
                         {error && <p className={styles.error}>{error}</p>}
                     </>
