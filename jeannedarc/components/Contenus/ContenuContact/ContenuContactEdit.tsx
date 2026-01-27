@@ -31,6 +31,14 @@ export function ContenuContactEdit({
     };
 
     async function handleSave() {
+		if (
+            currentContent.titre.length < 3
+        ) {
+            setError(
+                "Le formulaire doit avoir un entête, comme Laissez-nous un message",
+            );
+            return;
+        }
         if (
             currentContent.champ1.length < 3 ||
             currentContent.champ2.length < 3 ||
@@ -100,7 +108,18 @@ export function ContenuContactEdit({
 
     return (
         <>
-            <p>Dans la structure actuelle, il doit toujours y avoir 4 champs (dont le dernier est le champ message) et aucun titre de champ ne peut faire moins de 3 caractères</p>
+		<label htmlFor="titre" className={styles.label}>
+                Le titre, qui appelle à l&#39;action, comme &#34;Laissez-nous un message&#34;
+            </label>
+            <input
+                type="text"
+                id="titre"
+                name="titre"
+                value={currentContent.titre}
+                onChange={handleChange}
+                className={styles.smallBorder}
+            />
+            <p className={styles.important}>Dans la structure actuelle, il doit toujours y avoir 4 champs (dont le dernier est le champ message) et aucun titre de champ ne peut faire moins de 3 caractères</p>
 			<label htmlFor="champ1" className={styles.label}>
                 L&#39;information demandée dans le premier champ
             </label>
@@ -139,9 +158,9 @@ export function ContenuContactEdit({
             </label>
             <input
                 type="text"
-                id="champ3"
-                name="champ3"
-                value={currentContent.champ3}
+                id="champ4"
+                name="champ4"
+                value={currentContent.champ4}
                 onChange={handleChange}
                 className={styles.smallBorder}
             />
