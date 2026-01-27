@@ -8,8 +8,8 @@ export function ResultatRecherche({
     resultat: SearchIndexProcessedData;
 }) {
     return (
-        <div className={styles.resultatRechercheContainer}>
-            <Link href={resultat.page_url} >
+        <div className={styles.resultatRechercheContainer} tabIndex={0}>
+            <Link href={resultat.page_url} tabIndex={-1}>
                <p className={styles.resultTitleLink}>{resultat.page_nom}</p> 
 			   <p>{resultat.extrait} </p>
             </Link>

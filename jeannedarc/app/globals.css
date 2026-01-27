@@ -46,6 +46,11 @@ input {
 	outline: none;
 }
 
+input:focus-visible{
+	outline: 2px solid var(--font-pdf-related);
+  outline-offset: 2px;
+}
+
 input:focus{
 	border: 1px solid var(--background-pdf-related)
 }

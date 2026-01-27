@@ -17,7 +17,7 @@ export function HeaderMobileClient({ sectionsWithBtn}:HeaderMobileClientProps){
 	}
 
 return(<>
-	<button onClick={toggleMenu}><MenuIcon /></button>
+	<button onClick={toggleMenu} ><MenuIcon /></button>
 	{modalActive&&<HeaderMobileModal setModalActive={setModalActive}  sectionsWithBtn={sectionsWithBtn} />}
 	</>)
 

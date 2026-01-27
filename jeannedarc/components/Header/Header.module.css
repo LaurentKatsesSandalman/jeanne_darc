@@ -23,14 +23,19 @@
 	text-transform: uppercase;
 } */
 
-.mainBtn:hover {
+.mainBtn:hover , .mainBtn:focus-visible{
     color: var(--font-orange);
     text-decoration: underline;
 }
 
-.otherBtn:hover{
+.otherBtn:hover, .otherBtn:focus-visible{
 	color: var(--font-orange);
     text-decoration: underline;
+}
+
+.mainBtn:focus-visible, .otherBtn:focus-visible{
+	outline: 2px solid var(--font-orange);
+  /* outline-offset: 1px; */
 }
 
 .logoContainer{
