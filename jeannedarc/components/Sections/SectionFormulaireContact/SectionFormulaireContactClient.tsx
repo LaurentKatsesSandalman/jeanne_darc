@@ -36,6 +36,8 @@ export function SectionFormulaireContactClient({
     const [editImage, setEditImage] = useState(false);
     const [error, setError] = useState("");
 
+	const ref_ids = [contenuImage.id_contenu_image, contenuContact.id_contenu_contact]
+
     const url = usePathname();
 
     async function handleSwitchSave() {
@@ -118,6 +120,7 @@ export function SectionFormulaireContactClient({
                     <DeleteSectionButton
                         id_section={section.id_section}
                         url={url}
+						ref_ids={ref_ids}
                     />
                     <button
                         type="button"

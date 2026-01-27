@@ -23,6 +23,9 @@ export function SectionImageClient({
     const [editImage, setEditImage] = useState(false);
     const url = usePathname();
 
+	const ref_ids = [contenuImage.id_contenu_image]
+
+
     return (
         <div className={styles.sectionImageContainer}>
             {isAuth ? (
@@ -47,6 +50,7 @@ export function SectionImageClient({
                     <DeleteSectionButton
                         id_section={section.id_section}
                         url={url}
+						ref_ids={ref_ids}
                     />
                 </>
             ) : (

@@ -4,21 +4,26 @@ import styles from "./SectionTexte.module.css";
 import { useState } from "react";
 import { ContenuTexteEdit } from "@/components/tiptap/tiptap-templates/simple/simple-editor";
 import { ContenuTexte } from "@/components/Contenus/ContenuTexte/ContenuTexte";
-import {  EditIcon } from "@/components/Icons/Icons";
-import iconStyles from "@/components/Icons/Icons.module.css"
+import { EditIcon } from "@/components/Icons/Icons";
+import iconStyles from "@/components/Icons/Icons.module.css";
 import { usePathname } from "next/navigation";
 import { DeleteSectionButton } from "@/components/Buttons/DeleteSectionButton/DeleteSectionButton";
 
 interface SectionTexteProps {
     section: SectionInterface;
-	contenu: ContenuTexteInterface;
+    contenu: ContenuTexteInterface;
     isAuth: boolean;
 }
 
-export function SectionTexteClient({ section, contenu, isAuth }: SectionTexteProps) {
+export function SectionTexteClient({
+    section,
+    contenu,
+    isAuth,
+}: SectionTexteProps) {
     const [editTexte, setEditTexte] = useState(false);
-	const url = usePathname();
+    const url = usePathname();
 
+	const ref_ids = [contenu.id_contenu_texte]
 
     return (
         <div className={styles.sectionTexteContainer}>
@@ -36,13 +41,17 @@ export function SectionTexteClient({ section, contenu, isAuth }: SectionTextePro
                             <button
                                 type="button"
                                 onClick={() => setEditTexte(true)}
-								className={iconStyles.btnInMain}
+                                className={iconStyles.btnInMain}
                             >
-                                <EditIcon/>
+                                <EditIcon />
                             </button>
                         </>
                     )}
-                    <DeleteSectionButton id_section={section.id_section} url={url}/>
+                    <DeleteSectionButton
+                        id_section={section.id_section}
+                        url={url}
+						ref_ids={ref_ids}
+                    />
                 </>
             ) : (
                 <>
