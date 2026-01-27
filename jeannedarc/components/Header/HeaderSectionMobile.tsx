@@ -43,15 +43,16 @@ export function HeaderSectionMobile({
                         {section[0].bouton}
                     </Link>
                     {otherBtns.length > 0 && (
-                        <div
+                        <button
                             onClick={() => setIsOpen((prev) => !prev)}
                             className={clsx(styles.mobileChevron, isOpen && styles.turned)}
-							tabIndex={0}
+							aria-label={isOpen ? "Fermer le sous-menu" : "Ouvrir le sous-menu"}
+							aria-expanded={isOpen}
                         >
                             <ChevronDown
                                 className={currentUrl ? styles.current : ""}
                             />
-                        </div>
+                        </button>
                     )}
                 </div>
                 {otherBtns.length > 0 && (

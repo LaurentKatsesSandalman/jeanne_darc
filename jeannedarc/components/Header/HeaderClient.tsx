@@ -13,17 +13,18 @@ export function HeaderClient({ isAuth, sections }: HeaderClientProps) {
     const url = usePathname();
 
     return (
-        <>
-            <div className={styles.allBtnContainer}>
-                {sections.map((section) => (
-                    <HeaderSection
-                        key={section[0].id_contenu_headerbtn}
-                        section={section}
-                        url={url}
-                        isAuth={isAuth}
-                    />
-                ))}
-            </div>
-        </>
+        <nav
+            className={styles.allBtnContainer}
+            aria-label="Navigation principale"
+        >
+            {sections.map((section) => (
+                <HeaderSection
+                    key={section[0].id_contenu_headerbtn}
+                    section={section}
+                    url={url}
+                    isAuth={isAuth}
+                />
+            ))}
+        </nav>
     );
 }

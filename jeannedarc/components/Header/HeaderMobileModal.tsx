@@ -15,7 +15,7 @@ export function HeaderMobileModal({ sectionsWithBtn, setModalActive}:HeaderMobil
 	return(<div onClick={()=>setModalActive(false)} className={styles.menuModalContainer}>
 		
 	<div className={styles.menuModal} onClick={(e) => e.stopPropagation()}>
-		<button onClick={()=>setModalActive(false)} className={styles.menuModalClose}><CloseCancelIcon/></button>
+		<button onClick={()=>setModalActive(false)} className={styles.menuModalClose} aria-label="Fermer le menu"><CloseCancelIcon/></button>
 	<HeaderMenu  sections={sectionsWithBtn} setModalActive={setModalActive} />
 					<a className={styles.numeroTel} href="tel:+33556085216">(+33)5 56 08 52 16</a>
 					</div>

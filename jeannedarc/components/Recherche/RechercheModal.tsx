@@ -27,7 +27,7 @@ export function RechercheModal({ setModalActive }:RechercheModalProps) {
 
     return (
         <div className={styles.rechercheModalContainer} onClick={()=>setModalActive(false)}>
-			<button onClick={()=>setModalActive(false)} className={styles.rechercheModalClose}><CloseCancelIcon/></button>
+			<button onClick={()=>setModalActive(false)} className={styles.rechercheModalClose} aria-label="Fermer la recherche"><CloseCancelIcon/></button>
             <form onSubmit={handleSearch} className={styles.rechercheModalForm} onClick={(e) => e.stopPropagation()}> {/* empêche la popup de se fermer au clic */}
                 <input
                     autoFocus
@@ -38,7 +38,7 @@ export function RechercheModal({ setModalActive }:RechercheModalProps) {
                     id="recherche"
 					placeholder="Rechercher"
                 ></input>
-                <button type="submit">
+                <button type="submit" aria-label="Rechercher sur le site">
                     <SearchIcon className={styles.rechercheModalIcon} />
                 </button>
             </form>
