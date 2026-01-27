@@ -64,7 +64,7 @@ const MainToolbarContent = () => {
             <ToolbarSeparator />
 
             <ToolbarGroup>
-                <HeadingDropdownMenu levels={[1, 2, 3, 4, 5]} portal={true} />
+                <HeadingDropdownMenu levels={[2, 3, 4, 5]} portal={true} />
                 <ListButton type="bulletList" />
                 <ListButton type="orderedList" />
             </ToolbarGroup>
