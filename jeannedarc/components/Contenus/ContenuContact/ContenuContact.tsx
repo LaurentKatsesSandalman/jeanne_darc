@@ -124,7 +124,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
                     value={contenu.bouton}
                     className={styles.submitBtn}
                 />
-                {message && <p className={styles.error}>{message}</p>}
+                {message && <p aria-live="polite" className={styles.error}>{message}</p>}
             </form>
         </>
     );
