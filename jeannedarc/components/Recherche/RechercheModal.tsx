@@ -1,5 +1,5 @@
 import { useState, Dispatch, SetStateAction } from "react";
-
+import { FocusTrap } from "focus-trap-react";
 import styles from "./Recherche.module.css";
 import { CloseCancelIcon, SearchIcon } from "../Icons/Icons";
 import { useRouter } from "next/navigation";
@@ -26,6 +26,10 @@ export function RechercheModal({ setModalActive }:RechercheModalProps) {
     };
 
     return (
+		<FocusTrap focusTrapOptions={{
+        escapeDeactivates: true,  // Échap désactive le trap
+        clickOutsideDeactivates: true,  // Clic dehors désactive le trap
+    }}>
         <div className={styles.rechercheModalContainer} onClick={()=>setModalActive(false)}>
 			<button onClick={()=>setModalActive(false)} className={styles.rechercheModalClose} aria-label="Fermer la recherche"><CloseCancelIcon/></button>
             <form onSubmit={handleSearch} className={styles.rechercheModalForm} onClick={(e) => e.stopPropagation()}> {/* empêche la popup de se fermer au clic */}
@@ -43,6 +47,6 @@ export function RechercheModal({ setModalActive }:RechercheModalProps) {
                 </button>
             </form>
             {error && <p className={styles.error}>{error}</p>}
-        </div>
+        </div></FocusTrap>
     );
 }
