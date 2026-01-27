@@ -44,7 +44,7 @@ export async function HeaderServer() {
     return (
         <header>
             <div className={styles.header}>
-                <Link href="/" className={styles.logoContainer}>
+                <Link href="/" className={styles.logoContainer} aria-label="Retour à l'accueil">
                     <Image
                         src="/ECOLE_JDA_LOGO_BLANC-01-temp.png"
                         alt="Le logo de l'école Jeanne d'Arc"
@@ -58,7 +58,7 @@ export async function HeaderServer() {
             </div>
 			<div className={styles.headerMobile}>
                <RechercheClient />
-			    <Link href="/" className={styles.logoContainerMobile}>
+			    <Link href="/" className={styles.logoContainerMobile} aria-label="Retour à l'accueil">
                     <Image
                         src="/ECOLE_JDA_LOGO_BLANC-01-temp.png"
                         alt="Le logo de l'école Jeanne d'Arc"
