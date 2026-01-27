@@ -26,11 +26,12 @@ export function RechercheModal({ setModalActive }:RechercheModalProps) {
     };
 
     return (
-        <div className={styles.rechercheModalContainer}>
+        <div className={styles.rechercheModalContainer} onClick={()=>setModalActive(false)}>
 			<button onClick={()=>setModalActive(false)} className={styles.rechercheModalClose}><CloseCancelIcon/></button>
-            <form onSubmit={handleSearch} className={styles.rechercheModalForm}>
+            <form onSubmit={handleSearch} className={styles.rechercheModalForm} onClick={(e) => e.stopPropagation()}> {/* empêche la popup de se fermer au clic */}
                 <input
-                    type="text"
+                    autoFocus
+					type="text"
                     className={styles.rechercheModalInput}
                     value={recherche}
                     onChange={handleChange}

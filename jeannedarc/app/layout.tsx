@@ -54,9 +54,9 @@ export default function RootLayout({
         className={`${IBM_Plex.variable} ${ActorFont.variable} antialiased`}
       >
 		<HeaderServer/>
-			<div >
+			< >
         {children}
-			</div>
+			</>
 		<FooterServer/>
       </body>
     </html>

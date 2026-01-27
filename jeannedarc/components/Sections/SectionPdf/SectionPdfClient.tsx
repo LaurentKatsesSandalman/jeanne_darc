@@ -54,7 +54,7 @@ export function SectionPdfClient({
                 </>
             ) : (
                 
-                    <div className="w-full sm:w-1/2">
+                    <div>
                         <ContenuPdf contenu={contenuPdf} />
                     </div>
                 

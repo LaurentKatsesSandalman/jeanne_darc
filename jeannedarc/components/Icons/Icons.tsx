@@ -8,10 +8,10 @@ export type IconProps = {
 /**
  * Lucide Icons
  * ISC License
- * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023 
- * as part of Feather (MIT). All other copyright (c) for Lucide are held 
+ * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2023
+ * as part of Feather (MIT). All other copyright (c) for Lucide are held
  * by Lucide Contributors 2025.
- * 
+ *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
  * copyright notice and this permission notice appear in all copies.
@@ -54,7 +54,8 @@ export function SearchIcon({ className, style }: IconProps) {
             className={className}
             style={style}
         >
-            <path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
         </svg>
     );
 }
@@ -193,6 +194,28 @@ export function LogoutIcon({ className, style }: IconProps) {
     );
 }
 
+export function MenuIcon({ className, style }: IconProps) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={className}
+            style={style}
+        >
+            <path d="M4 5h16" />
+            <path d="M4 12h16" />
+            <path d="M4 19h16" />
+        </svg>
+    );
+}
+
 export function ChevronDown({ className, style }: IconProps) {
     return (
         <svg
@@ -209,6 +232,26 @@ export function ChevronDown({ className, style }: IconProps) {
             style={style}
         >
             <path d="m6 9 6 6 6-6" />
+        </svg>
+    );
+}
+
+export function ChevronUp({ className, style }: IconProps) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={className}
+            style={style}
+        >
+            <path d="m18 15-6-6-6 6"/>
         </svg>
     );
 }

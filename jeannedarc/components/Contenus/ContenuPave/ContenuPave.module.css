@@ -34,6 +34,7 @@ footer .containerBloc, footer .containerBlocHome, footer .containerBlocContact{
 	font-size: 22px;
 	font-weight:700;
 	margin:5px 0 24px 0;
+	text-align: center;
 }
 
 
@@ -61,4 +62,10 @@ footer .descriptionBloc, footer .descriptionBlocHome, footer .descriptionBlocCon
     /*, 0 0 40px color-mix(in srgb, var(--font-default) 10%, transparent)*/
 	; 
     
+}
+
+@media (max-width:768px){
+	.titreBloc, .titreBlocHome, .titreBlocContact{
+		margin:5px 0 12px 0;
+	}
 }
