@@ -170,13 +170,13 @@
 }
 
 .otherBtns {
-    display: flex;
-    flex-direction: column;
     position: static;
-    background-color: var(--background-dropdown);
-    font-size: 12px;
-	font-weight: 600;
-    line-height: 1;
+	max-height: 500px;
+	 transform: scaleY(1);
+    transform-origin: top;
+	opacity: 1;
+	overflow: hidden;
+	transition: max-height 0.3s ease-out,transform 0.2s ease-out, opacity 0.2s ease-out;
 }
 
 .sectionContainer{
@@ -197,6 +197,21 @@
     /* text-decoration: underline; */
     color: var(--font-orange);
  
+}
+
+.closed{
+	transform: scaleY(0);
+    transform-origin: top;
+max-height: 0;
+    opacity: 0; 
+}
+
+.mobileChevron{
+	transition: transform 0.3s ease-in-out;
+}
+
+.turned{
+	transform: rotate(180deg)
 }
 
 }

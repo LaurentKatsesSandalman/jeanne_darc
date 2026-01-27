@@ -10,10 +10,14 @@ import { Dispatch, SetStateAction, useState } from "react";
 interface HeaderSectionProps {
     section: SectionWithBtn;
     url: string;
-	setModalActive: Dispatch<SetStateAction<boolean>>;
+    setModalActive: Dispatch<SetStateAction<boolean>>;
 }
 
-export function HeaderSectionMobile({ section, url, setModalActive }: HeaderSectionProps) {
+export function HeaderSectionMobile({
+    section,
+    url,
+    setModalActive,
+}: HeaderSectionProps) {
     const otherBtns = section.slice(1);
     const currentUrl =
         (url.includes(section[0].lien_vers) && section[0].lien_vers !== "/") ||
@@ -27,33 +31,36 @@ export function HeaderSectionMobile({ section, url, setModalActive }: HeaderSect
                 <div
                     className={clsx(
                         styles.mainBtn,
-                        currentUrl && styles.current,
+                        // currentUrl && styles.current,
                     )}
                 >
                     <Link
                         href={section[0].lien_vers}
                         key={section[0].id_contenu_headerbtn}
-						onClick={()=>setModalActive(false)}
+                        onClick={() => setModalActive(false)}
+                        className={currentUrl ? styles.current : ""}
                     >
                         {section[0].bouton}
                     </Link>
                     {otherBtns.length > 0 && (
                         <div
-                            onClick={() => setIsOpen((prev)=>(!prev))}
-                            className={styles.mobileChevron}
+                            onClick={() => setIsOpen((prev) => !prev)}
+                            className={clsx(styles.mobileChevron, isOpen && styles.turned)}
                         >
-                            <ChevronDown />
+                            <ChevronDown
+                                className={currentUrl ? styles.current : ""}
+                            />
                         </div>
                     )}
                 </div>
-                {otherBtns.length > 0 && isOpen && (
-                    <div className={styles.otherBtns}>
+                {otherBtns.length > 0 && (
+                    <div className={clsx(styles.otherBtns, !isOpen && styles.closed)}>
                         {otherBtns.map((btn) => (
                             <Link
                                 className={styles.otherBtn}
                                 href={btn.lien_vers}
                                 key={btn.id_contenu_headerbtn}
-								onClick={()=>setModalActive(false)}
+                                onClick={() => setModalActive(false)}
                             >
                                 {btn.bouton}
                             </Link>
