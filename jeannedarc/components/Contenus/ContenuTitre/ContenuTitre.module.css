@@ -104,3 +104,27 @@
 	margin-bottom: 50px;
 	color: var(--font-white);
 }
+
+@media (max-width:768px){
+	.h1Home, .h1Mega, .h2Mega{
+		font-size: 35px;
+		margin:0
+	}
+	.containerMega{
+		padding:50px 0;
+	}
+
+	.h1{
+		font-size: 25px;
+		margin-bottom:12px;
+	}
+
+	.h2{
+		font-size: 30px;
+		margin-bottom:12px;
+	}
+
+	.container{
+		padding-top: 20px;
+	}
+}

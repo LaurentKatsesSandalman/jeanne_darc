@@ -25,3 +25,13 @@
     font-weight: 700;
     margin-bottom: 24px;
 }
+
+@media (max-width:768px){
+	.searchPageContainer{
+		padding: 20px 0;
+	}
+	.resultGrid{
+		gap:10px;
+		grid-template-columns: 1fr;
+	}
+}
