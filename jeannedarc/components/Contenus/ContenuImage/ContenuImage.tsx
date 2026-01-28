@@ -20,7 +20,7 @@ const url = usePathname()
             style={{ width: "100%", height: "510px", objectFit:"cover"}}
         /></>):(
         <Image
-            loading="eager"
+            loading="lazy"
             src={contenu.image_url}
             alt={contenu.alt_text}
             width={0}

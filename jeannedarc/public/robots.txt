@@ -1,0 +1,14 @@
+# robots.txt - École Jeanne d'Arc
+
+# Autorise tous les robots
+User-agent: *
+Allow: /
+
+# Pages à ne pas indexer
+Disallow: /gestion-pages
+Disallow: /login
+Disallow: /plus
+Disallow: /recherche
+
+# Sitemap
+Sitemap: https://refonte.jeannedarc33.fr/sitemap.xml

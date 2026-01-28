@@ -2,9 +2,19 @@
 // URL conseillée :  https://refonte.jeannedarc33.fr/mentions-legales
 // WARNING: penser à changer https://refonte.jeannedarc33.fr/mentions-legales pour https://jeannedarc33.fr/mentions-legales
 
+import { Metadata } from "next";
+
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: "Mentions légales",
+  description: "Mentions légales du site École Jeanne d'Arc - Le Bouscat",
+  alternates: {
+    canonical: 'https://refonte.jeannedarc33.fr/mentions-legales',
+  },
+};
 
 export default function MentionsLegalesPage() {
     return (<main id="main-content">
