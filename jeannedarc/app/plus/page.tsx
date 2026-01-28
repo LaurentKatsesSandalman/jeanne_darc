@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
     return {
         title: "Plus",
         description:
-            "École Jeanne d'Arc - Le Bouscat - ETABLISSEMENT CATHOLIQUE sous TUTELLE DIOCESAINE sous CONTRAT AVEC L'ETAT",
+            "École catholique sous contrat - Maternelle et primaire - Le Bouscat (33)",
     };
 }
 
