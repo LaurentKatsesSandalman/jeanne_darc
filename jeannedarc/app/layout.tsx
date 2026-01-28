@@ -18,6 +18,9 @@ icons: {
     icon: '/favicon.ico',
 	apple: '/apple-touch-icon.png',
   },
+    alternates: {
+    canonical: 'https://refonte.jeannedarc33.fr',
+  },
   openGraph: {
     type: 'website',
     locale: 'fr_FR',

@@ -26,6 +26,9 @@ export async function generateMetadata({
         title: page?.nom || "Page",
         description:
             "École Jeanne d'Arc - Le Bouscat - ETABLISSEMENT CATHOLIQUE sous TUTELLE DIOCESAINE sous CONTRAT AVEC L'ETAT",
+        alternates: {
+            canonical: `https://refonte.jeannedarc33.fr/${url}`,
+        },
     };
 }
 

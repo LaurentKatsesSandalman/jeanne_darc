@@ -3,9 +3,20 @@ import { getPageByUrl } from "@/lib/queries/contentCrudPage";
 import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
 import { VirtualSection } from "@/components/utils/VirtualSection/VirtualSection";
 import { SectionSelector } from "@/components/utils/SectionSelector/SectionSelector";
+import { Metadata } from "next";
 
 // export const dynamic = 'force-dynamic';
 export const revalidate = 86400;
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "École Jeanne d'Arc - Le Bouscat",
+    description: "École Jeanne d'Arc - Le Bouscat - ETABLISSEMENT CATHOLIQUE sous TUTELLE DIOCESAINE sous CONTRAT AVEC L'ETAT",
+    alternates: {
+      canonical: 'https://refonte.jeannedarc33.fr/',
+    },
+  };
+}
 
 export default async function Page() {
     const page = await getPageByUrl("/");
