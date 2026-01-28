@@ -41,7 +41,8 @@ footer .sectionPavesContainerHome :is(input, textarea) {
     background-color: var(--background-page);
 }
 
-.blocsContainerHome, .blocsContainer {
+.blocsContainerHome,
+.blocsContainer {
     width: 90%;
     margin: 0 auto;
     display: flex;
@@ -49,7 +50,7 @@ footer .sectionPavesContainerHome :is(input, textarea) {
 }
 
 .blocsContainerContact {
-    width:min(90%, 1290px);
+    width: min(90%, 1290px);
     margin: 0 auto;
     display: flex;
     gap: 4vw;
@@ -57,7 +58,7 @@ footer .sectionPavesContainerHome :is(input, textarea) {
 
 .blocSize {
     flex: 1;
-	word-break: break-word;
+    word-break: break-word;
 }
 
 .h2Pave,
@@ -66,7 +67,7 @@ footer .sectionPavesContainerHome :is(input, textarea) {
     text-align: center;
     font-size: 40px;
     font-weight: 700;
-    font-family: var(--font-ibm-plex);
+    font-family: var(--font-ibm-plex), serif;
     margin-bottom: 64px;
     margin-top: -50px;
 }
@@ -90,33 +91,38 @@ footer .sectionPavesContainerHome :is(input, textarea) {
     padding: 5px;
 }
 
-.texteBtnPave:hover , .texteBtnPave:focus-visible{
+.texteBtnPave:hover,
+.texteBtnPave:focus-visible {
     color: var(--background-page);
     background-color: var(--font-default);
 }
 
-.texteBtnPaveHome:hover, .texteBtnPaveHome:focus-visible {
+.texteBtnPaveHome:hover,
+.texteBtnPaveHome:focus-visible {
     color: var(--background-page);
     background-color: var(--font-orange);
 }
 
-.texteBtnPave:focus-visible, .texteBtnPaveHome:focus-visible{
-	outline: 2px solid var(--font-pdf-related);
-  outline-offset: 2px;
+.texteBtnPave:focus-visible,
+.texteBtnPaveHome:focus-visible {
+    outline: 2px solid var(--font-pdf-related);
+    outline-offset: 2px;
 }
 
-@media (max-width:768px){
-	.h2Pave,
-.h2PaveHome,
-.h2PaveContact{
-	font-size: 30px
-}
+@media (max-width: 768px) {
+    .h2Pave,
+    .h2PaveHome,
+    .h2PaveContact {
+        font-size: 30px;
+    }
 
-.blocsContainerHome, .blocsContainer, .blocsContainerContact{
-	flex-direction: column;
-}
+    .blocsContainerHome,
+    .blocsContainer,
+    .blocsContainerContact {
+        flex-direction: column;
+    }
 
-.sectionPavesContainerContact{
-	padding-top:0;
-}
+    .sectionPavesContainerContact {
+        padding-top: 0;
+    }
 }
