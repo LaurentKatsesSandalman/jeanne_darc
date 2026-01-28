@@ -8,6 +8,7 @@ interface ContenuContactProps {
 
 export function ContenuContact({ contenu }: ContenuContactProps) {
     const [message, setMessage] = useState("");
+	const [error, setError]=useState("")
     const emptyForm = {
         id_form: contenu.id_contenu_contact,
         champ1: contenu.champ1,
@@ -26,6 +27,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
 		setMessage("");
+		setError("")
         const { name, value } = e.target;
         setFormData((prev) => {
             return { ...prev!, [name]: value };
@@ -35,13 +37,14 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		setMessage("");
+		setError("")
         if (
             !formData.input1 ||
             !formData.input2 ||
             !formData.input3 ||
             !formData.input4
         ) {
-            setMessage("Tous les champs doivent être remplis");
+            setError("Tous les champs doivent être remplis");
             return;
         }
         const payload = JSON.stringify({form:formData})
@@ -53,7 +56,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
             body: payload,
         });
         if (!res.ok) {
-            setMessage(
+            setError(
                 "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
             );
             return;
@@ -124,7 +127,8 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
                     value={contenu.bouton}
                     className={styles.submitBtn}
                 />
-                {message && <p aria-live="polite" className={styles.error}>{message}</p>}
+                {message && <p aria-live="polite" className={styles.message}>{message}</p>}
+				{error && <p role="alert" className={styles.error}>{error}</p>}
             </form>
         </>
     );

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
 
 
 .tiptap.ProseMirror {
@@ -20,21 +20,21 @@
     font-size: 25px;
     font-weight: 700;
     margin: 1rem 0;
-	font-family: "IBM Plex Serif"
+	font-family: var(--font-ibm-plex), serif;
   }
 
   h2 {
     font-size: 25px;
     font-weight: 700;
     margin: 1rem 0;
-	font-family: "IBM Plex Serif"
+	font-family: var(--font-ibm-plex), serif;
   }
 
   h3 {
     font-size: 20px;
     font-weight: 700;
     margin: 1rem 0;
-	font-family: "IBM Plex Serif"
+	font-family: var(--font-ibm-plex), serif;
   }
 
  h4 { // quote

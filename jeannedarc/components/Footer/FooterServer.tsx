@@ -27,7 +27,8 @@ export async function FooterServer() {
             <div className={styles.footerMainContainer}>
                 <SectionPavesServer isAuth={isAuth} section={section} />
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.1527390071788!2d-0.6067899236743638!3d44.85918527360245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd54d7e3240a645b%3A0x9f9908db53ffff58!2s43%20Rue%20Francis%20de%20Pressens%C3%A9%2C%2033110%20Le%20Bouscat!5e0!3m2!1sfr!2sfr!4v1683209618639!5m2!1sfr!2sfr%22"
+                    title="Google Map centrée sur l'école"
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.1527390071788!2d-0.6067899236743638!3d44.85918527360245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd54d7e3240a645b%3A0x9f9908db53ffff58!2s43%20Rue%20Francis%20de%20Pressens%C3%A9%2C%2033110%20Le%20Bouscat!5e0!3m2!1sfr!2sfr!4v1683209618639!5m2!1sfr!2sfr%22"
                     width={250}
                     height={250}
                     allowFullScreen={true}

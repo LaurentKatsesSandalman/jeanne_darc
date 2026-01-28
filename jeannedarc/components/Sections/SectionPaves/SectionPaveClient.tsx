@@ -14,11 +14,13 @@ import styles from "./SectionPaves.module.css"
 interface SectionPavesProps {
     paveBloc:PaveBlocInterface;
     isAuth: boolean;
+	existingTitle:boolean;
 }
 
 export function SectionPaveClient({
     paveBloc,
     isAuth,
+	existingTitle
 }: SectionPavesProps) {
     const [editPave, setEditPave] = useState(false);
 	const url = usePathname()
@@ -34,7 +36,7 @@ export function SectionPaveClient({
                     />
                 ) : (
                     <div>
-                        <ContenuPave contenu={paveBloc} />
+                        <ContenuPave contenu={paveBloc} existingTitle={existingTitle} />
                         {isAuth && (
                             <button
                                 type="button"

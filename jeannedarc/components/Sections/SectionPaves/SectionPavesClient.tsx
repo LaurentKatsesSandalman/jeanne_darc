@@ -38,6 +38,8 @@ export function SectionPavesClient({
 
 	const ref_ids = [sectionPaves.id_contenu_pave]
 
+	const existingTitle = sectionPaves.titre ? true:false
+
     async function createNewBloc() {
         const result = await createPaveBlocAction(
             {
@@ -149,7 +151,7 @@ export function SectionPavesClient({
                 </>
             ) : (
                 <>
-                    {sectionPaves.titre ? (
+                    {existingTitle ? (
                         <>
                             <h2 className={styles[`h2Pave${classSuffixe}`]}>{sectionPaves.titre}</h2>
                             {isAuth && (
@@ -186,6 +188,7 @@ export function SectionPavesClient({
                                 key={paveBloc.id_pave_bloc}
                                 paveBloc={paveBloc}
                                 isAuth={isAuth}
+								existingTitle={existingTitle}
                             />
                         ))}
                     </>

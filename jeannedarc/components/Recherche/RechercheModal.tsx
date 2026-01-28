@@ -46,7 +46,7 @@ export function RechercheModal({ setModalActive }:RechercheModalProps) {
                     <SearchIcon className={styles.rechercheModalIcon} />
                 </button>
             </form>
-            {error && <p className={styles.error}>{error}</p>}
+            {error && <p role="alert" className={styles.error}>{error}</p>}
         </div></FocusTrap>
     );
 }
