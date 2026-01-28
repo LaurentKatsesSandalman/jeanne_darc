@@ -1,52 +1,77 @@
-.submitBtn{
-	background-color: var(--background-pdf-related);
-	color: var(--font-white);
-	padding: 10px 20px;
-	font-weight: 500;
-	font-size: 15px;
-	width:max(33%, 200px);
-	
+.submitBtn {
+    background-color: var(--background-pdf-related);
+    color: var(--font-white);
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 15px;
+    width: max(33%, 200px);
 }
 
 .h2 {
-	font-family: var(--font-ibm-plex);
+    font-family: var(--font-ibm-plex), serif;
     font-size: 40px;
     font-weight: 700;
-	margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
-.smallBorder, .smallBorderTextArea{
-	border: 1px solid #17383e18;
-	 color: var(--font-blue);
-	 margin-bottom: 20px;
-	 padding: 8px 16px;
+.smallBorder,
+.smallBorderTextArea {
+    border: 1px solid #17383e18;
+    color: var(--font-blue);
+    margin-bottom: 20px;
+    padding: 8px 16px;
 }
 
-.smallBorderTextArea{
-	width: 100%;
-	background-color:rgb(245, 247, 247);
+.smallBorderTextArea {
+    width: 100%;
+    background-color: rgb(245, 247, 247);
 }
 
-.smallBorderTextArea:focus{
-	outline:none;
-	border: 1px solid var(--background-pdf-related)
+.smallBorderTextArea:focus {
+    outline: none;
+    border: 1px solid var(--background-pdf-related);
 }
 
-.label{
-	color: var(--font-blue);
-	font-size:15px;
-	font-weight: 600;
-	margin-bottom: 8px;
+.smallBorderTextArea:focus-visible {
+    outline: 2px solid var(--font-pdf-related);
+    outline-offset: 2px;
+    border: 1px solid var(--background-pdf-related);
 }
 
-.required{
-	color: red;
-	font-size: 20px;
-	line-height: 0.5;
+.label {
+    color: var(--font-blue);
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 
-@media (max-width:768px){
-	.h2{
-		font-size: 35px
-	}
+.important {
+    /* color: var(--font-blue); */
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: red;
+    font-size: 20px;
+    line-height: 0.5;
+}
+
+.error {
+    color: var(--font-orange);
+    font-style: italic;
+    font-weight: 700;
+}
+
+.message {
+    color: var(--font-pdf-related);
+    font-style: italic;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .h2 {
+        font-size: 35px;
+    }
 }

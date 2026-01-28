@@ -1,5 +1,5 @@
 //@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
 
 
 body {
@@ -7,7 +7,7 @@ body {
   --tt-theme-text: var(--tt-gray-light-900);
 
   .dark & {
-    --tt-theme-text: var(--tt-gray-dark-900);
+    --tt-theme-text: var(--tt-gray-dark-900); 
   }
 }
 
@@ -101,6 +101,13 @@ body {
     }
   }
 }
+
+//styles pour la ligne fantôme
+.simple-editor-viewer .simple-editor-content p:empty,
+.simple-editor-viewer .simple-editor-content p:has(> br.ProseMirror-trailingBreak:only-child) {
+    display: none;
+}
+
 
 @media screen and (max-width: 480px) {
 //   .simple-editor-content .tiptap.ProseMirror.simple-editor {

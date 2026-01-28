@@ -40,6 +40,11 @@
 	padding: 12px 16px;
 }
 
+.bouton:focus-visible, .boutonHome:focus-visible{
+	outline: 2px solid var(--font-pdf-related);
+  outline-offset: 2px;
+}
+
 .label{
 	font-weight: 700;
 }

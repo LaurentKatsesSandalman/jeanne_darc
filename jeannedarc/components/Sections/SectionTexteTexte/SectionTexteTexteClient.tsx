@@ -33,6 +33,8 @@ export function SectionTexteTexteClient({
     const [error, setError] = useState("");
     const url = usePathname();
 
+	const ref_ids = [contenuTexte1.id_contenu_texte, contenuTexte2.id_contenu_texte]
+
     async function handleSwitchSave() {
         const payload: UpdateSection = { revert: !section.revert };
         const result = await updateSectionAction(
@@ -112,6 +114,7 @@ export function SectionTexteTexteClient({
                     <DeleteSectionButton
                         id_section={section.id_section}
                         url={url}
+						ref_ids={ref_ids}
                     />
                     <button
                         type="button"

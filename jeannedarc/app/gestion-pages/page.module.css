@@ -1,17 +1,16 @@
 .container {
-	width: min(90%, 1290px);
+    width: min(90%, 1290px);
     margin: 0 auto;
-	padding: 50px 0;
+    padding: 50px 0;
 }
 
 .deleteSection {
-	display: flex;
-	justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
 
-
 .h1 {
-    font-family: var(--font-ibm-plex);
+    font-family: var(--font-ibm-plex), serif;
     font-size: 30px;
     font-weight: 700;
     /* margin-bottom: 40px; */

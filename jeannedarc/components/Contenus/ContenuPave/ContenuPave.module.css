@@ -27,6 +27,12 @@ footer .containerBloc, footer .containerBlocHome, footer .containerBlocContact{
 	border: 1px solid var(--background-pdf-related)
 }
 
+.smallBorderTextArea:focus-visible{
+	outline: 2px solid var(--font-pdf-related);
+  outline-offset: 2px;
+	border: 1px solid var(--background-pdf-related)
+}
+
 .orange{
 	color:var(--font-orange)
 }
@@ -50,18 +56,23 @@ footer .descriptionBloc, footer .descriptionBlocHome, footer .descriptionBlocCon
 	display: block;
 }
 
-.linkBlocHome:hover{
+.linkBlocHome:hover, .linkBlocHome:focus-visible{
   box-shadow: 
     0 0 20px color-mix(in srgb, var(--font-orange) 30%, transparent);
     
 }
 
-.linkBloc:hover{
+.linkBloc:hover, .linkBloc:focus-visible{
   box-shadow: 
     0 0 20px color-mix(in srgb, var(--font-default) 30%, transparent)
     /*, 0 0 40px color-mix(in srgb, var(--font-default) 10%, transparent)*/
 	; 
     
+}
+
+.linkBlocHome:focus-visible, .linkBloc:focus-visible{
+		outline: 2px solid var(--font-pdf-related);
+  outline-offset: 2px;
 }
 
 @media (max-width:768px){

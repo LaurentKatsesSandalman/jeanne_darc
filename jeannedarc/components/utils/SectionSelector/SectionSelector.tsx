@@ -77,7 +77,7 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
             try {
                 await createContentFn(sectionResult.data.id_section);
             } catch (error) {
-                await deleteSectionAction(sectionResult.data.id_section);
+                await deleteSectionAction(sectionResult.data.id_section, url, []);
                 throw error;
             }
         }
