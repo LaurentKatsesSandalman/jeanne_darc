@@ -9,18 +9,20 @@ import clsx from "clsx";
 interface DeleteSectionButtonProps {
     id_section: SectionInterface["id_section"];
     url: string;
+	ref_ids: string[];
 }
 
 export function DeleteSectionButton({
     id_section,
     url,
+	ref_ids
 }: DeleteSectionButtonProps) {
     const [needConfirmation, setNeedConfirmation] = useState(false);
     const [confirmation, setConfirmation] = useState<string>("");
     const [error, setError] = useState("");
 
     async function handleDelete() {
-        const result = await deleteSectionAction(id_section, url);
+        const result = await deleteSectionAction(id_section, url,ref_ids);
 
         if (!result.success) {
             console.error("Échec de la requête:", result);

@@ -6,9 +6,10 @@ import { usePathname } from "next/navigation";
 
 interface ContenuPaveProps {
     contenu: PaveBlocInterface;
+	existingTitle:boolean;
 }
 
-export function ContenuPave({ contenu }: ContenuPaveProps) {
+export function ContenuPave({ contenu, existingTitle }: ContenuPaveProps) {
     const url = usePathname();
 
     const isContactPage = url.startsWith("/contact");
@@ -27,9 +28,12 @@ export function ContenuPave({ contenu }: ContenuPaveProps) {
                                 additionalClassName={isHome?styles.orange:""}
                             />
                         )}
-                        <p className={styles[`titreBloc${classSuffixe}`]}>
+						{existingTitle?(<h3 className={styles[`titreBloc${classSuffixe}`]}>
                             {contenu.soustitre}
-                        </p>
+                        </h3>):(<h2 className={styles[`titreBloc${classSuffixe}`]}>
+                            {contenu.soustitre}
+                        </h2>)}
+                        
                         <div
                             className={styles[`descriptionBloc${classSuffixe}`]}
                         >
@@ -65,9 +69,11 @@ export function ContenuPave({ contenu }: ContenuPaveProps) {
                             additionalClassName={isHome?styles.orange:""}
                         />
                     )}
-                    <p className={styles[`titreBloc${classSuffixe}`]}>
-                        {contenu.soustitre}
-                    </p>
+                    {existingTitle?(<h3 className={styles[`titreBloc${classSuffixe}`]}>
+                            {contenu.soustitre}
+                        </h3>):(<h2 className={styles[`titreBloc${classSuffixe}`]}>
+                            {contenu.soustitre}
+                        </h2>)}
                     <div className={styles[`descriptionBloc${classSuffixe}`]}>
                         {contenu.description1 && <p>{contenu.description1}</p>}
                         {contenu.description2 && <p>{contenu.description2}</p>}

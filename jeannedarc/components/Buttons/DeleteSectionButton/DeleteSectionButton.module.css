@@ -8,9 +8,14 @@
 	margin: auto
 }
 
-.deleteBtn:hover{
+.deleteBtn:hover, .deleteBtn:focus-visible{
 	color:var(--background-page);
 	background-color: var(--font-default);
+}
+
+.deleteBtn:focus-visible{
+	outline: 2px solid var(--font-pdf-related);
+  outline-offset: 2px;
 }
 
 .error {

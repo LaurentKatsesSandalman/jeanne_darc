@@ -28,6 +28,8 @@ export function SectionBandeauBtnClient({
 
     const classSuffixe = isContactPage ? "Contact" : isHome ? "Home" : "";
 
+	const ref_ids = [contenuBandeauBtn.id_contenu_bandeaubtn]
+
 	return (
 		<div className={styles[`sectionBandeauBtnContainer${classSuffixe}`]} >
 			{isAuth ? (
@@ -52,6 +54,7 @@ export function SectionBandeauBtnClient({
 					<DeleteSectionButton
 						id_section={section.id_section}
 						url={url}
+						ref_ids={ref_ids}
 					/>
 				</>
 			) : (

@@ -6,26 +6,26 @@ import { usePathname } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 
 interface HeaderClientProps {
-   setModalActive: Dispatch<SetStateAction<boolean>>;
+    setModalActive: Dispatch<SetStateAction<boolean>>;
     sections: SectionWithBtn[];
 }
 
-export function HeaderMenu({  sections, setModalActive }: HeaderClientProps) {
+export function HeaderMenu({ sections, setModalActive }: HeaderClientProps) {
     const url = usePathname();
 
     return (
-        <>
-            <div className={styles.allBtnContainer}>
-                {sections.map((section) => (
-                    <HeaderSectionMobile
-                        key={section[0].id_contenu_headerbtn}
-                        section={section}
-                        url={url}
-						setModalActive={setModalActive}
-                       
-                    />
-                ))}
-            </div>
-        </>
+        <nav
+            className={styles.allBtnContainer}
+            aria-label="Navigation principale"
+        >
+            {sections.map((section) => (
+                <HeaderSectionMobile
+                    key={section[0].id_contenu_headerbtn}
+                    section={section}
+                    url={url}
+                    setModalActive={setModalActive}
+                />
+            ))}
+        </nav>
     );
 }

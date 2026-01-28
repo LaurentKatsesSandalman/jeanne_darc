@@ -13,19 +13,18 @@
 }
 
 .h1 {
-    font-family: var(--font-ibm-plex);
+    font-family: var(--font-ibm-plex), serif;
     font-size: 30px;
     font-weight: 700;
     /* margin-bottom: 40px; */
 }
 
-@media (max-width:768px){
-	.plusPageContainer{
-		padding: 20px 0;
-	}
-	.resultGrid{
-		gap:10px;
-		grid-template-columns: 1fr;
-	}
+@media (max-width: 768px) {
+    .plusPageContainer {
+        padding: 20px 0;
+    }
+    .resultGrid {
+        gap: 10px;
+        grid-template-columns: 1fr;
+    }
 }
-

@@ -16,6 +16,7 @@ import {
     updateSectionById,
     deleteSectionById,
 } from "@/lib/queries/contentCrudSection";
+import { deleteIndexByRefId } from "../queries/indexCrud";
 
 export async function createSectionAction(
     data: CreateSection,
@@ -86,7 +87,7 @@ export async function updateSectionAction(
     }
 }
 
-export async function deleteSectionAction(id: string, url?: string) {
+export async function deleteSectionAction(id: string, url: string, ref_ids: string[]) {
     const { userId } = await auth();
 
     if (!userId) {
@@ -98,10 +99,10 @@ export async function deleteSectionAction(id: string, url?: string) {
     }
 
     try {
-        await deleteSectionById(id);
-        if (url) {
-            revalidatePath(url);
-        }
+        
+		await deleteSectionById(id);
+        for(const ref_id of ref_ids){await deleteIndexByRefId(ref_id)}
+        revalidatePath(url);
         return { success: true };
     } catch (error) {
         console.error("Error deleting section:", error);
