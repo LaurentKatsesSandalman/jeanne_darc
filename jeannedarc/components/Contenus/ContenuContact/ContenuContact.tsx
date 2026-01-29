@@ -67,9 +67,9 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
             return;
         }
 
-        // Validation email avec API navigateur
-        const emailInput = e.currentTarget.input3 as HTMLInputElement;
-        if (!emailInput.checkValidity()) {
+		const regexEmailRFC5322 = /^[\w.!#$%&'*+/=?^`{|}~-]+@[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?(?:\.[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?)*$/i;
+		
+		if (!regexEmailRFC5322.test(formData.input3)) {
             setError("Le troisième champ attend une adresse email valide");
             return;
         }
