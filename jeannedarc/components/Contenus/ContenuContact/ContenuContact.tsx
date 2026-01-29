@@ -49,7 +49,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
         }
         const regexNomPrenom = /^(?=.*[a-zà-ÿ])(?=.{5,})[a-zA-ZÀ-ÿ\s'-]+$/;
         if (!regexNomPrenom.test(formData.input1)) {
-            setError("Le premier champ doit contenir un nom et un prénom");
+            setError("Merci de vérifier vos nom et prénom");
             return;
         }
 
@@ -62,7 +62,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
             !regexTel11.test(formData.input2)
         ) {
             setError(
-                "Le deuxième champ attend un numéro de téléphone dans l'un des formats habituels",
+                "Merci de vérifier votre numéro de téléphone",
             );
             return;
         }
@@ -70,7 +70,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
 		const regexEmailRFC5322 = /^[\w.!#$%&'*+/=?^`{|}~-]+@[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?(?:\.[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?)+$/i;
 		
 		if (!regexEmailRFC5322.test(formData.input3)) {
-            setError("Le troisième champ attend une adresse email valide");
+            setError("Merci de vérifier votre adresse e-mail");
             return;
         }
 
