@@ -21,22 +21,22 @@ const nextConfig: NextConfig = {
 	},
 
 	// Redirections
-	async redirects() {
-		return [
-			// Netlify domain → custom domain
-			{
-				source: '/:path*',
-				has: [
-					{
-						type: 'host',
-						value: 'jeannedarc33.netlify.app',
-					},
-				],
-				destination: 'https://refonte.jeannedarc33.fr/:path*',
-				permanent: true, // 301 redirect
-			},
-		]
-	},
+	// async redirects() {
+	// 	return [
+	// 		// Netlify domain → custom domain
+	// 		{
+	// 			source: '/:path*',
+	// 			has: [
+	// 				{
+	// 					type: 'host',
+	// 					value: 'jeannedarc33.netlify.app',
+	// 				},
+	// 			],
+	// 			destination: 'https://refonte.jeannedarc33.fr/:path*',
+	// 			permanent: true, // 301 redirect
+	// 		},
+	// 	]
+	// },
 };
 
 export default nextConfig;
