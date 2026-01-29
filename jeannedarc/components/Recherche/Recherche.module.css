@@ -14,8 +14,11 @@
 	flex-shrink: 0;
 	width:36px;
 	height: 36px;
-	background-color: var(--font-pdf-related);
+	background-color: var(--background-pdf-related);
 	border-radius: 50%;
+}
+.rechercheModalBtn:hover, .rechercheModalBtn:focus-visible{
+	background-color: var(--background-orange);
 }
 
 .rechercheModalIcon{
