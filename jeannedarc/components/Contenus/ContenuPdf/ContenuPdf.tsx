@@ -22,6 +22,7 @@ export function ContenuPdf({ contenu }: ContenuPdfProps) {
 			<iframe
 				title={contenu.pdf_titre}
                 src={contenu.pdf_url}
+				loading="lazy"
                 className={styles.pdfContainer}
             ></iframe>
             {/* <div className={styles.downloadContainer}>

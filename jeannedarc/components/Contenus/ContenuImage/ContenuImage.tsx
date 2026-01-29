@@ -26,7 +26,7 @@ const url = usePathname()
             width={0}
             height={0}
             sizes="100vw"
-            style={{ width: "100%", height: "auto" }}
+            style={{ maxWidth: "100%", height: "auto", width: "auto", margin:"auto" }}
         />
     ));
 
