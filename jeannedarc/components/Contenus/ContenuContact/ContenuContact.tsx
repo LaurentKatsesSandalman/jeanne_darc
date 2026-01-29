@@ -67,7 +67,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
             return;
         }
 
-		const regexEmailRFC5322 = /^[\w.!#$%&'*+/=?^`{|}~-]+@[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?(?:\.[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?)*$/i;
+		const regexEmailRFC5322 = /^[\w.!#$%&'*+/=?^`{|}~-]+@[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?(?:\.[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?)+$/i;
 		
 		if (!regexEmailRFC5322.test(formData.input3)) {
             setError("Le troisième champ attend une adresse email valide");
@@ -97,7 +97,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
     return (
         <>
             <h2 className={styles.h2}>{contenu.titre}</h2>
-            <form onSubmit={handleSubmit} noValidate>
+            <form onSubmit={handleSubmit} >
                 <label htmlFor="input1" className={styles.label}>
                     {contenu.champ1}
                     <span className={styles.required}> *</span>
@@ -117,7 +117,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
                 </label>
                 <input
                     //tel
-                    type="tel"
+                    type="texte"
                     id="input2"
                     name="input2"
                     value={formData.input2}
@@ -130,7 +130,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
                 </label>
                 <input
                     //email
-                    type="email"
+                    type="texte"
                     id="input3"
                     name="input3"
                     value={formData.input3}
