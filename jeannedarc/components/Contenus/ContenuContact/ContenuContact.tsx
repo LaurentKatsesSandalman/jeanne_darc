@@ -19,6 +19,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
         input2: "",
         input3: "",
         input4: "",
+        verif: "",
     };
 
     const [formData, setFormData] = useState(emptyForm);
@@ -61,15 +62,14 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
             !regexTel10.test(formData.input2) &&
             !regexTel11.test(formData.input2)
         ) {
-            setError(
-                "Merci de vérifier votre numéro de téléphone",
-            );
+            setError("Merci de vérifier votre numéro de téléphone");
             return;
         }
 
-		const regexEmailRFC5322 = /^[\w.!#$%&'*+/=?^`{|}~-]+@[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?(?:\.[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?)+$/i;
-		
-		if (!regexEmailRFC5322.test(formData.input3)) {
+        const regexEmailRFC5322 =
+            /^[\w.!#$%&'*+/=?^`{|}~-]+@[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?(?:\.[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?)+$/i;
+
+        if (!regexEmailRFC5322.test(formData.input3)) {
             setError("Merci de vérifier votre adresse e-mail");
             return;
         }
@@ -84,9 +84,14 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
             body: payload,
         });
         if (!res.ok) {
-            setError(
-                "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
-            );
+            const errorData = await res.json();
+            if (errorData.error) {
+                setError(errorData.error);
+            } else {
+                setError(
+                    "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+                );
+            }
             return;
         } else {
             setMessage("Message envoyé");
@@ -97,7 +102,7 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
     return (
         <>
             <h2 className={styles.h2}>{contenu.titre}</h2>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="input1" className={styles.label}>
                     {contenu.champ1}
                     <span className={styles.required}> *</span>
@@ -150,6 +155,22 @@ export function ContenuContact({ contenu }: ContenuContactProps) {
                     onChange={handleChange}
                     className={styles.smallBorderTextArea}
                 />
+                <div
+                    style={{ position: "absolute", left: "-9999px" }}
+                    aria-hidden="true"
+                >
+                    {/* Honeypot pour détecter les bots - ne pas supprimer */}
+                    <label htmlFor="verif">Quel âge a l&#39;enfant?</label>
+                    <input
+                        type="text"
+                        id="verif"
+                        name="verif"
+                        value={formData.verif}
+                        onChange={handleChange}
+                        tabIndex={-1}
+                        autoComplete="off"
+                    />
+                </div>
                 <input
                     type="submit"
                     value={contenu.bouton}

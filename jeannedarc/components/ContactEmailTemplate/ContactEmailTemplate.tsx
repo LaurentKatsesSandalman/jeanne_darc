@@ -11,6 +11,7 @@ export interface Email {
         input2: string;
         input3: string;
         input4: string;
+		verif: string
 	}
         
 }
