@@ -10,6 +10,22 @@
 	z-index: 1;
 }
 
+.rechercheModalBtn{
+	flex-shrink: 0;
+	width:36px;
+	height: 36px;
+	background-color: var(--background-pdf-related);
+	border-radius: 50%;
+}
+.rechercheModalBtn:hover, .rechercheModalBtn:focus-visible{
+	background-color: var(--background-orange);
+}
+
+.rechercheModalIcon{
+	margin : auto;
+	padding: 2px;
+}
+
 .rechercheModalClose{
 	display: block;
 	margin: 3vw 3vw 3vw auto;
@@ -17,8 +33,11 @@
 
 .rechercheModalForm{
 	display: flex;
+	
+	align-items: center;
 	width: 60%;
 	margin:35vh auto;
+	gap : 10px;
 }
 
 .rechercheModalInput{
@@ -45,4 +64,15 @@
 	color: var(--font-orange);
 	font-style: italic;
 	font-weight: 700;
+}
+
+@media (max-width:768px){
+	.rechercheModalContainer{
+		font-size:16px
+	}
+
+	.rechercheModalForm{
+		width: 80%;
+		margin:15vh auto 35vh;
+	}
 }

@@ -26,11 +26,12 @@ export function RechercheModal({ setModalActive }:RechercheModalProps) {
     };
 
     return (
-		<FocusTrap focusTrapOptions={{
+		
+        <div className={styles.rechercheModalContainer} onClick={()=>setModalActive(false)}>
+			<FocusTrap focusTrapOptions={{
         escapeDeactivates: true,  // Échap désactive le trap
         clickOutsideDeactivates: true,  // Clic dehors désactive le trap
-    }}>
-        <div className={styles.rechercheModalContainer} onClick={()=>setModalActive(false)}>
+    }}><div>
 			<button onClick={()=>setModalActive(false)} className={styles.rechercheModalClose} aria-label="Fermer la recherche"><CloseCancelIcon/></button>
             <form onSubmit={handleSearch} className={styles.rechercheModalForm} onClick={(e) => e.stopPropagation()}> {/* empêche la popup de se fermer au clic */}
                 <input
@@ -42,11 +43,11 @@ export function RechercheModal({ setModalActive }:RechercheModalProps) {
                     id="recherche"
 					placeholder="Rechercher"
                 ></input>
-                <button type="submit" aria-label="Rechercher sur le site">
+                <button type="submit" aria-label="Rechercher sur le site" className={styles.rechercheModalBtn}>
                     <SearchIcon className={styles.rechercheModalIcon} />
                 </button>
-            </form>
+            </form></div></FocusTrap>
             {error && <p role="alert" className={styles.error}>{error}</p>}
-        </div></FocusTrap>
+        </div>
     );
 }
