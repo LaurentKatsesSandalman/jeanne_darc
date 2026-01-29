@@ -42,7 +42,7 @@ export function RechercheModal({ setModalActive }:RechercheModalProps) {
                     id="recherche"
 					placeholder="Rechercher"
                 ></input>
-                <button type="submit" aria-label="Rechercher sur le site">
+                <button type="submit" aria-label="Rechercher sur le site" className={styles.rechercheModalBtn}>
                     <SearchIcon className={styles.rechercheModalIcon} />
                 </button>
             </form>
