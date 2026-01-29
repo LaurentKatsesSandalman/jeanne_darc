@@ -105,13 +105,14 @@ export function SectionFormulaireContactClient({
                             ) : (
                                 <div>
                                     <ContenuContact contenu={contenuContact} />
-                                    <button
+									{/* pas d'option edit */}
+                                    {/* <button
                                         type="button"
                                         onClick={() => setEditContact(true)}
                                         className={iconStyles.btnInMain}
                                     >
                                         <EditIcon />
-                                    </button>
+                                    </button> */}
                                 </div>
                             )}
                         </div>
