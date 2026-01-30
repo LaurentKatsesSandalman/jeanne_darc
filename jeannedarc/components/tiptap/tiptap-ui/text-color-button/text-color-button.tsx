@@ -28,14 +28,13 @@ export interface TextColorButtonProps extends Omit<ButtonProps, "type"> {
 // Helper pour créer des couleurs prédéfinies
 export function pickTextColorsByValue(values: string[]): TextColor[] {
     const colorMap: Record<string, string> = {
-        "#000000": "Black",
-        "#FF0000": "Red",
-        "#E67E22": "Orange",
-        "#F1C40F": "Yellow",
-        "#2ECC71": "Green",
-        "#3498DB": "Blue",
-        "#9B59B6": "Purple",
-        "#FFFFFF": "White",
+        "#17383e": "Défaut",
+        "#c24322": "Rouge-orange",
+        "#638a8c": "Vert foncé",
+        "#4eb169": "Vert clair",
+        "#f6ae3b": "Jaune",
+        "#5b8fc7": "Bleu",
+        "#10292e": "Bleu foncé",
     };
 
     return values.map((value) => ({
