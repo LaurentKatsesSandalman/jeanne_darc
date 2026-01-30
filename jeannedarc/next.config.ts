@@ -20,23 +20,57 @@ const nextConfig: NextConfig = {
 		],
 	},
 
+	async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+        ],
+      },
+    ];
+  },
+
 	// Redirections
-	// async redirects() {
-	// 	return [
-	// 		// Netlify domain → custom domain
-	// 		{
-	// 			source: '/:path*',
-	// 			has: [
-	// 				{
-	// 					type: 'host',
-	// 					value: 'jeannedarc33.netlify.app',
-	// 				},
-	// 			],
-	// 			destination: 'https://refonte.jeannedarc33.fr/:path*',
-	// 			permanent: true, // 301 redirect
-	// 		},
-	// 	]
-	// },
+	async redirects() {
+
+		const isProduction = process.env.CONTEXT === 'production';
+    
+    if (!isProduction) {
+      return []; // Pas de redirections sur Deploy Previews
+    }
+
+
+		return [
+			// Netlify domain → custom domain
+			{
+				source: '/:path*',
+				has: [
+					{
+						type: 'host',
+						value: 'jeannedarc33.netlify.app',
+					},
+				],
+				destination: 'https://refonte.jeannedarc33.fr/:path*',
+				permanent: true, // 301 redirect
+			},
+		]
+	},
 };
 
 export default nextConfig;
