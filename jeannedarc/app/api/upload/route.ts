@@ -60,8 +60,13 @@ export async function POST(request: Request) {
         token: process.env.NETLIFY_AUTH_TOKEN,
         consistency: "strong",
     });
-    // Set the file in the store. Replace `<key>` with a unique key for the file.
-    await userUploadStore.set(id_contenu, fileUpload);
+    // Set the file in the store.
+     // Stocker le fichier AVEC metadata du content type
+        await userUploadStore.set(id_contenu, fileUpload, {
+            metadata: { contentType: fileUpload.type }
+        });
+        
+        console.log(`[UPLOAD] Succès: ${fileUpload.name} (${fileUpload.size} octets, ${fileUpload.type})`);
     // Redirect to a new page
     return Response.json({ success: true });
 }

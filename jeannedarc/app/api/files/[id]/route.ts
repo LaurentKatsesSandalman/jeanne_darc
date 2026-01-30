@@ -14,6 +14,13 @@ export async function GET(request: Request,
         token: process.env.NETLIFY_AUTH_TOKEN,
         consistency: "strong",
     });
+
+const metadata = await userUploadStore.getMetadata(id_contenu);
+  
+  if (!metadata) {
+    return new Response("Upload not found", { status: 404 });
+  }
+
   // Get the blob from the store. Replace `<key>` with the unique key used when
   // uploading.
   const userUploadBlob = await userUploadStore.get(id_contenu, {
@@ -23,6 +30,18 @@ export async function GET(request: Request,
   if (!userUploadBlob) {
     return new Response("Upload not found", { status: 404 });
   }
+
+// Get content type from custom metadata, fallback to octet-stream
+  const contentType = (metadata.metadata as { contentType?: string })?.contentType || 'application/octet-stream';
+
+
+
+
   // Return the blob
-  return new Response(userUploadBlob);
+  return new Response(userUploadBlob, {
+    headers: {
+      'Content-Type': contentType,
+      'Cache-Control': 'public, max-age=31536000, immutable',
+    },
+  });
 }
