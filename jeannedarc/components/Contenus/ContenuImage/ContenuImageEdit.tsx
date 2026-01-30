@@ -83,9 +83,14 @@ export function ContenuImageEdit({
             });
 
             if (!res.ok) {
-                setError(
-                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.",
-                );
+                const errorData = await res.json();
+                if (errorData.error) {
+                    setError(errorData.error);
+                } else {
+                    setError(
+                        "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.",
+                    );
+                }
                 return;
             }
 
