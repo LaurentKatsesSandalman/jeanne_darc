@@ -14,14 +14,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const pages = await sql<PageFromDB[]>`
             SELECT page_url, updated_at 
             FROM page 
-            WHERE page_url NOT IN ('plus', 'recherche')
+            WHERE page_url NOT IN ('plus', 'recherche', 'footer', 'header')
             ORDER BY page_url
         `;
 
         // Mapper les pages au format sitemap
         const pageEntries: MetadataRoute.Sitemap = pages.map((page) => ({
             url: `${baseUrl}/${page.page_url === "/" ? "" : page.page_url}`,
-            lastModified: new Date(page.updated_at),
+            lastModified: new Date(), // Date du jour, pour éviter un JOIN sur 11 tables !!
             changeFrequency: "monthly" as const,
             priority: page.page_url === "/" ? 1.0 : 0.8,
         }));
