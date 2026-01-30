@@ -50,29 +50,29 @@ const nextConfig: NextConfig = {
 	async redirects() {
 
 		// retour auto, pas de redirect
-		 return [];
+		//  return [];
 
-	// 	const isProduction = process.env.CONTEXT === 'production';
+		const isProduction = process.env.CONTEXT === 'production';
     
-    // if (!isProduction) {
-    //   return []; // Pas de redirections sur Deploy Previews
-    // }
+    if (!isProduction) {
+      return []; // Pas de redirections sur Deploy Previews
+    }
 
 
-	// 	return [
-	// 		// Netlify domain → custom domain
-	// 		{
-	// 			source: '/:path*',
-	// 			has: [
-	// 				{
-	// 					type: 'host',
-	// 					value: 'jeannedarc33.netlify.app',
-	// 				},
-	// 			],
-	// 			destination: 'https://refonte.jeannedarc33.fr/:path*',
-	// 			permanent: true, // 301 redirect
-	// 		},
-	// 	]
+		return [
+			// Netlify domain → custom domain
+			{
+				source: '/:path*',
+				has: [
+					{
+						type: 'host',
+						value: 'jeannedarc33.netlify.app',
+					},
+				],
+				destination: 'https://refonte.jeannedarc33.fr/:path*',
+				permanent: true, // 301 redirect
+			},
+		]
 	},
 };
 
