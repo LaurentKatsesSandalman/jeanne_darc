@@ -17,6 +17,8 @@
   force = true
   conditions = {Branch = ["main"]}  # Actif uniquement sur branche main
 
+
+!!!!!!!!!!!!!!!!!!!! provoque des soucsi !!!!!!!!!!
 # Suppression trailing slash (backup si Next.js ne le fait pas)
 [[redirects]]
   from = "/*/"
