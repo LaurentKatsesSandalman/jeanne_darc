@@ -15,6 +15,7 @@
   to = "https://refonte.jeannedarc33.fr/:splat"
   status = 301
   force = true
+  conditions = {Branch = ["main"]}  # Actif uniquement sur branche main
 
 # Suppression trailing slash (backup si Next.js ne le fait pas)
 [[redirects]]
