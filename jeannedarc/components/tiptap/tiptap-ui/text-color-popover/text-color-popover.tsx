@@ -80,14 +80,13 @@ TextColorPopoverButton.displayName = "TextColorPopoverButton";
 export function TextColorPopoverContent({
     editor,
     colors = pickTextColorsByValue([
-        "#000000",
-        "#FF0000",
-        "#E67E22",
-        "#F1C40F",
-        "#2ECC71",
-        "#3498DB",
-        "#9B59B6",
-        "#FFFFFF",
+           "#17383e",
+        "#c24322",
+        "#638a8c",
+        "#4eb169",
+        "#f6ae3b",
+        "#5b8fc7",
+        "#10292e",
     ]),
 }: TextColorPopoverContentProps) {
     const { handleRemoveTextColor } = useTextColor({ editor });
@@ -160,14 +159,13 @@ export function TextColorPopoverContent({
 export function TextColorPopover({
     editor: providedEditor,
     colors = pickTextColorsByValue([
-        "#000000",
-        "#FF0000",
-        "#E67E22",
-        "#F1C40F",
-        "#2ECC71",
-        "#3498DB",
-        "#9B59B6",
-        "#FFFFFF",
+           "#17383e",
+        "#c24322",
+        "#638a8c",
+        "#4eb169",
+        "#f6ae3b",
+        "#5b8fc7",
+        "#10292e",
     ]),
     hideWhenUnavailable = false,
     onApplied,
