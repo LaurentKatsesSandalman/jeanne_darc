@@ -41,7 +41,7 @@ const metadata = await userUploadStore.getMetadata(id_contenu);
   return new Response(userUploadBlob, {
     headers: {
       'Content-Type': contentType,
-      'Cache-Control': 'public, max-age=31536000, immutable',
+      'Cache-Control': 'public, max-age=0, must-revalidate',
     },
   });
 }
