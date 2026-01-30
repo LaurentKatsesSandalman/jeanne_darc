@@ -11,8 +11,3 @@
 
 
 
-# Suppression trailing slash (backup si Next.js ne le fait pas)
-[[redirects]]
-  from = "/*/"
-  to = "/:splat"
-  status = 301
