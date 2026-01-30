@@ -76,9 +76,14 @@ export function ContenuPdfEdit({ contenu, setEditPdf }: ContenuPdfEditProps) {
             });
 
             if (!res.ok) {
-                setError(
-                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.",
-                );
+                const errorData = await res.json();
+                if (errorData.error) {
+                    setError(errorData.error);
+                } else {
+                    setError(
+                        "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.",
+                    );
+                }
                 return;
             }
 
@@ -124,9 +129,9 @@ export function ContenuPdfEdit({ contenu, setEditPdf }: ContenuPdfEditProps) {
                 name="pdf_url"
                 value={currentContent.pdf_url}
                 onChange={handleChange}
-				className={styles.smallBorder}
+                className={styles.smallBorder}
             />
-			<div className={styles.dropDiv}>
+            <div className={styles.dropDiv}>
                 <label
                     onDrop={handleDrop}
                     onDragOver={(e) => e.preventDefault()}
@@ -154,7 +159,7 @@ export function ContenuPdfEdit({ contenu, setEditPdf }: ContenuPdfEditProps) {
                 name="pdf_titre"
                 value={currentContent.pdf_titre}
                 onChange={handleChange}
-				className={styles.smallBorder}
+                className={styles.smallBorder}
             />
             <CancelSaveButtons
                 setEdit={setEditPdf}
