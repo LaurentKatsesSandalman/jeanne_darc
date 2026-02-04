@@ -109,8 +109,12 @@ body {
     display: none;
 }
 
-.simple-editor-viewer .simple-editor-content p {
+.simple-editor-content p {
 	margin-bottom: 15px;
+}
+
+.simple-editor-content li>p {
+	margin-bottom: 0;
 }
 
 
