@@ -1,12 +1,12 @@
 .container {
     width: min(90%, 1290px);
     margin: 0 auto;
-	padding-top: 50px
+    padding-top: 50px;
 }
 
 .h1,
 .h1Edit {
-    font-family: var(--font-ibm-plex);
+    font-family: var(--font-ibm-plex), serif;
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 40px;
@@ -25,67 +25,107 @@
     margin-bottom: 24px;
 }
 
+.h1Edit,
+.h2Edit,
+.descriptionEdit {
+    border: 1px solid #17383e18;
+}
+
 .label {
     margin-top: -12px;
 }
 
-.surcontainerMega {
+.is_mega {
+    width: 1rem;
+}
 
+.divGrandTitre {
+    display: flex;
+    gap: 5px;
+
+    margin-top: -12px;
+}
+
+.surcontainerMega {
     background-color: var(--background-secondary);
-    
 }
 
 .containerMega {
     width: min(90%, 1290px);
     margin: 0 auto;
-	padding-top: 230px;
-	display:flex;
-	flex-direction: column-reverse;
+    padding-top: 230px;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .h1Mega {
-    font-family: var(--font-ibm-plex);
+    font-family: var(--font-ibm-plex), serif;
     font-size: 70px;
     font-weight: 700;
-	/* line-height: 1; */
+    /* line-height: 1; */
     margin-bottom: 90px;
-	text-align: center;
-	color: var(--font-white);
+    text-align: center;
+    color: var(--font-white);
 }
 
 .h2Mega {
-    font-family: var(--font-ibm-plex);
+    font-family: var(--font-ibm-plex), serif;
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 40px;
-	text-align: center;
-	color: var(--font-dark-green);
+    text-align: center;
+    color: var(--font-dark-green);
 }
 
-.descriptionMega{
-	text-align: center;
-	margin-bottom: 16px;
-	color: var(--font-dark-green);
-	font-weight: 700;
+.descriptionMega {
+    text-align: center;
+    margin-bottom: 16px;
+    color: var(--font-dark-green);
+    font-weight: 700;
 }
 .error {
-	color: var(--font-orange);
-	font-style: italic;
-	font-weight: 700;
+    color: var(--font-orange);
+    font-style: italic;
+    font-weight: 700;
 }
 
 .h1Home {
-    font-family: var(--font-ibm-plex);
+    font-family: var(--font-ibm-plex), serif;
     font-size: 70px;
     font-weight: 700;
-	line-height: 1;
+    line-height: 1;
     margin-bottom: 35px;
 
-	color: var(--font-white);
+    color: var(--font-white);
 }
 
-.descriptionHome{
+.descriptionHome {
+    margin-bottom: 50px;
+    color: var(--font-white);
+}
 
-	margin-bottom: 50px;
-	color: var(--font-white);
+@media (max-width: 768px) {
+    .h1Home,
+    .h1Mega,
+    .h2Mega {
+        font-size: 35px;
+        margin: 0;
+    }
+    .containerMega {
+        padding: 50px 0;
+    }
+
+    .h1 {
+        font-size: 25px;
+        margin-bottom: 12px;
+    }
+
+    .h2 {
+        font-size: 30px;
+        margin-bottom: 12px;
+    }
+
+    .container {
+        padding-top: 20px;
+    }
 }

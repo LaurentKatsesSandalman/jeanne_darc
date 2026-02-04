@@ -11,7 +11,7 @@ export function RechercheClient () {
 	}
 
 	return(<>
-	<button onClick={toggleRecherche}><SearchIcon /></button>
+	<button onClick={toggleRecherche} aria-label="Ouvrir la recherche"><SearchIcon /></button>
 	{modalActive&&<RechercheModal setModalActive={setModalActive} />}
 	</>)
 }

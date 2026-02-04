@@ -1,5 +1,5 @@
 import { useState, Dispatch, SetStateAction } from "react";
-
+import { FocusTrap } from "focus-trap-react";
 import styles from "./Recherche.module.css";
 import { CloseCancelIcon, SearchIcon } from "../Icons/Icons";
 import { useRouter } from "next/navigation";
@@ -26,22 +26,28 @@ export function RechercheModal({ setModalActive }:RechercheModalProps) {
     };
 
     return (
-        <div className={styles.rechercheModalContainer}>
-			<button onClick={()=>setModalActive(false)} className={styles.rechercheModalClose}><CloseCancelIcon/></button>
-            <form onSubmit={handleSearch} className={styles.rechercheModalForm}>
+		
+        <div className={styles.rechercheModalContainer} onClick={()=>setModalActive(false)}>
+			<FocusTrap focusTrapOptions={{
+        escapeDeactivates: true,  // Échap désactive le trap
+        clickOutsideDeactivates: true,  // Clic dehors désactive le trap
+    }}><div>
+			<button onClick={()=>setModalActive(false)} className={styles.rechercheModalClose} aria-label="Fermer la recherche"><CloseCancelIcon/></button>
+            <form onSubmit={handleSearch} className={styles.rechercheModalForm} onClick={(e) => e.stopPropagation()}> {/* empêche la popup de se fermer au clic */}
                 <input
-                    type="text"
+                    autoFocus
+					type="text"
                     className={styles.rechercheModalInput}
                     value={recherche}
                     onChange={handleChange}
                     id="recherche"
 					placeholder="Rechercher"
                 ></input>
-                <button type="submit">
+                <button type="submit" aria-label="Rechercher sur le site" className={styles.rechercheModalBtn}>
                     <SearchIcon className={styles.rechercheModalIcon} />
                 </button>
-            </form>
-            {error && <p className={styles.error}>{error}</p>}
+            </form></div></FocusTrap>
+            {error && <p role="alert" className={styles.error}>{error}</p>}
         </div>
     );
 }

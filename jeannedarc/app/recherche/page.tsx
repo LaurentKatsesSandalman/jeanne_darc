@@ -1,10 +1,10 @@
 import { searchIndexAction } from "@/lib/actions/actionsIndex";
 import { SearchIndexResult } from "@/lib/schemas";
-import styles from "./page.module.css"
+import styles from "./page.module.css";
 import { ResultatRecherche } from "@/components/ResultatRecherche/ResultatRecherche";
 
 // export const dynamic = 'force-dynamic';
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export default async function Page({
     searchParams,
@@ -12,22 +12,30 @@ export default async function Page({
     searchParams: Promise<{ q?: string }>;
 }) {
     const params = await searchParams;
-	const recherche = await params.q || "";
+    const recherche = (await params.q) || "";
     const resultats: SearchIndexResult | null = recherche
         ? await searchIndexAction(recherche)
         : null;
 
-	const noResult = (!resultats || (resultats.success&&resultats.data.length === 0) || !resultats.success)
+    const noResult =
+        !resultats ||
+        (resultats.success && resultats.data.length === 0) ||
+        !resultats.success;
 
     return (
-        <main>
-            <h1>Titre à trouver</h1>
-            <div className={styles.resultGrid}>
-				{noResult&&<h2>Pas de résultat</h2>}
-                {resultats?.success &&
-                    resultats.data.map((resultat) => (
-                        <ResultatRecherche resultat={resultat} key={resultat.id_page_fk} />
-                    ))}
+        <main id="main-content">
+            <div className={styles.searchPageContainer}>
+                <h1 className={styles.h1}>Résultats de la recherche</h1>
+                <div className={styles.resultGrid}>
+                    {noResult && <h2>Pas de résultat</h2>}
+                    {resultats?.success &&
+                        resultats.data.map((resultat) => (
+                            <ResultatRecherche
+                                resultat={resultat}
+                                key={resultat.id_page_fk}
+                            />
+                        ))}
+                </div>
             </div>
         </main>
     );

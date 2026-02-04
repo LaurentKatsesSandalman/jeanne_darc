@@ -12,17 +12,23 @@ interface PageProps {
 }
 
 // export const dynamic = 'force-dynamic';
-export const revalidate = 3600;
+export const revalidate = 86400;
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+    params,
+}: PageProps): Promise<Metadata> {
     const resolvedParams = await params;
     const url = resolvedParams.slug.join("/");
-    
+
     const page = await getPageByUrl(url);
-    
+
     return {
         title: page?.nom || "Page",
-        description: "École Jeanne d'Arc - Le Bouscat - ETABLISSEMENT CATHOLIQUE sous TUTELLE DIOCESAINE sous CONTRAT AVEC L'ETAT",
+        description:
+            "École de l'enseignement catholique sous contrat - Maternelle et primaire - Le Bouscat (33)",
+        alternates: {
+            canonical: `https://refonte.jeannedarc33.fr/${url}`,
+        },
     };
 }
 
@@ -45,7 +51,7 @@ export default async function Page({ params }: PageProps) {
 
     return (
         <>
-            <main>
+            <main id="main-content">
                 {sections?.map((section) => (
                     <VirtualSection
                         key={section.id_section}

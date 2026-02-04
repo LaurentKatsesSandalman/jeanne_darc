@@ -33,9 +33,10 @@ body {
 main{
 	background-color: var(--background-page);
 	/* padding: 50px 0 50px 0; */
-	color:var(--font-default)
+	color:var(--font-default);
 	/* width:min(90%, 1290px);
 	margin: 0 auto; */
+	margin: 50px 0
 }
 
 input {
@@ -43,6 +44,11 @@ input {
 	width: 100%;
 	background-color: var(--background-input);
 	outline: none;
+}
+
+input:focus-visible{
+	outline: 2px solid var(--font-pdf-related);
+  outline-offset: 2px;
 }
 
 input:focus{
@@ -56,4 +62,10 @@ label {
 
 button {
     backface-visibility: hidden;	/*pour eviter ques les icones bavent et créent une ligne diagonale*/
+}
+
+@media(max-width:768px){
+	main{
+		margin: 25px 0 50px;
+	}
 }

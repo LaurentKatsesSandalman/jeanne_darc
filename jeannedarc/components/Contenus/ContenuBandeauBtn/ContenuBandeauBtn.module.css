@@ -40,6 +40,35 @@
 	padding: 12px 16px;
 }
 
+.bouton:focus-visible, .boutonHome:focus-visible{
+	outline: 2px solid var(--font-pdf-related);
+  outline-offset: 2px;
+}
+
 .label{
 	font-weight: 700;
+}
+
+.smallBorder{
+	border: 1px solid #17383e18 
+}
+
+@media (max-width:768px){
+	.containerBandeau, .containerBandeauHome{
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.containerBandeauHome{
+		padding: 12px;
+	}
+
+	.containerTextes{
+		width: 90%;
+		text-align: center;
+	}
+
+	.titre {
+		font-size: 20px;
+	}
 }

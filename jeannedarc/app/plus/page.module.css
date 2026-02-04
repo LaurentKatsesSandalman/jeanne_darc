@@ -1,0 +1,30 @@
+.plusPageContainer {
+    width: min(90%, 1290px);
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.resultGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 350px);
+    gap: 25px;
+
+    margin: 25px auto;
+}
+
+.h1 {
+    font-family: var(--font-ibm-plex), serif;
+    font-size: 30px;
+    font-weight: 700;
+    /* margin-bottom: 40px; */
+}
+
+@media (max-width: 768px) {
+    .plusPageContainer {
+        padding: 20px 0;
+    }
+    .resultGrid {
+        gap: 10px;
+        grid-template-columns: 1fr;
+    }
+}

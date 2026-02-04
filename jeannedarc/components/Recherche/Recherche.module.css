@@ -4,9 +4,26 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.800);
+	background-color: rgba(0, 0, 0, 0.900);
 	color: white;
 	font-size: 35px;
+	z-index: 1;
+}
+
+.rechercheModalBtn{
+	flex-shrink: 0;
+	width:36px;
+	height: 36px;
+	background-color: var(--background-pdf-related);
+	border-radius: 50%;
+}
+.rechercheModalBtn:hover, .rechercheModalBtn:focus-visible{
+	background-color: var(--background-orange);
+}
+
+.rechercheModalIcon{
+	margin : auto;
+	padding: 2px;
 }
 
 .rechercheModalClose{
@@ -16,16 +33,46 @@
 
 .rechercheModalForm{
 	display: flex;
-	width: 80%;
-	margin:auto;
+	
+	align-items: center;
+	width: 60%;
+	margin:35vh auto;
+	gap : 10px;
 }
 
 .rechercheModalInput{
 	background-color: transparent;
-	color: inherit
+	color: inherit;
+	border-bottom: 1px solid grey;
+}
+
+.rechercheModalInput:focus{
+	background-color: transparent;
+	color: inherit;
+	border-bottom: 1px solid var(--background-pdf-related);
+	border-top: none;
+	border-left: none;
+	border-right: none;
 }
 
 .rechercheModalInput :-webkit-autofill{
 	  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
   -webkit-text-fill-color: inherit !important;
+}
+
+.error {
+	color: var(--font-orange);
+	font-style: italic;
+	font-weight: 700;
+}
+
+@media (max-width:768px){
+	.rechercheModalContainer{
+		font-size:16px
+	}
+
+	.rechercheModalForm{
+		width: 80%;
+		margin:15vh auto 35vh;
+	}
 }

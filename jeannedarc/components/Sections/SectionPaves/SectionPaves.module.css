@@ -4,10 +4,16 @@
     padding: 25px 0;
 }
 
+.sectionPavesContainerHome {
+    width: min(90%, 1290px);
+    margin: 0 auto;
+    padding: 25px 0 75px;
+}
+
 .sectionPavesContainerContact {
     /* width:min(90%, 1290px); */
     margin: 0 auto;
-    padding: 25px 0;
+    padding: 25px 0 50px;
     background-color: var(--background-secondary);
     color: var(--font-white);
 }
@@ -18,7 +24,7 @@ footer .sectionPavesContainer {
     /* width:min(90%, 1290px); */
     margin: 0 auto;
     padding: 25px 0;
-    /* background-color: var(--background-secondary); */
+    background-color: var(--background-layout);
     /* color: var(--font-white) */
 }
 
@@ -35,15 +41,24 @@ footer .sectionPavesContainerHome :is(input, textarea) {
     background-color: var(--background-page);
 }
 
+.blocsContainerHome,
 .blocsContainer {
     width: 90%;
     margin: 0 auto;
     display: flex;
-    gap: 64px;
+    gap: 4vw;
+}
+
+.blocsContainerContact {
+    width: min(90%, 1290px);
+    margin: 0 auto;
+    display: flex;
+    gap: 4vw;
 }
 
 .blocSize {
-    width: 100%;
+    flex: 1;
+    word-break: break-word;
 }
 
 .h2Pave,
@@ -52,7 +67,7 @@ footer .sectionPavesContainerHome :is(input, textarea) {
     text-align: center;
     font-size: 40px;
     font-weight: 700;
-    font-family: var(--font-ibm-plex);
+    font-family: var(--font-ibm-plex), serif;
     margin-bottom: 64px;
     margin-top: -50px;
 }
@@ -76,12 +91,38 @@ footer .sectionPavesContainerHome :is(input, textarea) {
     padding: 5px;
 }
 
-.texteBtnPave:hover {
+.texteBtnPave:hover,
+.texteBtnPave:focus-visible {
     color: var(--background-page);
     background-color: var(--font-default);
 }
 
-.texteBtnPaveHome:hover {
+.texteBtnPaveHome:hover,
+.texteBtnPaveHome:focus-visible {
     color: var(--background-page);
     background-color: var(--font-orange);
+}
+
+.texteBtnPave:focus-visible,
+.texteBtnPaveHome:focus-visible {
+    outline: 2px solid var(--font-pdf-related);
+    outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+    .h2Pave,
+    .h2PaveHome,
+    .h2PaveContact {
+        font-size: 30px;
+    }
+
+    .blocsContainerHome,
+    .blocsContainer,
+    .blocsContainerContact {
+        flex-direction: column;
+    }
+
+    .sectionPavesContainerContact {
+        padding-top: 0;
+    }
 }

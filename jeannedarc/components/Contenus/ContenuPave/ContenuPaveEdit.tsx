@@ -123,12 +123,12 @@ return (
             </label>
             <textarea
                 rows={3}
-				cols={50}
+				
                 id="description1"
                 name="description1"
                 value={currentContent.description1}
                 onChange={handleChange}
-				className={styles.smallBorder}
+				className={styles.smallBorderTextArea}
             />
 			 <input
                 type="text"

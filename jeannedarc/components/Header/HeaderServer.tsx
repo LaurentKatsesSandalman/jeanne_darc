@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styles from "./Header.module.css";
 import Image from "next/image";
-import logo from "../../assets/images/ECOLE_JDA_LOGO_BLANC-01-temp.png";
+// import logo from "/public/ECOLE_JDA_LOGO_BLANC-01-temp.png";
 //import { SignOutButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { LogoutButton } from "../Buttons/LogoutButton/LogoutButton";
@@ -13,6 +13,7 @@ import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
 import { ContenuHeaderBtnInterface } from "@/lib/schemas";
 import { getAllContenuHeaderBtnsBySectionId } from "@/lib/queries/contentCrudContenu";
 import { RechercheClient } from "../Recherche/RechercheClient";
+import { HeaderMobileClient } from "./HeaderMobileClient";
 
 export type SectionWithBtn = ContenuHeaderBtnInterface[];
 
@@ -43,16 +44,31 @@ export async function HeaderServer() {
     return (
         <header>
             <div className={styles.header}>
-                <Link href="/">
+                <Link href="/" className={styles.logoContainer} aria-label="Retour à l'accueil">
                     <Image
-                        src={logo}
+                        src="/ECOLE_JDA_LOGO_BLANC-01-temp.png"
                         alt="Le logo de l'école Jeanne d'Arc"
                         className={styles.logo}
+						    fill
                     />
                 </Link>
                 <HeaderClient isAuth={isAuth} sections={sectionsWithBtn} />
-                <p>(+33)5 56 08 52 16</p>
+                <a href="tel:+33556085216">(+33)5 56 08 52 16</a>
                 <RechercheClient />
+            </div>
+			<div className={styles.headerMobile}>
+               <RechercheClient />
+			    <Link href="/" className={styles.logoContainerMobile} aria-label="Retour à l'accueil">
+                    <Image
+                        src="/ECOLE_JDA_LOGO_BLANC-01-temp.png"
+                        alt="Le logo de l'école Jeanne d'Arc"
+                        className={styles.logo}
+						    fill
+                    />
+                </Link>
+				<HeaderMobileClient sectionsWithBtn={sectionsWithBtn} />
+                
+                
             </div>
             {isAuth && (
                 <>

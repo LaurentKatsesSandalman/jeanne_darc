@@ -9,6 +9,10 @@
     font-weight: 600;
 }
 
+.headerMobile{
+	display: none;
+}
+
 .allBtnContainer {
     display: flex;
     /* gap: 50px; */
@@ -19,19 +23,31 @@
 	text-transform: uppercase;
 } */
 
-.mainBtn:hover {
+.mainBtn:hover , .mainBtn:focus-visible{
     color: var(--font-orange);
     text-decoration: underline;
 }
 
-.otherBtn:hover{
+.otherBtn:hover, .otherBtn:focus-visible{
 	color: var(--font-orange);
     text-decoration: underline;
 }
 
-.logo {
-    max-height: 94px;
+.mainBtn:focus-visible, .otherBtn:focus-visible{
+	outline: 2px solid var(--font-orange);
+  /* outline-offset: 1px; */
+}
+
+.logoContainer{
+	position:relative;
+	max-height: 94px;
     max-width: 200px;
+    width: 13vw;
+    height: 94px;
+}
+
+.logo {
+
     object-fit: contain;
 }
 
@@ -86,4 +102,121 @@
 	color: var(--font-orange);
 	font-style: italic;
 	font-weight: 700;
+}
+
+@media (max-width:1100px){
+	.logoContainer{
+	display: none;
+}
+}
+
+@media (max-width:768px){
+	.header {
+    display:none
+}
+
+.headerMobile {
+    background-color: var(--background-layout);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--font-white);
+    width: 90%;
+    margin: 0 auto;
+    font-weight: 600;
+}
+
+.logoContainerMobile{
+	position:relative;
+	max-height: 94px;
+    max-width: 200px;
+    width: 50vw;
+    height: 94px;
+}
+
+.menuModalContainer {
+	position:fixed;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.900);
+	color: white;
+	font-size: 16px;
+	margin:0;
+	padding: 0;
+	z-index: 1;
+}
+
+.menuModal{
+	width: 66%;
+	height: 100vh;
+	margin: 0 0 0 auto;
+	background-color: var(--background-secondary);
+}
+
+.menuModalClose{
+	display: block;
+	padding: 5px;
+	margin-left: auto;
+}
+
+.allBtnContainer{
+	flex-direction: column;
+	align-items: baseline;
+}
+
+.mainBtn {
+    padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	
+}
+
+.numeroTel{
+	padding: 10px;
+}
+
+.otherBtns {
+    position: static;
+	max-height: 500px;
+	 transform: scaleY(1);
+    transform-origin: top;
+	opacity: 1;
+	overflow: hidden;
+	transition: max-height 0.3s ease-out,transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.sectionContainer{
+	width: 100%
+}
+
+.mainBtn:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.otherBtn:hover{
+	 color: inherit;
+    text-decoration: none;
+}
+
+.current {
+    /* text-decoration: underline; */
+    color: var(--font-orange);
+ 
+}
+
+.closed{
+	transform: scaleY(0);
+    transform-origin: top;
+max-height: 0;
+    opacity: 0; 
+}
+
+.mobileChevron{
+	transition: transform 0.3s ease-in-out;
+}
+
+.turned{
+	transform: rotate(180deg)
+}
+
 }

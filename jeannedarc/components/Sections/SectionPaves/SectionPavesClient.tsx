@@ -36,6 +36,10 @@ export function SectionPavesClient({
     const [currentContent, setCurrentContent] = useState(sectionPaves);
     const url = usePathname();
 
+	const ref_ids = [sectionPaves.id_contenu_pave]
+
+	const existingTitle = sectionPaves.titre ? true:false
+
     async function createNewBloc() {
         const result = await createPaveBlocAction(
             {
@@ -147,7 +151,7 @@ export function SectionPavesClient({
                 </>
             ) : (
                 <>
-                    {sectionPaves.titre ? (
+                    {existingTitle ? (
                         <>
                             <h2 className={styles[`h2Pave${classSuffixe}`]}>{sectionPaves.titre}</h2>
                             {isAuth && (
@@ -176,7 +180,7 @@ export function SectionPavesClient({
                 </>
             )}
 
-            <div className={styles.blocsContainer}>
+            <div className={styles[`blocsContainer${classSuffixe}`]}>
                 {paveBlocs && (
                     <>
                         {paveBlocs.map((paveBloc) => (
@@ -184,6 +188,7 @@ export function SectionPavesClient({
                                 key={paveBloc.id_pave_bloc}
                                 paveBloc={paveBloc}
                                 isAuth={isAuth}
+								existingTitle={existingTitle}
                             />
                         ))}
                     </>
@@ -198,6 +203,7 @@ export function SectionPavesClient({
                         <DeleteSectionButton
                             id_section={section.id_section}
                             url={url}
+							ref_ids={ref_ids}
                         />
                         {error && <p className={styles.error}>{error}</p>}
                     </>
