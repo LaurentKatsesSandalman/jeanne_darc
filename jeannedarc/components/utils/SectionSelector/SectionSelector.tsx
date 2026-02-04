@@ -24,13 +24,15 @@ type SectionType =
     | "Titre"
     | "Texte"
     | "BandeauBtn"
-	| "TitreImage"
+    | "TitreImage"
     | "TexteTexte"
     | "ImageTexte"
+    | "ImageImage"
+    | "3Images"
     | "Image"
-	| "Contact"
+    | "Contact"
     | "Pdf"
-	| "PavesNav";
+    | "PavesNav";
 
 export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
     //temp
@@ -50,7 +52,7 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
         sectionType: SectionType,
         id_page_fk: string,
         // eslint-disable-next-line no-unused-vars
-        createContentFn: (id_section: string) => Promise<void>
+        createContentFn: (id_section: string) => Promise<void>,
     ) {
         const sectionResult = await createSectionAction({
             id_page_fk: id_page_fk,
@@ -64,11 +66,11 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
             // Message pour l'utilisateur
             if ("errors" in sectionResult) {
                 setError(
-                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs."
+                    "Les données saisies ne sont pas valides. Veuillez vérifier vos champs.",
                 );
             } else if ("error" in sectionResult) {
                 setError(
-                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer."
+                    "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.",
                 );
             }
             return;
@@ -77,7 +79,11 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
             try {
                 await createContentFn(sectionResult.data.id_section);
             } catch (error) {
-                await deleteSectionAction(sectionResult.data.id_section, url, []);
+                await deleteSectionAction(
+                    sectionResult.data.id_section,
+                    url,
+                    [],
+                );
                 throw error;
             }
         }
@@ -98,9 +104,9 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                                 titre2: "",
                                 description: "",
                             },
-                            url
+                            url,
                         );
-                    }
+                    },
                 );
                 break;
             }
@@ -114,9 +120,9 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                                 id_section_fk: id_section,
                                 tiptap_content: defaultJsonString,
                             },
-                            url
+                            url,
                         );
-                    }
+                    },
                 );
                 break;
             }
@@ -134,13 +140,13 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                                 bouton: "défaut",
                                 lien_vers: "/",
                             },
-                            url
+                            url,
                         );
-                    }
+                    },
                 );
                 break;
             }
-			case "TitreImage": {
+            case "TitreImage": {
                 await createSectionWithContent(
                     sectionType,
                     id_page_fk,
@@ -153,7 +159,7 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                                 alt_text: "",
                                 lien_vers: "",
                             },
-                            url
+                            url,
                         );
                         await createContenuTitreAction(
                             {
@@ -163,9 +169,9 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                                 titre2: "",
                                 description: "",
                             },
-                            url
+                            url,
                         );
-                    }
+                    },
                 );
                 break;
             }
@@ -179,16 +185,16 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                                 id_section_fk: id_section,
                                 tiptap_content: defaultJsonString,
                             },
-                            url
+                            url,
                         );
                         await createContenuTexteAction(
                             {
                                 id_section_fk: id_section,
                                 tiptap_content: defaultJsonString,
                             },
-                            url
+                            url,
                         );
-                    }
+                    },
                 );
                 break;
             }
@@ -205,16 +211,84 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                                 alt_text: "",
                                 lien_vers: "",
                             },
-                            url
+                            url,
                         );
                         await createContenuTexteAction(
                             {
                                 id_section_fk: id_section,
                                 tiptap_content: defaultJsonString,
                             },
-                            url
+                            url,
                         );
-                    }
+                    },
+                );
+                break;
+            }
+            case "ImageImage": {
+                await createSectionWithContent(
+                    sectionType,
+                    id_page_fk,
+                    async (id_section) => {
+                        await createContenuImageAction(
+                            {
+                                id_section_fk: id_section,
+                                image_url:
+                                    "http://www.image-heberg.fr/files/1765794470531451060.png",
+                                alt_text: "",
+                                lien_vers: "",
+                            },
+                            url,
+                        );
+                        await createContenuImageAction(
+                            {
+                                id_section_fk: id_section,
+                                image_url:
+                                    "http://www.image-heberg.fr/files/1765794470531451060.png",
+                                alt_text: "",
+                                lien_vers: "",
+                            },
+                            url,
+                        );
+                    },
+                );
+                break;
+            }
+            case "3Images": {
+                await createSectionWithContent(
+                    sectionType,
+                    id_page_fk,
+                    async (id_section) => {
+                        await createContenuImageAction(
+                            {
+                                id_section_fk: id_section,
+                                image_url:
+                                    "http://www.image-heberg.fr/files/1765794470531451060.png",
+                                alt_text: "",
+                                lien_vers: "",
+                            },
+                            url,
+                        );
+                        await createContenuImageAction(
+                            {
+                                id_section_fk: id_section,
+                                image_url:
+                                    "http://www.image-heberg.fr/files/1765794470531451060.png",
+                                alt_text: "",
+                                lien_vers: "",
+                            },
+                            url,
+                        );
+                        await createContenuImageAction(
+                            {
+                                id_section_fk: id_section,
+                                image_url:
+                                    "http://www.image-heberg.fr/files/1765794470531451060.png",
+                                alt_text: "",
+                                lien_vers: "",
+                            },
+                            url,
+                        );
+                    },
                 );
                 break;
             }
@@ -231,13 +305,13 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                                 alt_text: "",
                                 lien_vers: "",
                             },
-                            url
+                            url,
                         );
-                    }
+                    },
                 );
                 break;
             }
-			case "Contact": {
+            case "Contact": {
                 await createSectionWithContent(
                     sectionType,
                     id_page_fk,
@@ -250,21 +324,21 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                                 alt_text: "",
                                 lien_vers: "",
                             },
-                            url
+                            url,
                         );
                         await createContenuContactAction(
                             {
                                 id_section_fk: id_section,
-                                titre:"LAISSEZ-NOUS UN MESSAGE",
-								champ1:"Nom et prénom",
-								champ2: "Numéro de téléphone",
-								champ3: "Adresse mail de contact",
-								champ4: "Votre message",
-								bouton: "Envoyer"
+                                titre: "LAISSEZ-NOUS UN MESSAGE",
+                                champ1: "Nom et prénom",
+                                champ2: "Numéro de téléphone",
+                                champ3: "Adresse mail de contact",
+                                champ4: "Votre message",
+                                bouton: "Envoyer",
                             },
-                            url
+                            url,
                         );
-                    }
+                    },
                 );
                 break;
             }
@@ -280,13 +354,13 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                                     "https://www.conseil-constitutionnel.fr/sites/default/files/2021-09/constitution.pdf",
                                 pdf_titre: "titre du pdf",
                             },
-                            url
+                            url,
                         );
-                    }
+                    },
                 );
                 break;
             }
-			case "PavesNav": {
+            case "PavesNav": {
                 await createSectionWithContent(
                     sectionType,
                     id_page_fk,
@@ -294,11 +368,11 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                         await createContenuPaveAction(
                             {
                                 id_section_fk: id_section,
-                                titre:""
+                                titre: "",
                             },
-                            url
+                            url,
                         );
-                    }
+                    },
                 );
                 break;
             }
@@ -327,29 +401,41 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                         >
                             Section Texte
                         </button>
-						<button
+                        <button
                             type="button"
                             onClick={() => createNewSection("BandeauBtn")}
                         >
                             Section Bandeau avec bouton (ou bouton seul)
                         </button>
-						<button
+                        <button
                             type="button"
                             onClick={() => createNewSection("TitreImage")}
                         >
-                            Section TitreImage (pour page d&#39;accueil)
+                            Section Titre + Image (pour page d&#39;accueil)
                         </button>
                         <button
                             type="button"
                             onClick={() => createNewSection("TexteTexte")}
                         >
-                            Section TexteTexte
+                            Section 2 Textes
                         </button>
                         <button
                             type="button"
                             onClick={() => createNewSection("ImageTexte")}
                         >
-                            Section ImageTexte
+                            Section Image + Texte
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => createNewSection("ImageImage")}
+                        >
+                            Section 2 Images
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => createNewSection("3Images")}
+                        >
+                            Section 3 Images
                         </button>
                         <button
                             type="button"
@@ -357,7 +443,7 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                         >
                             Section Image
                         </button>
-						<button
+                        <button
                             type="button"
                             onClick={() => createNewSection("Contact")}
                         >
@@ -369,7 +455,7 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                         >
                             Section Pdf
                         </button>
-						<button
+                        <button
                             type="button"
                             onClick={() => createNewSection("PavesNav")}
                         >

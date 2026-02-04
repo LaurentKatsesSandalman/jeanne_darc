@@ -9,6 +9,8 @@ import { SectionBandeauBtnServer } from "../../Sections/SectionBandeauBtn/Sectio
 import { SectionTitreImageServer } from "@/components/Sections/SectionTitreImage/SectionTitreImageServer";
 import { SectionPavesServer } from "@/components/Sections/SectionPaves/SectionPavesServer";
 import { SectionFormulaireContactServer } from "@/components/Sections/SectionFormulaireContact/SectionFormulaireContactServer";
+import { SectionImageImageServer } from "@/components/Sections/SectionImageImage/SectionImageImageServer";
+import { Section3ImagesServer } from "@/components/Sections/Section3Images/Section3ImagesServer";
 
 interface VirtualSectionProps {
     section: SectionInterface;
@@ -25,7 +27,7 @@ export function VirtualSection({ section, isAuth }: VirtualSectionProps) {
             return (
                 <SectionBandeauBtnServer isAuth={isAuth} section={section} />
             );
-			case "TitreImage":
+        case "TitreImage":
             return (
                 <SectionTitreImageServer isAuth={isAuth} section={section} />
             );
@@ -37,14 +39,27 @@ export function VirtualSection({ section, isAuth }: VirtualSectionProps) {
             return (
                 <SectionImageTexteServer isAuth={isAuth} section={section} />
             );
+        case "ImageImage":
+            return (
+                <SectionImageImageServer isAuth={isAuth} section={section} />
+            );
+		case "3Images":
+            return (
+                <Section3ImagesServer isAuth={isAuth} section={section} />
+            );	
         case "Image":
             return <SectionImageServer isAuth={isAuth} section={section} />;
-		case "Contact":
-            return <SectionFormulaireContactServer isAuth={isAuth} section={section} />;
+        case "Contact":
+            return (
+                <SectionFormulaireContactServer
+                    isAuth={isAuth}
+                    section={section}
+                />
+            );
         case "Pdf":
             return <SectionPdfServer isAuth={isAuth} section={section} />;
-		case "PavesNav":
-            return <SectionPavesServer isAuth={isAuth} section={section} />;	
+        case "PavesNav":
+            return <SectionPavesServer isAuth={isAuth} section={section} />;
         default:
             console.warn(`Type de section inconnu: ${section.type}`);
             return null;
