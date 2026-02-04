@@ -5,7 +5,7 @@ export function SchemaOrgSchool() {
         name: "École Jeanne d'Arc",
         alternateName: "JDA Le Bouscat",
         description:
-            "École maternelle et primaire catholique sous tutelle diocésaine sous contrat avec l'État",
+            "École maternelle et primaire de l'enseignement catholique sous tutelle diocésaine sous contrat avec l'État",
         url: "https://refonte.jeannedarc33.fr",
         logo: "https://refonte.jeannedarc33.fr/images/logo-square.png",
         image: "https://refonte.jeannedarc33.fr/images/logo-square.png",
