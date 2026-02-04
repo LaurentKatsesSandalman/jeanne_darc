@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
     return {
         title: "Plus",
         description:
-            "École catholique sous contrat - Maternelle et primaire - Le Bouscat (33)",
+            "École de l'enseignement catholique sous contrat - Maternelle et primaire - Le Bouscat (33)",
     };
 }
 

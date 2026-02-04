@@ -103,9 +103,18 @@ body {
 }
 
 //styles pour la ligne fantôme
+//enlevé suite à problèmes
 .simple-editor-viewer .simple-editor-content p:empty,
 .simple-editor-viewer .simple-editor-content p:has(> br.ProseMirror-trailingBreak:only-child) {
     display: none;
+}
+
+.simple-editor-content p {
+	margin-bottom: 15px;
+}
+
+.simple-editor-content li>p {
+	margin-bottom: 0;
 }
 
 
