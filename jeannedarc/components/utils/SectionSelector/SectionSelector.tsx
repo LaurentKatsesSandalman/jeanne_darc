@@ -411,19 +411,19 @@ export function SectionSelector({ id_page_fk }: { id_page_fk: UUIDFormat }) {
                             type="button"
                             onClick={() => createNewSection("TitreImage")}
                         >
-                            Section TitreImage (pour page d&#39;accueil)
+                            Section Titre + Image (pour page d&#39;accueil)
                         </button>
                         <button
                             type="button"
                             onClick={() => createNewSection("TexteTexte")}
                         >
-                            Section TexteTexte
+                            Section 2 Textes
                         </button>
                         <button
                             type="button"
                             onClick={() => createNewSection("ImageTexte")}
                         >
-                            Section ImageTexte
+                            Section Image + Texte
                         </button>
                         <button
                             type="button"
