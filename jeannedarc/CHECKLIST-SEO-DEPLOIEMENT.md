@@ -185,7 +185,7 @@
 - [ ] Tester le formulaire de contact (si existant)
 - [ ] Vérifier l'authentification Clerk (login admin)
 - [ ] Tester les modifications de contenu en admin
-- [ ] Vérifier que les modifications apparaissent après revalidation (~30 sec)
+- [ ] Vérifier que les modifications apparaissent après revalidation
 
 ---
 
