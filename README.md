@@ -9,6 +9,18 @@
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green)](https://supabase.com/)
 [![Netlify](https://img.shields.io/badge/Netlify-Free-00C7B7)](https://www.netlify.com/)
 
+## 🎥 Admin Live Update Demo
+
+![Admin workflow](docs/demo-quick.gif)
+
+**Real-time admin workflow** - No speed-up, actual production performance:
+- ✅ TipTap rich text editing with live save (Server Actions)
+- ✅ Image upload to Netlify Blobs
+- ✅ ISR revalidation with `revalidatePath()` (a few seconds)
+- ✅ Changes instantly visible to public visitors
+
+*Authenticated via Clerk - 30-second complete edit-to-publish cycle*
+
 ---
 
 ## 📖 About
@@ -118,6 +130,20 @@ Complete technical modernization of École Jeanne d'Arc's website (Le Bouscat, F
 **Page Generation:**
 - ISR for public pages (`revalidate: 86400`)
 - Instant cache invalidation after content updates
+
+---
+
+## 🎓 What I Learned
+
+**Technical Skills:**
+- ISR internals and revalidation strategies
+- Server Components vs Client Components trade-offs
+- Serverless cost optimization (build credits, function duration)
+- Production authentication with Clerk
+
+**Business Skills:**
+- Managing strict budget constraints
+- Monitoring production costs in real-time
 
 ---
 
