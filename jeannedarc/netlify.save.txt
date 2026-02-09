@@ -12,7 +12,7 @@
 # Redirections CDN (avant même Next.js)
 [[redirects]]
   from = "https://jeannedarc33.netlify.app/*"
-  to = "https://refonte.jeannedarc33.fr/:splat"
+  to = "https://jeannedarc33.fr/:splat"
   status = 301
   force = true
   conditions = {Branch = ["main"]}  # Actif uniquement sur branche main

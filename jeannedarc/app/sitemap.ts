@@ -7,7 +7,7 @@ interface PageFromDB {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = "https://refonte.jeannedarc33.fr";
+    const baseUrl = "https://jeannedarc33.fr";
 
     try {
         // Récupérer toutes les pages depuis la BDD

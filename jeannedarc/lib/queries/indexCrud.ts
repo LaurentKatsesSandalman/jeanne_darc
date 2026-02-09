@@ -8,23 +8,17 @@ export async function createIndex(
     { ref_id, ref_table, content_plaintext }: CreateIndex,
     url: string,
 ): Promise<boolean> {
-	console.log(url)
+	
 	const shortUrl=(url==="/"?"/":url.slice(1))
     const page = await getPageByUrl(shortUrl);
 
 	
 
     if (!page) {
-		console.log("no page")
+		
         return false;
     }
 
-console.log('🔍 DEBUG createIndex:', {
-    ref_id,
-    ref_table,
-    content_plaintext: content_plaintext.substring(0, 50) + '...',
-    id_page_fk: page.id_page
-});
 
     const data = {
         id_page_fk: page.id_page,

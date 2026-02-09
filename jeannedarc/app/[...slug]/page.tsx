@@ -27,7 +27,7 @@ export async function generateMetadata({
         description:
             "École de l'enseignement catholique sous contrat - Maternelle et primaire - Le Bouscat (33)",
         alternates: {
-            canonical: `https://refonte.jeannedarc33.fr/${url}`,
+            canonical: `https://jeannedarc33.fr/${url}`,
         },
     };
 }

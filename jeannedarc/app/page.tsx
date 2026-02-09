@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "École Jeanne d'Arc - Le Bouscat",
     description: "École maternelle et primaire de l'enseignement catholique sous tutelle diocésaine. Découvrez notre projet éducatif, pédagogique et pastoral.",
     alternates: {
-      canonical: 'https://refonte.jeannedarc33.fr/',
+      canonical: 'https://jeannedarc33.fr/',
     },
   };
 }
