@@ -15,22 +15,22 @@ export const metadata: Metadata = {
         template: "%s | École Jeanne d'Arc", // Pour les sous-pages
     },
     description:
-        "École Jeanne d'Arc - Le Bouscat - ETABLISSEMENT CATHOLIQUE sous TUTELLE DIOCESAINE sous CONTRAT AVEC L'ETAT",
+        "École Jeanne d'Arc - Le Bouscat - École maternelle et primaire de l'enseignement catholique sous tutelle diocésaine.",
     icons: {
         icon: "/favicon.ico",
         apple: "/apple-touch-icon.png",
     },
     alternates: {
-        canonical: "https://refonte.jeannedarc33.fr",
+        canonical: "https://jeannedarc33.fr",
     },
     openGraph: {
         type: "website",
         locale: "fr_FR",
-        url: "https://refonte.jeannedarc33.fr",
+        url: "https://jeannedarc33.fr",
         siteName: "École Jeanne d'Arc - Le Bouscat",
-        title: "École Primaire Jeanne d'Arc - Le Bouscat",
+        title: "École Jeanne d'Arc - Le Bouscat",
         description:
-            "ETABLISSEMENT CATHOLIQUE sous TUTELLE DIOCESAINE sous CONTRAT AVEC L'ETAT",
+            "École maternelle et primaire de l'enseignement catholique sous tutelle diocésaine.",
         images: [
             {
                 url: "/images/og-image.jpg", // Adapter l'extension si besoin
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "École Primaire Jeanne d'Arc - Le Bouscat",
+        title: "École Jeanne d'Arc - Le Bouscat",
         description:
-            "ETABLISSEMENT CATHOLIQUE sous TUTELLE DIOCESAINE sous CONTRAT AVEC L'ETAT",
+            "École maternelle et primaire de l'enseignement catholique sous tutelle diocésaine.",
         images: ["/images/og-image.jpg"],
     },
 };

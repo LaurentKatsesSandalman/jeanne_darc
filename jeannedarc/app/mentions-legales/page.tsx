@@ -1,6 +1,4 @@
 // Page : app/mentions-legales/page.tsx
-// URL conseillée :  https://refonte.jeannedarc33.fr/mentions-legales
-// WARNING: penser à changer https://refonte.jeannedarc33.fr/mentions-legales pour https://jeannedarc33.fr/mentions-legales
 
 import { Metadata } from "next";
 
@@ -12,7 +10,7 @@ export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales du site École Jeanne d'Arc - Le Bouscat",
   alternates: {
-    canonical: 'https://refonte.jeannedarc33.fr/mentions-legales',
+    canonical: 'https://jeannedarc33.fr/mentions-legales',
   },
 };
 
@@ -27,8 +25,8 @@ export default function MentionsLegalesPage() {
                 <p className="mb-4">
                     En vertu de l&#39;article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l&#39;économie numérique, 
                     il est précisé aux utilisateurs du site{' '}
-                    <a href="https://refonte.jeannedarc33.fr" className="text-blue-600 hover:underline">
-                         https://refonte.jeannedarc33.fr
+                    <a href="https://jeannedarc33.fr" className="text-blue-600 hover:underline">
+                         https://jeannedarc33.fr
                     </a>{' '}
                     l&#39;identité des différents intervenants dans le cadre de sa réalisation et de son suivi :
                 </p>
@@ -46,8 +44,8 @@ export default function MentionsLegalesPage() {
                 <h2 className="text-2xl font-semibold mb-4">2. Conditions générales d&#39;utilisation</h2>
                 <p className="mb-4">
                     L&#39;utilisation du site{' '}
-                    <a href="https://refonte.jeannedarc33.fr" className="text-blue-600 hover:underline">
-                         https://refonte.jeannedarc33.fr
+                    <a href="https://jeannedarc33.fr" className="text-blue-600 hover:underline">
+                         https://jeannedarc33.fr
                     </a>{' '}
                     implique l&#39;acceptation pleine et entière des conditions générales d&#39;utilisation décrites ci-après. 
                     Ces conditions d&#39;utilisation sont susceptibles d&#39;être modifiées ou complétées à tout moment.
@@ -67,8 +65,8 @@ export default function MentionsLegalesPage() {
                 <h2 className="text-2xl font-semibold mb-4">3. Description des services fournis</h2>
                 <p className="mb-4">
                     Le site{' '}
-                    <a href="https://refonte.jeannedarc33.fr" className="text-blue-600 hover:underline">
-                         https://refonte.jeannedarc33.fr
+                    <a href="https://jeannedarc33.fr" className="text-blue-600 hover:underline">
+                         https://jeannedarc33.fr
                     </a>{' '}
                     a pour objet de fournir une information concernant l&#39;ensemble des activités de l&#39;école.
                 </p>
@@ -255,8 +253,8 @@ export default function MentionsLegalesPage() {
                 <h2 className="text-2xl font-semibold mb-4">11. Droit applicable et attribution de juridiction</h2>
                 <p>
                     Tout litige en relation avec l&#39;utilisation du site{' '}
-                    <a href="https://refonte.jeannedarc33.fr" className="text-blue-600 hover:underline">
-                         https://refonte.jeannedarc33.fr
+                    <a href="https://jeannedarc33.fr" className="text-blue-600 hover:underline">
+                         https://jeannedarc33.fr
                     </a>{' '}
                     est soumis au droit français. Il est fait attribution exclusive de juridiction aux tribunaux compétents 
                     de Bordeaux.

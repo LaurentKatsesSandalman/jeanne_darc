@@ -11,4 +11,4 @@ Disallow: /plus
 Disallow: /recherche
 
 # Sitemap
-Sitemap: https://refonte.jeannedarc33.fr/sitemap.xml
+Sitemap: https://jeannedarc33.fr/sitemap.xml

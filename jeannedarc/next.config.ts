@@ -69,7 +69,7 @@ const nextConfig: NextConfig = {
 						value: 'jeannedarc33.netlify.app',
 					},
 				],
-				destination: 'https://refonte.jeannedarc33.fr/:path*',
+				destination: 'https://jeannedarc33.fr/:path*',
 				permanent: true, // 301 redirect
 			},
 		]

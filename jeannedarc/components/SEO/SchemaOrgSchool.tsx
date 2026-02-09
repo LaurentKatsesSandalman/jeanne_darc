@@ -6,9 +6,9 @@ export function SchemaOrgSchool() {
         alternateName: "JDA Le Bouscat",
         description:
             "École maternelle et primaire de l'enseignement catholique sous tutelle diocésaine sous contrat avec l'État",
-        url: "https://refonte.jeannedarc33.fr",
-        logo: "https://refonte.jeannedarc33.fr/images/logo-square.png",
-        image: "https://refonte.jeannedarc33.fr/images/logo-square.png",
+        url: "https://jeannedarc33.fr",
+        logo: "https://jeannedarc33.fr/images/logo-square.png",
+        image: "https://jeannedarc33.fr/images/logo-square.png",
         address: {
             "@type": "PostalAddress",
             streetAddress: "45 Rue Francis de Pressensé",

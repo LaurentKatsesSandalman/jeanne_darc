@@ -68,9 +68,7 @@ export async function POST(request: Request) {
         metadata: { contentType: fileUpload.type },
     });
 
-    console.log(
-        `[UPLOAD] Succès: ${fileUpload.name} (${fileUpload.size} octets, ${fileUpload.type})`,
-    );
+  
     // Redirect to a new page
     return Response.json({
         success: true,
