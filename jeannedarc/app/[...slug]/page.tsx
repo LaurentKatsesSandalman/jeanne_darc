@@ -4,6 +4,7 @@ import { getAllSectionsByPageId } from "@/lib/queries/contentCrudSection";
 import { SectionSelector } from "@/components/utils/SectionSelector/SectionSelector";
 import { VirtualSection } from "@/components/utils/VirtualSection/VirtualSection";
 import { Metadata } from "next";
+import { notFound } from 'next/navigation';
 
 interface PageProps {
     params: Promise<{
@@ -38,7 +39,7 @@ export default async function Page({ params }: PageProps) {
 
     const page = await getPageByUrl(url);
     if (!page) {
-        return <p>Erreur au chargement de la page</p>;
+       notFound(); // Retourne 404 au lieu de 200
     }
     const sections = await getAllSectionsByPageId(page?.id_page);
     if (!sections) {
