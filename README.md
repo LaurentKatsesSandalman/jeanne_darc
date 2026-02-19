@@ -28,8 +28,8 @@
 Complete technical modernization of École Jeanne d'Arc's website (Le Bouscat, France), migrating from a legacy WordPress installation to a modern Next.js application.
 
 **Live URLs:**
-- Current production: `refonte.jeannedarc33.fr` (temporary subdomain)
-- Future migration: `jeannedarc33.fr` (will replace WordPress)
+- Previous production: `refonte.jeannedarc33.fr` (temporary subdomain)
+- Current migration: `jeannedarc33.fr` (replaces WordPress)
 
 **Context:**
 - Private elementary school with strict zero additional budget constraint (OVH domain already existing)
