@@ -7,7 +7,6 @@ Allow: /
 # Pages à ne pas indexer
 Disallow: /gestion-pages
 Disallow: /login
-Disallow: /plus
 Disallow: /recherche
 
 # Sitemap
