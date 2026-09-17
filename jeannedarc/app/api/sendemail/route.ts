@@ -45,8 +45,8 @@ if (body.form.verif) {
   try {
     const { data, error } = await resend.emails.send({
       from: 'Formulaire JDA <formulaire@jeannedarc33.fr>',
-    //   to: 'Direction <direction@jeannedarc33.fr>',
-	   to: 'Laurent <laurent.durup@proton.me>',
+      to: 'Direction <direction@jeannedarc33.fr>',
+	//   to: 'Laurent <laurent.durup@proton.me>',
       subject: `Contact via formulaire ${body.form.id_form}`,
       react: ContactEmailTemplate(body),
     });
